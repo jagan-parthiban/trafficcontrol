@@ -55,7 +55,7 @@ jobs:
         with:
           name: HTMLDocumentation
           path: docs/build/html/
-      - name: Deploy to GitHub Pages #Push to gh-pages branch
+      - name: Deploy to GitHub Pages #Push to gh-pages branch 1
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/test-tc-gh-page' }}
         with:
