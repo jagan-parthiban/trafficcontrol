@@ -30,6 +30,9 @@ on:
       - .github/workflows/docs.yml
       - traffic_control/clients/python/**.py
 
+permissions:
+  contents: write
+
 jobs:
   documentation:
     if: github.event.pull_request.draft == false
@@ -60,3 +63,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _build/
           force_orphan: true
+
