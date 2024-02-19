@@ -24,7 +24,7 @@ on:
       - .github/workflows/docs.yml
       - traffic_control/clients/python/**.py
   pull_request:
-    types: [opened, reopened, ready_for_review, synchronize]
+    types: [opened, reopened, ready_for_review, synchronize, closed]
     paths:
       - docs/source/**
       - .github/workflows/docs.yml
