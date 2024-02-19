@@ -57,7 +57,11 @@ jobs:
           path: docs/build/html/
       - name: Deploy to GitHub Pages #Push to gh-pages branch 1
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/test-tc-gh-page' }}
+        if: ${{ 
+          github.event_name == 'pull_request' && 
+          github.event.action == 'closed' && 
+          github.event.pull_request.merged == true && 
+          github.event.pull_request.base.ref == 'master' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
