@@ -60,8 +60,8 @@ jobs:
         if: ${{ 
           github.event_name == 'pull_request' && 
           github.event.action == 'closed' && 
-          github.event.pull_request.merged == true && 
-          github.event.pull_request.base.ref == 'master' }}
+          github.event.pull_request.merged == true }}
+#          github.event.pull_request.base.ref == 'master' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
