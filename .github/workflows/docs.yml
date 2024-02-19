@@ -24,7 +24,7 @@ on:
       - .github/workflows/docs.yml
       - traffic_control/clients/python/**.py
   pull_request:
-    types: [opened, reopened, ready_for_review, synchronize, closed]
+    types: [opened, reopened, ready_for_review, synchronize]
     paths:
       - docs/source/**
       - .github/workflows/docs.yml
@@ -55,7 +55,7 @@ jobs:
         with:
           name: HTMLDocumentation
           path: docs/build/html/
-      - name: Deploy to GitHub Pages #Push to gh-pages branch 1
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:
