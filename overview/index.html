@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Control Overview &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cache Groups" href="cache_groups.html" />
+    <link rel="prev" title="Cache Control Headers and Revalidation" href="../basics/cache_revalidation.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Traffic Control Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cache_groups.html">Cache Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html">Delivery Service Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html">Delivery Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Content Invalidation Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles_and_parameters.html">Profiles and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Traffic Control Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/overview/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-control-overview">
+<h1>Traffic Control Overview<a class="headerlink" href="#traffic-control-overview" title="Permalink to this heading"></a></h1>
+<p>Introduces the Traffic Control architecture, components, and their integration.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cache_groups.html">Cache Groups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cache_groups.html#regions-divisions-and-locations">Regions, Divisions, and Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cache_groups.html#properties">Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#asns">ASNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#coordinate">Coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#fallbacks">Fallbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#fallback-to-closest">Fallback to Closest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#cache-group-id">ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#latitude">Latitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#localization-methods">Localization Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#longitude">Longitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#name">Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#parent">Parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#secondary-parent">Secondary Parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#servers">Servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#short-name">Short Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_groups.html#type">Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="delivery_service_requests.html">Delivery Service Requests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#assignee">Assignee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#author">Author</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#change-type">Change Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#created-at">Created At</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#id">ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#last-edited-by">Last Edited By</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#original">Original</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#requested">Requested</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="delivery_services.html">Delivery Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#active">Active</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#anonymous-blocking">Anonymous Blocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#cache-url-expression">Cache URL Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#cdn">CDN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#check-path">Check Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#consistent-hashing-regular-expression">Consistent Hashing Regular Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#consistent-hashing-query-parameters">Consistent Hashing Query Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#deep-caching">Deep Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#display-name">Display Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dns-bypass-cname">DNS Bypass CNAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dns-bypass-ip">DNS Bypass IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dns-bypass-ipv6">DNS Bypass IPv6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dns-bypass-ttl">DNS Bypass TTL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dns-ttl">DNS TTL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#dscp">DSCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#edge-header-rewrite-rules">Edge Header Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#edns0-client-subnet-enabled">EDNS0 Client Subnet Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#example-urls">Example URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#fair-queuing-pacing-rate-bps">Fair-Queuing Pacing Rate Bps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#first-header-rewrite-rules">First Header Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geo-limit">Geo Limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geo-limit-countries">Geo Limit Countries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geo-limit-redirect-url">Geo Limit Redirect URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geolocation-provider">Geolocation Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geo-miss-default-latitude">Geo Miss Default Latitude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#geo-miss-default-longitude">Geo Miss Default Longitude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#global-max-mbps">Global Max Mbps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#global-max-tps">Global Max TPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#http-bypass-fqdn">HTTP Bypass FQDN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#ipv6-routing-enabled">IPv6 Routing Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#info-url">Info URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#initial-dispersion">Initial Dispersion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#inner-header-rewrite-rules">Inner Header Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#last-header-rewrite-rules">Last Header Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#logs-enabled">Logs Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#long-description">Long Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#match-list">Match List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#max-dns-answers">Max DNS Answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#max-origin-connections">Max Origin Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#max-request-header-bytes">Max Request Header Bytes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#mid-header-rewrite-rules">Mid Header Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#origin-server-base-url">Origin Server Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#origin-shield">Origin Shield</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#profile">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#protocol">Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#query-string-handling">Query String Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#range-request-handling">Range Request Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#range-slice-request-block-size">Range Slice Request Block Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#raw-remap-text">Raw Remap Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#regex-remap-expression">Regex Remap Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#regional">Regional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#regional-geoblocking">Regional Geoblocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#required-capabilities">Required Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#routing-name">Routing Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#servers">Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#service-category">Service Category</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#signing-algorithm">Signing Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#ssl-key-version">SSL Key Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#static-dns-entries">Static DNS Entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#tenant">Tenant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#tls-versions">TLS Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#topology">Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#traffic-router-additional-response-headers">Traffic Router Additional Response Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#traffic-router-log-request-headers">Traffic Router Log Request Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#type">Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#use-multi-site-origin-feature">Use Multi-Site Origin Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#xml-id">xml_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html#delivery-service-parameters">Delivery Service Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="delivery_services.html#parent-config">parent.config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Content Invalidation Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#asset-url">Asset URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#created-by">Created By</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#delivery-service">Delivery Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#job-id">ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#invalidation-type">Invalidation Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#regular-expression">Regular Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#start-time">Start Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#ttl">TTL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profiles_and_parameters.html">Profiles and Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="profiles_and_parameters.html#profiles">Profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="profiles_and_parameters.html#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_and_parameters.html#default-profiles">Default Profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_and_parameters.html#the-global-profile">The GLOBAL Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="profiles_and_parameters.html#parameters">Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="profiles_and_parameters.html#id6">Properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#last-updated">Last Updated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#name">Name</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="roles.html#the-admin-role">The Admin Role</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#permissions">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#cache-monitoring">Cache Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#health-protocol">Health Protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#optimistic-health-protocol">Optimistic Health Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#optimistic-quorum">Optimistic Quorum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#protocol-engagement">Protocol Engagement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#traffic-ops-extension">Traffic Ops Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_router.html">Traffic Router</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#dns-content-routing">DNS Content Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#http-content-routing">HTTP Content Routing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_vault.html">Traffic Vault</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../basics/cache_revalidation.html" class="btn btn-neutral float-left" title="Cache Control Headers and Revalidation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cache_groups.html" class="btn btn-neutral float-right" title="Cache Groups" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configure OAuth Login &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compare Profiles" href="profile_compare_mgmt.html" />
+    <link rel="prev" title="Configure Multi-Site Origin" href="multi_site.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Quick How To Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anonymous_blocking.html">Configure Anonymous Blocking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroup_fallback.html">Configure Cache Group Fallbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ciab.html">CDN in a Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="client_cert_auth.html">Client Certificates for Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="content_invalidation.html">Forcing Content Invalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dnssec.html">Configure DNSSEC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ds_requests.html">Delivery Service Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations.html">Configure Federations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kickstart.html">Creating the CentOS Kickstart File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_site.html">Configure Multi-Site Origin</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure OAuth Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile_compare_mgmt.html">Compare Profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regionalgeo.html">Configure Regional Geo-blocking (RGB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server_capabililty.html">Manage Server Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="static_dns.html">Configuring Static DNS Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="steering.html">Configure Delivery Service Steering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Quick How To Guides</a></li>
+      <li class="breadcrumb-item active">Configure OAuth Login</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/quick_howto/oauth_login.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configure-oauth-login">
+<span id="oauth-login"></span><h1>Configure OAuth Login<a class="headerlink" href="#configure-oauth-login" title="Permalink to this heading"></a></h1>
+<p>An opt-in configuration for SSO using OAuth is supported and can be configured through the <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code> and <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_ops/app/conf/cdn.conf</span></code> files. OAuth uses a third party provider to authenticate the user. If enabled, the Traffic Portal Login page will still accept username and password for local accounts but will also allow authentication using OAuth. This will redirect to the <code class="docutils literal notranslate"><span class="pre">oAuthUrl</span></code> from <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code> which will authenticate the user then redirect to the new <code class="docutils literal notranslate"><span class="pre">/sso</span></code> page with an authorization code. The new <code class="docutils literal notranslate"><span class="pre">/sso</span></code> page will then construct the full URL to exchange the authorization code for a JSON Web Token, and <code class="docutils literal notranslate"><span class="pre">POST</span></code> this information to the <a class="reference internal" href="../../api/v5/user_login_oauth.html#to-api-user-login-oauth"><span class="std std-ref">user/login/oauth</span></a> API endpoint. The <a class="reference internal" href="../../api/v5/user_login_oauth.html#to-api-user-login-oauth"><span class="std std-ref">user/login/oauth</span></a> API endpoint will <code class="docutils literal notranslate"><span class="pre">POST</span></code> to the URL provided and receive JSON Web Token. The <a class="reference internal" href="../../api/v5/user_login_oauth.html#to-api-user-login-oauth"><span class="std std-ref">user/login/oauth</span></a> API endpoint will decode the token, validate that it is between the issued time and the expiration time, and validate that the public key set URL is allowed by the list of whitelisted URLs read from <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_ops/app/conf/cdn.conf</span></code>. It will then authorize the user from the database and return a mojolicious cookie as per the normal login workflow.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that the user names in the Traffic Ops database match the value returned in the <cite>sub</cite> field in the response from the OAuth provider when setting up with the OAuth provider.  The <cite>sub</cite> field is used to reference the roles in the Traffic Ops database in order to authorize the user.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OAuth providers sometimes do not return the public key set URL but instead require a locally stored key. This functionality is not currently supported and will require further development.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">POST</span></code> from the API to the OAuth provider to exchange the code for a token expects the response to have the token in JSON format with <cite>access_token</cite> as the desired field (and can include other fields).  It also supports a response with just the token itself as the body.  Further development work will need to be done to allow other resposne forms or other response fields.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users must exist in both Traffic Ops as well as in the OAuth provider’s system.  The user’s rights are defined by the <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> assigned to the user.</p>
+</div>
+<p>To configure OAuth login:</p>
+<ul>
+<li><p>Set up authentication with a third party OAuth provider.</p></li>
+<li><p>Update <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code> and ensure the following properties are set up correctly:</p>
+<blockquote>
+<div><table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 73 </span><span class="caption-text">OAuth Configuration Property Definitions In traffic_portal_properties.json</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>enabled</p></td>
+<td><p>boolean</p></td>
+<td><p>Allow OAuth SSO login</p></td>
+</tr>
+<tr class="row-odd"><td><p>oAuthUrl</p></td>
+<td><p>string</p></td>
+<td><p>URL to your OAuth provider</p></td>
+</tr>
+<tr class="row-even"><td><p>redirectUriParameterOverride</p></td>
+<td><p>string</p></td>
+<td><p>Query parameter override if the oAuth provider requires a different key for the redirect_uri parameter, defaults to <code class="docutils literal notranslate"><span class="pre">redirect_uri</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>clientId</p></td>
+<td><p>string</p></td>
+<td><p>Client id registered with OAuth provider, passed in with <cite>client_id</cite> parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>oAuthCodeTokenUrl</p></td>
+<td><p>string</p></td>
+<td><p>URL to your OAuth provider’s endpoint for exchanging the code (from oAuthUrl) for a token</p></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#85 </span><span class="caption-text">Example OAuth Configuration Properties In traffic_portal_properties.json</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;oAuth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;_comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Opt-in OAuth properties for SSO login. See http://traffic-control-cdn.readthedocs.io/en/release-4.0.0/admin/quick_howto/oauth_login.html for more details. redirectUriParameterOverride defaults to redirect_uri if left blank.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;oAuthUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example.oauth.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;redirectUriParameterOverride&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;oAuthCodeTokenUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example.oauth.com/oauth/token&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Update <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_ops/app/conf/cdn.conf</span></code> property traffic_ops_golang.whitelisted_oauth_urls to contain all allowed domains for the JSON key set (Use <code class="docutils literal notranslate"><span class="pre">*</span></code> for wildcard):</p>
+<blockquote>
+<div><table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 74 </span><span class="caption-text">OAuth Configuration Property Definitions In cdn.conf</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>whitelisted_oauth_urls</p></td>
+<td><p>Array of strings</p></td>
+<td><p>List of whitelisted URLs for the JSON public key set returned by OAuth provider.  Can contain <code class="docutils literal notranslate"><span class="pre">*</span></code> wildcards.</p></td>
+</tr>
+<tr class="row-odd"><td><p>oauth_client_secret</p></td>
+<td><p>string</p></td>
+<td><p>Client secret registered with OAuth provider to verify client, passed in with <cite>oauth_client_secret</cite> parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>oauth_user_attribute</p></td>
+<td><p>string</p></td>
+<td><p>Client username registered with OAuth provider to verify client, passed in with <cite>oauth_user_attribute</cite> parameter</p></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">#86 </span><span class="caption-text">Example OAuth Configuration Properties In cdn.conf</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;traffic_ops_golang&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;whitelisted_oauth_urls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;oauth.example.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;*.example.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;username@email.com&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;oauth_client_secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multi_site.html" class="btn btn-neutral float-left" title="Configure Multi-Site Origin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="profile_compare_mgmt.html" class="btn btn-neutral float-right" title="Compare Profiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

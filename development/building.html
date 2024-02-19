@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building Traffic Control &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Debugging inside CDN-in-a-Box" href="debugging.html" />
+    <link rel="prev" title="Environment Variables" href="environment_variables.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building Traffic Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-traffic-control">Downloading Traffic Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-using-pkg">Build Using <code class="docutils literal notranslate"><span class="pre">pkg</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-using-docker-compose">Build Using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-rpms-natively">Build the RPMs Natively</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-the-dependencies">Install the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-build-clean-build-sh-directly">Run <code class="docutils literal notranslate"><span class="pre">build/clean_build.sh</span></code> directly</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-individual-components">Building Individual Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-this-documentation">Building This Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-development-environment">The Development Environment</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer’s Guide</a></li>
+      <li class="breadcrumb-item active">Building Traffic Control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/building.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-traffic-control">
+<span id="dev-building"></span><h1>Building Traffic Control<a class="headerlink" href="#building-traffic-control" title="Permalink to this heading"></a></h1>
+<p>The build steps for Traffic Control components are all pretty much the same, despite that they are written in a variety of different languages and frameworks. This is accomplished by using Docker.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, both listed methods of building Traffic Control components will produce <code class="docutils literal notranslate"><span class="pre">*.rpm</span></code> files, meaning that the support of these components is limited to RedHat-based distributions - and none of them are currently tested (or guaranteed to work) outside of Rocky Linux 8 and CentOS 7, specifically.</p>
+</div>
+<section id="downloading-traffic-control">
+<h2>Downloading Traffic Control<a class="headerlink" href="#downloading-traffic-control" title="Permalink to this heading"></a></h2>
+<p>If any local work on Traffic Monitor, Traffic Router Golang, Grove or Traffic Ops is to be done, it is <strong>highly</strong> recommended that <a class="reference external" href="https://github.com/apache/trafficcontrol">the Traffic Control repository</a> be downloaded inside the <code class="docutils literal notranslate"><span class="pre">$GOPATH</span></code> directory. Specifically, the best location is <code class="docutils literal notranslate"><span class="pre">$GOPATH/src/github.com/apache/trafficcontrol</span></code>. Cloning the repository outside of this location will require either linking the actual directory to that point, or moving/copying it there.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The Golang project’s <code class="docutils literal notranslate"><span class="pre">GOPATH</span></code> <a class="reference external" href="https://github.com/golang/go/wiki/GOPATH">wiki page</a></p>
+</div>
+</section>
+<section id="build-using-pkg">
+<span id="pkg"></span><h2>Build Using <code class="docutils literal notranslate"><span class="pre">pkg</span></code><a class="headerlink" href="#build-using-pkg" title="Permalink to this heading"></a></h2>
+<p>This is the easiest way to build all the components of Traffic Control; all requirements are automatically loaded into the image used to build each component.  The <code class="docutils literal notranslate"><span class="pre">pkg</span></code> command can be found at the root of the Traffic Control <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/master/pkg">repository</a>.</p>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/installation/">Docker</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/compose/install/">Docker Compose</a><a class="footnote-reference brackets" href="#compose-optional" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+</ul>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">./pkg</span> <span class="pre">[options]</span> <span class="pre">[projects]</span></code></p>
+<section id="options">
+<h4>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h4>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-7">
+<span class="sig-name descname"><span class="pre">-7</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-7" title="Permalink to this definition"></a></dt>
+<dd><p>Build RPMs targeting CentOS 7.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version ATCv6.0.0: </span>Previously, <a class="reference internal" href="#cmdoption-7"><code class="xref std std-option docutils literal notranslate"><span class="pre">-7</span></code></a> was implicit if not given. As of ATC version 6.0.0, this is no longer the case, and <a class="reference internal" href="#cmdoption-8"><code class="xref std std-option docutils literal notranslate"><span class="pre">-8</span></code></a> is implicit instead.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-8">
+<span class="sig-name descname"><span class="pre">-8</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-8" title="Permalink to this definition"></a></dt>
+<dd><p>Build RPMs targeting Rocky Linux 8 (default).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version ATCv6.0.0: </span>Previously, <a class="reference internal" href="#cmdoption-7"><code class="xref std std-option docutils literal notranslate"><span class="pre">-7</span></code></a> was implicit if not given. As of ATC version 6.0.0, this is no longer the case, and <a class="reference internal" href="#cmdoption-8"><code class="xref std std-option docutils literal notranslate"><span class="pre">-8</span></code></a> is implicit instead.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-a">
+<span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-a" title="Permalink to this definition"></a></dt>
+<dd><p>Build all projects, including optional ones.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-b">
+<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-b" title="Permalink to this definition"></a></dt>
+<dd><p>Build builder Docker images before building projects.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-d" title="Permalink to this definition"></a></dt>
+<dd><p>Disable compiler optimizations for debugging.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-f">
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"> <span class="pre">FILE</span></span><a class="headerlink" href="#cmdoption-f" title="Permalink to this definition"></a></dt>
+<dd><p>Use <code class="docutils literal notranslate"><span class="pre">FILE</span></code> instead of the default Docker-Compose file (<code class="docutils literal notranslate"><span class="pre">./infrastructure/docker/build/docker-compose.yml</span></code>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-h">
+<span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-h" title="Permalink to this definition"></a></dt>
+<dd><p>Print help message and exit.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version ATCv6.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-l">
+<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-l" title="Permalink to this definition"></a></dt>
+<dd><p>List available projects.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This lists only the projects that are built by default if none are specified, not <em>all</em> projects that can be built. See <a class="reference external" href="https://github.com/apache/trafficcontrol/issues/6272">Issue #6272</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-L">
+<span class="sig-name descname"><span class="pre">-L</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-L" title="Permalink to this definition"></a></dt>
+<dd><p>Don’t write logs to files - respects output levels on STDERR/STDOUT as set by <a class="reference internal" href="#cmdoption-q"><code class="xref std std-option docutils literal notranslate"><span class="pre">-q</span></code></a>/<a class="reference internal" href="#cmdoption-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">-v</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-o" title="Permalink to this definition"></a></dt>
+<dd><p>Build from the optional list. Same as passing <a class="reference internal" href="#cmdoption-f"><code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code></a> with the option-argument <code class="docutils literal notranslate"><span class="pre">./infrastructure/docker/build/docker-compose-opt.yml</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-p">
+<span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-p" title="Permalink to this definition"></a></dt>
+<dd><p>Pull builder Docker images, do not build them (default).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-q">
+<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-q" title="Permalink to this definition"></a></dt>
+<dd><p>Quiet mode. Suppresses output (default).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-s">
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-s" title="Permalink to this definition"></a></dt>
+<dd><p>Simple output filenames - e.g. <code class="docutils literal notranslate"><span class="pre">traffic_ops.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">traffic_ops-6.1.0-11637.ec9ff6a6.el8.x86_64.rpm</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version ATCv6.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-S">
+<span class="sig-name descname"><span class="pre">-S</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-S" title="Permalink to this definition"></a></dt>
+<dd><p>Skip building “source RPMs”.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version ATCv6.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-v">
+<span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-v" title="Permalink to this definition"></a></dt>
+<dd><p>Verbose mode. Lists all build output.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version ATCv6.1.0.</span></p>
+</div>
+</dd></dl>
+
+<p>If present, <code class="docutils literal notranslate"><span class="pre">projects</span></code> should be one or more project names. When no specific project or project list is given the default projects will be built. Valid projects:</p>
+<ul class="simple">
+<li><p>ats<a class="footnote-reference brackets" href="#optional-project" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
+<li><p>docs<a class="footnote-reference brackets" href="#default-project" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>fakeorigin_build<a class="footnote-reference brackets" href="#optional-project" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
+<li><p>grove_build<a class="footnote-reference brackets" href="#default-project" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>grovetccfg_build<a class="footnote-reference brackets" href="#default-project" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>source<a class="footnote-reference brackets" href="#default-project" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>traffic_monitor_build<a class="footnote-reference brackets" href="#default-project" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>traffic_ops_build<a class="footnote-reference brackets" href="#default-project" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>cache-config_build<a class="footnote-reference brackets" href="#default-project" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>traffic_portal_build<a class="footnote-reference brackets" href="#default-project" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>traffic_router_build<a class="footnote-reference brackets" href="#default-project" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>traffic_stats_build<a class="footnote-reference brackets" href="#default-project" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+<li><p>weasel<a class="footnote-reference brackets" href="#default-project" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<p>Output <code class="file docutils literal notranslate"><em><span class="pre">component</span></em><span class="pre">-</span><em><span class="pre">version</span></em><span class="pre">.rpm</span></code> files, build logs and source tarballs will be output to the <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory at the root of the Traffic Control repository directory.</p>
+</section>
+</section>
+<section id="build-using-docker-compose">
+<span id="build-with-dc"></span><h3>Build Using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code><a class="headerlink" href="#build-using-docker-compose" title="Permalink to this heading"></a></h3>
+<p>If the <code class="docutils literal notranslate"><span class="pre">pkg</span></code> script fails, <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> can still be used to build the projects directly. The compose file can be found at <code class="docutils literal notranslate"><span class="pre">infrastructure/docker/build/docker-compose.yml</span></code> under the repository’s root directory. It can be passed directly to <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>, either from the <code class="docutils literal notranslate"><span class="pre">infrastructure/docker/build/</span></code> directory or by explicitly passing a path to the <code class="docutils literal notranslate"><span class="pre">infrastructure/docker/build/docker-compose.yml</span></code> file via <code class="docutils literal notranslate"><span class="pre">-f</span></code>. It is recommended that between builds <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span> <span class="pre">-v</span></code> is run to prevent caching of old build steps. The service names are the same as the project names described above in <a class="reference internal" href="#usage">Usage</a>, and similar to the <code class="docutils literal notranslate"><span class="pre">pkg</span></code> script, the build results, logs and source tarballs may all be found in the <code class="docutils literal notranslate"><span class="pre">dist</span></code> directory after completion.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> in the way described above will build _all_ projects, not just the default projects.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.docker.com/compose/reference/overview/">The Docker Compose command line reference</a></p>
+</div>
+</section>
+</section>
+<section id="build-the-rpms-natively">
+<span id="dev-building-natively"></span><h2>Build the RPMs Natively<a class="headerlink" href="#build-the-rpms-natively" title="Permalink to this heading"></a></h2>
+<p>A developer may end up building the RPMs several times to test or <a class="reference internal" href="debugging.html#dev-debugging-ciab"><span class="std std-ref">debug</span></a> code changes, so it can be desirable to build the RPMs quickly for this purpose. Natively building the RPMs has the lowest build time of any building method.</p>
+<section id="install-the-dependencies">
+<h3>Install the Dependencies<a class="headerlink" href="#install-the-dependencies" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id19">
+<caption><span class="caption-number">Table 76 </span><span class="caption-text">Build dependencies for Traffic Control</span><a class="headerlink" href="#id19" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>OS/Package Manager</p></th>
+<th class="head"><p>Common dependencies</p></th>
+<th class="head"><p><a class="reference internal" href="traffic_monitor.html#dev-traffic-monitor"><span class="std std-ref">Traffic Monitor</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="traffic_ops.html#dev-traffic-ops"><span class="std std-ref">Traffic Ops</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="traffic_portal.html#dev-traffic-portal"><span class="std std-ref">Traffic Portal</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="traffic_router.html#dev-traffic-router"><span class="std std-ref">Traffic Router</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="traffic_stats.html#dev-traffic-stats"><span class="std std-ref">Traffic Stats</span></a></p></th>
+<th class="head"><p>Grove</p></th>
+<th class="head"><p>Grove TC Config (grovetccfg)</p></th>
+<th class="head"><p><a class="reference internal" href="documentation_guidelines.html#docs-guide"><span class="std std-ref">Docs</span></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>macOS<a class="footnote-reference brackets" href="#mac-jdk" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>
+(<a class="reference external" href="https://brew.sh/">homebrew</a>)</p></td>
+<td><ul class="simple">
+<li><p>rpm</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>npm</p></li>
+<li><p>grunt-cli</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>maven</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>python3</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>RockyLinux<a class="footnote-reference brackets" href="#rocky-go" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>,
+Red Hat,
+Fedora,
+CentOS
+(<a class="reference external" href="https://wiki.centos.org/PackageManagement/Yum">yum</a>)</p></td>
+<td><ul class="simple">
+<li><p>git</p></li>
+<li><p>rpm-build</p></li>
+<li><p>rsync</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td><ul class="simple">
+<li><p>epel-release</p></li>
+<li><p>npm</p></li>
+<li><p>nodejs-grunt-cli</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>java-11-openjdk</p></li>
+<li><p>maven</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td><ul class="simple">
+<li><p>python3-devel</p></li>
+<li><p>gcc</p></li>
+<li><p>make</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Arch Linux,
+Manjaro
+(<a class="reference external" href="https://www.archlinux.org/pacman/">pacman</a>)</p></td>
+<td><ul class="simple">
+<li><p>git</p></li>
+<li><p>rpm-tools</p></li>
+<li><p>diff</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>npm</p></li>
+<li><p>grunt-cli</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>jdk11-openjdk</p></li>
+<li><p>maven</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>go</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>python-pip</p></li>
+<li><p>python-sphinx</p></li>
+<li><p>make</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Windows
+(<a class="reference external" href="https://cygwin.com/">cygwin</a>)<a class="footnote-reference brackets" href="#windeps" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a></p></td>
+<td><ul class="simple">
+<li><p>git</p></li>
+<li><p>rpm-build</p></li>
+<li><p>rsync</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td><ul class="simple">
+<li><p>curl</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Windows
+(<a class="reference external" href="https://chocolatey.org/">chocolatey</a>)<a class="footnote-reference brackets" href="#windeps" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a></p></td>
+<td></td>
+<td><ul class="simple">
+<li><p>golang</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>golang</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>nodejs</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>openjdk11</p></li>
+<li><p>maven</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>golang</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>golang</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>golang</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>python</p></li>
+<li><p>pip</p></li>
+<li><p>make</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>After installing the packages using your platform’s package manager,</p>
+<ul class="simple">
+<li><p>Install the <a class="reference internal" href="traffic_portal.html#dev-tp-global-npm"><span class="std std-ref">global NPM packages</span></a> to build Traffic Portal.</p></li>
+<li><p>Install the Python 3 modules used to <a class="reference internal" href="documentation_guidelines.html#docs-build"><span class="std std-ref">build the documentation</span></a>.</p></li>
+</ul>
+</section>
+<section id="run-build-clean-build-sh-directly">
+<h3>Run <code class="docutils literal notranslate"><span class="pre">build/clean_build.sh</span></code> directly<a class="headerlink" href="#run-build-clean-build-sh-directly" title="Permalink to this heading"></a></h3>
+<p>In a terminal, navigate to the root directory of the repository. You can run <code class="docutils literal notranslate"><span class="pre">build/clean_build.sh</span></code> with no arguments to build all components.</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-number">#92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">build/clean_build.sh</span></code> with no arguments</span><a class="headerlink" href="#id20" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>build/clean_build.sh
+</pre></div>
+</div>
+</div>
+<p>This is the equivalent of running</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-number">#93 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">build/clean_build.sh</span></code> with all components</span><a class="headerlink" href="#id21" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>build/clean_build.sh<span class="w"> </span>tarball<span class="w"> </span>traffic_monitor<span class="w"> </span>traffic_ops<span class="w"> </span>traffic_portal<span class="w"> </span>traffic_router<span class="w"> </span>traffic_stats<span class="w"> </span>grove<span class="w"> </span>grove/grovetccfg<span class="w"> </span>docs
+</pre></div>
+</div>
+</div>
+<p>If any component fails to build, no further component builds will be attempted.</p>
+<p>By default, the RPMs will be built targeting Rocky Linux 8. CentOS 7 is also a supported build target. You can choose which RHEL version to build for (8, 7, etc.) by setting the <code class="docutils literal notranslate"><span class="pre">RHEL_VERSION</span></code> environment variable:</p>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-number">#94 </span><span class="caption-text">Building RPMs that target CentOS 7 without the build host needing to be CentOS 7</span><a class="headerlink" href="#id22" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">RHEL_VERSION</span><span class="o">=</span><span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Although there are no known issues with natively-built RPMs, the official, supported method of building the RPMs is by using <a class="reference internal" href="#pkg"><span class="std std-ref">pkg</span></a> or <a class="reference internal" href="#build-with-dc"><span class="std std-ref">docker-compose</span></a>. Use natively-built RPMs at your own risk.</p>
+</div>
+</section>
+</section>
+<section id="building-individual-components">
+<h2>Building Individual Components<a class="headerlink" href="#building-individual-components" title="Permalink to this heading"></a></h2>
+<p>Each Traffic Control component can be individually built, and the instructions for doing so may be found in their respective component’s development documentation.</p>
+<section id="building-this-documentation">
+<h3>Building This Documentation<a class="headerlink" href="#building-this-documentation" title="Permalink to this heading"></a></h3>
+<p>See instructions for <a class="reference internal" href="documentation_guidelines.html#docs-build"><span class="std std-ref">building the documentation</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="compose-optional" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>This is optional, but recommended. If a <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> executable is not available the <code class="docutils literal notranslate"><span class="pre">pkg</span></code> script will automatically download and run it using a container. This is noticeably slower than running it natively.</p>
+</aside>
+<aside class="footnote brackets" id="optional-project" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p>This project is “optional”, which means that it cannot be built unless <a class="reference internal" href="#cmdoption-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">-o</span></code></a> is given.</p>
+</aside>
+<aside class="footnote brackets" id="default-project" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id5">2</a>,<a role="doc-backlink" href="#id6">3</a>,<a role="doc-backlink" href="#id7">4</a>,<a role="doc-backlink" href="#id8">5</a>,<a role="doc-backlink" href="#id9">6</a>,<a role="doc-backlink" href="#id10">7</a>,<a role="doc-backlink" href="#id11">8</a>,<a role="doc-backlink" href="#id12">9</a>,<a role="doc-backlink" href="#id13">10</a>,<a role="doc-backlink" href="#id14">11</a>)</span>
+<p>This is a default project, which will be built if <code class="docutils literal notranslate"><span class="pre">pkg</span></code> is run with no <code class="docutils literal notranslate"><span class="pre">projects</span></code> argument</p>
+</aside>
+<aside class="footnote brackets" id="mac-jdk" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">4</a><span class="fn-bracket">]</span></span>
+<p>If you are on macOS, you additionally need to <a class="reference internal" href="traffic_router.html#dev-tr-mac-jdk"><span class="std std-ref">Get OpenJDK 11 on macOS</span></a>.</p>
+</aside>
+<aside class="footnote brackets" id="rocky-go" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">5</a><span class="fn-bracket">]</span></span>
+<p>If you are on Rocky Linux, you need to <a class="reference external" href="https://golang.org/dl/">download Go directly</a> instead of using a package manager in order to get the latest Go version. For most users, the desired architecture is AMD64/x86_64.</p>
+</aside>
+<aside class="footnote brackets" id="windeps" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id17">1</a>,<a role="doc-backlink" href="#id18">2</a>)</span>
+<p>If you are on Windows, you need to install <strong>both</strong> the Cygwin packages and the Chocolatey packages in order to build the Apache Traffic Control RPMs natively.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="environment_variables.html" class="btn btn-neutral float-left" title="Environment Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="Debugging inside CDN-in-a-Box" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

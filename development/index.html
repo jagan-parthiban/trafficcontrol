@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer’s Guide &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Guidelines" href="api_guidelines.html" />
+    <link rel="prev" title="CDNi Administration" href="../admin/cdni.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-development-environment">The Development Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atc">atc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build">build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connect">connect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exec">exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ready">ready</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#restart">restart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start">start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stop">stop</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#t3c">t3c</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developer-s-guide">
+<h1>Developer’s Guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this heading"></a></h1>
+<p>Use this guide to start developing applications that consume the Traffic Control APIs, to create extensions to Traffic Ops, or work on Traffic Control itself.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+</ul>
+</div>
+<section id="the-development-environment">
+<span id="dev"></span><h2>The Development Environment<a class="headerlink" href="#the-development-environment" title="Permalink to this heading"></a></h2>
+<p>A development environment is available in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/dev/"><code class="docutils literal notranslate"><span class="pre">dev/</span></code></a>. This environment only depends on <a class="reference external" href="https://www.docker.com/">Docker</a> (version 20+) and <cite>Docker-Compose &lt;https://docs.docker.com/compose/</cite> (version 1.27+) and enables rapid changes to be made to components during active development. This is, in general far faster than <a class="reference internal" href="debugging.html#dev-debugging-ciab"><span class="std std-ref">Debugging inside CDN-in-a-Box</span></a>, but covers less complex configurations for testing purposes. Continuous Integration typically makes use of CDN-in-a-Box, so developers in general are free to use the Development Environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many ports used by the development environment clash with those exposed locally by CDN-in-a-Box when the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/cdn-in-a-box/docker-compose.expose-ports.yml"><code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/docker-compose.expose-ports.yml</span></code></a> Compose file is included, so the two cannot be used at the same time.</p>
+</div>
+<section id="atc">
+<span id="dev-atc"></span><h3>atc<a class="headerlink" href="#atc" title="Permalink to this heading"></a></h3>
+<p>The command <code class="docutils literal notranslate"><span class="pre">atc</span></code> is made available by sourcing <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/dev/atc.dev.sh"><code class="docutils literal notranslate"><span class="pre">dev/atc.dev.sh</span></code></a> (e.g. <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">dev/atc.dev.sh</span></code>). While at the repository root, this command can be used to manipulate the development environment - most notably stopping and starting it.</p>
+<p>Sourcing this file also sets <span class="target" id="index-0"></span><a class="reference internal" href="environment_variables.html#envvar-TO_URL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_URL</span></code></a>, <span class="target" id="index-1"></span><a class="reference internal" href="environment_variables.html#envvar-TO_USER"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER</span></code></a>, and <span class="target" id="index-2"></span><a class="reference internal" href="environment_variables.html#envvar-TO_PASSWORD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_PASSWORD</span></code></a> to the values appropriate for the default setup of the development environment, such that <a class="reference internal" href="../tools/toaccess.html#id1"><span class="std std-ref">toaccess</span></a> may be used to access the development Traffic Ops instance without any extra steps.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">#166 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span></code> Usage</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span>OPERATION
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-h">
+<span id="cmdoption-atc-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-h" title="Permalink to this definition"></a></dt>
+<dd><p>Print usage information and exit.</p>
+</dd></dl>
+
+<p>Each valid <code class="docutils literal notranslate"><span class="pre">OPERATION</span></code> is outlined in its corresponding section.</p>
+<section id="build">
+<h4>build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h4>
+<p>Build Docker images for the environment, but do not start it.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#167 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">build</span></code> Usage</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span>build<span class="w"> </span><span class="o">[</span>SERVICE...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-SERVICE">
+<span class="sig-name descname"><span class="pre">SERVICE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-SERVICE" title="Permalink to this definition"></a></dt>
+<dd><p>If specified, only the given services will be built. By default, all services are built.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">#168 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">build</span></code> Example</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build only Traffic Ops</span>
+atc<span class="w"> </span>build<span class="w"> </span>trafficops
+
+<span class="c1"># Build all services</span>
+atc<span class="w"> </span>build
+</pre></div>
+</div>
+</div>
+</section>
+<section id="connect">
+<h4>connect<a class="headerlink" href="#connect" title="Permalink to this heading"></a></h4>
+<p>Connect to a shell session inside a development container.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Connecting to <code class="docutils literal notranslate"><span class="pre">trafficrouter</span></code> will result in connecting as a non-root user, so privileged access requires a more careful, manual use of <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/docker(1)">docker(1)</a></em>.</p>
+</div>
+</section>
+<section id="exec">
+<h4>exec<a class="headerlink" href="#exec" title="Permalink to this heading"></a></h4>
+<p>Run a command in a dev container.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">#169 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">exec</span></code> Usage</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>SERVICE<span class="w"> </span>CMD...
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-0">
+<span class="sig-name descname"><span class="pre">SERVICE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-0" title="Permalink to this definition"></a></dt>
+<dd><p>The service within which to execute commands.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-CMD">
+<span class="sig-name descname"><span class="pre">CMD</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-CMD" title="Permalink to this definition"></a></dt>
+<dd><p>An argv to pass to the service as a command.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">#170 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">exec</span></code> Example</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check ping statistics for communications from Traffic Ops to Traffic Monitor.</span>
+atc<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>trafficops<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>trafficmonitor
+</pre></div>
+</div>
+</div>
+</section>
+<section id="ready">
+<h4>ready<a class="headerlink" href="#ready" title="Permalink to this heading"></a></h4>
+<p>Check if the development environment is ready. If it is ready the exit code is 0, and if it isn’t ready the exit code is non-zero. “Readiness” is defined by the availability of the Traffic Ops API.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">#171 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">ready</span> <span class="pre">[-h]</span> <span class="pre">[-w]</span></code> Usage</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span>ready<span class="w"> </span><span class="o">[</span>SERVICE...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-0">
+<span id="cmdoption-atc-1"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-0" title="Permalink to this definition"></a></dt>
+<dd><p>Print usage information and exit.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-w">
+<span id="cmdoption-atc-wait"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--wait</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-w" title="Permalink to this definition"></a></dt>
+<dd><p>Wait for ATC to be ready, instead of just checking if it is ready.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">#172 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">ready</span></code> Example</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print &quot;ready&quot; if ATC is ready, &quot;not ready&quot; if it isn&#39;t.</span>
+<span class="k">if</span><span class="w"> </span>atc<span class="w"> </span>ready<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ready&quot;</span><span class="p">;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;not ready&quot;</span><span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Block until ATC is ready before getting a CDN Snapshot for the development CDN.</span>
+atc<span class="w"> </span>ready<span class="w"> </span>-w<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>toget<span class="w"> </span>-k<span class="w"> </span>cdns/dev/snapshot
+</pre></div>
+</div>
+</div>
+</section>
+<section id="restart">
+<h4>restart<a class="headerlink" href="#restart" title="Permalink to this heading"></a></h4>
+<p>Restart the development environment. This is functionally equivalent to <a class="reference internal" href="#stop">stop</a> followed by <a class="reference internal" href="#start">start</a> where the same arguments that would be passed to <code class="docutils literal notranslate"><span class="pre">restart</span></code> are instead given to each of those.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Restarting Traffic Ops also stops every service that either it depends on or that depends on it - which is all of them. However, it only <em>starts</em> the services that Traffic Ops <em>depends on</em>, which is only the database service. So <code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">restart</span> <span class="pre">trafficops</span></code> stops everything and only starts Traffic Ops back up again.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The services automatically rebuild the ATC components they run when those components change, so usually restarting is only necessary if you’re making changes to the developer environment itself.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">#173 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">restart</span></code> Usage</span><a class="headerlink" href="#id8" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span>restart<span class="w"> </span><span class="o">[</span>SERVICE...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-1">
+<span class="sig-name descname"><span class="pre">SERVICE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-1" title="Permalink to this definition"></a></dt>
+<dd><p>If specified, only the given services will be restarted. By default, all services are restarted.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">#174 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">restart</span></code> Example</span><a class="headerlink" href="#id9" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restart only Traffic Router</span>
+atc<span class="w"> </span>restart<span class="w"> </span>trafficrouter
+
+<span class="c1"># Restart all services</span>
+atc<span class="w"> </span>restart
+</pre></div>
+</div>
+</div>
+</section>
+<section id="start">
+<h4>start<a class="headerlink" href="#start" title="Permalink to this heading"></a></h4>
+<p>Start up the development environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting Traffic Ops also starts the Traffic Ops database and Traffic Vault (which isn’t its own service).</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">#175 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">start</span></code> Usage</span><a class="headerlink" href="#id10" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span>start<span class="w"> </span><span class="o">[</span>SERVICE...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-2">
+<span class="sig-name descname"><span class="pre">SERVICE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-2" title="Permalink to this definition"></a></dt>
+<dd><p>If specified, only the given services will be started. By default, all services are started.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">#176 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">start</span></code> Example</span><a class="headerlink" href="#id11" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start only Traffic Portal</span>
+atc<span class="w"> </span>start<span class="w"> </span>trafficportal
+
+<span class="c1"># Start all services</span>
+atc<span class="w"> </span>start
+</pre></div>
+</div>
+</div>
+</section>
+<section id="stop">
+<h4>stop<a class="headerlink" href="#stop" title="Permalink to this heading"></a></h4>
+<p>Stop the development environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Stopping Traffic Ops also stops every service that either it depends on or that depends on it - which is all of them.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-number">#177 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">stop</span></code> Usage</span><a class="headerlink" href="#id12" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>atc<span class="w"> </span>stop<span class="w"> </span><span class="o">[</span>SERVICE...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atc-arg-3">
+<span class="sig-name descname"><span class="pre">SERVICE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-atc-arg-3" title="Permalink to this definition"></a></dt>
+<dd><p>If specified, only the given services will be built. By default, all services are built.</p>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-number">#178 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">atc</span> <span class="pre">stop</span></code> Example</span><a class="headerlink" href="#id13" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stop only Traffic Router</span>
+atc<span class="w"> </span>stop<span class="w"> </span>trafficrouter
+
+<span class="c1"># Stop all services</span>
+atc<span class="w"> </span>stop
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="t3c">
+<h3>t3c<a class="headerlink" href="#t3c" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">atc.dev.sh</span></code> file also provides a way to run <a class="reference internal" href="../admin/t3c/t3c.html#t3c-t3c"><span class="std std-ref">t3c</span></a> commands with debugging enabled. While in most production deployments <a class="reference internal" href="../admin/t3c/t3c.html#t3c-t3c"><span class="std std-ref">t3c</span></a> runs on a <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/cron(8)">cron(8)</a></em> schedule, it is never run in the development environment, normally. One must manually trigger a run in order to run it and debug it.</p>
+<p>The usage of this provided function is exactly as if one were simply calling <a class="reference internal" href="../admin/t3c/t3c.html#t3c-t3c"><span class="std std-ref">t3c</span></a>. A <a class="reference external" href="https://github.com/go-delve/delve/tree/master/Documentation">delve</a> debugging session is automatically started when <a class="reference internal" href="../admin/t3c/t3c.html#t3c-t3c"><span class="std std-ref">t3c</span></a> is run, which listens on port 8081.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../admin/cdni.html" class="btn btn-neutral float-left" title="CDNi Administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_guidelines.html" class="btn btn-neutral float-right" title="API Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

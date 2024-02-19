@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator’s Guide &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traffic Ops" href="traffic_ops.html" />
+    <link rel="prev" title="Traffic Vault" href="../overview/traffic_vault.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administrator’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Administrator’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/admin/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="administrator-s-guide">
+<h1>Administrator’s Guide<a class="headerlink" href="#administrator-s-guide" title="Permalink to this heading"></a></h1>
+<p>Traffic Control is distributed in source form for the developer, but also as a binary package. This guide details how to install and configure a Traffic Control CDN using the binary packages, as well as how to perform common operations running a CDN.</p>
+<p>When installing a complete CDN from scratch, a sample recommended order is:</p>
+<ol class="arabic simple">
+<li><p>Traffic Ops DB (PostgreSQL)</p></li>
+<li><p><a class="reference external" href="https://github.com/influxdata/influxdb">InfluxDB [Optional]</a></p></li>
+<li><p>Traffic Vault (PostgreSQL or Riak) [Optional]</p></li>
+<li><p>Fake Origin [Optional]</p></li>
+<li><p>Traffic Ops</p></li>
+<li><p>Traffic Portal</p></li>
+<li><p>Initial Traffic Ops Dataset Setup [if applicable]</p></li>
+<li><p>Traffic Monitor</p></li>
+<li><p>Apache Traffic Server Mid-Tier Caches</p></li>
+<li><p>Apache Traffic Server Edge-Tier Caches</p></li>
+<li><p>Grove [Optional]</p></li>
+<li><p>Traffic Router</p></li>
+<li><p><a class="reference external" href="https://github.com/influxdata/influxdb-relay">InfluxDB-relay [Optional]</a></p></li>
+<li><p>Traffic Stats [Optional]</p></li>
+</ol>
+<p>Once everything is installed, you will need to configure the servers to talk to each other. You will also need Origin server(s), from which the Mid-Tier Cache(s) will obtain content. An Origin server is simply an HTTP(S) server which serves the content you wish to cache on the CDN.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#installing">Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#guide">Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#upgrading">Upgrading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#upgrading-to-6-0">Upgrading to 6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#running">Running</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#traffic-ops-golang">traffic_ops_golang</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#configuring">Configuring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#installing-the-ssl-certificate">Installing the SSL Certificate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html#managing-traffic-ops-extensions">Managing Traffic Ops Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#check-extensions">Check Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_ops.html#example-cron-file">Example Cron File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="environment_creation.html">Environment Creation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="environment_creation.html#cdn-in-a-box-ciab">CDN-in-a-Box (CIAB)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="environment_creation.html#audience-for-ciab">Audience for CIAB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="environment_creation.html#ansible-based-lab-deployment">Ansible-based Lab Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="environment_creation.html#audience-for-ansible-based-lab-deployment">Audience for Ansible-based Lab Deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_portal/index.html">Traffic Portal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#installing">Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#configuring">Configuring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_portal/index.html#etc-traffic-portal-conf-config-js"><code class="docutils literal notranslate"><span class="pre">/etc/traffic_portal/conf/config.js</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_portal/index.html#opt-traffic-portal-public-traffic-portal-properties-json"><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_portal/index.html#opt-traffic-portal-public-resources-assets-css-custom-css"><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/resources/assets/css/custom.css</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#configuring-oauth-through-traffic-portal">Configuring OAuth Through Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#starting-traffic-portal">Starting Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#stopping-traffic-portal">Stopping Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html#using-traffic-portal">Using Traffic Portal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_portal/usingtrafficportal.html">Traffic Portal - Using</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#installing-traffic-monitor">Installing Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#configuring-traffic-monitor">Configuring Traffic Monitor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#optional-stat-polling">Optional Stat Polling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#distributed-polling">Distributed Polling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#peering-and-optimistic-quorum">Peering and Optimistic Quorum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#stat-and-health-flush-configuration">Stat and Health Flush Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_monitor.html#http-accept-header-configuration">HTTP Accept Header Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#troubleshooting-and-log-files">Troubleshooting and Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_router.html">Traffic Router Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#installing-traffic-router">Installing Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#configuring-traffic-router">Configuring Traffic Router</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#the-traffic-router-profile">The Traffic Router Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#consistent-hashing">Consistent Hashing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#consistent-hashing-patterns">Consistent Hashing Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#consistent-hash-query-parameters">Consistent Hash Query Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#dnssec">DNSSEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#operation">Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#rolling-zone-signing-keys">Rolling Zone Signing Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#edge-traffic-routing">Edge Traffic Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#id2">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#edge-dns-routing">Edge DNS Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#edge-http-routing">Edge HTTP Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#edge-traffic-router-selection">Edge Traffic Router Selection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#troubleshooting-and-log-files">Troubleshooting and log files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#event-log-file-format">Event Log File Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#http-specifics">HTTP Specifics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#dns-specifics">DNS Specifics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#deep-caching">Deep Caching</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#id4">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#what-you-need">What You Need</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#id5">How it Works</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#steering-feature">Steering Feature</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#id6">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#the-difference-between-steering-and-client-steering">The Difference Between STEERING and CLIENT_STEERING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#https-for-http-delivery-services">HTTPS for HTTP Delivery Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#protocol-options">Protocol Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#certificate-retrieval">Certificate Retrieval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#certificate-chain-ordering">Certificate Chain Ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#automatic-certificate-management-environment">Automatic Certificate Management Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#external-account-binding">External Account Binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#let-s-encrypt">Let’s Encrypt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#automatic-certificate-renewal">Automatic Certificate Renewal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#suggested-way-of-setting-up-an-https-delivery-service-with-let-s-encrypt-automation">Suggested Way of Setting up an HTTPS Delivery Service With Let’s Encrypt Automation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#suggested-way-of-setting-up-an-https-delivery-service-with-certificate-authority">Suggested Way of Setting up an HTTPS Delivery Service With Certificate Authority</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#router-load-testing">Router Load Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_router.html#running-the-load-tests">Running the Load Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html#tuning-recommendations">Tuning Recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_stats.html">Traffic Stats Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#installing-traffic-stats">Installing Traffic Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#installing-influxdb">Installing InfluxDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#installing-grafana">Installing Grafana</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#configuring-traffic-stats">Configuring Traffic Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#configuring-influxdb">Configuring InfluxDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#configuring-grafana">Configuring Grafana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#configuring-traffic-portal-for-traffic-stats">Configuring Traffic Portal for Traffic Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#configuring-traffic-portal-to-use-grafana-dashboards">Configuring Traffic Portal to use Grafana Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html#influxdb-tools">InfluxDB Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#create-create-ts-databases-go">create/create_ts_databases.go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_stats.html#sync-sync-ts-databases-go">sync/sync_ts_databases.go</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_server.html">Traffic Server Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_server.html#installing-traffic-server">Installing Traffic Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_server.html#configuring-traffic-server">Configuring Traffic Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_server.html#cache-config-file-generation">Cache Config File Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_server.html#installing-the-cache-config-tool">Installing the Cache Config Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="t3c/index.html">t3c</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c.html">t3c</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#commands">COMMANDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#nomenclature">NOMENCLATURE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-apply.html">t3c-apply</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#modes">MODES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#behavior">BEHAVIOR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#special-processing">SPECIAL PROCESSING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-apply.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-check.html">t3c-check</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#commands">COMMANDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-check-refs.html">t3c-check-refs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-refs.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-refs.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-check-reload.html">t3c-check-reload</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#json-format">JSON Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-check-reload.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-diff.html">t3c-diff</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-diff.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-diff.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-diff.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-diff.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-diff.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-generate.html">t3c-generate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-generate.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-generate.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-generate.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-generate.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-generate.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-preprocess.html">t3c-preprocess</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#directives">DIRECTIVES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-preprocess.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-request.html">t3c-request</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-request.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-request.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-request.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-request.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-request.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-tail.html">t3c-tail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-tail.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-tail.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-tail.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-tail.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-tail.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/t3c-update.html">t3c-update</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-update.html#name">NAME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-update.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-update.html#description">DESCRIPTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-update.html#options">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/t3c-update.html#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/testing.html">testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t3c/testing.html#traffic-ops-ort-tests">Traffic Ops ORT Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/testing.html#automated-github-actions-workflow">Automated Github Actions workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/testing.html#running-the-tests-manually">Running the tests manually.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/testing.html#directory-layout">Directory layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c/testing.html#setup">Setup.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_vault.html">Traffic Vault Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html#postgresql">PostgreSQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#example-cdn-conf-snippet">Example cdn.conf snippet:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#administration-of-the-postgresql-database-for-traffic-vault">Administration of the PostgreSQL database for Traffic Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#app-db-reencrypt-reencrypt">app/db/reencrypt/reencrypt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html#riak-deprecated">Riak (deprecated)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#id1">Example cdn.conf snippet:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#installing-the-riak-backend-for-traffic-vault">Installing the Riak backend for Traffic Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#configuring-riak">Configuring Riak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traffic_vault.html#configuring-riak-search">Configuring Riak Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick_howto/index.html">Quick How To Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/anonymous_blocking.html">Configure Anonymous Blocking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/anonymous_blocking.html#traffic-router-access-log">Traffic Router Access Log</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/cachegroup_fallback.html">Configure Cache Group Fallbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html">CDN in a Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ciab.html#getting-started">Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ciab.html#x-509-ssl-tls-certificates">X.509 SSL/TLS Certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ciab.html#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ciab.html#optional-containers">Optional Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ciab.html#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/client_cert_auth.html">Client Certificates for Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/content_invalidation.html">Forcing Content Invalidation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/dnssec.html">Configure DNSSEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/dnssec.html#creating-keys">Creating Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/dnssec.html#enabling-and-disabling-dnssec-on-a-cdn">Enabling and Disabling DNSSEC on a CDN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/dnssec.html#regenerating-ksks">Regenerating KSKs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/dnssec.html#regenerating-keys">Regenerating Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ds_requests.html">Delivery Service Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ds_requests.html#who-can-create-a-delivery-service-request-and-how">Who Can Create a Delivery Service Request and How?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/ds_requests.html#who-can-fulfill-a-delivery-service-request-and-how">Who Can Fulfill a Delivery Service Request and How?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/federations.html">Configure Federations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/kickstart.html">Creating the CentOS Kickstart File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/kickstart.html#generating-a-system-image">Generating a System Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/kickstart.html#kickstart-files-location"><code class="docutils literal notranslate"><span class="pre">kickstart.files.location</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/multi_site.html">Configure Multi-Site Origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/oauth_login.html">Configure OAuth Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/profile_compare_mgmt.html">Compare Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/regionalgeo.html">Configure Regional Geo-blocking (RGB)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/regionalgeo.html#traffic-router-access-log">Traffic Router Access Log</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/server_capabililty.html">Manage Server Capabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/server_capabililty.html#manage-server-capabilities-assigned-to-a-server">Manage server capabilities assigned to a server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/server_capabililty.html#configure-delivery-service-required-server-capabilities">Configure delivery service required server capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/static_dns.html">Configuring Static DNS Entries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_howto/static_dns.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/steering.html">Configure Delivery Service Steering</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cdni.html">CDNi Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html#oc-fci-advertisement">/OC/FCI/advertisement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html#oc-ci-configuration">/OC/CI/configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html#oc-ci-configuration-host">/OC/CI/configuration/{{host}}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html#oc-ci-configuration-request-id-approved">/OC/CI/configuration/request/{{id}}/{{approved}}</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overview/traffic_vault.html" class="btn btn-neutral float-left" title="Traffic Vault" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traffic_ops.html" class="btn btn-neutral float-right" title="Traffic Ops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

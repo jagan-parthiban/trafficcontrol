@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment Creation &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CDN in a Box" href="quick_howto/ciab.html" />
+    <link rel="prev" title="Traffic Ops" href="traffic_ops.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment Creation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cdn-in-a-box-ciab">CDN-in-a-Box (CIAB)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#audience-for-ciab">Audience for CIAB</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-based-lab-deployment">Ansible-based Lab Deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#audience-for-ansible-based-lab-deployment">Audience for Ansible-based Lab Deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Administrator’s Guide</a></li>
+      <li class="breadcrumb-item active">Environment Creation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/admin/environment_creation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment-creation">
+<span id="env-creation"></span><h1>Environment Creation<a class="headerlink" href="#environment-creation" title="Permalink to this heading"></a></h1>
+<p>Apache Traffic Control is a complex set of components to construct a functional CDN.
+To help users get started more quickly, two paths exist to help based on the audience and needs.
+These tools are optional and administrators may use whatever means are at their disposal to perform their deployments.</p>
+<section id="cdn-in-a-box-ciab">
+<h2>CDN-in-a-Box (CIAB)<a class="headerlink" href="#cdn-in-a-box-ciab" title="Permalink to this heading"></a></h2>
+<section id="audience-for-ciab">
+<h3>Audience for CIAB<a class="headerlink" href="#audience-for-ciab" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Developers who need a local full-stack to aid in development using Docker</p></li>
+<li><p>A common platform for developers to write tests against and executed by a CI system</p></li>
+<li><p>New users who are learning how a CDN using Apache Traffic Control works</p></li>
+<li><p>Functional demonstrations</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Read more</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quick_howto/ciab.html">CDN in a Box</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html#x-509-ssl-tls-certificates">X.509 SSL/TLS Certificates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html#optional-containers">Optional Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/ciab.html#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="ansible-based-lab-deployment">
+<h2>Ansible-based Lab Deployment<a class="headerlink" href="#ansible-based-lab-deployment" title="Permalink to this heading"></a></h2>
+<section id="audience-for-ansible-based-lab-deployment">
+<h3>Audience for Ansible-based Lab Deployment<a class="headerlink" href="#audience-for-ansible-based-lab-deployment" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>DevOps engineers building more production-like lab environments</p></li>
+<li><p>DevOps engineers building an initial greenfield production environment</p></li>
+<li><p>Developers who need test environments that cannot be modeled on local resources</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Read more</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ansible-labs/ansible_labs.html">Ansible-based Lab Creation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ansible-labs/ansible_labs.html#lab-implementation-concepts">Lab Implementation Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#provisioning-layer">Provisioning Layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ansible-labs/ansible_labs.html#the-provisioning-layer-output">The Provisioning Layer Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#steady-state-os-layer">Steady-state OS Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#application-layer">Application Layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ansible-labs/ansible_labs.html#implementation-specific-driver-playbook">Implementation Specific Driver Playbook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansible-labs/ansible_labs.html#generic-core-playbook">Generic Core Playbook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ansible-labs/ansible_labs.html#lab-implementation-layout">Lab Implementation Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#ansible-variable-hierarchy">Ansible variable hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#sample-driver-playbooks">Sample Driver Playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#the-lab-directory">The Lab directory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ansible-labs/ansible_labs.html#gilt">Gilt</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#the-roles-directory">The Roles directory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ansible-labs/ansible_labs.html#ansible-bonuses">Ansible Bonuses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#the-to-api-role">The to_api role</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansible-labs/ansible_labs.html#using-traffic-ops-as-an-ansible-dynamic-inventory-source">Using Traffic Ops as an Ansible Dynamic Inventory source</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traffic_ops.html" class="btn btn-neutral float-left" title="Traffic Ops" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quick_howto/ciab.html" class="btn btn-neutral float-right" title="CDN in a Box" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

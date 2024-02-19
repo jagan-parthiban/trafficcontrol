@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>t3c-apply &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="t3c-check" href="t3c-check.html" />
+    <link rel="prev" title="t3c" href="t3c.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">t3c</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="t3c.html">t3c</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">t3c-apply</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modes">MODES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#behavior">BEHAVIOR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special-processing">SPECIAL PROCESSING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check.html">t3c-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-refs.html">t3c-check-refs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-reload.html">t3c-check-reload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-diff.html">t3c-diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-generate.html">t3c-generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-preprocess.html">t3c-preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-request.html">t3c-request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-tail.html">t3c-tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-update.html">t3c-update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html">testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">t3c</a></li>
+      <li class="breadcrumb-item active">t3c-apply</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/t3c/t3c-apply.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="t3c-apply">
+<span id="t3c-t3c-apply"></span><h1>t3c-apply<a class="headerlink" href="#t3c-apply" title="Permalink to this heading"></a></h1>
+<section id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Permalink to this heading"></a></h2>
+<p>t3c-apply - Traffic Control Cache Configuration applicator</p>
+</section>
+<section id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<p>t3c-apply [-2AbceFhIknopsSvW] [-a service-action] [-f &lt;all|reval|none&gt;]
+[-g &lt;yes|no|auto&gt;] [-H hostname] [-M location] [-m
+&lt;badass|report|revalidate|syncds&gt;] [-P password] [-r retries] [-R path]
+[-t milliseconds] [-u url] [-U username] [-V tls-versions]</p>
+<p>[–help]</p>
+<p>[–version]</p>
+</section>
+<section id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>The t3c-apply command is used to apply configuration from Traffic
+Control, stored in Traffic Ops, to the cache.</p>
+<p>Typical usage is to install t3c on the cache machine, and then run it
+periodically via a CRON job.</p>
+</section>
+<section id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<p>-2, –default-client-enable-h2</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to enable HTTP/2 on Delivery Services by default, if
+they have no explicit Parameter. This is irrelevant if ATS
+records.config is not serving H2. If omitted, H2 is
+disabled.
+</pre></div>
+</div>
+<p>-a, –service-action=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The action to perform on Traffic Server and other system
+services. Only reloads if necessary, but always restarts.
+Default is &#39;reload&#39;
+</pre></div>
+</div>
+<p>-A, –update-ipallow</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether ipallow file will be updated if necessary. This
+exists because ATS had a bug where reloading after changing
+ipallow would block everything. Default is false.
+</pre></div>
+</div>
+<p>-b, –dns-local-bind</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[true | false] whether to use the server&#39;s Service Addresses
+to set the ATS DNS local bind address.
+</pre></div>
+</div>
+<p>-c, –disable-parent-config-comments</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to disable verbose parent.config comments. Default
+false.
+</pre></div>
+</div>
+<p>-C, –skip-os-check</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[false | true] skip os check, default is false
+</pre></div>
+</div>
+<p>-d, –no-unset-update-flag</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to not unset the update flag in Traffic Ops after
+applying files. This option makes it possible to generate
+test or debug configuration from a production Traffic Ops
+without un-setting queue or reval flags. Default is false.
+</pre></div>
+</div>
+<p>-e, –omit-via-string-release</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to set the records.config via header to the ATS
+release from the RPM. Default true.
+</pre></div>
+</div>
+<p>-E, –version</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Print version information and exit.
+</pre></div>
+</div>
+<p>-f, –files=value [all | reval]</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Which files to generate. If reval, the Traffic
+Ops server reval_pending flag is used instead of the
+upd_pending flag. Default is &#39;all&#39;.
+</pre></div>
+</div>
+<p>-F, –ignore-update-flag</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to ignore the upd_pending or reval_pending flag in
+Traffic Ops, and always generate and apply files. If true,
+the flag is still unset in Traffic Ops after files are
+applied. Default is false.
+</pre></div>
+</div>
+<p>-g, –git=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create and use a git repo in the config directory. Options
+are yes, no, and auto. If yes, create and use. If auto, use
+if it exist. Default is auto. [auto]
+</pre></div>
+</div>
+<p>-G, –go-direct=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[true|false|old] if omitted go_direct is set to &#39;false&#39;, you
+can set go_direct &#39;true&#39; which is not recommended, or &#39;old&#39; which
+will be based on opposite of parent_is_proxy directive. Can also be
+overridden on a per delivery service and tier basis with a parameter.
+Default is [false]
+</pre></div>
+</div>
+<p>-H, –cache-host-name=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host name of the cache to generate config for. Must be the
+server host name in Traffic Ops, not a URL, and not the FQDN
+</pre></div>
+</div>
+<p>-h, –help</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Print usage information and exit
+</pre></div>
+</div>
+<p>-i, –no-outgoing-ip</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to not set the records.config outgoing IP to the
+server&#39;s addresses in Traffic Ops. Default is false.
+</pre></div>
+</div>
+<p>-I, –traffic-ops-insecure</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[true | false] ignore certificate errors from Traffic Ops
+</pre></div>
+</div>
+<p>-k, –install-packages</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to install necessary packages. Default is false.
+</pre></div>
+</div>
+<p>–local-ats-version</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[true | false] whether to use the local installed ATS version
+for config generation. If false, attempt to use the Server
+Package Parameter and fall back to ATS 5. If true and the
+local ATS version cannot be found, an error will be logged
+and the version set to ATS 5. Default is false.
+</pre></div>
+</div>
+<p>-M, –maxmind-location=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>URL of a maxmind gzipped database file, to be installed into
+the trafficserver etc directory. Can also be a comma separated
+list of URLs to get and un-gzip.
+</pre></div>
+</div>
+<p>-m, –run-mode=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[badass | report | revalidate | syncds] run mode. Optional,
+convenience flag which sets other flags for common usage
+scenarios.
+
+    syncds     keeps the defaults:
+                    --report-only=false
+                    --files=all
+                    --install-packages=false
+                    --service-action=reload
+                    --ignore-update-flag=false
+                    --update-ipallow=false
+                    --no-unset-update-flag=false
+
+    revalidate sets --files=reval
+                    --wait-for-parents=true
+
+    badass     sets --install-packages=true
+                    --service-action=restart
+                    --ignore-update-flag=true
+                    --update-ipallow=true
+
+    report     sets --report-only=true
+
+Note the &#39;syncds&#39; settings are all the flag defaults. Hence,
+if no mode is set, the default is effectively &#39;syncds&#39;.
+
+If any of the related flags are also set, they override the
+mode&#39;s default behavior.
+</pre></div>
+</div>
+<p>-n, –no-cache</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to not use a cache and make conditional requests to
+Traffic Ops. Default is false: use cache.
+</pre></div>
+</div>
+<p>–no-confirm-service-action</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Whether to skip waiting and confirming the service action succeeded (reload or
+restart) via t3c-tail. Default is false.
+</pre></div>
+</div>
+<p>-o, –report-only</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Log information about necessary files and actions, but take
+no action. Default is false
+</pre></div>
+</div>
+<p>-p, –reverse-proxy-disable</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[false | true] bypass the reverse proxy even if one has been
+configured default is false
+</pre></div>
+</div>
+<p>-P, –traffic-ops-password=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traffic Ops password. Required. May also be set with the
+environment variable TO_PASS
+</pre></div>
+</div>
+<p>-r, –num-retries=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[number] retry connection to Traffic Ops URL [number] times,
+default is 3 [3]
+</pre></div>
+</div>
+<p>-R, –trafficserver-home=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Trafficserver Package directory. May also be set with the
+environment variable TS_HOME
+</pre></div>
+</div>
+<p>-s, –silent</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Silent. Errors are not logged, and the &#39;verbose&#39; flag is
+ignored. If a fatal error occurs, the return code will be
+non-zero but no text will be output to stderr
+</pre></div>
+</div>
+<p>-t, –traffic-ops-timeout-milliseconds=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Timeout in milli-seconds for Traffic Ops requests, default
+is 30000 [30000]
+</pre></div>
+</div>
+<p>-u, –traffic-ops-url=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traffic Ops URL. Must be the full URL, including the scheme.
+Required. May also be set with the environment variable
+TO_URL
+</pre></div>
+</div>
+<p>-U, –traffic-ops-user=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traffic Ops username. Required. May also be set with the
+environment variable TO_USER
+</pre></div>
+</div>
+<p>-V, –default-client-tls-versions=value</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Comma-delimited list of default TLS versions for Delivery
+Services with no Parameter, e.g.
+--default-tls-versions=&#39;1.1,1.2,1.3&#39;. If omitted, all
+versions are enabled.
+</pre></div>
+</div>
+<p>-v, –verbose</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Log verbosity. Logging is output to stderr. By default,
+errors are logged. To log warnings, pass &#39;-v&#39;. To log info,
+pass &#39;-vv&#39;. To omit error logging, see &#39;-s&#39; [0]
+</pre></div>
+</div>
+<p>-W, –wait-for-parents</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[true | false] do not update if parent_pending = 1 in the
+update json. Default is false
+</pre></div>
+</div>
+</section>
+<section id="modes">
+<h2>MODES<a class="headerlink" href="#modes" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> app can be run in a number of modes.</p>
+<p>The syncds mode is the normal mode of operation, which should typically
+be run periodically via cron or a similar tool.</p>
+<p>The badass mode is typically an emergency-fix mode, which will override
+and replace all files with the configuration generated from the current
+Traffic Ops data, regardless whether <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> (presumably
+incorrectly) thinks the files need updating or not. It is recommended to
+run this mode when something goes wrong, and the configuration on the
+cache is incorrect, and the data in Traffic Ops and config generation is
+believed to be correct. It is not recommended to run this in normal
+operation; use syncds mode for normal operation.</p>
+<p>The revalidate mode will apply Revalidations from Traffic Ops
+(regex_revalidate.config) but no other configuration. This mode was
+intended to quickly apply revalidations when <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> took a long
+time to run. It is less relevant with the current speed of <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code>
+but may still be useful on slow networks or very large deployments.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>mode</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>report</p></td>
+<td><p>prints config differences and exits (default)</p></td>
+</tr>
+<tr class="row-odd"><td><p>badass</p></td>
+<td><p>attempts to fix all config differences that it can</p></td>
+</tr>
+<tr class="row-even"><td><p>syncds</p></td>
+<td><p>syncs delivery services with what is configured in Traffic
+Ops</p></td>
+</tr>
+<tr class="row-odd"><td><p>revalid
+ate</p></td>
+<td><p>checks for updated revalidations in Traffic Ops and
+applies them</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="behavior">
+<h2>BEHAVIOR<a class="headerlink" href="#behavior" title="Permalink to this heading"></a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> is run, it will:</p>
+<ol class="arabic simple">
+<li><p>Delete all of its temporary directories over a week old. Currently,
+the base temp directory is hard-coded to /tmp/ort.</p></li>
+<li><p>Determine if Updates have been Queued on the server (by checking the
+Server’s Update Pending or Revalidate Pending flag in Traffic Ops).</p>
+<ol class="arabic simple">
+<li><p>If Updates were not queued and the script is running in syncds
+mode (the normal mode), exit.</p></li>
+</ol>
+</li>
+<li><p>Get the config files from Traffic Ops, via t3c-generate.</p></li>
+<li><p>Process CentOS Yum packages.</p>
+<ol class="arabic simple">
+<li><p>These are specified via Parameters on the Server’s Profile, with
+the Config File ‘package’, where the Parameter Name is the
+package name, and the Parameter Value is the package version.</p></li>
+<li><p>Uninstall any packages which are installed but whose version does
+not match.</p></li>
+<li><p>Install all packages in the Server Profile.</p></li>
+</ol>
+</li>
+<li><p>Process chkconfig directives.</p>
+<ol class="arabic simple">
+<li><p>These are specified via Parameters on the Server’s Profile, with
+the Config File ‘chkconfig’, where the Parameter Name is the
+package name, and the Parameter Value is the chkconfig directive
+line.</p></li>
+<li><p>All chkconfig directives in the Server’s Profile are applied to
+the CentOS chkconfig.</p></li>
+<li><p><strong>NOTE</strong> the default profiles distributed by Traffic Control have
+an ATS chkconfig with a runlevel before networking is enabled,
+which is likely incorrect.</p></li>
+<li><p><strong>NOTE</strong> this is not used by CentOS 7+ and ATS 7+. SystemD does
+not use chkconfig, and ATS 7+ uses a SystemD script not an init
+script.</p></li>
+</ol>
+</li>
+<li><p>Process each config file</p>
+<ol class="arabic simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> is in revalidate mode, this will only be
+regex_revalidate.config</p></li>
+<li><p>Perform any special processing. See <a class="reference external" href="#special-processing">Special
+Processing</a>.</p></li>
+<li><p>If a file exists at the path of the file, load it from disk and
+compare the two.</p></li>
+<li><p>If there are no changes, don’t apply the new file.</p></li>
+<li><p>If there are changes, backup the existing file in the temp
+directory, and write the new file.</p></li>
+</ol>
+</li>
+<li><p>If configuration was changed which requires an ATS reload to apply,
+perform a service reload of ATS.</p></li>
+<li><p>If configuration was changed which requires an ATS restart to apply,
+and <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> is in badass mode, perform a service restart of
+ATS.</p></li>
+<li><p>If a sysctl.conf config file was changed, and <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> is in
+badass mode, run <code class="docutils literal notranslate"><span class="pre">sysctl</span> <span class="pre">-p</span></code>.</p></li>
+<li><p>If a ntpd.conf config file was changed, and <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> is in
+badass mode, perform a service restart of ntpd.</p></li>
+<li><p>Update Traffic Ops to unset the Update Pending or Revalidate Pending
+flag of this Server.</p></li>
+</ol>
+</section>
+<section id="special-processing">
+<h2>SPECIAL PROCESSING<a class="headerlink" href="#special-processing" title="Permalink to this heading"></a></h2>
+<p>Certain config files perform extra processing.</p>
+<p>Global replacements</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>All config files have certain text directives replaced. This is done by the t3c-generate config generator before the file is returned to `t3c-apply`.
+
+__SERVER_TCP_PORT__ is replaced with the Server&#39;s Port from Traffic Ops; unless the server&#39;s port is 80, 0, or null, in which case any occurrences preceded by a colon are removed.
+__CACHE_IPV4__      is replaced with the Server&#39;s IP address from Traffic Ops.
+__HOSTNAME__        is replaced with the Server&#39;s (short) HostName from Traffic Ops.
+__FULL_HOSTNAME__   is replaced with the Server&#39;s HostName, a dot, and the Server&#39;s DomainName from Traffic Ops (i.e. the Server&#39;s Fully Qualified Domain Name).
+__RETURN__          is replaced with a newline character, and any whitespace before or after it is removed.
+</pre></div>
+</div>
+<p>remap.config</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The `t3c-apply` app processes `##OVERRIDE##` directives in the remap.config file.
+
+The ##OVERRIDE## template string allows the Delivery Service Raw Remap Text field to override to fully override the Delivery Service’s line in the remap.config ATS configuration file, generated by Traffic Ops. The end result is the original, generated line commented out, prepended with ##OVERRIDDEN## and the ##OVERRIDE## rule is activated in its place. This behavior is used to incrementally deploy plugins used in this configuration file. Normally, this entails cloning the Delivery Service that will have the plugin, ensuring it is assigned to a subset of the cache servers that serve the Delivery Service content, then using this ##OVERRIDE## rule to create a remap.config rule that will use the plugin, overriding the normal rule. Simply grow the subset over time at the desired rate to slowly deploy the plugin. When it encompasses all cache servers that serve the original Delivery Service’s content, the “override Delivery Service” can be deleted and the original can use a non-##OVERRIDE## Raw Remap Text to add the plugin.
+</pre></div>
+</div>
+<p>50-ats.rules</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This is presumed to be a udev file for devices which are block devices to be used as disk storage by ATS.
+
+The `t3c-apply` app verifies all devices in the file are owned by the owner listed in the file, and logs errors otherwise.
+
+The `t3c-apply` app verifies all devices in the file do not have filesystems. If any device has a filesystem, `t3c-apply` assumes it was a mistake to assign as an ATS storage device, and logs a fatal error.
+</pre></div>
+</div>
+</section>
+<section id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
+<p>The t3c application is maintained by Apache Traffic Control project. For
+help, bug reports, contributing, or anything else, see:</p>
+<p><a class="reference external" href="https://trafficcontrol.apache.org/">https://trafficcontrol.apache.org/</a></p>
+<p><a class="reference external" href="https://github.com/apache/trafficcontrol">https://github.com/apache/trafficcontrol</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="t3c.html" class="btn btn-neutral float-left" title="t3c" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t3c-check.html" class="btn btn-neutral float-right" title="t3c-check" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

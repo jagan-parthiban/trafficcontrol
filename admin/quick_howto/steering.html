@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configure Delivery Service Steering &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CDNi Administration" href="../cdni.html" />
+    <link rel="prev" title="Configuring Static DNS Entries" href="static_dns.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Quick How To Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anonymous_blocking.html">Configure Anonymous Blocking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroup_fallback.html">Configure Cache Group Fallbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ciab.html">CDN in a Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="client_cert_auth.html">Client Certificates for Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="content_invalidation.html">Forcing Content Invalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dnssec.html">Configure DNSSEC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ds_requests.html">Delivery Service Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations.html">Configure Federations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kickstart.html">Creating the CentOS Kickstart File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_site.html">Configure Multi-Site Origin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oauth_login.html">Configure OAuth Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile_compare_mgmt.html">Compare Profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regionalgeo.html">Configure Regional Geo-blocking (RGB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server_capabililty.html">Manage Server Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="static_dns.html">Configuring Static DNS Entries</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure Delivery Service Steering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Quick How To Guides</a></li>
+      <li class="breadcrumb-item active">Configure Delivery Service Steering</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/quick_howto/steering.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configure-delivery-service-steering">
+<span id="steering-qht"></span><h1>Configure Delivery Service Steering<a class="headerlink" href="#configure-delivery-service-steering" title="Permalink to this heading"></a></h1>
+<ol class="arabic">
+<li><p>Create two target <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> in Traffic Portal. They must both be HTTP <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> that are part of the same CDN.</p>
+<blockquote>
+<div><figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/018.png"><img alt="Table of Target Delivery Services" src="../../_images/018.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 48 </span><span class="caption-text">Target <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Create a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> with Type <code class="docutils literal notranslate"><span class="pre">STEERING</span></code> or <code class="docutils literal notranslate"><span class="pre">CLIENT_STEERING</span></code> in Traffic Ops.</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/027.png"><img alt="Delivery Service Creation Page for STEERING Delivery Service" src="../../_images/027.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Creating a STEERING <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Click <span class="menuselection">More ‣ View Targets</span> and then use the blue <span class="guilabel">+</span> button to assign targets.</p>
+<blockquote>
+<div><figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/037.png"><img alt="Table of STEERING Targets" src="../../_images/037.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">STEERING Targets</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>If desired, a ‘steering’ <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> user can create filters for the target <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> using <a class="reference internal" href="../../api/v5/steering_id_targets.html#to-api-steering-id-targets"><span class="std std-ref">steering/{{ID}}/targets</span></a></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only available via the <a class="reference internal" href="../../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>; no functionality for manipulating steering targets is offered by Traffic Portal. This feature has been requested and is tracked by <a class="reference external" href="https://github.com/apache/trafficcontrol/issues/2811">GitHub Issue #2811</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Any requests to Traffic Router for the steering <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> should now be routed to target <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> based on configured weight or order.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example assumes that the Traffic Ops instance is running at <code class="docutils literal notranslate"><span class="pre">to.cdn.local</span></code> and the administrative username and password are <code class="docutils literal notranslate"><span class="pre">admin</span></code> and <code class="docutils literal notranslate"><span class="pre">twelve</span></code>, respectively. This is <em>not</em> recommended in production, but merely meant to replicate the default <a class="reference internal" href="ciab.html#ciab"><span class="std std-ref">CDN in a Box</span></a> environment!</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="static_dns.html" class="btn btn-neutral float-left" title="Configuring Static DNS Entries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cdni.html" class="btn btn-neutral float-right" title="CDNi Administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

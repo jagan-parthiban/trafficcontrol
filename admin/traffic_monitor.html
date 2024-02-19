@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Monitor Administration &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traffic Router Administration" href="traffic_router.html" />
+    <link rel="prev" title="Traffic Portal - Using" href="traffic_portal/usingtrafficportal.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Traffic Monitor Administration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-traffic-monitor">Installing Traffic Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-traffic-monitor">Configuring Traffic Monitor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-files">Configuration Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-stat-polling">Optional Stat Polling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distributed-polling">Distributed Polling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#peering-and-optimistic-quorum">Peering and Optimistic Quorum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stat-and-health-flush-configuration">Stat and Health Flush Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-accept-header-configuration">HTTP Accept Header Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-and-log-files">Troubleshooting and Log Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Administrator’s Guide</a></li>
+      <li class="breadcrumb-item active">Traffic Monitor Administration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/admin/traffic_monitor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-monitor-administration">
+<h1>Traffic Monitor Administration<a class="headerlink" href="#traffic-monitor-administration" title="Permalink to this heading"></a></h1>
+<section id="installing-traffic-monitor">
+<span id="tm-golang"></span><h2>Installing Traffic Monitor<a class="headerlink" href="#installing-traffic-monitor" title="Permalink to this heading"></a></h2>
+<p>The following are hard requirements requirements for Traffic Monitor to operate:</p>
+<ul class="simple">
+<li><p>CentOS 7 or later</p></li>
+<li><p>Successful install of Traffic Ops (usually on a separate machine)</p></li>
+<li><p>Administrative access to the Traffic Ops (usually on a separate machine)</p></li>
+</ul>
+<p>These are the recommended hardware specifications for a production deployment of Traffic Monitor:</p>
+<ul class="simple">
+<li><p>8 CPUs</p></li>
+<li><p>16GB of RAM</p></li>
+<li><p>It is also recommended that you know the geographic coordinates and/or mailing address of the site where the Traffic Monitor machine lives for optimal performance</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Enter the Traffic Monitor server into Traffic Portal</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For legacy compatibility reasons, the ‘Type’ field of a new Traffic Monitor server must be ‘RASCAL’.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Make sure the <abbr title="Fully Qualified Domain Name">FQDN</abbr> of the Traffic Monitor is resolvable in DNS.</p></li>
+<li><p>Install Traffic Monitor, either from source or by installing a <code class="file docutils literal notranslate"><span class="pre">traffic_monitor-</span><em><span class="pre">version</span> <span class="pre">string</span></em><span class="pre">.rpm</span></code> package generated by the instructions in <a class="reference internal" href="../development/building.html#dev-building"><span class="std std-ref">Building Traffic Control</span></a> with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/yum(8)">yum(8)</a></em> or <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/rpm(8)">rpm(8)</a></em></p></li>
+<li><p>Configure Traffic Monitor according to <a class="reference internal" href="#configuring-traffic-monitor">Configuring Traffic Monitor</a></p></li>
+<li><p>Start Traffic Monitor, usually by starting its <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em> service</p></li>
+<li><p>Verify Traffic Monitor is running by e.g. opening your preferred web browser to port 80 on the Traffic Monitor host.</p></li>
+</ol>
+</section>
+<section id="configuring-traffic-monitor">
+<span id="tm-configure"></span><h2>Configuring Traffic Monitor<a class="headerlink" href="#configuring-traffic-monitor" title="Permalink to this heading"></a></h2>
+<section id="configuration-files">
+<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading"></a></h3>
+<p>Traffic Monitor is configured via two JSON configuration files, <code class="file docutils literal notranslate"><span class="pre">traffic_ops.cfg</span></code> and <code class="file docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code>, by default located in the <code class="docutils literal notranslate"><span class="pre">conf</span></code> directory in the install location.</p>
+<section id="traffic-ops-cfg">
+<h4>traffic_ops.cfg<a class="headerlink" href="#traffic-ops-cfg" title="Permalink to this heading"></a></h4>
+<p><code class="file docutils literal notranslate"><span class="pre">traffic_ops.cfg</span></code> contains Traffic Ops connection information. Specify the URL, username, and password for the instance of Traffic Ops of which this Traffic Monitor is a member. However, this <em>also</em> sets some settings relating to the Traffic Monitor API server.</p>
+<dl class="field-list">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">cdnName</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the CDN to which this Traffic Monitor belongs. Used to fetch configuration and to determine which <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to monitor.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">certFile</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to an SSL certificate file that corresponds to <code class="docutils literal notranslate"><span class="pre">keyFile</span></code> which will be used for Traffic Monitor’s HTTPS API server.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">httpListener</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sets the address and port on which Traffic Monitor will listen for HTTP requests in the format <code class="samp docutils literal notranslate"><em><span class="pre">address</span></em><span class="pre">:</span><em><span class="pre">port</span></em></code>. If <code class="docutils literal notranslate"><span class="pre">address</span></code> is omitted, Traffic Monitor will listen on all available addresses.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">httpsListener</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the address and port on which Traffic Monitor will listen for HTTPS requests in the format <code class="samp docutils literal notranslate"><em><span class="pre">address</span></em><span class="pre">:</span><em><span class="pre">port</span></em></code>. If <code class="docutils literal notranslate"><span class="pre">address</span></code> is omitted, Traffic Monitor will listen on all available addresses. If not provided, <code class="docutils literal notranslate"><span class="pre">null</span></code>, or the empty string, Traffic Monitor will only serve HTTP, and <code class="docutils literal notranslate"><span class="pre">keyFile</span></code> and <code class="docutils literal notranslate"><span class="pre">certFile</span></code> are not used. If this is provided, the <code class="docutils literal notranslate"><span class="pre">httpListener</span></code> address will be used only to redirect clients to use HTTPS.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">insecure</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>A boolean that controls whether to validate the HTTPS certificate presented by the Traffic Ops server.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">keyFile</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to an SSL key file that corresponds to <code class="docutils literal notranslate"><span class="pre">certFile</span></code> which will be used for Traffic Monitor’s HTTPS API server.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">password</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The password of the user identified by <code class="docutils literal notranslate"><span class="pre">username</span></code>.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">url</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>The URL at which Traffic Ops may be reached e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://trafficops.infra.ciab.test&quot;</span></code>.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">username</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The username of the user as whom to authenticate with Traffic Ops.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">usingDummyTO</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean with no real effect. This value is used internally within the runtime of Traffic Monitor, and should never be set manually in its configuration file.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version ATCv7: </span>The dependency on this field being valid will be removed in the future. It already has no effect.</p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="traffic-monitor-cfg">
+<h4>traffic_monitor.cfg<a class="headerlink" href="#traffic-monitor-cfg" title="Permalink to this heading"></a></h4>
+<p><code class="file docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code> contains log file locations, as well as detailed application configuration variables such as processing flush times, initial poll intervals, and the polling protocols. Once started with the correct configuration, Traffic Monitor downloads its configuration from Traffic Ops, and any <a class="reference internal" href="../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a> set on the Monitor’s <a class="reference internal" href="../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> that configure the same thing as a field in this configuration file will take precedence over said fields. The <a class="reference internal" href="../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a> known to override configuration here are</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tm.polling.interval</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">health.polling.interval</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peers.polling.interval</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">heartbeat.polling.interval</span></code></p></li>
+</ul>
+<p>Upon receiving this configuration, Traffic Monitor begins polling <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> s. Once every <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> has been polled, <a class="reference internal" href="../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a> state is available via RESTful JSON endpoints and a web browser UI.</p>
+<dl class="field-list">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">cache_polling_protocol</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Defines the internet protocol used to communicate with <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>. This can be “ipv4only” to only allow IPv4 communication, “ipv6only” to only allow IPv6 communication, or “both” to alternate between each version. Default is “both”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">both</span></code> will poll IPv4 and IPv6 and report on availability based on if the respective IP addresses are defined on the server. So if only an IPv4 address is defined and the protocol is set to <code class="docutils literal notranslate"><span class="pre">both</span></code> then it will only show the availability over IPv4, but if both addresses are defined then it will show availability based on IPv4 and IPv6.</p>
+</div>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">crconfig_backup_file</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to a file within which a backup of the most recently fetched CDN <a class="reference internal" href="../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> will be stored. Default is <code class="docutils literal notranslate"><span class="pre">/opt/traffic_monitor/crconfig.backup</span></code>.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">crconfig_history_count</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of historical CDN Snapshots to store, which can then be retrieved through the <a class="reference internal" href="../development/traffic_monitor/traffic_monitor_api.html#tm-api"><span class="std std-ref">Traffic Monitor APIs</span></a>. Default is 100.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">distributed_polling</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean that controls whether <a class="reference internal" href="#distributed-polling">Distributed Polling</a> is enabled. Default is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#distributed-polling">Distributed Polling</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">health_flush_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Defines an interval as a number of milliseconds on which Traffic Monitor will flush its collected health data such that it is made available through the <a class="reference internal" href="../development/traffic_monitor/traffic_monitor_api.html#tm-api"><span class="std std-ref">Traffic Monitor APIs</span></a>. Default is 200.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#stat-and-health-flush-configuration">Stat and Health Flush Configuration</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">http_polling_format</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A MIME-Type that will be sent in the <em class="mailheader">Accept</em> HTTP header in requests to <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> for health and stats data. Default is <em class="mimetype">text/json</em> (<strong>not</strong> <em class="mimetype">application/json</em>).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#http-accept-header-configuration">HTTP Accept Header Configuration</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">http_timeout_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sets the timeout duration - in milliseconds - for all HTTP operations (both peer-polling and stat/health data polling). Default is 2000.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">log_location_access</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A logfile location to which access logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log access events.<a class="footnote-reference brackets" href="#log-locations" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is <code class="docutils literal notranslate"><span class="pre">null</span></code></p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">log_location_debug</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>A logfile location to which debug logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log debug messages.<a class="footnote-reference brackets" href="#log-locations" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is <code class="docutils literal notranslate"><span class="pre">null</span></code></p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">log_location_error</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A logfile location to which error logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log error messages.<a class="footnote-reference brackets" href="#log-locations" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is “stderr”.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">log_location_event</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>A logfile location to which event logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log events.<a class="footnote-reference brackets" href="#log-locations" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is “stdout”</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">log_location_info</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A logfile location to which informational logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log informational messages.<a class="footnote-reference brackets" href="#log-locations" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is <code class="docutils literal notranslate"><span class="pre">null</span></code></p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">log_location_warning</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>A logfile location to which warning logs will be written, or <code class="docutils literal notranslate"><span class="pre">null</span></code> to not log warning messages.<a class="footnote-reference brackets" href="#log-locations" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Default is “stdout”</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">max_events</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>The maximum number of changes to stored aggregate data that should be retained at any one time. Default is 200.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">monitor_config_polling_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The interval - in milliseconds - on which to poll Traffic Ops for this Traffic Monitor’s “monitoring configuration” as returned by <a class="reference internal" href="../api/v5/cdns_name_configs_monitoring.html#to-api-cdns-name-configs-monitoring"><span class="std std-ref">cdns/{{name}}/configs/monitoring</span></a>.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">peer_optimistic_quorum_min</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>Specifies the minimum number of peers that must be available in order to participate in the optimistic health protocol. Default is zero.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#peering-and-optimistic-quorum">Peering and Optimistic Quorum</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">serve_read_timeout_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sets the timeout - in milliseconds - of the Traffic Monitor API server for reading incoming requests. Default is 10,000.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">serve_write_timeout_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the timeout - in milliseconds - of the Traffic Monitor API server for writing responses. Default is 10,000.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">short_hostname_override</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sets a hostname for the Traffic Monitor. It will behave as though this were its hostname, rather than the hostname actually reported by the operating system. If not provided, <code class="docutils literal notranslate"><span class="pre">null</span></code>, or the empty string, the Traffic Monitor will use the hostname provided by its host operating system. Default is the empty string.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">stat_buffer_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>An interval - in milliseconds - for which to buffer collected stats before processing them. If this is not provided, <code class="docutils literal notranslate"><span class="pre">null</span></code>, or zero, then all stats will be processed immediately. Default is zero.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#stat-and-health-flush-configuration">Stat and Health Flush Configuration</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">stat_flush_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Defines an interval as a number of milliseconds on which Traffic Monitor will flush its collected stats data such that it is made available through the <a class="reference internal" href="../development/traffic_monitor/traffic_monitor_api.html#tm-api"><span class="std std-ref">Traffic Monitor APIs</span></a>. Default is 200.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#stat-and-health-flush-configuration">Stat and Health Flush Configuration</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">stat_polling</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean that controls whether <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> are polled for stats data. Default is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="#optional-stat-polling">Optional Stat Polling</a> section has more information on this setting.</p>
+</div>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">static_file_dir</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The directory within which Traffic Monitor will look for its web interface’s static files. Default is <code class="docutils literal notranslate"><span class="pre">/opt/traffic_monitor/static</span></code>.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">tmconfig_backup_file</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>A file location to which a backup of the “monitoring configuration” as returned by <a class="reference internal" href="../api/v5/cdns_name_configs_monitoring.html#to-api-cdns-name-configs-monitoring"><span class="std std-ref">cdns/{{name}}/configs/monitoring</span></a> currently in use by Traffic Monitor will be written. Default is <code class="docutils literal notranslate"><span class="pre">/opt/traffic_monitor/tmconfig.backup</span></code>.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">traffic_ops_disk_retry_max</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of times Traffic Monitor should attempt to log in to Traffic Ops before using its backup monitoring configuration and CDN Snapshot (if those exist). Default is 2.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">traffic_ops_max_retry_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-even"><p>Traffic Monitor will exponentially increase the amount of time it waits between attempts to log in to Traffic Ops each time it fails (up to a maximum number of times set by <code class="docutils literal notranslate"><span class="pre">traffic_ops_disk_retry_max</span></code>). This controls the maximum amount of time - in milliseconds - that this waiting duration will be. Default is 60,000.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">traffic_ops_min_retry_interval_ms</span></code><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Traffic Monitor will exponentially increase the amount of time it waits between attempts to log in to Traffic Ops each time it fails (up to a maximum number of times set by <code class="docutils literal notranslate"><span class="pre">traffic_ops_disk_retry_max</span></code>). This controls the minimum amount of time - in milliseconds - that this waiting duration will be. Default is 100.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="optional-stat-polling">
+<h3>Optional Stat Polling<a class="headerlink" href="#optional-stat-polling" title="Permalink to this heading"></a></h3>
+<p>Traffic Monitor has the option to disable stat polling via the <code class="docutils literal notranslate"><span class="pre">stat_polling</span></code> (default: <code class="docutils literal notranslate"><span class="pre">true</span></code>) option in <code class="file docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, Traffic Monitor will not poll caches for stats; it will only poll caches for health. This can be useful in lowering the amount of resources (CPU, bandwidth) used by Traffic Monitor while still allowing it to retain its core functionality (determining cache availability) via health polling alone. However, disabling stat polling also prevents some other ATC features from working properly (basically anything that requires stats data from caches, e.g. Traffic Stats data), so it should only be disabled when absolutely necessary.</p>
+</section>
+<section id="distributed-polling">
+<h3>Distributed Polling<a class="headerlink" href="#distributed-polling" title="Permalink to this heading"></a></h3>
+<p>Traffic Monitor has the option to enable distributed polling via the <code class="docutils literal notranslate"><span class="pre">distributed_polling</span></code> (default: <code class="docutils literal notranslate"><span class="pre">false</span></code>) option in <code class="file docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, Traffic Monitor groups will each poll their own disjoint subsets of the CDN. In order to enable this option, <code class="docutils literal notranslate"><span class="pre">stat_polling</span></code> must be disabled. In order to function properly, all Traffic Monitors in a CDN must have <code class="docutils literal notranslate"><span class="pre">distributed_polling</span></code> enabled; otherwise, the results are undefined.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Traffic Monitors are said to be in the same “Traffic Monitor group” if they are in the same <a class="reference internal" href="../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>.</p>
+</div>
+<p>Each Traffic Monitor in the same Traffic Monitor group (referred to as local peers) polls the same disjoint subset of the CDN and combines availability states with its local peers via the Health Protocol. This is similar to how Traffic Monitor behaves in its legacy, non-distributed mode except Traffic Monitor is not polling the entire CDN. In order to get availability data for the rest of the CDN, each Traffic Monitor also polls every other Traffic Monitor group in parallel (these are referred to as distributed peers). It does this by selecting one distributed peer per group at a time, cycling through each distributed peer in the group for subsequent polls in a round-robin manner.</p>
+<p>Upon startup, Traffic Monitor will retrieve its config (either from TO or on-disk backup file), then begin polling the <a class="reference internal" href="../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> for which its Traffic Monitor group is responsible. Once it has polled the <a class="reference internal" href="../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a>, it will start serving requests for <code class="docutils literal notranslate"><span class="pre">/publish/CrStates?raw</span></code> (the raw, uncombined health states of its local caches) and <code class="docutils literal notranslate"><span class="pre">/publish/CrStates?local</span></code> (the combined health states of its local caches derived from all Traffic Monitors in its group). Once Traffic Monitor has received <code class="docutils literal notranslate"><span class="pre">/publish/CrStates?local</span></code> responses from all other Traffic Monitor groups, it will start serving requests for <code class="docutils literal notranslate"><span class="pre">/publish/CrStates</span></code> (the combined health states of all caches in the CDN).</p>
+</section>
+<section id="peering-and-optimistic-quorum">
+<h3>Peering and Optimistic Quorum<a class="headerlink" href="#peering-and-optimistic-quorum" title="Permalink to this heading"></a></h3>
+<p>As mentioned in the <a class="reference internal" href="../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a> section of the <a class="reference internal" href="../overview/traffic_monitor.html#tm-overview"><span class="std std-ref">Traffic Monitor</span></a> overview, peering a Traffic Monitor with one or more other Traffic Monitors enables the optimistic health protocol. In order to leverage the optimistic quorum feature along with the optimistic health protocol, a minimum of three Traffic Monitors are required. The optimistic quorum feature allows a Traffic Monitor to withdraw itself from the optimistic health protocol when it loses connectivity to a number of its peers.</p>
+<p>To enable the optimistic quorum feature, the <code class="docutils literal notranslate"><span class="pre">peer_optimistic_quorum_min</span></code> property in <code class="docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code> should be configured with a value greater than zero that specifies the minimum number of peers that must be available in order to participate in the optimistic health protocol. If at any time the number of available peers falls below this threshold, the local Traffic Monitor will serve 503s whenever the aggregated, optimistic health protocol enabled view of the CDN’s health is requested. Traffic Monitor will continue serving 503s and logging errors in <code class="docutils literal notranslate"><span class="pre">traffic_monitor.log</span></code> until the minimum number of peers are available. Once the minimum number of peers are available, the local Traffic Monitor can resume participation in the optimistic health protocol. This prevents negative states caused by network isolation of a Traffic Monitor from propagating to downstream components such as Traffic Router.</p>
+</section>
+<section id="stat-and-health-flush-configuration">
+<h3>Stat and Health Flush Configuration<a class="headerlink" href="#stat-and-health-flush-configuration" title="Permalink to this heading"></a></h3>
+<p>The Monitor has a health flush interval, a stat flush interval, and a stat buffer interval. Recall that the monitor polls both stats and health. The health poll is so small and fast, a buffer is largely unnecessary. However, in a large CDN, the stat poll may involve thousands of <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> with thousands of stats each, or more, and CPU may be a bottleneck.</p>
+<p>The flush intervals, <code class="docutils literal notranslate"><span class="pre">health_flush_interval_ms</span></code> and <code class="docutils literal notranslate"><span class="pre">stat_flush_interval_ms</span></code>, indicate how often to flush stats or health, if results are continuously coming in with no break. This prevents starvation. Ideally, if there is enough CPU, the flushes should never occur. The default flush times are 200 milliseconds, which is suggested as a reasonable starting point; operators may adjust them higher or lower depending on the need to get health data and stop directing client traffic to unhealthy <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> as quickly as possible, balanced by the need to reduce CPU usage.</p>
+<p>The stat buffer interval, <code class="docutils literal notranslate"><span class="pre">stat_buffer_interval_ms</span></code>, also provides a temporal buffer for stat processing. Stats will not be processed except after this interval, whereupon all pending stats will be processed, unless the flush interval occurs as a starvation safety. The stat buffer and flush intervals may be thought of as a state machine with two states: the “buffer state” accepts results until the buffer interval has elapsed, whereupon the “flush state” is entered, and results are accepted while outstanding, and processed either when no results are outstanding or the flush interval has elapsed.</p>
+<p>Note that this means the stat buffer interval acts as “bufferbloat,” increasing the average and maximum time a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> may be down before it is processed and marked as unhealthy. If the stat buffer interval is non-zero, the average time a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> may be down before being marked unavailable is half the poll time plus half the stat buffer interval, and the maximum time is the poll time plus the stat buffer interval. For example, if the stat poll time is 6 seconds, and the stat buffer interval is 4 seconds, the average time a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> may be unhealthy before being marked is <span class="math notranslate nohighlight">\(\frac{6}{2} + \frac{4}{2} = 6\)</span> seconds, and the maximum time is <span class="math notranslate nohighlight">\(6+4=10\)</span> seconds. For this reason, if operators feel the need to add a stat buffer interval, it is recommended to start with a very low duration, such as 5 milliseconds, and increase as necessary.</p>
+<p>It is not recommended to set either flush interval to 0, regardless of the stat buffer interval. This will cause new results to be immediately processed, with little to no processing of multiple results concurrently. Result processing does not scale linearly. For example, processing 100 results at once does not cost significantly more CPU usage or time than processing 10 results at once. Thus, a flush interval which is too low will cause increased CPU usage, and potentially increased overall poll times, with little or no benefit. The default value of 200 milliseconds is recommended as a starting point for configuration tuning.</p>
+</section>
+<section id="http-accept-header-configuration">
+<h3>HTTP Accept Header Configuration<a class="headerlink" href="#http-accept-header-configuration" title="Permalink to this heading"></a></h3>
+<p>The Accept header sent to caches for stat retrieval can be modified with the <code class="docutils literal notranslate"><span class="pre">http_polling_format</span></code> option. This is a string that will be inserted in to the Accept header of any requests. The default value is <code class="docutils literal notranslate"><span class="pre">text/json</span></code> which is the default value used by the astats plugin currently.</p>
+<p>However newer versions of astats also support CSV output, which can have some CPU savings. To enable that format using <code class="docutils literal notranslate"><span class="pre">http_polling_format:</span> <span class="pre">&quot;text/csv&quot;</span></code> in <code class="file docutils literal notranslate"><span class="pre">traffic_monitor.cfg</span></code> will set the Accept header properly.</p>
+</section>
+</section>
+<section id="troubleshooting-and-log-files">
+<h2>Troubleshooting and Log Files<a class="headerlink" href="#troubleshooting-and-log-files" title="Permalink to this heading"></a></h2>
+<p>Traffic Monitor log files are in <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_monitor/var/log/</span></code>.</p>
+</section>
+<section id="extensions">
+<span id="admin-tm-extensions"></span><h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading"></a></h2>
+<p>Traffic Monitor allows extensions to its parsers for the statistics returned by <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> and/or their plugins. The formats supported by Traffic Monitor by default are <code class="docutils literal notranslate"><span class="pre">astats</span></code>, <code class="docutils literal notranslate"><span class="pre">astats-dsnames</span></code> (which is an odd variant of <code class="docutils literal notranslate"><span class="pre">astats</span></code> that probably shouldn’t be used), and <code class="docutils literal notranslate"><span class="pre">stats_over_http</span></code>. The format of a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>’s health and statistics reporting payloads must be declared on its <a class="reference internal" href="../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> as the <a class="reference internal" href="../overview/profiles_and_parameters.html#param-health-polling-format"><span class="std std-ref">health.polling.format</span></a> <a class="reference internal" href="../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a>, or the default format (<code class="docutils literal notranslate"><span class="pre">astats</span></code>) will be assumed.</p>
+<p>For instructions on how to develop a parsing extension, refer to the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_monitor/cache"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_monitor/cache</span></code></a> package’s documentation.</p>
+<p>Importantly, though, a statistics provider <em>must</em> respond to HTTP GET requests over either plain HTTP or HTTPS (which is controlled by the <a class="reference internal" href="../overview/profiles_and_parameters.html#param-health-polling-url"><span class="std std-ref">health.polling.url</span></a> <a class="reference internal" href="../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a>), and it <em>must</em> provide the following statistics, or enough information to calculate them:</p>
+<ul>
+<li><p>System “loadavg” (only requires the one-minute value)</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more information on what “loadavg” is, refer to the <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/proc(5)">proc(5)</a></em> manual page.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Input bytes, output bytes, and speeds for all monitored network interfaces</p></li>
+</ul>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">stats_over_http</span></code> extension this can be provided by the <code class="docutils literal notranslate"><span class="pre">system_stats</span></code> plugin which will inject that information in to the ATS stats which then get returned by <code class="docutils literal notranslate"><span class="pre">stats_over_http</span></code>. The <code class="docutils literal notranslate"><span class="pre">system_stats</span></code> plugin can be used with any custom implementations as it is already included and built with ATS when building with experimental-plugins enabled.</p>
+<p>There are other optional and/or <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>-related statistics that may cause Traffic Stats to not have the right information if not provided, but the above are essential for implementing <a class="reference internal" href="../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="log-locations" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>,<a role="doc-backlink" href="#id4">4</a>,<a role="doc-backlink" href="#id5">5</a>,<a role="doc-backlink" href="#id6">6</a>)</span>
+<p>These respect the rules and special string constants of <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/lib/go-log"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/lib/go-log</span></code></a>.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traffic_portal/usingtrafficportal.html" class="btn btn-neutral float-left" title="Traffic Portal - Using" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traffic_router.html" class="btn btn-neutral float-right" title="Traffic Router Administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

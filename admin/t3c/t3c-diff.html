@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>t3c-diff &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="t3c-generate" href="t3c-generate.html" />
+    <link rel="prev" title="t3c-check-reload" href="t3c-check-reload.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">t3c</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="t3c.html">t3c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-apply.html">t3c-apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check.html">t3c-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-refs.html">t3c-check-refs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-reload.html">t3c-check-reload</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">t3c-diff</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-generate.html">t3c-generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-preprocess.html">t3c-preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-request.html">t3c-request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-tail.html">t3c-tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-update.html">t3c-update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html">testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">t3c</a></li>
+      <li class="breadcrumb-item active">t3c-diff</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/t3c/t3c-diff.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="t3c-diff">
+<span id="t3c-t3c-diff"></span><h1>t3c-diff<a class="headerlink" href="#t3c-diff" title="Permalink to this heading"></a></h1>
+<section id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Permalink to this heading"></a></h2>
+<p>t3c-diff - Traffic Control Cache Configuration contextual diff tool</p>
+</section>
+<section id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<p>t3c-diff -a &lt;file-a&gt; -b &lt;file-b&gt; -l &lt;line_comment&gt; -m &lt;file-mode&gt; -u
+&lt;file-uid&gt; -g &lt;file-gid&gt;</p>
+<p>[–help]</p>
+<p>[–version]</p>
+</section>
+<section id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>The t3c-diff application compares configuration files with semantic
+context, omitting comments and other semantically irrelevant text.</p>
+<p>This is useful over standard diff tools without context, for example,
+when the grammar of a generated comment changes, or a comment contains a
+date. This allows operators to avoid updating sematically identical
+files, undesirably updating file timestamps, effecting unnecessary
+reloads, and other unnecessary and undesirable results.</p>
+<p>The input files may be file paths, or ‘stdin’ in which case that file is
+read from stdin.</p>
+<p>Prints the diff to stdout, and returns the exit code 0 if there was no
+diff, 1 if there was a diff. If one file exists but the other doesn’t,
+it will always be a diff.</p>
+<p>Note this means there may be no diff text printed to stdout but still
+exit 1 indicating a diff if the file being created or deleted is
+semantically empty.</p>
+<p>Mode is file permissions in octal format, default is 0644. Line comment
+is a character that signals the line is a comment, default is #</p>
+<p>Uid is the User id the file being checked should have, default is
+running process’s uid. Gid is the Group id the file being checked should
+have, default is running process’s gid.`</p>
+</section>
+<section id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<p>-a, –file-a</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Path to first diff file, can also be stdin.
+</pre></div>
+</div>
+<p>-b, –file-b Path to second diff file, can also be stdin.</p>
+<p>-g, –file-gid Group id the file being checked should have.</p>
+<p>-h, –help</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Print usage info and exit.
+</pre></div>
+</div>
+<p>-l, –line_comment Symbol used to denote the line is a comment.</p>
+<p>-m, –file-mode Octal permissions mode for file being checked.</p>
+<p>-u, –file-uid User id the file being checked should have.</p>
+<p>-V, –version</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Print version information and exit.
+</pre></div>
+</div>
+</section>
+<section id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
+<p>The t3c application is maintained by Apache Traffic Control project. For
+help, bug reports, contributing, or anything else, see:</p>
+<p><a class="reference external" href="https://trafficcontrol.apache.org/">https://trafficcontrol.apache.org/</a></p>
+<p><a class="reference external" href="https://github.com/apache/trafficcontrol">https://github.com/apache/trafficcontrol</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="t3c-check-reload.html" class="btn btn-neutral float-left" title="t3c-check-reload" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t3c-generate.html" class="btn btn-neutral float-right" title="t3c-generate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossary &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="FAQ" href="faq.html" />
+    <link href="_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Traffic Control
+              <img src="_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Glossary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/glossary.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="glossary">
+<span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading"></a></h1>
+<dl class="glossary">
+<dt id="term-302-content-routing">302 content routing<a class="headerlink" href="#term-302-content-routing" title="Permalink to this term"></a></dt><dd><p><a class="reference internal" href="overview/traffic_router.html#http-cr"><span class="std std-ref">HTTP Content Routing</span></a>.</p>
+</dd>
+<dt id="term-ACME-Account">ACME Account<a class="headerlink" href="#term-ACME-Account" title="Permalink to this term"></a></dt><dd><p>An account previously created with an <abbr title="Automatic Certificate Management Environment">ACME</abbr> provider.</p>
+</dd>
+<dt id="term-astats-stats_over_http">astats (stats_over_http)<a class="headerlink" href="#term-astats-stats_over_http" title="Permalink to this term"></a></dt><dd><p>An <abbr title="Apache Traffic Server">ATS</abbr> plugin that allows you to monitor vitals of the <abbr title="Apache Traffic Server">ATS</abbr> server. See <a class="reference internal" href="overview/traffic_monitor.html#astats"><span class="std std-ref">Cache Monitoring</span></a>.</p>
+</dd>
+<dt id="term-Cache-Group">Cache Group<a class="headerlink" href="#term-Cache-Group" title="Permalink to this term"></a></dt><dt id="term-Cache-Groups">Cache Groups<a class="headerlink" href="#term-Cache-Groups" title="Permalink to this term"></a></dt><dd><p>A group of caching HTTP proxy servers that together create a combined larger cache using consistent hashing. Traffic Router treats all servers in a <em class="dfn">Cache Group</em> as though they are in the  same geographic location, though they are in fact only in the same general area. A <em class="dfn">Cache Group</em> has one single set of geographical coordinates even if the <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> that make up the <em class="dfn">Cache Group</em> are actually in <a class="reference internal" href="#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a>. The <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in a <em class="dfn">Cache Group</em> are not aware of the other <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in the group - there is no clustering software or communications between <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in a <em class="dfn">Cache Group</em>.</p>
+<p>There are two basic types of <em class="dfn">Cache Groups</em>: EDGE_LOC and MID_LOC (“LOC” being short for “location” - a holdover from when <em class="dfn">Cache Groups</em> were called “Cache Locations). Traffic Control is a two-tiered system, where the clients get directed to the Edge-tier (EDGE_LOC) <em class="dfn">Cache Group</em>. On cache miss, the <a class="reference internal" href="#term-cache-server"><span class="xref std std-term">cache server</span></a> in the Edge-tier <em class="dfn">Cache Group</em> obtains content from a Mid-tier (MID_LOC) <em class="dfn">Cache Group</em>, rather than the origin, which is shared with multiple Edge-tier <em class="dfn">Cache Groups</em>. Edge-tier <em class="dfn">Cache Groups</em> are usually configured to have a single “parent” <em class="dfn">Cache Group</em>, but in general Mid-tier <em class="dfn">Cache Groups</em> have many “children”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Often the Edge-tier to Mid-tier relationship is based on network distance, and does not necessarily match the geographic distance.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>A <em class="dfn">Cache Group</em> serves a particular part of the network as defined in the <a class="reference internal" href="#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a> (or <a class="reference internal" href="#term-Deep-Coverage-Zone-File"><span class="xref std std-term">Deep Coverage Zone File</span></a>, when applicable).</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For a more complete description of Cache Groups, see the <a class="reference internal" href="overview/cache_groups.html#cache-groups"><span class="std std-ref">Cache Groups</span></a> overview section.</p>
+</div>
+</dd>
+<dt id="term-Cache-Server">Cache Server<a class="headerlink" href="#term-Cache-Server" title="Permalink to this term"></a></dt><dt id="term-Cache-Servers">Cache Servers<a class="headerlink" href="#term-Cache-Servers" title="Permalink to this term"></a></dt><dt id="term-cache-server">cache server<a class="headerlink" href="#term-cache-server" title="Permalink to this term"></a></dt><dt id="term-cache-servers">cache servers<a class="headerlink" href="#term-cache-servers" title="Permalink to this term"></a></dt><dd><p>The main function of a CDN is to proxy requests from clients to <a class="reference internal" href="#term-origin-servers"><span class="xref std std-term">origin servers</span></a> and cache the results. To proxy, in the CDN context, is to obtain content using HTTP from an <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> on behalf of a client. To cache is to store the results so they can be reused when other clients are requesting the same content. There are three types of proxies in use on the Internet today:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#term-reverse-proxy"><span class="xref std std-term">reverse proxy</span></a>: Used by Traffic Control for Edge-tier <em class="dfn">cache servers</em>.</p></li>
+<li><p><a class="reference internal" href="#term-forward-proxy"><span class="xref std std-term">forward proxy</span></a>: Used by Traffic Control for Mid-tier <em class="dfn">cache servers</em>.</p></li>
+<li><p>transparent proxy: These are not used by Traffic Control. If you are interested you can learn more about transparent proxies on <a class="reference external" href="http://en.wikipedia.org/wiki/Proxy_server#Transparent_proxy">wikipedia</a>.</p></li>
+</ul>
+</dd>
+<dt id="term-Content-Invalidation-Job">Content Invalidation Job<a class="headerlink" href="#term-Content-Invalidation-Job" title="Permalink to this term"></a></dt><dt id="term-Content-Invalidation-Jobs">Content Invalidation Jobs<a class="headerlink" href="#term-Content-Invalidation-Jobs" title="Permalink to this term"></a></dt><dt id="term-job">job<a class="headerlink" href="#term-job" title="Permalink to this term"></a></dt><dt id="term-jobs">jobs<a class="headerlink" href="#term-jobs" title="Permalink to this term"></a></dt><dd><p><em class="dfn">Content Invalidation Jobs</em> are a way to force <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to treat their cached content as stale (or even not in cache at all).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For a more complete description of Content Invalidation Jobs, see the <a class="reference internal" href="overview/jobs.html#jobs"><span class="std std-ref">Content Invalidation Jobs</span></a> overview section.</p>
+</div>
+</dd>
+<dt id="term-content-routing">content routing<a class="headerlink" href="#term-content-routing" title="Permalink to this term"></a></dt><dd><p>Directing clients (or client systems) to a particular location or device in a location for optimal delivery of content See also <a class="reference internal" href="overview/traffic_router.html#http-cr"><span class="std std-ref">HTTP Content Routing</span></a> and <a class="reference internal" href="overview/traffic_router.html#dns-cr"><span class="std std-ref">DNS Content Routing</span></a>.</p>
+</dd>
+<dt id="term-Coverage-Zone-File">Coverage Zone File<a class="headerlink" href="#term-Coverage-Zone-File" title="Permalink to this term"></a></dt><dt id="term-Coverage-Zone-Map">Coverage Zone Map<a class="headerlink" href="#term-Coverage-Zone-Map" title="Permalink to this term"></a></dt><dd><p>The <abbr title="Coverage Zone Map">CZM</abbr> or <abbr title="Coverage Zone File">CZF</abbr> is a file that maps network prefixes to <a class="reference internal" href="#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a>. Traffic Router uses the <abbr title="Coverage Zone Map">CZM</abbr> to determine what <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> is closest to the client. If the client IP address is not in this <abbr title="Coverage Zone Map">CZM</abbr>, it falls back to geographic mapping, using a <a class="reference external" href="https://www.maxmind.com/en/geoip2-databases">MaxMind GeoIP2 database</a> to find the client’s location, and the geographic coordinates from Traffic Ops for the <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>. Traffic Router is inserted into the HTTP retrieval process by making it the authoritative DNS server for the domain of the CDN <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>. In the example of the <a class="reference internal" href="#term-reverse-proxy"><span class="xref std std-term">reverse proxy</span></a>, the client was given the <code class="docutils literal notranslate"><span class="pre">http://www-origin-cache.cdn.com/foo/bar/fun.html</span></code> URL. In a Traffic Control CDN, URLs start with a routing name, which is configurable per-<a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">http://foo.mydeliveryservice.cdn.com/fun/example.html</span></code> with the chosen routing name <code class="docutils literal notranslate"><span class="pre">foo</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#1573 </span><span class="caption-text">Example Coverage Zone File</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;coverageZones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;cache-group-01&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;network6&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;1234:5678::/64&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;1234:5679::/64&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;192.168.8.0/24&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;192.168.9.0/24&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt id="term-Deep-Coverage-Zone-File">Deep Coverage Zone File<a class="headerlink" href="#term-Deep-Coverage-Zone-File" title="Permalink to this term"></a></dt><dt id="term-Deep-Coverage-Zone-Map">Deep Coverage Zone Map<a class="headerlink" href="#term-Deep-Coverage-Zone-Map" title="Permalink to this term"></a></dt><dd><p>The <abbr title="Deep Coverage Zone File">DCZF</abbr> or <abbr title="Deep Coverage Zone Map">DCZM</abbr> maps network prefixes to “locations” - almost like the <a class="reference internal" href="#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a>. Location names must be unique, and within the file are simply used to group <a class="reference internal" href="#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a>. When a mapping is performed by Traffic Router, it will only look in the <abbr title="Deep Coverage Zone File">DCZF</abbr> if the <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> to which a client is being directed makes use of <a class="reference internal" href="overview/delivery_services.html#ds-deep-caching"><span class="std std-ref">Deep Caching</span></a>. If the client’s IP address cannot be matched by entries in this file, Traffic Router will first fall back to the regular <a class="reference internal" href="#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a>. Then, failing that, it will perform geographic mapping using a database provided by the <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s <a class="reference internal" href="overview/delivery_services.html#ds-geo-provider"><span class="std std-ref">Geolocation Provider</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">#1574 </span><span class="caption-text">Example Deep Coverage Zone File</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;deepCoverageZones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;location-01&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;network6&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;1234:5678::/64&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;1234:5679::/64&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;192.168.8.0/24&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;192.168.9.0/24&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;caches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;edge&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt id="term-Delivery-Service">Delivery Service<a class="headerlink" href="#term-Delivery-Service" title="Permalink to this term"></a></dt><dt id="term-Delivery-Services">Delivery Services<a class="headerlink" href="#term-Delivery-Services" title="Permalink to this term"></a></dt><dd><p><em class="dfn">Delivery Services</em> are often referred to as a <a class="reference internal" href="#term-reverse-proxy"><span class="xref std std-term">reverse proxy</span></a> “remap rule” that exists on Edge-tier <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a>. In most cases, a <em class="dfn">Delivery Service</em> is a one-to-one mapping to an <abbr title="Fully Qualified Domain Name">FQDN</abbr> that is used as a hostname to deliver the content. Many options and settings regarding how to optimize the content delivery exist, which are configurable on a <em class="dfn">Delivery Service</em> basis. Some examples of these <em class="dfn">Delivery Service</em> settings are:</p>
+<ul class="simple">
+<li><p>Cache in RAM, cache on disk, or do not cache at all.</p></li>
+<li><p>Use DNS or HTTP Content routing.</p></li>
+<li><p>Limits on transactions per second and bandwidth.</p></li>
+<li><p>Protocol (HTTP or HTTPS).</p></li>
+<li><p>Token-based authentication settings.</p></li>
+<li><p>Header rewrite rules.</p></li>
+</ul>
+<p>Since Traffic Control version 2.1, <em class="dfn">Delivery Services</em> can optionally be linked to a <a class="reference internal" href="#term-Profile"><span class="xref std std-term">Profile</span></a>, and have <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> associated with them. One example of a feature that uses <em class="dfn">Delivery Service</em> <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> is the <a class="reference internal" href="overview/delivery_services.html#ds-multi-site-origin"><span class="std std-ref">Use Multi-Site Origin Feature</span></a> configuration. <em class="dfn">Delivery Services</em> are also for use in allowing multiple <a class="reference internal" href="#term-Tenants"><span class="xref std std-term">Tenants</span></a> to coexist in a Traffic Control CDN without interfering with each other, and to keep information about their content separated.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference internal" href="overview/delivery_services.html#delivery-services"><span class="std std-ref">Delivery Services</span></a> for a more in-depth explanation of <em class="dfn">Delivery Services</em>.</p>
+</div>
+</dd>
+<dt id="term-Delivery-Service-Request">Delivery Service Request<a class="headerlink" href="#term-Delivery-Service-Request" title="Permalink to this term"></a></dt><dt id="term-Delivery-Service-Requests">Delivery Service Requests<a class="headerlink" href="#term-Delivery-Service-Requests" title="Permalink to this term"></a></dt><dt id="term-DSR">DSR<a class="headerlink" href="#term-DSR" title="Permalink to this term"></a></dt><dt id="term-DSRs">DSRs<a class="headerlink" href="#term-DSRs" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Delivery Service Request</em> is the result of attempting to modify a <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> when <code class="docutils literal notranslate"><span class="pre">dsRequests.enabled</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in <code class="docutils literal notranslate"><span class="pre">traffic_portal_properties.json</span></code>. See <a class="reference internal" href="admin/quick_howto/ds_requests.html#ds-requests"><span class="std std-ref">Delivery Service Requests</span></a> for more information.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference internal" href="overview/delivery_service_requests.html#delivery-service-requests"><span class="std std-ref">Delivery Service Requests</span></a> for a more in-depth explanation of <em class="dfn">Delivery Service Requests</em>, including their data model. See <a class="reference internal" href="admin/quick_howto/ds_requests.html#ds-requests"><span class="std std-ref">Delivery Service Requests</span></a> for more information on how to use <em class="dfn">Delivery Service Requests</em> in Traffic Portal.</p>
+</div>
+</dd>
+<dt id="term-Delivery-Service-required-capabilities">Delivery Service required capabilities<a class="headerlink" href="#term-Delivery-Service-required-capabilities" title="Permalink to this term"></a></dt><dd><p><em class="dfn">Delivery Services required capabilities</em> are capabilities, which correlate to server capabilities, that are required in order to assign a server to a delivery service.</p>
+</dd>
+<dt id="term-Division">Division<a class="headerlink" href="#term-Division" title="Permalink to this term"></a></dt><dt id="term-Divisions">Divisions<a class="headerlink" href="#term-Divisions" title="Permalink to this term"></a></dt><dd><p>A group of <a class="reference internal" href="#term-Regions"><span class="xref std std-term">Regions</span></a>.</p>
+</dd>
+<dt id="term-Edge">Edge<a class="headerlink" href="#term-Edge" title="Permalink to this term"></a></dt><dt id="term-Edge-tier">Edge-tier<a class="headerlink" href="#term-Edge-tier" title="Permalink to this term"></a></dt><dt id="term-Edge-Tier">Edge-Tier<a class="headerlink" href="#term-Edge-Tier" title="Permalink to this term"></a></dt><dt id="term-Edge-tier-cache">Edge-tier cache<a class="headerlink" href="#term-Edge-tier-cache" title="Permalink to this term"></a></dt><dt id="term-Edge-tier-caches">Edge-tier caches<a class="headerlink" href="#term-Edge-tier-caches" title="Permalink to this term"></a></dt><dt id="term-Edge-tier-cache-server">Edge-tier cache server<a class="headerlink" href="#term-Edge-tier-cache-server" title="Permalink to this term"></a></dt><dt id="term-Edge-tier-cache-servers">Edge-tier cache servers<a class="headerlink" href="#term-Edge-tier-cache-servers" title="Permalink to this term"></a></dt><dd><p>Closest to the client or end-user. The edge tier is the tier that serves the client, edge caches are caches in the edge tier. In a Traffic Control CDN the basic function of the edge cache is that of a <a class="reference internal" href="#term-reverse-proxy"><span class="xref std std-term">reverse proxy</span></a>.</p>
+</dd>
+<dt id="term-Federation">Federation<a class="headerlink" href="#term-Federation" title="Permalink to this term"></a></dt><dt id="term-Federations">Federations<a class="headerlink" href="#term-Federations" title="Permalink to this term"></a></dt><dd><p><em class="dfn">Federations</em> allow for other (“federated”) CDNs (e.g. at a different <abbr title="Internet Service Provider">ISP</abbr>) to add a list of DNS resolvers and an <abbr title="Fully Qualified Domain Name">FQDN</abbr> to be used in a DNS CNAME record for a <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>. When a request is made from one of the federated CDN’s clients, Traffic Router will return the CNAME record configured from the federation mapping. This allows the federated CDN to serve the content without the content provider changing the URL, or having to manage multiple URLs. For example, if the external CDN was actually another <abbr title="Apache Traffic Control">ATC</abbr>-managed CDN, then a federation mapping to direct clients toward it should use the <abbr title="Fully Qualified Domain Name">FQDN</abbr> of a <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> on the external CDN.</p>
+<p>Federations only have meaning to DNS-routed <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> - HTTP-routed Delivery services should instead treat the external <abbr title="Fully Qualified Domain Name">FQDN</abbr> as an <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> to achieve the same effect.</p>
+</dd>
+<dt id="term-First-tier">First-tier<a class="headerlink" href="#term-First-tier" title="Permalink to this term"></a></dt><dt id="term-First-tier-cache">First-tier cache<a class="headerlink" href="#term-First-tier-cache" title="Permalink to this term"></a></dt><dt id="term-First-tier-caches">First-tier caches<a class="headerlink" href="#term-First-tier-caches" title="Permalink to this term"></a></dt><dt id="term-First-tier-cache-server">First-tier cache server<a class="headerlink" href="#term-First-tier-cache-server" title="Permalink to this term"></a></dt><dt id="term-First-tier-cache-servers">First-tier cache servers<a class="headerlink" href="#term-First-tier-cache-servers" title="Permalink to this term"></a></dt><dd><p>Closest to the client or end-user. The first tier in a <a class="reference internal" href="#term-Topology"><span class="xref std std-term">Topology</span></a> is the tier that serves the client, similar to the <a class="reference internal" href="#term-Edge-tier"><span class="xref std std-term">Edge-tier</span></a>.</p>
+</dd>
+<dt id="term-forward-proxy">forward proxy<a class="headerlink" href="#term-forward-proxy" title="Permalink to this term"></a></dt><dt id="term-forward-proxies">forward proxies<a class="headerlink" href="#term-forward-proxies" title="Permalink to this term"></a></dt><dd><p>A forward proxy acts on behalf of the client such that the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> is (potentially) unaware of the proxy’s existence. All Mid-tier <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in a Traffic Control based CDN are <em class="dfn">forward proxies</em>. In a <em class="dfn">forward proxy</em> scenario, the client is explicitly configured to use the the proxy’s IP address and port as a <em class="dfn">forward proxy</em>. The client always connects to the <em class="dfn">forward proxy</em> for content. The content provider does not have to change the URL the client obtains, and is (potentially) unaware of the proxy in the middle.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.trafficserver.apache.org/en/latest/admin/forward-proxy.en.html">ATS documentation on forward proxy</a>.</p>
+</div>
+<p>If a client uses a <em class="dfn">forward proxy</em> to request the URL <code class="docutils literal notranslate"><span class="pre">http://www.origin.com/foo/bar/fun.html</span></code> the resulting chain of events follows.</p>
+<ol class="arabic">
+<li><p>To retrieve <code class="docutils literal notranslate"><span class="pre">http://www.origin.com/foo/bar/fun.html</span></code>, the client sends an HTTP request to the <em class="dfn">forward proxy</em>.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">#1575 </span><span class="caption-text">Client Requests Content from its <em class="dfn">Forward Proxy</em></span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">http://www.origin.com/foo/bar/fun.html</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.origin.com</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case, the client requests the entire URL instead of just the path as is the case when using a <a class="reference internal" href="#term-reverse-proxy"><span class="xref std std-term">reverse proxy</span></a> or when requesting content directly from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>The proxy verifies whether the response for <code class="docutils literal notranslate"><span class="pre">http://www-origin-cache.cdn.com/foo/bar/fun.html</span></code> is already in the cache. If it is not in the cache:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>The proxy sends the HTTP request to the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a>.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">#1576 </span><span class="caption-text">The <em class="dfn">Forward Proxy</em> Requests Content from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a></span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/foo/bar/fun.html</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.origin.com</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> responds with the requested content.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">#1577 </span><span class="caption-text">The <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a>’s Response</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">Apache/2.2.15 (Red Hat)</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The proxy sends this on to the client, optionally adding a <code class="docutils literal notranslate"><span class="pre">Via:</span></code> header to indicate that the request was serviced by proxy.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">#1578 </span><span class="caption-text">The <em class="dfn">Forward Proxy</em>’s Response to the Client</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+<span class="na">Age</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">http/1.1 cache01.cdn.kabletown.net (ApacheTrafficServer/4.2.1 [uScSsSfUpSeN:t cCSi p sS])</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">ATS/4.2.1</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>If, however, the requested content <em>was</em> in the cache the proxy responds to the client with the previously retrieved result</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">#1579 </span><span class="caption-text">The <em class="dfn">Forward Proxy</em> Sends the Cached Response</span><a class="headerlink" href="#id8" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+<span class="na">Age</span><span class="o">:</span> <span class="l">99711</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">http/1.1 cache01.cdn.kabletown.net (ApacheTrafficServer/4.2.1 [uScSsSfUpSeN:t cCSi p sS])</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">ATS/4.2.1</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+<dt id="term-geo-localization-or-geo-routing">geo localization or geo routing<a class="headerlink" href="#term-geo-localization-or-geo-routing" title="Permalink to this term"></a></dt><dd><p>Localizing clients to the nearest caches using a geo database like the one from Maxmind.</p>
+</dd>
+<dt id="term-Health-Protocol">Health Protocol<a class="headerlink" href="#term-Health-Protocol" title="Permalink to this term"></a></dt><dd><p>The protocol to monitor the health of all the caches. See <a class="reference internal" href="overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a>.</p>
+</dd>
+<dt id="term-Inner-tier">Inner-tier<a class="headerlink" href="#term-Inner-tier" title="Permalink to this term"></a></dt><dt id="term-Inner-tier-cache">Inner-tier cache<a class="headerlink" href="#term-Inner-tier-cache" title="Permalink to this term"></a></dt><dt id="term-Inner-tier-caches">Inner-tier caches<a class="headerlink" href="#term-Inner-tier-caches" title="Permalink to this term"></a></dt><dt id="term-Inner-tier-cache-server">Inner-tier cache server<a class="headerlink" href="#term-Inner-tier-cache-server" title="Permalink to this term"></a></dt><dt id="term-Inner-tier-cache-servers">Inner-tier cache servers<a class="headerlink" href="#term-Inner-tier-cache-servers" title="Permalink to this term"></a></dt><dd><p>The tier between the First tier and the Last tier. The inner tier in a <a class="reference internal" href="#term-Topology"><span class="xref std std-term">Topology</span></a> is the tier that forwards requests from other caches to other caches, i.e. caches in this tier do not directly serve the end-user and do not make requests to <a class="reference internal" href="#term-Origins"><span class="xref std std-term">Origins</span></a>.</p>
+</dd>
+<dt id="term-Last-tier">Last-tier<a class="headerlink" href="#term-Last-tier" title="Permalink to this term"></a></dt><dt id="term-Last-tier-cache">Last-tier cache<a class="headerlink" href="#term-Last-tier-cache" title="Permalink to this term"></a></dt><dt id="term-Last-tier-caches">Last-tier caches<a class="headerlink" href="#term-Last-tier-caches" title="Permalink to this term"></a></dt><dt id="term-Last-tier-cache-server">Last-tier cache server<a class="headerlink" href="#term-Last-tier-cache-server" title="Permalink to this term"></a></dt><dt id="term-Last-tier-cache-servers">Last-tier cache servers<a class="headerlink" href="#term-Last-tier-cache-servers" title="Permalink to this term"></a></dt><dd><p>The tier above the First and Inner tiers. The last tier in a <a class="reference internal" href="#term-Topology"><span class="xref std std-term">Topology</span></a> is the tier that forwards requests from other caches to <a class="reference internal" href="#term-Origins"><span class="xref std std-term">Origins</span></a>.</p>
+</dd>
+<dt id="term-localization">localization<a class="headerlink" href="#term-localization" title="Permalink to this term"></a></dt><dd><p>Finding location on the network, or on planet earth</p>
+</dd>
+<dt id="term-Mid">Mid<a class="headerlink" href="#term-Mid" title="Permalink to this term"></a></dt><dt id="term-Mid-tier">Mid-tier<a class="headerlink" href="#term-Mid-tier" title="Permalink to this term"></a></dt><dt id="term-Mid-Tier">Mid-Tier<a class="headerlink" href="#term-Mid-Tier" title="Permalink to this term"></a></dt><dt id="term-Mid-tier-cache">Mid-tier cache<a class="headerlink" href="#term-Mid-tier-cache" title="Permalink to this term"></a></dt><dt id="term-Mid-tier-caches">Mid-tier caches<a class="headerlink" href="#term-Mid-tier-caches" title="Permalink to this term"></a></dt><dt id="term-Mid-tier-cache-server">Mid-tier cache server<a class="headerlink" href="#term-Mid-tier-cache-server" title="Permalink to this term"></a></dt><dt id="term-Mid-tier-cache-servers">Mid-tier cache servers<a class="headerlink" href="#term-Mid-tier-cache-servers" title="Permalink to this term"></a></dt><dd><p>The tier above the edge tier. The mid tier does not directly serves the end-user and is used as an additional layer between the edge and the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a>. In a Traffic Control CDN the basic function of the mid cache is that of a <a class="reference internal" href="#term-forward-proxy"><span class="xref std std-term">forward proxy</span></a>.</p>
+</dd>
+<dt id="term-Origin">Origin<a class="headerlink" href="#term-Origin" title="Permalink to this term"></a></dt><dt id="term-Origins">Origins<a class="headerlink" href="#term-Origins" title="Permalink to this term"></a></dt><dt id="term-origin-server">origin server<a class="headerlink" href="#term-origin-server" title="Permalink to this term"></a></dt><dt id="term-origin-servers">origin servers<a class="headerlink" href="#term-origin-servers" title="Permalink to this term"></a></dt><dt id="term-Origin-Servers">Origin Servers<a class="headerlink" href="#term-Origin-Servers" title="Permalink to this term"></a></dt><dd><p>The source of content for the CDN. Usually a redundant HTTP/1.1 webserver.</p>
+</dd>
+<dt id="term-ORT">ORT<a class="headerlink" href="#term-ORT" title="Permalink to this term"></a></dt><dd><p>The previous Traffic Control cache config app, replaced by <a class="reference internal" href="#term-t3c"><span class="xref std std-term">t3c</span></a>.</p>
+</dd>
+<dt id="term-Parameter">Parameter<a class="headerlink" href="#term-Parameter" title="Permalink to this term"></a></dt><dt id="term-Parameters">Parameters<a class="headerlink" href="#term-Parameters" title="Permalink to this term"></a></dt><dd><p>Typically refers to a line in a configuration file, but in practice can represent any arbitrary configuration option.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="overview/profiles_and_parameters.html#profiles-and-parameters"><span class="std std-ref">Profiles and Parameters</span></a> overview section.</p>
+</div>
+</dd>
+<dt id="term-parent">parent<a class="headerlink" href="#term-parent" title="Permalink to this term"></a></dt><dt id="term-parents">parents<a class="headerlink" href="#term-parents" title="Permalink to this term"></a></dt><dd><p>The <em class="dfn">parent(s)</em> of a <a class="reference internal" href="#term-cache-server"><span class="xref std std-term">cache server</span></a> is/are the <a class="reference internal" href="#term-cache-server"><span class="xref std std-term">cache server</span></a>(s) belonging to either the “parent” or “secondary parent” <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>(s) of the <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> to which the <a class="reference internal" href="#term-cache-server"><span class="xref std std-term">cache server</span></a> belongs. For example, in general it is true that an <a class="reference internal" href="#term-Edge-tier-cache-server"><span class="xref std std-term">Edge-tier cache server</span></a> has one or more <em class="dfn">parents</em> which are <a class="reference internal" href="#term-Mid-tier-cache-servers"><span class="xref std std-term">Mid-tier cache servers</span></a>.</p>
+</dd>
+<dt id="term-Physical-Location">Physical Location<a class="headerlink" href="#term-Physical-Location" title="Permalink to this term"></a></dt><dt id="term-Physical-Locations">Physical Locations<a class="headerlink" href="#term-Physical-Locations" title="Permalink to this term"></a></dt><dd><p>A pair of geographic coordinates (latitude and longitude) that is used by <a class="reference internal" href="#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> to define their location. This information is used by Traffic Router to route client traffic to the geographically nearest <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>.</p>
+</dd>
+<dt id="term-Profile">Profile<a class="headerlink" href="#term-Profile" title="Permalink to this term"></a></dt><dt id="term-Profiles">Profiles<a class="headerlink" href="#term-Profiles" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Profile</em> is, most generally, a group of <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> that will be applied to a server. <em class="dfn">Profiles</em> are typically re-used by all <a class="reference internal" href="#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> within a CDN or <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>. A <em class="dfn">Profile</em> will, in addition to configuration <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a>, define the CDN to which a server belongs and the <a class="reference internal" href="overview/profiles_and_parameters.html#profile-type"><span class="std std-ref">“Type”</span></a> of the Profile - which determines some behaviors of Traffic Control components. The allowed <a class="reference internal" href="overview/profiles_and_parameters.html#profile-type"><span class="std std-ref">“Types”</span></a> of <em class="dfn">Profiles</em> are <strong>not</strong> the same as <a class="reference internal" href="#term-Types"><span class="xref std std-term">Types</span></a>, and are maintained as a PostgreSQL “Enum” in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/create_tables.sql"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/create_tables.sql</span></code></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A <em class="dfn">Profile</em> of the wrong type assigned to a Traffic Control component <em>will</em> (in general) cause it to function incorrectly, regardless of the <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> assigned to it.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="overview/profiles_and_parameters.html#profiles-and-parameters"><span class="std std-ref">Profiles and Parameters</span></a> overview section.</p>
+</div>
+</dd>
+<dt id="term-Queue">Queue<a class="headerlink" href="#term-Queue" title="Permalink to this term"></a></dt><dt id="term-Queue-Updates">Queue Updates<a class="headerlink" href="#term-Queue-Updates" title="Permalink to this term"></a></dt><dt id="term-Queue-Server-Updates">Queue Server Updates<a class="headerlink" href="#term-Queue-Server-Updates" title="Permalink to this term"></a></dt><dd><p><em class="dfn">Queuing Updates</em> is an action that signals to various ATC components - most notably <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> - that any configuration changes that are pending are to be applied now. Specifically, Traffic Monitor and Traffic Router are updated through a CDN <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a>, and <em>not</em> <em class="dfn">Queued Updates</em>. In particular, <a class="reference internal" href="#term-ORT"><span class="xref std std-term">ORT</span></a> will notice that the server on which it’s running has new configuration, and will request the new configuration from Traffic Ops.</p>
+<p>Updates may be queued on a server-by-server basis (in Traffic Portal’s <a class="reference internal" href="admin/traffic_portal/usingtrafficportal.html#tp-configure-servers"><span class="std std-ref">Servers</span></a> view), a Cache Group-wide basis (in Traffic Portal’s <a class="reference internal" href="admin/traffic_portal/usingtrafficportal.html#tp-configure-cache-groups"><span class="std std-ref">Cache Groups</span></a> view), or on a CDN-wide basis (in Traffic Portal’s <a class="reference internal" href="admin/traffic_portal/usingtrafficportal.html#tp-cdns"><span class="std std-ref">CDNs</span></a> view). Usually using the CDN-wide version is easiest, and unless there are special circumstances, and/or the user really knows what he or she is doing, it is recommended that the full CDN-wide <em class="dfn">Queue Updates</em> be used.</p>
+<p>This is similar to taking a CDN <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a>, but this configuration change affects only servers, and not routing.</p>
+<p>That seems like a vague difference because it is - in general the rule to follow is that changes to <a class="reference internal" href="#term-Profiles"><span class="xref std std-term">Profiles</span></a> and <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> requires only updates be queued, changes to the assignments of <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> requires both a <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> <em>and</em> a <em class="dfn">Queue Updates</em>, and changes to only a <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> itself (usually) entails a <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> only. These aren’t exhaustive rules, and a grasp of what changes require which action(s) will take time to form. In general, when doing both <em class="dfn">Queuing Updates</em> as well as taking a CDN <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a>, it is advisable to first <em class="dfn">Queue Updates</em> and <em>then</em> take the <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a>, as otherwise Traffic Router may route clients to <a class="reference internal" href="#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> that are not equipped to service their request(s). However, when modifying the assignment(s) of <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to one or more <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>, a <a class="reference internal" href="#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> ought to be taken before updates are queued.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Updates to <a class="reference internal" href="#term-Parameters"><span class="xref std std-term">Parameters</span></a> with certain <a class="reference internal" href="overview/profiles_and_parameters.html#parameter-config-file"><span class="std std-ref">Config File</span></a> values may require running <a class="reference internal" href="#term-ORT"><span class="xref std std-term">ORT</span></a> in a different mode, occasionally manually. Though the server may appear to no longer have pending updates in these cases, until this manual intervention is performed the configuration <em>will</em> <strong>not</strong> <em>be correct</em>.</p>
+</div>
+</dd>
+<dt id="term-Region">Region<a class="headerlink" href="#term-Region" title="Permalink to this term"></a></dt><dt id="term-Regions">Regions<a class="headerlink" href="#term-Regions" title="Permalink to this term"></a></dt><dd><p>A group of <a class="reference internal" href="#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a>.</p>
+</dd>
+<dt id="term-reverse-proxy">reverse proxy<a class="headerlink" href="#term-reverse-proxy" title="Permalink to this term"></a></dt><dt id="term-reverse-proxies">reverse proxies<a class="headerlink" href="#term-reverse-proxies" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">reverse proxy</em> acts on behalf of the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> such that the client is (potentially) unaware it is not communicating directly with the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a>. All Edge-tier <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in a Traffic Control CDN are <em class="dfn">reverse proxies</em>. To the end user a Traffic Control-based CDN appears as a <em class="dfn">reverse proxy</em> since it retrieves content from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a>, acting on behalf of that <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a>. The client requests a URL that has a hostname which resolves to the <em class="dfn">reverse proxy</em>’s IP address and, in compliance with the HTTP 1.1 specification (<span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2616.html"><strong>RFC 2616</strong></a>), the client sends a <code class="docutils literal notranslate"><span class="pre">Host:</span></code> header to the <em class="dfn">reverse proxy</em> that matches the hostname in the URL. The proxy looks up this hostname in a list of mappings to find the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> hostname; if the hostname of the <code class="docutils literal notranslate"><span class="pre">Host:</span></code> header is not found in the list, the proxy will send an error (usually either <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">Not</span> <span class="pre">Found</span></code> or <code class="docutils literal notranslate"><span class="pre">503</span> <span class="pre">Service</span> <span class="pre">Unavailable</span></code> as appropriate) to the client. If the supplied hostname is found in this list of mappings, the proxy checks its cache, and when the content is not already present, connects to the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> to which the requested <code class="docutils literal notranslate"><span class="pre">Host:</span></code> maps requests the path of the original URL, providing the <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> hostname in the <code class="docutils literal notranslate"><span class="pre">Host</span></code> header. The proxy then stores the URL in its cache and serves the contents to the client. When there are subsequent requests for the same URL, a caching proxy serves the content out of its cache - provided <a class="reference internal" href="basics/cache_revalidation.html#cache-revalidation"><span class="std std-ref">Cache Control Headers and Revalidation</span></a> are satisfied - thereby reducing latency and network traffic.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.trafficserver.apache.org/en/latest/admin/reverse-proxy-http-redirects.en.html#http-reverse-proxy">The Apache Traffic Server documentation on reverse proxy</a>.</p>
+</div>
+<p>To insert a <em class="dfn">reverse proxy</em> into a typical HTTP 1.1 request and response flow, the <em class="dfn">reverse proxy</em> needs to be told where the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> can be reached (and which <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> to use for a given request when it’s configured to proxy requests for multiple <a class="reference internal" href="#term-Origins"><span class="xref std std-term">Origins</span></a>). In <abbr title="Apache Traffic Server">ATS</abbr> this is handled by adding rules to <a class="reference external" href="https://docs.trafficserver.apache.org/en/latest/admin-guide/files/remap.config.en.html">the remap.config configuration file</a>. The content owner must inform the clients, by updating the URL, to receive the content from the cache and not from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> directly. For example, clients might be instructed to request content from <code class="docutils literal notranslate"><span class="pre">http://www-origin-cache.cdn.com</span></code> which points to a <em class="dfn">reverse proxy</em> for the actual <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> located at <code class="docutils literal notranslate"><span class="pre">http://www.origin.com</span></code>.</p>
+<p>Now, if the client requests <code class="docutils literal notranslate"><span class="pre">/foo/bar/fun.html</span></code> from the <em class="dfn">reverse proxy</em> the sequence of events is as follows. is given the URL <code class="docutils literal notranslate"><span class="pre">http://www-origin-cache.cdn.com/foo/bar/fun.html</span></code> (note the different hostname) and when attempting to obtain that URL, the following occurs:</p>
+<ol class="arabic">
+<li><p>The client sends a DNS request to the <abbr title="Local Domain Name Server">LDNS</abbr> to resolve the name <code class="docutils literal notranslate"><span class="pre">www-origin-cache.cdn.com</span></code> to an IP address.</p></li>
+<li><p>The <abbr title="Local Domain Name Server">LDNS</abbr> finds an IP address for <code class="docutils literal notranslate"><span class="pre">www-origin-cache.cdn.com</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">55.44.33.22</span></code>.</p></li>
+<li><p>The client sends an HTTP request for <code class="docutils literal notranslate"><span class="pre">/foo/bar/fun.html</span></code> to the IP address.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">#1580 </span><span class="caption-text">Client Requests Content from the <em class="dfn">Reverse Proxy</em></span><a class="headerlink" href="#id9" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/foo/bar/fun.html</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www-origin-cache.cdn.com</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The <em class="dfn">reverse proxy</em> finds out the URL of the true <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a> - in the case of <abbr title="Apache Traffic Server">ATS</abbr> this is done by looking up <code class="docutils literal notranslate"><span class="pre">www-origin-cache.cdn.com</span></code> in its remap rules - and finds that it is <code class="docutils literal notranslate"><span class="pre">www.origin.com</span></code>.</p></li>
+<li><p>The proxy checks its cache to see if the response for <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/foo/bar/fun.html</span> <span class="pre">HTTP/1.1</span></code> from <code class="docutils literal notranslate"><span class="pre">www.origin.com</span></code> is already in the cache.</p></li>
+<li><p>If the response is not in the cache:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>The proxy sends the request to the actual <a class="reference internal" href="#term-Origin"><span class="xref std std-term">Origin</span></a></p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">#1581 </span><span class="caption-text"><em class="dfn">Reverse Proxy</em> Requests Content from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a></span><a class="headerlink" href="#id10" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/foo/bar/fun.html</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.origin.com</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a> responds with the requested content</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">#1582 </span><span class="caption-text">Response from the <a class="reference internal" href="#term-origin-server"><span class="xref std std-term">origin server</span></a></span><a class="headerlink" href="#id11" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">Apache/2.2.15 (Red Hat)</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>The proxy sends the response on to the client, optionally adding a <code class="docutils literal notranslate"><span class="pre">Via:</span></code> header to indicate that the request was serviced by proxy.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-number">#1583 </span><span class="caption-text">Resulting Response from the <em class="dfn">Reverse Proxy</em> to the Client</span><a class="headerlink" href="#id12" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+<span class="na">Age</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">http/1.1 cache01.cdn.kabletown.net (ApacheTrafficServer/4.2.1 [uScSsSfUpSeN:t cCSi p sS])</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">ATS/4.2.1</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>If, however, the response <em>was</em> already in the cache - and still valid according to the <a class="reference internal" href="basics/cache_revalidation.html#cache-revalidation"><span class="std std-ref">Cache Control Headers and Revalidation</span></a> - the proxy responds to the client with the previously retrieved result.</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-number">#1584 </span><span class="caption-text">The <em class="dfn">Reverse Proxy</em> Provides a Cached Response</span><a class="headerlink" href="#id13" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:22:44 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sun, 14 Dec 2014 23:18:51 GMT</span>
+<span class="na">ETag</span><span class="o">:</span> <span class="l">&quot;1aa008f-2d-50a3559482cc0&quot;</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">45</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=UTF-8</span>
+<span class="na">Age</span><span class="o">:</span> <span class="l">39711</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">http/1.1 cache01.cdn.kabletown.net (ApacheTrafficServer/4.2.1 [uScSsSfUpSeN:t cCSi p sS])</span>
+<span class="na">Server</span><span class="o">:</span> <span class="l">ATS/4.2.1</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>This is a fun file<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+<dt id="term-Role">Role<a class="headerlink" href="#term-Role" title="Permalink to this term"></a></dt><dt id="term-Roles">Roles<a class="headerlink" href="#term-Roles" title="Permalink to this term"></a></dt><dd><p>Permissions <em class="dfn">Roles</em> define the operations a user is allowed to perform, and are currently an ordered list of permission levels.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For a more complete description of Roles, see the <a class="reference internal" href="overview/roles.html#roles"><span class="std std-ref">Roles</span></a> overview section.</p>
+</div>
+</dd>
+<dt id="term-Server">Server<a class="headerlink" href="#term-Server" title="Permalink to this term"></a></dt><dt id="term-Servers">Servers<a class="headerlink" href="#term-Servers" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Server</em> implies a <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> and/or <a class="reference internal" href="#term-origin-servers"><span class="xref std std-term">origin servers</span></a> and/or any different type of servers (e.g: Traffic_Monitor, Traffic_Ops etc) associated with a <a class="reference internal" href="#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>.</p>
+</dd>
+<dt id="term-Server-Capability">Server Capability<a class="headerlink" href="#term-Server-Capability" title="Permalink to this term"></a></dt><dt id="term-Server-Capabilities">Server Capabilities<a class="headerlink" href="#term-Server-Capabilities" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Server Capability</em> (not to be confused with a “Capability”) expresses the capacity of a <a class="reference internal" href="#term-cache-server"><span class="xref std std-term">cache server</span></a> to serve a particular kind of traffic. For example, a <em class="dfn">Server Capability</em> could be created named “RAM” to be assigned to <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> that have RAM-disks allocated for content caching. <em class="dfn">Server Capabilities</em> can also be required by <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>, which will prevent <a class="reference internal" href="#term-cache-servers"><span class="xref std std-term">cache servers</span></a> without that <em class="dfn">Server Capability</em> from being assigned to them. It also prevents <a class="reference internal" href="#term-Mid-tier-cache-servers"><span class="xref std std-term">Mid-tier cache servers</span></a> without said <a class="reference internal" href="#term-Server-Capability"><span class="xref std std-term">Server Capability</span></a> from being selected to serve upstream requests from those <a class="reference internal" href="#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> assigned to the requiring <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>.</p>
+</dd>
+<dt id="term-Service-Category">Service Category<a class="headerlink" href="#term-Service-Category" title="Permalink to this term"></a></dt><dt id="term-Service-Categories">Service Categories<a class="headerlink" href="#term-Service-Categories" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Service Category</em> defines the type of content being delivered by a <em class="dfn">Delivery Service</em>. For example, a <em class="dfn">Service Category</em> could be created named “linear” and assigned to a <em class="dfn">Delivery Service</em> that delivers linear content.</p>
+</dd>
+<dt id="term-Snapshot">Snapshot<a class="headerlink" href="#term-Snapshot" title="Permalink to this term"></a></dt><dt id="term-Snapshots">Snapshots<a class="headerlink" href="#term-Snapshots" title="Permalink to this term"></a></dt><dt id="term-CDN-Snapshot">CDN Snapshot<a class="headerlink" href="#term-CDN-Snapshot" title="Permalink to this term"></a></dt><dt id="term-CDN-Snapshots">CDN Snapshots<a class="headerlink" href="#term-CDN-Snapshots" title="Permalink to this term"></a></dt><dd><p>Previously called a “CRConfig” or “CRConfig.json” (and still called such in many places), this is a rather large set of routing information generated from a CDN’s configuration and topology.</p>
+</dd>
+<dt id="term-Status">Status<a class="headerlink" href="#term-Status" title="Permalink to this term"></a></dt><dt id="term-Statuses">Statuses<a class="headerlink" href="#term-Statuses" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Status</em> represents the current operating state of a server. The default <em class="dfn">Statuses</em> made available on initial startup of Traffic Ops are related to the <a class="reference internal" href="overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a> and are explained in that section.</p>
+</dd>
+<dt id="term-t3c">t3c<a class="headerlink" href="#term-t3c" title="Permalink to this term"></a></dt><dd><p>The Traffic Control cache config app, used to generate and apply cache configuration files.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For usage and testing documentation, refer to <a class="reference internal" href="admin/t3c/index.html#t3c"><span class="std std-ref">t3c</span></a>.</p>
+</div>
+</dd>
+<dt id="term-Tenant">Tenant<a class="headerlink" href="#term-Tenant" title="Permalink to this term"></a></dt><dt id="term-Tenants">Tenants<a class="headerlink" href="#term-Tenants" title="Permalink to this term"></a></dt><dt id="term-Tenancy">Tenancy<a class="headerlink" href="#term-Tenancy" title="Permalink to this term"></a></dt><dt id="term-Tenancies">Tenancies<a class="headerlink" href="#term-Tenancies" title="Permalink to this term"></a></dt><dd><p>Users are grouped into <em class="dfn">Tenants</em> (or <em class="dfn">Tenancies</em>) to segregate ownership of and permissions over <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> and their resources. To be clear, the notion of <em class="dfn">Tenancy</em> <strong>only</strong> applies within the context of <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> and does <strong>not</strong> apply permissions restrictions to any other aspect of Traffic Control.</p>
+</dd>
+<dt id="term-Topology">Topology<a class="headerlink" href="#term-Topology" title="Permalink to this term"></a></dt><dt id="term-Topologies">Topologies<a class="headerlink" href="#term-Topologies" title="Permalink to this term"></a></dt><dd><p>A structure composed of <a class="reference internal" href="#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> and parent relationships, which is assignable to one or more <a class="reference internal" href="#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>.</p>
+</dd>
+<dt id="term-Topology-Node">Topology Node<a class="headerlink" href="#term-Topology-Node" title="Permalink to this term"></a></dt><dt id="term-Topology-Nodes">Topology Nodes<a class="headerlink" href="#term-Topology-Nodes" title="Permalink to this term"></a></dt><dt id="term-Parent-Topology-Node">Parent Topology Node<a class="headerlink" href="#term-Parent-Topology-Node" title="Permalink to this term"></a></dt><dt id="term-Parent-Topology-Nodes">Parent Topology Nodes<a class="headerlink" href="#term-Parent-Topology-Nodes" title="Permalink to this term"></a></dt><dt id="term-Child-Topology-Node">Child Topology Node<a class="headerlink" href="#term-Child-Topology-Node" title="Permalink to this term"></a></dt><dt id="term-Child-Topology-Nodes">Child Topology Nodes<a class="headerlink" href="#term-Child-Topology-Nodes" title="Permalink to this term"></a></dt><dd><p>Each <em class="dfn">Topology Node</em> is associated with a particular <a class="reference internal" href="#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>. In addition, there is no limit on the maximum number of parents and children for any given Topology Node, according to your configuration.</p>
+</dd>
+<dt id="term-Type">Type<a class="headerlink" href="#term-Type" title="Permalink to this term"></a></dt><dt id="term-Types">Types<a class="headerlink" href="#term-Types" title="Permalink to this term"></a></dt><dd><p>A <em class="dfn">Type</em> defines a type of some kind of object configured in Traffic Ops. Unfortunately, that is exactly as specific as this definition can be.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="faq.html" class="btn btn-neutral float-left" title="FAQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

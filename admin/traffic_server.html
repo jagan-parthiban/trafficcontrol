@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Server Administration &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="t3c" href="t3c/index.html" />
+    <link rel="prev" title="Traffic Stats Administration" href="traffic_stats.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Traffic Server Administration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-traffic-server">Installing Traffic Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-traffic-server">Configuring Traffic Server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cache-config-file-generation">Cache Config File Generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-the-cache-config-tool">Installing the Cache Config Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Administrator’s Guide</a></li>
+      <li class="breadcrumb-item active">Traffic Server Administration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/admin/traffic_server.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-server-administration">
+<h1>Traffic Server Administration<a class="headerlink" href="#traffic-server-administration" title="Permalink to this heading"></a></h1>
+<section id="installing-traffic-server">
+<h2>Installing Traffic Server<a class="headerlink" href="#installing-traffic-server" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Build the Traffic Server RPM. The best way to do this is to follow the <a class="reference external" href="https://docs.trafficserver.apache.org/en/7.1.x/getting-started/index.en.html#installation">Apache Traffic Server documentation</a>.</p></li>
+<li><p>Build the astats RPM using the appropriate version number - ours are built <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_server">here</a></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">astats</span></code> plugin is bundled as a part of Apache Traffic Server as of version 7.2.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install Traffic Server and astats</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">#62 </span><span class="caption-text">Apache Traffic Server Installation Using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/yum(8)">yum(8)</a></em></span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>trafficserver-*.rpm<span class="w"> </span>astats_over_http*.rpm
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add the server using the Traffic Portal UI:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Go to <span class="menuselection">Configure ‣ Servers</span></p></li>
+<li><p>Click on the <span class="guilabel">+</span> button at the top of the page.</p></li>
+<li><p>Complete the form. Be sure to fill out all fields marked ‘Required’</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Set ‘Interface Name’ to the name of the network interface device from which Apache Traffic Server delivers content.</p></li>
+<li><p>Set ‘Type’ to ‘MID’ or ‘EDGE’.</p></li>
+<li><p>If you wish for the server to immediately be polled by the <a class="reference internal" href="../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a>, set ‘Status’ to ‘REPORTED’.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Click on the <span class="guilabel">Create</span> button to submit the form.</p></li>
+<li><p>Verify that the server status is now listed as <strong>Reported</strong></p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Install the <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> script and run it in ‘badass’ mode to create the initial configuration</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#configuring-traffic-server">Configuring Traffic Server</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Start <abbr title="Apache Traffic Server">ATS</abbr></p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#63 </span><span class="caption-text">Starting <abbr title="Apache Traffic Server">ATS</abbr> with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em></span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>start<span class="w"> </span>trafficserver
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>(Optional) Configure <abbr title="Apache Traffic Server">ATS</abbr> to start automatically when the system powers on</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">#64 </span><span class="caption-text">Configuring <abbr title="Apache Traffic Server">ATS</abbr> to Start Automatically Using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em></span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>trafficserver
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Verify that the installation is working</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Make sure that the service is running</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">#65 </span><span class="caption-text">Checking that <abbr title="Apache Traffic Server">ATS</abbr> is Running Using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em></span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>trafficserver
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Assuming a Traffic Monitor is already installed somewhere, check the “Cache States” table in its Web UI to verify that the <abbr title="Apache Traffic Server">ATS</abbr> server appears.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="configuring-traffic-server">
+<h2>Configuring Traffic Server<a class="headerlink" href="#configuring-traffic-server" title="Permalink to this heading"></a></h2>
+<p>All of the <abbr title="Apache Traffic Server">ATS</abbr> application configuration files are generated by Traffic Ops and installed by <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a>. The <code class="file docutils literal notranslate"><span class="pre">t3c</span></code> file should be installed on all <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> (See <a class="reference internal" href="#installing-the-cache-config-tool">Installing the Cache Config Tool</a>), usually in <code class="docutils literal notranslate"><span class="pre">/opt/ort</span></code>. It is used to do the initial install of the configuration files when the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> is being deployed, and to keep the configuration files up-to-date when the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> is already in service.</p>
+<section id="cache-config-file-generation">
+<span id="config-generation"></span><h3>Cache Config File Generation<a class="headerlink" href="#cache-config-file-generation" title="Permalink to this heading"></a></h3>
+<p>In the past, ATS config files were generated by Traffic Ops. Cache config generation is now performed on cache servers themselves, via a library for generic use, and an application which uses the library and resides on the cache server. That application, <code class="docutils literal notranslate"><span class="pre">t3c</span></code>, is in the process of being rewritten as many small POSIX-style applications which will behave similar to the <code class="docutils literal notranslate"><span class="pre">git</span></code> ecosystem.</p>
+<p>The library, <code class="docutils literal notranslate"><span class="pre">lib/go-atscfg</span></code>, allows users to write their own applications and servers, if they wish to generate ATS configuration files and deploy them to caches via other means. For example, if you wish to generate config files with an additional service, or continue generating config files on Traffic Ops itself via a plugin or local service.</p>
+<p>The app <code class="docutils literal notranslate"><span class="pre">atstccfg</span></code> is installed by the cache config RPM alongside <code class="docutils literal notranslate"><span class="pre">t3c</span></code>. This app is a helper to <code class="docutils literal notranslate"><span class="pre">t3c</span></code> and does not have a stable interface, and should never need to be called directly by Traffic Control administrators.</p>
+<p>The cache-side config generation provides several benefits. Primarily, it reduces the overhead and risk of the monolithic Traffic Ops installation and upgrade process, and allows operators to canary-test config changes one cache at a time, and in the event of an error, only rolling back a few canary caches rather than the entire Traffic Ops instance.</p>
+</section>
+<section id="installing-the-cache-config-tool">
+<span id="installing-t3c"></span><h3>Installing the Cache Config Tool<a class="headerlink" href="#installing-the-cache-config-tool" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Build the RPM by following the instructions in <a class="reference internal" href="../development/building.html#dev-building"><span class="std std-ref">Building Traffic Control</span></a> and install it with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/rpm(8)">rpm(8)</a></em> or <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/yum(8)">yum(8)</a></em>.</p></li>
+<li><p>Install modules required by the RPM if needed</p></li>
+<li><p>For initial configuration or when major changes (like a <a class="reference internal" href="../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> change) need to be made, run the script in “badass” mode. All required RPM packages will be installed, all <abbr title="Apache Traffic Server">ATS</abbr> configuration files will be fetched and installed, and (if needed) the <abbr title="Apache Traffic Server">ATS</abbr> service will be restarted.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first run gives a lot of state errors that are expected. The “badass” mode fixes these issues. If you run it a second time, this should be cleaner. Also, note that many “ERROR” messages emitted by <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> are actually information messages. Do not panic. We are in the process of converting legacy “ERROR” messages to informational logs.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/cron(8)">cron(8)</a></em> entry for running <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> in “syncds” mode every 15 minutes. This makes Traffic Control check periodically if the server has updates pending, and if so get the updated configuration.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, running <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> on an Edge-tier <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> will cause it to first wait for its parents (usually Mid-tier <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> s) to download their configuration before downloading its own configuration. Because of this, scheduling <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> for running every 15 minutes (with 5 minutes default dispersion) means that it might take up to ~35 minutes for queued updates to affect all <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> s. To customize this dispersion time, use the command line option <code class="docutils literal notranslate"><span class="pre">--dispersion=x</span></code> where <code class="docutils literal notranslate"><span class="pre">x</span></code> is the number of seconds for the dispersion period. Servers will select a random number from within this dispersion period to being downloading configuration files from Traffic Ops. Another option, <code class="docutils literal notranslate"><span class="pre">--login_dispersion=x</span></code> can be used to create a dispersion period after the job begins during which <code class="docutils literal notranslate"><span class="pre">t3c</span></code> will wait before logging in and checking Traffic Ops for updates to the server. This defaults to 0. If <code class="docutils literal notranslate"><span class="pre">use_reval_pending</span></code>, a.k.a. “Rapid Revalidate” is enabled, Edge-tier <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> will <strong>not</strong> wait for their parents to download their configuration before downloading their own.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In “syncds” mode, the <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> app updates only configurations that might be changed as part of normal operations, such as:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p></li>
+<li><p>SSL certificates</p></li>
+<li><p>Traffic Monitor IP addresses</p></li>
+<li><p>Logging configuration</p></li>
+<li><p>Revalidation requests (By default - if “Rapid Revalidate” is enabled, this will only be checked by using a separate revalidate command in <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a>)</p></li>
+</ul>
+</div>
+</div></blockquote>
+</li>
+<li><p>If “Rapid Revalidate” is enabled in Traffic Ops, create a second <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/cron(8)">cron(8)</a></em> job for revalidation checks by running <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> in “revalidate” mode. <a class="reference internal" href="../glossary.html#term-t3c"><span class="xref std std-term">t3c</span></a> will not check revalidation files if “Rapid Revalidate” is enabled. This setting allows for a separate check to be performed every 60 seconds to verify if a revalidation update has been made.</p></li>
+</ol>
+<section id="strings-with-special-meaning-to-t3c">
+<span id="t3c-special-strings"></span><h4>Strings with Special Meaning to <code class="docutils literal notranslate"><span class="pre">t3c</span></code><a class="headerlink" href="#strings-with-special-meaning-to-t3c" title="Permalink to this heading"></a></h4>
+<p>When processing configuration files, if <code class="docutils literal notranslate"><span class="pre">traffic_ops_ort</span></code> encounters any of the strings in the <a class="reference internal" href="#t3c-replacement-strings"><span class="std std-ref">Replacement Strings</span></a> table it will perform the indicated replacement. This means that these strings can be used to create templates in <a class="reference internal" href="../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> <a class="reference internal" href="../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a> and certain <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> configuration fields.</p>
+<span id="t3c-replacement-strings"></span><table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 72 </span><span class="caption-text">Replacement Strings</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>String</p></th>
+<th class="head"><p>Replaced With</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__CACHE_IPV4__</span></code></p></td>
+<td><p>The IPv4 address of the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> on which <code class="docutils literal notranslate"><span class="pre">t3c</span></code> is
+running.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">__FULL_HOSTNAME__</span></code></p></td>
+<td><p>The full hostname (i.e. including the full domain to which it
+belongs) of the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> on which <code class="docutils literal notranslate"><span class="pre">t3c</span></code> is running.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__HOSTNAME__</span></code></p></td>
+<td><p>The (short) hostname of the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> on which <code class="docutils literal notranslate"><span class="pre">t3c</span></code>
+is running.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">__RETURN__</span></code></p></td>
+<td><p>A newline character (<code class="docutils literal notranslate"><span class="pre">\\n</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__SERVER_TCP_PORT__</span></code></p></td>
+<td><p>If the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> on which <code class="docutils literal notranslate"><span class="pre">t3c</span></code> is being run has a
+TCP port configured to something besides <code class="docutils literal notranslate"><span class="pre">80</span></code>, this will be
+replaced with that TCP port value. <em>If it</em> <strong>is</strong> <em>set to</em>
+<code class="docutils literal notranslate"><span class="pre">80</span></code>, <em>this string will simply be removed,</em> <strong>NOT</strong> <em>replaced</em>
+<em>with</em> <strong>ANYTHING</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code></p></td>
+<td><p>This string is only valid in the content of files named
+“remap.config”. It is further described in <a class="reference internal" href="#remap-override">Remap Override</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version ATCv4.0: </span>The use of <code class="docutils literal notranslate"><span class="pre">__RETURN__</span></code> in lieu of a true newline character is (finally) no longer necessary,
+and the ability to do so will be removed in the future.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is currently no way to indicate that a server’s IPv6 address should be inserted -
+only IPv4 is supported.</p>
+</div>
+</section>
+<section id="remap-override">
+<span id="t3c-remap-override"></span><h4>Remap Override<a class="headerlink" href="#remap-override" title="Permalink to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The ANY_MAP <code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> special string is a temporary solution and will be
+deprecated once Delivery Service Versioning is implemented. For this reason it is suggested that
+it not be used unless absolutely necessary.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> template string allows the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> <a class="reference internal" href="../overview/delivery_services.html#ds-raw-remap"><span class="std std-ref">Raw Remap Text</span></a> field
+to override to fully override the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s line in the
+<a class="reference external" href="https://docs.trafficserver.apache.org/en/8.1.x/admin-guide/files/remap.config.en.html">remap.config ATS configuration file</a>,
+generated by Traffic Ops. The end result is the original, generated line commented out, prepended
+with <code class="docutils literal notranslate"><span class="pre">##OVERRIDDEN##</span></code> and the <code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> rule is activated in its place. This behavior is
+used to incrementally deploy plugins used in this configuration file. Normally, this entails cloning
+the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> that will have the plugin, ensuring it is assigned to a subset of the
+<a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> that serve the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> content, then using this
+<code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> rule to create a <code class="docutils literal notranslate"><span class="pre">remap.config</span></code> rule that will use the plugin, overriding the
+normal rule. Simply grow the subset over time at the desired rate to slowly deploy the plugin. When
+it encompasses all <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> that serve the original <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s content,
+the “override <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>” can be deleted and the original can use a
+non-<code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> <a class="reference internal" href="../overview/delivery_services.html#ds-raw-remap"><span class="std std-ref">Raw Remap Text</span></a> to add the plugin.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">#66 </span><span class="caption-text">Example of Remap Override</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># This is the original line as generated by Traffic Ops
+map http://from.example.com/ http://to.example.com/
+
+# This is the raw remap text as configured on the delivery service
+##OVERRIDE## map http://from.example.com/ http://to.example.com/ some_plugin.so
+
+# The resulting content is what actually winds up in the remap.config file:
+##OVERRIDE##
+map http://from.example.com/ http://to.example.com/ some_plugin.so
+##OVERRIDDEN## map http://from.example.com/ http://to.example.com/
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The “from” URL must exactly match for this to properly work (e.g. including trailing
+URL ‘/’), otherwise <abbr title="Apache Traffic Server">ATS</abbr> may fail to initialize or reload while
+processing <code class="file docutils literal notranslate"><span class="pre">remap.config</span></code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To assist in troubleshooting, it is strongly recommended that any <code class="docutils literal notranslate"><span class="pre">##OVERRIDE##</span></code> rules in
+use should be documented on the original <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traffic_stats.html" class="btn btn-neutral float-left" title="Traffic Stats Administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t3c/index.html" class="btn btn-neutral float-right" title="t3c" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

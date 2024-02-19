@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Portal - Using &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Traffic Monitor Administration" href="../traffic_monitor.html" />
+    <link rel="prev" title="Traffic Portal" href="index.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Traffic Portal</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#installing">Installing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#configuring">Configuring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#configuring-oauth-through-traffic-portal">Configuring OAuth Through Traffic Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#starting-traffic-portal">Starting Traffic Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#stopping-traffic-portal">Stopping Traffic Portal</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#using-traffic-portal">Using Traffic Portal</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Traffic Portal - Using</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Traffic Portal</a></li>
+      <li class="breadcrumb-item active">Traffic Portal - Using</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/traffic_portal/usingtrafficportal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-portal-using">
+<span id="usingtrafficportal"></span><h1>Traffic Portal - Using<a class="headerlink" href="#traffic-portal-using" title="Permalink to this heading"></a></h1>
+<p>Traffic Portal is the official Traffic Control UI. Traffic Portal typically runs on a different machine than Traffic Ops, and works by using the Traffic Ops API. The following high-level items are available in the Traffic Portal menu.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/tp_menu.png"><img alt="The Traffic Portal Landing Page" src="../../_images/tp_menu.png" style="width: 55%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Traffic Portal Start Page</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="change-logs">
+<h2>Change Logs<a class="headerlink" href="#change-logs" title="Permalink to this heading"></a></h2>
+<p>At the top-right of every page is a bubble icon and badge count indicating the number of changes made to the CDN since the last viewing. Clicking on this expands a short list, with an option to <span class="guilabel">See All Change Logs</span>. Clicking on this will navigate to the “Changelog” page.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/changelog_dialog.png"><img alt="The changelog dialog" src="../../_images/changelog_dialog.png" style="width: 15%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">The Changelog Dialog</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/changelog_page.png"><img alt="The 'full' change logs page" src="../../_images/changelog_page.png" style="width: 45%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The Full Change Logs Page</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sidebar-bottom-buttons">
+<h2>Sidebar Bottom Buttons<a class="headerlink" href="#sidebar-bottom-buttons" title="Permalink to this heading"></a></h2>
+<p>At the bottom of the sidebar, a few action buttons may be found. At the far left, is the <span class="guilabel">Logout</span> button.</p>
+<figure class="align-center" id="id4">
+<img alt="The logout button" src="../../_images/logout_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">The Logout Button</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Clicking on this button will cause the current user session to end; further use of the Traffic Portal UI will require re-authentication. Next to this is the <span class="guilabel">User Profile</span> button.</p>
+<figure class="align-center" id="id5">
+<img alt="The profile button" src="../../_images/profile_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">The User Profile Button</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Clicking on this button will take the user to his or her user profile page, where much of their information (contact, username etc.) is editable. The next button to the right is the <span class="guilabel">Release Info</span> button.</p>
+<figure class="align-center" id="id6">
+<img alt="The release info button" src="../../_images/release_info_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">The Release Info Button</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>When this button is clicked, a modal window will appear, displaying the Traffic Portal version, the date on which it was built, and the network location of the Traffic Ops server that serves the <a class="reference internal" href="../../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> used by the Traffic Portal instance. The final button is the <span class="guilabel">Popout</span> button.</p>
+<figure class="align-center" id="id7">
+<img alt="The popout button" src="../../_images/popout_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">The Popout Button</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This button will open the current view in a new browsing context. Most browsers will implement this as a new tab, but can be configured instead to open them in a new window - check your browser’s configuration and set it as desired.</p>
+</section>
+<section id="dashboard">
+<h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this heading"></a></h2>
+<p>The Dashboard is the default landing page for Traffic Portal. It provides a real-time view into the main performance indicators of the CDNs managed by Traffic Control. It also displays various statistics about the overall health of your CDN.</p>
+<dl class="simple">
+<dt>Current Bandwidth</dt><dd><p>The current bandwidth of all of your CDNs.</p>
+</dd>
+<dt>Current Connections</dt><dd><p>The current number of connections to all of your CDNs.</p>
+</dd>
+<dt>Healthy Caches</dt><dd><p>Displays the number of healthy <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> across all CDNs. Click the link to view the healthy caches on the cache stats page.</p>
+</dd>
+<dt>Unhealthy Caches</dt><dd><p>Displays the number of unhealthy <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> across all CDNs. Click the link to view the unhealthy caches on the cache stats page.</p>
+</dd>
+<dt>Online Caches</dt><dd><p>Displays the number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> with ONLINE <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>. Traffic Monitor will not monitor the state of ONLINE servers.</p>
+</dd>
+<dt>Reported Caches</dt><dd><p>Displays the number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> with REPORTED <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>.</p>
+</dd>
+<dt>Offline Caches</dt><dd><p>Displays the number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> with OFFLINE <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>.</p>
+</dd>
+<dt>Admin Down Caches</dt><dd><p>Displays the number of caches with ADMIN_DOWN <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>.</p>
+</dd>
+</dl>
+<p>Each component of this view is updated on the intervals defined in the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_portal/app/src/traffic_portal_properties.json"><code class="docutils literal notranslate"><span class="pre">traffic_portal/app/src/traffic_portal_properties.json</span></code></a> configuration file.</p>
+</section>
+<section id="cdns">
+<span id="tp-cdns"></span><h2>CDNs<a class="headerlink" href="#cdns" title="Permalink to this heading"></a></h2>
+<p>A table of CDNs with the following columns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the CDN</p>
+</dd>
+<dt class="field-even">Domain<span class="colon">:</span></dt>
+<dd class="field-even"><p>The CDN’s <abbr title="Top-Level Domain">TLD</abbr></p>
+</dd>
+<dt class="field-odd">DNSSEC Enabled<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘true’ if <a class="reference internal" href="../traffic_router.html#tr-dnssec"><span class="std std-ref">DNSSEC</span></a> is enabled on this CDN, ‘false’ otherwise.</p>
+</dd>
+</dl>
+<p>CDN management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new CDN</p></li>
+<li><p>update an existing CDN</p></li>
+<li><p>delete an existing CDN</p></li>
+<li><p><a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> on all servers in a CDN, or clear such updates</p></li>
+<li><p>Compare CDN <a class="reference internal" href="../../glossary.html#term-Snapshots"><span class="xref std std-term">Snapshots</span></a></p></li>
+<li><p>create a CDN <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a></p></li>
+<li><p>manage a CDN’s DNSSEC keys</p></li>
+<li><p>manage a CDN’s <a class="reference internal" href="../../glossary.html#term-Federations"><span class="xref std std-term">Federations</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> of a CDN</p></li>
+<li><p>view CDN <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a></p></li>
+<li><p>view servers within a CDN</p></li>
+</ul>
+</section>
+<section id="monitor">
+<h2>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading"></a></h2>
+<p>The <span class="guilabel">Monitor</span> section of Traffic Portal is used to display statistics regarding the various <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> within all CDNs visible to the user. It retrieves this information through the <a class="reference internal" href="../../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> from Traffic Monitor instances.</p>
+<figure class="align-center" id="id8">
+<img alt="The Traffic Portal 'Monitor' Menu" src="../../_images/tp_menu_monitor.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">The ‘Monitor’ Menu</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="cache-checks">
+<h3>Cache Checks<a class="headerlink" href="#cache-checks" title="Permalink to this heading"></a></h3>
+<p>A real-time view into the status of each <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>. The <span class="menuselection">Monitor ‣ Cache Checks</span> page is intended to give an overview of the caches managed by Traffic Control as well as their status.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Several of these columns may be empty by default - particularly in the <a class="reference internal" href="../quick_howto/ciab.html#ciab"><span class="std std-ref">CDN in a Box</span></a> environment - and require <a class="reference internal" href="../traffic_ops.html#admin-to-ext-script"><span class="std std-ref">Traffic Ops Extensions</span></a> to be installed/enabled/configured in order to work.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Hostname<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The (short) hostname of the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-even">Profile<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a> of the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-even">UPD<span class="colon">:</span></dt>
+<dd class="field-even"><p>Displays whether or not this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> has configuration updates pending</p>
+</dd>
+<dt class="field-odd">RVL<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Displays whether or not this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> (or one or more of its <a class="reference internal" href="../../glossary.html#term-parents"><span class="xref std std-term">parents</span></a>) has content invalidation requests pending</p>
+</dd>
+<dt class="field-even">ILO<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indicates the status of an <abbr title="Integrated Lights-Out">iLO</abbr> interface for this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-odd">10G<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Indicates whether or not the IPv4 address of this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> is reachable via ICMP “pings”</p>
+</dd>
+<dt class="field-even">FQDN<span class="colon">:</span></dt>
+<dd class="field-even"><p>DNS check that matches what the DNS servers respond with compared to what Traffic Ops has configured</p>
+</dd>
+<dt class="field-odd">DSCP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Checks the <abbr title="Differentiated Services Code Point">DSCP</abbr> value of packets received from this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-even">10G6<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indicates whether or not the IPv6 address of this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> is reachable via ICMP “pings”</p>
+</dd>
+<dt class="field-odd">MTU<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Checks the <abbr title="Maximum Transmission Unit">MTU</abbr> by sending ICMP “pings” from the Traffic Ops server</p>
+</dd>
+<dt class="field-even">RTR<span class="colon">:</span></dt>
+<dd class="field-even"><p>Checks the reachability of the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> from the CDN’s configured Traffic Routers</p>
+</dd>
+<dt class="field-odd">CHR<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cache-Hit Ratio (percent)</p>
+</dd>
+<dt class="field-even">CDU<span class="colon">:</span></dt>
+<dd class="field-even"><p>Total Cache-Disk Usage (percent)</p>
+</dd>
+<dt class="field-odd">ORT<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Uses the <a class="reference internal" href="../../glossary.html#term-ORT"><span class="xref std std-term">ORT</span></a> script on the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> to determine if the configuration in Traffic Ops matches the configuration on <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> itself. The user as whom this script runs must have an SSH key on each server.</p>
+</dd>
+</dl>
+</section>
+<section id="cache-stats">
+<h3>Cache Stats<a class="headerlink" href="#cache-stats" title="Permalink to this heading"></a></h3>
+<p>A table showing the results of the periodic <a class="reference internal" href="../traffic_ops.html#to-check-ext"><span class="std std-ref">Check Extensions</span></a> that are run. These can be grouped by <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> and/or <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Profile<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> applied to the Edge-tier or Mid-tier <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>, or the special name “ALL” indicating that this row is a group of all <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> within a single <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+<dt class="field-even">Host<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘ALL’ for entries grouped by <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>, or the hostname of a particular <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-odd">Cache Group<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name of the Cache Group</span></a> to which this server belongs, or the name of the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> that is grouped for entries grouped by <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>, or the special name “ALL” indicating that this row is an aggregate across all <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a></p>
+</dd>
+<dt class="field-even">Healthy<span class="colon">:</span></dt>
+<dd class="field-even"><p>True/False as determined by Traffic Monitor</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Status of the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> or <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+<dt class="field-even">Connections<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of currently open connections to this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> or <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+<dt class="field-odd">MbpsOut<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Data flow rate outward from the CDN (toward client) in Megabits per second</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="services">
+<span id="tp-services"></span><h2>Services<a class="headerlink" href="#services" title="Permalink to this heading"></a></h2>
+<p><span class="guilabel">Services</span> groups the functionality to modify <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> - for those users with the necessary permissions - or make <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Requests"><span class="xref std std-term">Delivery Service Requests</span></a> for such changes - for users without necessary permissions. Delivery Services can also be grouped by <a class="reference internal" href="../../glossary.html#term-Service-Category"><span class="xref std std-term">Service Category</span></a>.</p>
+<figure class="align-center" id="id9">
+<img alt="The Traffic Portal 'Services' Menu" src="../../_images/tp_menu_services.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">The ‘Services’ Menu</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="delivery-services">
+<span id="tp-services-delivery-service"></span><h3>Delivery Services<a class="headerlink" href="#delivery-services" title="Permalink to this heading"></a></h3>
+<p>This page contains a table displaying all <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> visible to the user as determined by their <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a>.</p>
+<figure class="align-center" id="id10">
+<img alt="An example table of Delivery Services" src="../../_images/tp_table_ds.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Table of Delivery Services</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Use the <cite>Select Columns</cite> menu to select the delivery service columns to view and search. Columns can also be rearranged using drag-and-drop. Available delivery service columns include:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-active"><span class="std std-ref">Active</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-anonymous-blocking"><span class="std std-ref">Anonymous Blocking</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-cdn"><span class="std std-ref">CDN</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-check-path"><span class="std std-ref">Check Path</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-consistent-hashing-qparams"><span class="std std-ref">Consistent Hashing Query Parameters</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-consistent-hashing-regex"><span class="std std-ref">Consistent Hashing Regular Expression</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-deep-caching"><span class="std std-ref">Deep Caching</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-display-name"><span class="std std-ref">Display Name</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dns-bypass-cname"><span class="std std-ref">DNS Bypass CNAME</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dns-bypass-ip"><span class="std std-ref">DNS Bypass IP</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dns-bypass-ipv6"><span class="std std-ref">DNS Bypass IPv6</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dns-bypass-ttl"><span class="std std-ref">DNS Bypass TTL</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dns-ttl"><span class="std std-ref">DNS TTL</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-dscp"><span class="std std-ref">DSCP</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-edge-header-rw-rules"><span class="std std-ref">Edge Header Rewrite Rules</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-fqpr"><span class="std std-ref">Fair-Queuing Pacing Rate Bps</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-first-header-rw-rules"><span class="std std-ref">First Header Rewrite Rules</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-limit"><span class="std std-ref">Geo Limit</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-limit-countries"><span class="std std-ref">Geo Limit Countries</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-limit-redirect-url"><span class="std std-ref">Geo Limit Redirect URL</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-provider"><span class="std std-ref">Geolocation Provider</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-miss-default-latitude"><span class="std std-ref">Geo Miss Default Latitude</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-miss-default-longitude"><span class="std std-ref">Geo Miss Default Longitude</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-global-max-mbps"><span class="std std-ref">Global Max Mbps</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-global-max-tps"><span class="std std-ref">Global Max TPS</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-http-bypass-fqdn"><span class="std std-ref">HTTP Bypass FQDN</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-info-url"><span class="std std-ref">Info URL</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-initial-dispersion"><span class="std std-ref">Initial Dispersion</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-inner-header-rw-rules"><span class="std std-ref">Inner Header Rewrite Rules</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-ipv6-routing"><span class="std std-ref">IPv6 Routing Enabled</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-last-header-rw-rules"><span class="std std-ref">Last Header Rewrite Rules</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-longdesc"><span class="std std-ref">Long Description</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-max-dns-answers"><span class="std std-ref">Max DNS Answers</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-max-origin-connections"><span class="std std-ref">Max Origin Connections</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-mid-header-rw-rules"><span class="std std-ref">Mid Header Rewrite Rules</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-origin-shield"><span class="std std-ref">Origin Shield</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-origin-url"><span class="std std-ref">Origin Server Base URL</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-profile"><span class="std std-ref">Profile</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-protocol"><span class="std std-ref">Protocol</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-qstring-handling"><span class="std std-ref">Query String Handling</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-range-request-handling"><span class="std std-ref">Range Request Handling</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-slice-block-size"><span class="std std-ref">Range Slice Request Block Size</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-raw-remap"><span class="std std-ref">Raw Remap Text</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-regex-remap"><span class="std std-ref">Regex Remap Expression</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-regionalgeo"><span class="std std-ref">Regional Geoblocking</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-routing-name"><span class="std std-ref">Routing Name</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-signing-algorithm"><span class="std std-ref">Signing Algorithm</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-tenant"><span class="std std-ref">Tenant</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-topology"><span class="std std-ref">Topology</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-tr-resp-headers"><span class="std std-ref">Traffic Router Additional Response Headers</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-tr-req-headers"><span class="std std-ref">Traffic Router Log Request Headers</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-types"><span class="std std-ref">Type</span></a> (visible by default)</p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-multi-site-origin"><span class="std std-ref">Use Multi-Site Origin Feature</span></a></p></li>
+<li><p><a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_id</span></a> (visible by default)</p></li>
+</ul>
+<p><a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> management includes the ability to (where applicable):</p>
+<ul>
+<li><p>Create a new <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p></li>
+<li><p>Clone an existing <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p></li>
+<li><p>Update an existing <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p></li>
+<li><p>Delete an existing <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p></li>
+<li><p>Compare <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> SSL keys</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> URL signature keys</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> URI signing keys</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> invalidation requests</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> origins</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> regular expressions</p></li>
+<li><p><a class="reference internal" href="../quick_howto/server_capabililty.html#delivery-service-required-server-capabilities"><span class="std std-ref">Configure delivery service required server capabilities</span></a></p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> server assignments</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> steering targets</p></li>
+<li><p>Manage <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> static DNS records within a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> subdomain</p></li>
+<li><p>Test <a class="reference internal" href="../traffic_router.html#pattern-based-consistenthash"><span class="std std-ref">Consistent Hashing Patterns</span></a></p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../quick_howto/static_dns.html#static-dns-qht"><span class="std std-ref">Configuring Static DNS Entries</span></a></p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="delivery-service-requests">
+<h3>Delivery Service Requests<a class="headerlink" href="#delivery-service-requests" title="Permalink to this heading"></a></h3>
+<p>If enabled in the <code class="file docutils literal notranslate"><span class="pre">traffic_portal_properties.json</span></code> configuration file, all <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> changes (create, update and delete) are captured as a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> and must be reviewed before fulfillment/deployment.</p>
+<figure class="align-center" id="id11">
+<img alt="An example table of Delivery Service Requests" src="../../_images/tp_table_ds_requests.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Table of Delivery Service Requests</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>: A unique string that identifies the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> with which the request is associated. This unique string is also known (and ofter referred to within documentation and source code) as a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> key’ or ‘XML ID’/’xml_id’/’xmlid’
+:Type:             The type of <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a>: ‘create’, ‘update’, or ‘delete’ according to what was requested
+:Status:           The status of the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a>. Has the following possible values:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>draft</dt><dd><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> is <em>not</em> ready for review and fulfillment</p>
+</dd>
+<dt>submitted</dt><dd><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> is ready for review and fulfillment</p>
+</dd>
+<dt>rejected</dt><dd><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> has been rejected and cannot be modified</p>
+</dd>
+<dt>pending</dt><dd><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> has been fulfilled but the changes have yet to be deployed</p>
+</dd>
+<dt>complete</dt><dd><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> has been fulfilled and the changes have been deployed</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user responsible for creating the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p>
+</dd>
+<dt class="field-even">Assignee<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user responsible for fulfilling the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a>. Currently, the operations role or above is required to assign <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Requests"><span class="xref std std-term">Delivery Service Requests</span></a></p>
+</dd>
+<dt class="field-odd">Last Edited By<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The last user to edit the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p>
+</dd>
+<dt class="field-even">Created<span class="colon">:</span></dt>
+<dd class="field-even"><p>Relative time indicating when the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> was created</p>
+</dd>
+<dt class="field-odd">Actions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Actions that can be performed on a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a>. The following actions are provided:</p>
+<dl class="simple">
+<dt>fulfill</dt><dd><p>Implement the changes captured in the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p>
+</dd>
+<dt>reject</dt><dd><p>Reject the changes captured in the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p>
+</dd>
+<dt>delete</dt><dd><p>Delete the <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>update the status of a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>assign a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>reject a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>fulfill a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+<li><p>complete a <a class="reference internal" href="../../glossary.html#term-Delivery-Service-Request"><span class="xref std std-term">Delivery Service Request</span></a></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../quick_howto/ds_requests.html#ds-requests"><span class="std std-ref">Delivery Service Requests</span></a></p>
+</div>
+</section>
+</section>
+<section id="configure">
+<h2>Configure<a class="headerlink" href="#configure" title="Permalink to this heading"></a></h2>
+<p>Interfaces for managing the various components of Traffic Control and how they interact are grouped under <span class="guilabel">Configure</span>.</p>
+<figure class="align-center" id="id12">
+<img alt="The 'Configure' Menu" src="../../_images/tp_menu_configure.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">The ‘Configure’ Menu</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="servers">
+<span id="tp-configure-servers"></span><h3>Servers<a class="headerlink" href="#servers" title="Permalink to this heading"></a></h3>
+<p>A configurable table of all servers (of all kinds) across all <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> and CDNs visible to the user.</p>
+<figure class="align-center" id="id13">
+<img alt="An example table of Servers" src="../../_images/tp_table_server.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Table of Servers</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Use the <cite>Quick Search</cite> to search across all table columns or the column filter to apply a more powerful filter to individual columns. Use the <cite>Select Columns</cite> menu to select the server columns to view. Columns can also be rearranged using drag-and-drop. Available server columns include:</p>
+<dl class="field-list">
+<dt class="field-odd">Cache Group<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] The <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name of the Cache Group</span></a> to which this server belongs</p>
+</dd>
+<dt class="field-even">CDN<span class="colon">:</span></dt>
+<dd class="field-even"><p>[Visible by default] The name of the CDN to which the server belongs</p>
+</dd>
+<dt class="field-odd">Domain<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] The domain part of the server’s <abbr title="Fully Qualified Domain Name">FQDN</abbr></p>
+</dd>
+<dt class="field-even">Hash ID<span class="colon">:</span></dt>
+<dd class="field-even"><p>The identifier of the server used in Traffic Router’s consistent hashing algorithm.</p>
+</dd>
+<dt class="field-odd">Host<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] The (short) hostname of the server</p>
+</dd>
+<dt class="field-even">HTTPS Port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port on which the server listens for incoming HTTPS connections/requests</p>
+</dd>
+<dt class="field-odd">ID<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An integral, unique identifier for this server</p>
+</dd>
+<dt class="field-even">ILO IP Address<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv4 address of the server’s <abbr title="Integrated Lights-Out">ILO</abbr> service</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/HP_Integrated_Lights-Out">Hewlett Packard ILO Wikipedia Page</a></p>
+</div>
+</dd>
+<dt class="field-odd">ILO IP Gateway<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The IPv4 gateway address of the server’s <abbr title="Integrated Lights-Out">ILO</abbr> service</p>
+</dd>
+<dt class="field-even">ILO IP Netmask<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv4 subnet mask of the server’s <abbr title="Integrated Lights-Out">ILO</abbr> service</p>
+</dd>
+<dt class="field-odd">ILO Username<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user name for the server’s <abbr title="Integrated Lights-Out">ILO</abbr> service</p>
+</dd>
+<dt class="field-even">Interface Name<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the primary network interface used by the server</p>
+</dd>
+<dt class="field-odd">IPv6 Address<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] The IPv6 address and subnet mask of <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-even">IPv6 Gateway<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv6 address of the gateway used by <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-odd">Last Updated<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The date and time at which this server description was last modified</p>
+</dd>
+<dt class="field-even">Mgmt IP Address<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv4 address of some network interface on the server used for ‘management’</p>
+</dd>
+<dt class="field-odd">Mgmt IP Gateway<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The IPv4 address of a gateway used by some network interface on the server used for ‘management’</p>
+</dd>
+<dt class="field-even">Mgmt IP Netmask<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv4 subnet mask used by some network interface on the server used for ‘management’</p>
+</dd>
+<dt class="field-odd">IPv4 Gateway<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The IPv4 address of the gateway used by <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-even">IPv4 Address<span class="colon">:</span></dt>
+<dd class="field-even"><p>[Visible by default] The IPv4 address of <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-odd">Network MTU<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Maximum Transmission Unit (MTU) to configured on <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-even">IPv4 Subnet<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IPv4 subnet mask used by <code class="docutils literal notranslate"><span class="pre">interfaceName</span></code></p>
+</dd>
+<dt class="field-odd">Offline Reason<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A user-entered reason why the server is in ADMIN_DOWN or OFFLINE status</p>
+</dd>
+<dt class="field-even">Phys Location<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the physical location where the server resides</p>
+</dd>
+<dt class="field-odd">Profile<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by this server</p>
+</dd>
+<dt class="field-even">Rack<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string indicating “server rack” location</p>
+</dd>
+<dt class="field-odd">Reval Pending<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] A boolean value represented as a clock (content invalidation/revalidation is pending) or green check mark (content invalidation/revalidation is not pending)</p>
+</dd>
+<dt class="field-even">Router Hostname<span class="colon">:</span></dt>
+<dd class="field-even"><p>The human-readable name of the router responsible for reaching this server’s interface</p>
+</dd>
+<dt class="field-odd">Router Port<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The human-readable name of the port used by the router responsible for reaching this server’s interface</p>
+</dd>
+<dt class="field-even">Status<span class="colon">:</span></dt>
+<dd class="field-even"><p>[Visible by default] The <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a> of the server</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-odd">TCP Port<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The port on which this server listens for incoming TCP connections</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>[Visible by default] The name of the <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of this server</p>
+</dd>
+<dt class="field-odd">Update Pending<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[Visible by default] A boolean value represented as a clock (updates are pending) or green check mark (updates are not pending), typically to be acted upon by Traffic Ops ORT</p>
+</dd>
+</dl>
+<p>Server management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>Create a new server</p></li>
+<li><p>Update an existing server</p></li>
+<li><p>Delete an existing server</p></li>
+<li><p><a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> on a server, or clear such updates</p></li>
+<li><p>Update server status</p></li>
+<li><p>View server <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p></li>
+<li><p>Clone <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> assignments</p></li>
+<li><p>Assign <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> to server(s)</p></li>
+<li><p><a class="reference internal" href="../quick_howto/server_capabililty.html#server-server-capabilities"><span class="std std-ref">Manage server capabilities assigned to a server</span></a></p></li>
+</ul>
+</section>
+<section id="origins">
+<span id="tp-configure-origins"></span><h3>Origins<a class="headerlink" href="#origins" title="Permalink to this heading"></a></h3>
+<p>A table of all <a class="reference internal" href="../../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a>. These are automatically created for the <a class="reference internal" href="../../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a> served by <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> throughout all CDNs, but additional ones can be created at will. The table has the following columns:</p>
+<dl class="field-list">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>. If this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> was created automatically for a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, this will be the <a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_id</span></a> of that <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>.</p>
+</dd>
+<dt class="field-even">Tenant<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a> that owns this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> - this is not necessarily the same as the <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a> that owns the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> belongs.</p>
+</dd>
+<dt class="field-odd">Primary<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Either <code class="docutils literal notranslate"><span class="pre">true</span></code> to indicate that this is the “primary” <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> for the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> to which it is assigned, or <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</dd>
+<dt class="field-even">Delivery Service<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_id</span></a> of the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> is assigned.</p>
+</dd>
+<dt class="field-odd">FQDN<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <abbr title="Fully Qualified Domain Name">FQDN</abbr> of the <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>.</p>
+</dd>
+<dt class="field-even">IPv4 Address<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>’s IPv4 address, if configured.</p>
+</dd>
+<dt class="field-odd">IPv6 Address<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>’s IPv6 address, if configured.</p>
+</dd>
+<dt class="field-even">Protocol<span class="colon">:</span></dt>
+<dd class="field-even"><p>The protocol this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> uses to serve content. One of</p>
+<ul class="simple">
+<li><p>http</p></li>
+<li><p>https</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Port<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The port on which the <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> listens for incoming HTTP(S) requests.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this field appears blank in the table, it means that a default was chosen for the <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> based on its Protocol - <code class="docutils literal notranslate"><span class="pre">80</span></code> for “http”, <code class="docutils literal notranslate"><span class="pre">443</span></code> for “https”.</p>
+</div>
+</dd>
+<dt class="field-even">Coordinate<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the geographic coordinate pair that defines the physical location of this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>. <a class="reference internal" href="../../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a> created for <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> automatically will <strong>not</strong> have associated Coordinates. This can be rectified on the details pages for said <a class="reference internal" href="../../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a></p>
+</dd>
+<dt class="field-odd">Cachegroup<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name of the Cache Group</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> belongs, if any.</p>
+</dd>
+<dt class="field-even">Profile<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of a <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by this <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a>.</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a></p></li>
+</ul>
+</section>
+<section id="profiles">
+<span id="tp-configure-profiles"></span><h3>Profiles<a class="headerlink" href="#profiles" title="Permalink to this heading"></a></h3>
+<p>A table of all <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a>. From here you can see <a class="reference internal" href="../../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a>, servers and <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> assigned to each <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a>. Each entry in the table has these fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-type"><span class="std std-ref">Type</span></a> of this <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a>, which indicates the kinds of objects to which the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> may be assigned</p>
+</dd>
+<dt class="field-odd">Routing Disabled<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-routing-disabled"><span class="std std-ref">Routing Disabled</span></a> setting of this <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p>
+</dd>
+<dt class="field-even">Description<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a>’s <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-description"><span class="std std-ref">Description</span></a></p>
+</dd>
+<dt class="field-odd">CDN<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-cdn"><span class="std std-ref">CDN</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> is restricted. To use the same <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> across multiple CDNs, clone the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> and change the clone’s <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-cdn"><span class="std std-ref">CDN</span></a> field.</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p></li>
+<li><p>clone a <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p></li>
+<li><p>export a <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> <a class="reference internal" href="../../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> servers</p></li>
+</ul>
+</section>
+<section id="parameters">
+<span id="tp-configure-parameters"></span><h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<p>This page displays a table of <a class="reference internal" href="../../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a> from all <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a> with the following columns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#parameter-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a></p>
+</dd>
+<dt class="field-even">Config File<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#parameter-config-file"><span class="std std-ref">Config File</span></a> to which the <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> belongs.</p>
+</dd>
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#parameter-value"><span class="std std-ref">Value</span></a> of the <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a>.</p>
+</dd>
+<dt class="field-even">Secure<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> is <a class="reference internal" href="../../overview/profiles_and_parameters.html#parameter-secure"><span class="std std-ref">Secure</span></a></p>
+</dd>
+<dt class="field-odd">Profiles<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a> currently using this <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a></p></li>
+<li><p>manage assignments of a <a class="reference internal" href="../../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> to one or more <a class="reference internal" href="../../glossary.html#term-Profiles"><span class="xref std std-term">Profiles</span></a> and/or <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p></li>
+</ul>
+</section>
+<section id="types">
+<span id="tp-configure-types"></span><h3>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="../../glossary.html#term-Types"><span class="xref std std-term">Types</span></a> group <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>, servers and <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> for various purposes. Each entry in the table shown on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p>
+</dd>
+<dt class="field-even">Use In Table<span class="colon">:</span></dt>
+<dd class="field-even"><p>States the use of this <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">server</span></code> indicates this is a <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> assigned to servers</p>
+</dd>
+<dt class="field-odd">Description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A short, usually user-defined, description of the <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> assigned to a <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+<li><p>view servers assigned to a <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> assigned to a <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a></p></li>
+</ul>
+</section>
+<section id="statuses">
+<h3>Statuses<a class="headerlink" href="#statuses" title="Permalink to this heading"></a></h3>
+<p>This page shows a table of <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>es with the following columns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of this <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a></p>
+</dd>
+<dt class="field-even">Description<span class="colon">:</span></dt>
+<dd class="field-even"><p>A short, usually user-defined, description of this <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Status"><span class="xref std std-term">Status</span></a>es</p></li>
+</ul>
+</section>
+</section>
+<section id="topology">
+<h2>Topology<a class="headerlink" href="#topology" title="Permalink to this heading"></a></h2>
+<p><span class="guilabel">Topology</span> groups views and functionality that deal with how CDNs and their Traffic Control components are grouped and distributed, both on a logical level as well as a physical level.</p>
+<figure class="align-center" id="id14">
+<img alt="../../_images/tp_menu_topology.png" src="../../_images/tp_menu_topology.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">‘Topology’ Menu</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="cache-groups">
+<span id="tp-configure-cache-groups"></span><h3>Cache Groups<a class="headerlink" href="#cache-groups" title="Permalink to this heading"></a></h3>
+<p>This page is a table of <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a>, each entry of which has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The full <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name of this Cache Group</span></a></p>
+</dd>
+<dt class="field-even">Short Name<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="../../overview/cache_groups.html#cache-group-short-name"><span class="std std-ref">Cache Group’s Short Name</span></a></p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="../../overview/cache_groups.html#cache-group-type"><span class="std std-ref">Cache Group’s Type</span></a></p>
+</dd>
+<dt class="field-even">Latitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>This <a class="reference internal" href="../../overview/cache_groups.html#cache-group-latitude"><span class="std std-ref">Cache Group’s Latitude</span></a></p>
+</dd>
+<dt class="field-odd">Longitude<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="../../overview/cache_groups.html#cache-group-longitude"><span class="std std-ref">Cache Group’s Longitude</span></a></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> management includes the ability to (where applicable):</p>
+<ul>
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p></li>
+<li><p><a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> for all servers in a <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>, or clear such updates</p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> <abbr title="Autonomous System Number">ASN</abbr>s</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Autonomous_System_Number">The Wikipedia page on Autonomous System Numbers</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>view and assign <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> <a class="reference internal" href="../../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> servers</p></li>
+</ul>
+</section>
+<section id="coordinates">
+<h3>Coordinates<a class="headerlink" href="#coordinates" title="Permalink to this heading"></a></h3>
+<p><span class="menuselection">Topology ‣ Coordinates</span> allows a label to be given to a set of geographic coordinates for ease of use. Each entry in the table on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of this coordinate pair</p>
+</dd>
+<dt class="field-even">Latitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>The geographic latitude part of the coordinate pair</p>
+</dd>
+<dt class="field-odd">Longitude<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geographic longitude part of the coordinate pair</p>
+</dd>
+</dl>
+<p>Coordination management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new coordinate pair</p></li>
+<li><p>update an existing coordinate pair</p></li>
+<li><p>delete an existing coordinate pair</p></li>
+</ul>
+</section>
+<section id="phys-locations">
+<h3>Phys Locations<a class="headerlink" href="#phys-locations" title="Permalink to this heading"></a></h3>
+<p>A table of <a class="reference internal" href="../../glossary.html#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a> which may be assigned to servers and <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a>, typically for the purpose of optimizing client routing. Each entry has the following columns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The full name of the <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a></p>
+</dd>
+<dt class="field-even">Short Name<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shorter, more human-friendly name for this <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a></p>
+</dd>
+<dt class="field-odd">Address<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a>’s street address (street number and name)</p>
+</dd>
+<dt class="field-even">City<span class="colon">:</span></dt>
+<dd class="field-even"><p>The city within which the <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> resides</p>
+</dd>
+<dt class="field-odd">State<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The state within which the <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a>’s city lies</p>
+</dd>
+<dt class="field-even">Region<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> has been assigned</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> servers</p></li>
+</ul>
+</section>
+<section id="divisions">
+<h3>Divisions<a class="headerlink" href="#divisions" title="Permalink to this heading"></a></h3>
+<p>Each entry in the table of <a class="reference internal" href="../../glossary.html#term-Divisions"><span class="xref std std-term">Divisions</span></a> on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a></p></li>
+<li><p>modify an existing <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Regions"><span class="xref std std-term">Regions</span></a> within a <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a></p></li>
+</ul>
+</section>
+<section id="regions">
+<h3>Regions<a class="headerlink" href="#regions" title="Permalink to this heading"></a></h3>
+<p>Each entry in the table of <a class="reference internal" href="../../glossary.html#term-Regions"><span class="xref std std-term">Regions</span></a> on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of this <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a></p>
+</dd>
+<dt class="field-even">Division<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../glossary.html#term-Division"><span class="xref std std-term">Division</span></a> to which this <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> is assigned</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a> within a <a class="reference internal" href="../../glossary.html#term-Region"><span class="xref std std-term">Region</span></a></p></li>
+</ul>
+</section>
+<section id="asns">
+<h3>ASNs<a class="headerlink" href="#asns" title="Permalink to this heading"></a></h3>
+<p>Manage <abbr title="Autonomous System Number">ASN</abbr>s. Each entry in the table on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">ASN<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The actual <abbr title="Autonomous System Number">ASN</abbr></p>
+</dd>
+<dt class="field-even">Cache Group<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> to which this <abbr title="Autonomous System Number">ASN</abbr> is assigned</p>
+</dd>
+</dl>
+<p><abbr title="Autonomous System Number">ASN</abbr> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <abbr title="Autonomous System Number">ASN</abbr></p></li>
+<li><p>update an existing <abbr title="Autonomous System Number">ASN</abbr></p></li>
+<li><p>delete an existing <abbr title="Autonomous System Number">ASN</abbr></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">Autonomous System (Internet) Wikipedia Page</a></p>
+</div>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this heading"></a></h2>
+<p><span class="guilabel">Tools</span> contains various tools that don’t directly relate to manipulating Traffic Control components or their groupings.</p>
+<figure class="align-center" id="id15">
+<img alt="The 'Tools' Menu" src="../../_images/tp_menu_tools.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">The ‘Tools’ Menu</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="invalidate-content">
+<h3>Invalidate Content<a class="headerlink" href="#invalidate-content" title="Permalink to this heading"></a></h3>
+<p>Here, specific assets can be invalidated in all caches of a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, forcing content to be updated from the origin. Specifically, this <em>doesn’t</em> mean that <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> will immediately remove items from their caches, but rather will fetch new copies whenever a request is made matching the ‘Asset URL’ regular expression. This behavior persists until the <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a>’s <a class="reference internal" href="../../overview/jobs.html#job-ttl"><span class="std std-ref">TTL</span></a> expires.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method forces <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to “re-validate” content, so in order to work properly the <a class="reference internal" href="../../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> needs to support revalidation according to section 4.3.2 of <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc7234.html"><strong>RFC 7234</strong></a>.</p>
+</div>
+<p>Each entry in the table on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Delivery Service<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> to which to apply this <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a></p>
+</dd>
+<dt class="field-even">Asset URL<span class="colon">:</span></dt>
+<dd class="field-even"><p>A URL or regular expression which describes the asset(s) to be invalidated</p>
+</dd>
+<dt class="field-odd">TTL (Hours)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <abbr title="Time To Live">TTL</abbr> (as a number of hours) over which the <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a> shall remain active</p>
+</dd>
+<dt class="field-even">Start<span class="colon">:</span></dt>
+<dd class="field-even"><p>An effective start time until which the <a class="reference internal" href="../../glossary.html#term-job"><span class="xref std std-term">job</span></a> is delayed</p>
+</dd>
+<dt class="field-odd">Expires<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The date/time at which the <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a> will end (effectively “Start” plus “TTL (Hours)”)</p>
+</dd>
+<dt class="field-even">Created By<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user name of the person who created this <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a></p>
+</dd>
+<dt class="field-odd">Invalidation Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/jobs.html#job-invalidation-type"><span class="std std-ref">Invalidation Type</span></a> of this <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a></p>
+</dd>
+</dl>
+<p>Invalidate content includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Content-Invalidation-Job"><span class="xref std std-term">Content Invalidation Job</span></a></p></li>
+</ul>
+</section>
+<section id="generate-iso">
+<span id="tp-tools-generate-iso"></span><h3>Generate ISO<a class="headerlink" href="#generate-iso" title="Permalink to this heading"></a></h3>
+<p>Generates a boot-able system image for any of the servers in the Servers table (or any server for that matter). Currently it only supports CentOS 7, but if you’re brave and pure of heart you MIGHT be able to get it to work with other Unix-like Operating Systems. The interface is <em>mostly</em> self-explanatory, but here is a short explanation of the fields in that form.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For instructions on setting up the Kickstart ISO generation files, see <a class="reference internal" href="../quick_howto/kickstart.html#creating-centos-kickstart"><span class="std std-ref">Creating the CentOS Kickstart File</span></a>.</p>
+</div>
+<dl>
+<dt>Copy Server Attributes From</dt><dd><p>Optional. This option lets the user choose a server from the Traffic Ops database and will auto-fill the other fields as much as possible based on that server’s properties</p>
+</dd>
+<dt>OS Version</dt><dd><p>This list is populated by modifying the <code class="file docutils literal notranslate"><span class="pre">osversions.json</span></code> file on the Traffic Ops server. This file maps OS names to the name of a directory under <a class="reference internal" href="../quick_howto/kickstart.html#kickstart-files-location"><span class="std std-ref">kickstart.files.location</span></a> (<code class="docutils literal notranslate"><span class="pre">/var/www/files</span></code> by default).</p>
+</dd>
+<dt>Hostname</dt><dd><p>The desired hostname of the resultant system</p>
+</dd>
+<dt>Domain</dt><dd><p>The desired domain name of the resultant system</p>
+</dd>
+<dt>DHCP</dt><dd><p>If this is ‘no’ the IP settings of the system must be specified, and the following extra fields will appear:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>IP Address</dt><dd><p>The resultant system’s IPv4 address</p>
+</dd>
+<dt>IPv6 Address</dt><dd><p>The resultant system’s IPv6 address</p>
+</dd>
+<dt>Network Subnet</dt><dd><p>The system’s network subnet mask</p>
+</dd>
+<dt>Network Gateway</dt><dd><p>The system’s network gateway’s IPv4 address</p>
+</dd>
+<dt>IPv6 Gateway</dt><dd><p>The system’s network gateway’s IPv6 address</p>
+</dd>
+<dt>Management IP Address</dt><dd><p>An optional IP address (IPv4 or IPv6) of a “management” server for the resultant system (e.g. for <abbr title="Integrated Lights-Out">ILO</abbr>)</p>
+</dd>
+<dt>Management IP Netmask</dt><dd><p>The subnet mask (IPv4 or IPv6) used by a “management” server for the resultant system (e.g. for <abbr title="Integrated Lights-Out">ILO</abbr>) - only needed if the Management IP Address is provided</p>
+</dd>
+<dt>Management IP Gateway</dt><dd><p>The IP address (IPv4 or IPv6) of the network gateway used by a “management” server for the resultant system (e.g. for <abbr title="Integrated Lights-Out">ILO</abbr>) - only needed if the Management IP Address is provided</p>
+</dd>
+<dt>Management Interface</dt><dd><p>The network interface used by a “management” server for the resultant system (e.g. for <abbr title="Integrated Lights-Out">ILO</abbr>) - only needed if the Management IP Address is provided. Must not be the same as “Interface Name”.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>Network MTU</dt><dd><p>The system’s network’s <abbr title="Maximum Transmission Unit">MTU</abbr>. Despite being a text field, this can only be 1500 or 9000 - it should almost always be 1500</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_transmission_unit">The Maximum transmission unit Wikipedia Page</a></p>
+</div>
+</div></blockquote>
+</dd>
+<dt>Disk for OS Install</dt><dd><p>The disk on which to install the base system. A reasonable default is <code class="docutils literal notranslate"><span class="pre">sda</span></code> (the <code class="docutils literal notranslate"><span class="pre">/dev/</span></code> prefix is not necessary)</p>
+</dd>
+<dt>Root Password</dt><dd><p>The password to be used for the root user. Input is hashed using MD5 before being written to disk</p>
+</dd>
+<dt>Confirm Root Password</dt><dd><p>Repeat the ‘Root Password’ to be sure it’s right</p>
+</dd>
+<dt>Interface Name</dt><dd><p>Optional. The name of the resultant system’s network interface. Typical values are <code class="docutils literal notranslate"><span class="pre">bond0</span></code>, <code class="docutils literal notranslate"><span class="pre">eth4</span></code>, etc. If <code class="docutils literal notranslate"><span class="pre">bond0</span></code> is entered, a Link Aggregation Control Protocol bonding configuration will be written</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Link_aggregation">The Link aggregation Wikipedia Page</a></p>
+</div>
+</div></blockquote>
+</dd>
+<dt>Stream ISO</dt><dd><p>If this is ‘yes’, then the download will start immediately as the ISO is written directly to the socket connection from Traffic Ops. If this is ‘no’, then the download will begin only <em>after</em> the ISO has finished being generated. For almost all use cases, this should be ‘yes’.</p>
+</dd>
+</dl>
+<div class="admonition">
+<p class="admonition-title">Implementation Detail</p>
+<p>Traffic Ops uses Red Hat’s <cite>Kickstart &lt;https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-kickstart-installations&gt;</cite> to create these ISOs, so many configuration options not available here can be tweaked in the <a class="reference internal" href="../quick_howto/kickstart.html#creating-centos-kickstart"><span class="std std-ref">Kickstart configuration file</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="user-admin">
+<h2>User Admin<a class="headerlink" href="#user-admin" title="Permalink to this heading"></a></h2>
+<p>This section offers administrative functionality for users and their permissions.</p>
+<figure class="align-center" id="id16">
+<img alt="The 'User Admin' Menu" src="../../_images/tp_menu_user_admin.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">The ‘User Admin’ Menu</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="user">
+<h3>User<a class="headerlink" href="#user" title="Permalink to this heading"></a></h3>
+<p>This page lists all the users that are visible to the user (so, for ‘admin’ users, all users will appear here). Each entry in the table on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Full Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user’s full, real name</p>
+</dd>
+<dt class="field-even">Username<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user’s username</p>
+</dd>
+<dt class="field-odd">Email<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user’s email address</p>
+</dd>
+<dt class="field-even">Tenant<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user’s <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p>
+</dd>
+<dt class="field-odd">Role<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user’s <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a></p>
+</dd>
+</dl>
+<p>User management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>register a new user</p></li>
+<li><p>create a new user</p></li>
+<li><p>update an existing user</p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> visible to a user</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If OAuth is enabled, the username must exist both here as well as with the OAuth provider. A user’s rights are defined by the <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> assigned to the user in Traffic Ops. Creating/deleting a user here will update the user’s <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> but the user needs to be created/deleted with the OAuth provider as well.</p>
+</div>
+</section>
+<section id="tenants">
+<h3>Tenants<a class="headerlink" href="#tenants" title="Permalink to this heading"></a></h3>
+<p>Each entry in the table of <a class="reference internal" href="../../glossary.html#term-Tenants"><span class="xref std std-term">Tenants</span></a> on this page has the following entries:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p>
+</dd>
+<dt class="field-even">Active<span class="colon">:</span></dt>
+<dd class="field-even"><p>If ‘true’ users of this <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a> group are allowed to login and have active <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p>
+</dd>
+<dt class="field-odd">Parent<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parent of this <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a>. The default is the ‘root’ <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a>, which has no users.</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a> management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>create a new <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p></li>
+<li><p>update an existing <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p></li>
+<li><p>delete an existing <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p></li>
+<li><p>view users assigned to a <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p></li>
+<li><p>view <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> assigned to a <a class="reference internal" href="../../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a></p></li>
+</ul>
+</section>
+<section id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this heading"></a></h3>
+<p>Each entry in the table of <a class="reference internal" href="../../glossary.html#term-Roles"><span class="xref std std-term">Roles</span></a> on this page has the following fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a></p>
+</dd>
+<dt class="field-even">Privilege Level<span class="colon">:</span></dt>
+<dd class="field-even"><p>The privilege level of this <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a>. This is a whole number that actually controls what a user is allowed to do. Higher numbers correspond to higher permission levels</p>
+</dd>
+<dt class="field-odd">Description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A short description of the <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> and what it is allowed to do</p>
+</dd>
+</dl>
+<p>Role management includes the ability to (where applicable):</p>
+<ul class="simple">
+<li><p>view all <a class="reference internal" href="../../glossary.html#term-Roles"><span class="xref std std-term">Roles</span></a></p></li>
+<li><p>create new <a class="reference internal" href="../../glossary.html#term-Role"><span class="xref std std-term">Role</span></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="../../glossary.html#term-Roles"><span class="xref std std-term">Roles</span></a> cannot be deleted through the Traffic Portal UI</p>
+</div>
+</section>
+</section>
+<section id="other">
+<h2>Other<a class="headerlink" href="#other" title="Permalink to this heading"></a></h2>
+<p>Custom menu items. By default, this contains only a link to the Traffic Control documentation.</p>
+<figure class="align-center" id="id17">
+<img alt="The 'Other' Menu" src="../../_images/tp_menu_other.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">The ‘Other’ Menu</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="docs">
+<h3>Docs<a class="headerlink" href="#docs" title="Permalink to this heading"></a></h3>
+<p>This is just a link to <a class="reference external" href="https://trafficcontrol.apache.org">the Traffic Control Documentation</a>.</p>
+</section>
+<section id="custom-menu-items">
+<h3>Custom Menu Items<a class="headerlink" href="#custom-menu-items" title="Permalink to this heading"></a></h3>
+<p>This section is configurable in the <code class="file docutils literal notranslate"><span class="pre">traffic_portal_properties.json</span></code> configuration file, in the <code class="docutils literal notranslate"><span class="pre">customMenu</span></code> section.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Traffic Portal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../traffic_monitor.html" class="btn btn-neutral float-right" title="Traffic Monitor Administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

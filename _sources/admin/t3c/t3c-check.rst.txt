@@ -1,0 +1,78 @@
+.. highlight:: text
+
+.. program:: t3c-check
+
+.. _t3c-t3c-check:
+
+*********
+t3c-check
+*********
+
+NAME
+====
+
+t3c-check - Traffic Control Cache Configuration generated file check
+tool
+
+SYNOPSIS
+========
+
+t3c-check <command> [<args>]
+
+[--help]
+
+[--version]
+
+DESCRIPTION
+===========
+
+The t3c-check application has commands for checking things about new
+config files, such as whether they can be safely applied or if a service
+reload or restart will be required.
+
+For the arguments of a command, see ‘t3c-check <command> --help’.
+
+COMMANDS
+========
+
+We divide t3c-check into commands for each independent operation. Each
+command is its own application and can be called directly or via the t3c
+app. For example, ‘t3c check refs’ or ‘t3c-check refs’ or
+‘t3c-check-refs’.
+
+t3c-check-reload
+
+::
+
+   Check if a reload or restart is needed
+
+t3c-check-refs
+
+::
+
+   Check if a config file's referenced plugins and files are valid
+
+OPTIONS
+=======
+
+-h, --help
+
+::
+
+   Print usage information and exit
+
+-V, --version
+
+::
+
+   Print version information and exit.
+
+AUTHORS
+=======
+
+The t3c application is maintained by Apache Traffic Control project. For
+help, bug reports, contributing, or anything else, see:
+
+https://trafficcontrol.apache.org/
+
+https://github.com/apache/trafficcontrol

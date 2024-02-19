@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>t3c &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="t3c-apply" href="t3c-apply.html" />
+    <link rel="prev" title="t3c" href="index.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">t3c</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">t3c</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commands">COMMANDS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nomenclature">NOMENCLATURE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-apply.html">t3c-apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check.html">t3c-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-refs.html">t3c-check-refs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-reload.html">t3c-check-reload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-diff.html">t3c-diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-generate.html">t3c-generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-preprocess.html">t3c-preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-request.html">t3c-request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-tail.html">t3c-tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-update.html">t3c-update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html">testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">t3c</a></li>
+      <li class="breadcrumb-item active">t3c</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/t3c/t3c.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="t3c">
+<span id="t3c-t3c"></span><h1>t3c<a class="headerlink" href="#t3c" title="Permalink to this heading"></a></h1>
+<section id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Permalink to this heading"></a></h2>
+<p>t3c - Traffic Control Cache Configuration tools</p>
+</section>
+<section id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<p>t3c &lt;command&gt; [&lt;args&gt;]</p>
+<p>[–help]</p>
+<p>[–version]</p>
+</section>
+<section id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">t3c</span></code> app generates and applies cache configuration for Apache
+Traffic Control.</p>
+<p>This includes requesting Traffic Ops, generating configuration files for
+caching proxies such as Apache Traffic Server, verifying Traffic Ops
+data is valid and produces valid config files, creating a git repo for
+backups and history, determining whether config changes require a reload
+or restart of the caching proxy service, performing that restart, and
+more.</p>
+<p>The latest version and documentation can be found at
+<a class="reference external" href="https://github.com/apache/trafficcontrol/cache-config">https://github.com/apache/trafficcontrol/cache-config</a>.</p>
+</section>
+<section id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<p>-h, –help</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prints the synopsis and usage information.
+</pre></div>
+</div>
+<p>-V, –version</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Print the version and exit
+</pre></div>
+</div>
+</section>
+<section id="commands">
+<h2>COMMANDS<a class="headerlink" href="#commands" title="Permalink to this heading"></a></h2>
+<p>We divide t3c into commands for each independent operation. Each command
+is its own application and can be called directly or via the t3c app.
+For example, ‘t3c apply’ or ‘t3c-apply’.</p>
+<p>t3c-apply</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Generate and apply cache configuration.
+</pre></div>
+</div>
+<p>t3c-check</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Check that new config can be applied.
+</pre></div>
+</div>
+<p>t3c-diff</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Diff config files, like diff or git-diff but with config-specific logic.
+</pre></div>
+</div>
+<p>t3c-generate</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Generate configuration files from Traffic Ops data.
+</pre></div>
+</div>
+<p>t3c-preprocess</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Preprocess generated config files.
+</pre></div>
+</div>
+<p>t3c-request</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Request data from Traffic Ops.
+</pre></div>
+</div>
+<p>t3c-update</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Update a server&#39;s queue and reval status in Traffic Ops.
+</pre></div>
+</div>
+</section>
+<section id="nomenclature">
+<h2>NOMENCLATURE<a class="headerlink" href="#nomenclature" title="Permalink to this heading"></a></h2>
+<p>The “t3c” stands for “Traffic Control Cache Config.”</p>
+</section>
+<section id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
+<p>The t3c application is maintained by Apache Traffic Control project. For
+help, bug reports, contributing, or anything else, see:</p>
+<p><a class="reference external" href="https://trafficcontrol.apache.org/">https://trafficcontrol.apache.org/</a></p>
+<p><a class="reference external" href="https://github.com/apache/trafficcontrol">https://github.com/apache/trafficcontrol</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="t3c" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t3c-apply.html" class="btn btn-neutral float-right" title="t3c-apply" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

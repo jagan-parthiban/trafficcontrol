@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debugging inside CDN-in-a-Box &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation Guidelines" href="documentation_guidelines.html" />
+    <link rel="prev" title="Building Traffic Control" href="building.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging inside CDN-in-a-Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enroller">Enroller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#t3c-on-caches">t3c on Caches</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t3c-on-edge-cache">t3c on Edge Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t3c-on-mid-01-cache">t3c on Mid 01 Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t3c-on-mid-02-cache">t3c on Mid 02 Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-monitor">Traffic Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-ops">Traffic Ops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-router">Traffic Router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-stats">Traffic Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-development-environment">The Development Environment</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer’s Guide</a></li>
+      <li class="breadcrumb-item active">Debugging inside CDN-in-a-Box</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/debugging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debugging-inside-cdn-in-a-box">
+<span id="dev-debugging-ciab"></span><h1>Debugging inside CDN-in-a-Box<a class="headerlink" href="#debugging-inside-cdn-in-a-box" title="Permalink to this heading"></a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For the purposes of development, it may be easier to use <a class="reference internal" href="index.html#dev"><span class="std std-ref">The Development Environment</span></a>.</p>
+</div>
+<p>Some CDN-in-a-Box components can be used with a debugger to step through lines of code, set breakpoints, see the state of all variables in each scope, etc. at runtime. Components that support debugging:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#enroller">Enroller</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#t3c-on-caches">t3c on Caches</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#t3c-on-edge-cache">t3c on Edge Cache</a></p></li>
+<li><p><a class="reference internal" href="#t3c-on-mid-01-cache">t3c on Mid 01 Cache</a></p></li>
+<li><p><a class="reference internal" href="#t3c-on-mid-02-cache">t3c on Mid 02 Cache</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#traffic-monitor">Traffic Monitor</a></p></li>
+<li><p><a class="reference internal" href="#traffic-ops">Traffic Ops</a></p></li>
+<li><p><a class="reference internal" href="#traffic-router">Traffic Router</a></p></li>
+<li><p><a class="reference internal" href="#traffic-stats">Traffic Stats</a></p></li>
+</ul>
+<section id="enroller">
+<h2>Enroller<a class="headerlink" href="#enroller" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">ENROLLER_DEBUG_ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build/rebuild the <code class="docutils literal notranslate"><span class="pre">enroller-debug</span></code> image each time you have changed <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/cdn-in-a-box/enroller/enroller.go"><code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/enroller/enroller.go</span></code></a>. Then, start CDN-in-a-Box.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">#95 </span><span class="caption-text">docker-compose command for debugging the CDN in a Box Enroller</span><a class="headerlink" href="#id9" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>enroller
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2343. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">#96 </span><span class="caption-text">VS Code launch.json for debugging the CDN in a Box Enroller</span><a class="headerlink" href="#id10" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enroller&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2343</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/go/src/github.com/apache/trafficcontrol/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Use the debugging configuration you created to start debugging the Enroller. It should connect without first breaking at any line.</p></li>
+</ul>
+<p>For an example of usage, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/RELEASE-5.1.1/infrastructure/cdn-in-a-box/enroller/enroller.go#L209">the toSession.CreateDeliveryServiceV30() call in enrollDeliveryService()</a>, then wait for the Enroller to process a file from <code class="docutils literal notranslate"><span class="pre">/shared/enroller/deliveryservices/</span></code> (only exists within the Docker container).</p>
+</section>
+<section id="t3c-on-caches">
+<h2>t3c on Caches<a class="headerlink" href="#t3c-on-caches" title="Permalink to this heading"></a></h2>
+<section id="t3c-on-edge-cache">
+<h3>t3c on Edge Cache<a class="headerlink" href="#t3c-on-edge-cache" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/cache/trafficcontrol-cache-config.rpm</span></code> because it contains release Go binaries that do not include useful debugging information. Rebuild the RPM with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">#97 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id11" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>cache/trafficcontrol-cache-config.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> to build the RPM quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_EDGE</span></code> to <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> (used for this example). A list of valid values for <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_EDGE</span></code>:</dt><dd><ul class="simple">
+<li><p>t3c-apply</p></li>
+<li><p>t3c-check</p></li>
+<li><p>t3c-check-refs</p></li>
+<li><p>t3c-check-reload</p></li>
+<li><p>t3c-diff</p></li>
+<li><p>t3c-generate</p></li>
+<li><p>t3c-request</p></li>
+<li><p>t3c-update</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">edge-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">trafficcontrol-cache-config.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-number">#98 </span><span class="caption-text">docker-compose command for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> running on the Edge Cache</span><a class="headerlink" href="#id12" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>edge
+mydc<span class="w"> </span>up<span class="w"> </span>-d
+mydc<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>trafficmonitor
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2347. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-number">#99 </span><span class="caption-text">VS Code launch.json for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> on the Edge Cache</span><a class="headerlink" href="#id13" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t3c on Edge&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2347</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Wait for Traffic Monitor to start, which will indicate that the SSL keys have been generated. Because <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_EDGE</span></code> is set to the name of one of the <code class="docutils literal notranslate"><span class="pre">t3c</span></code> binaries, <code class="docutils literal notranslate"><span class="pre">t3c</span></code> will <em>not</em> run automatically every minute. Start it it manually:</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-number">#100 </span><span class="caption-text">Run <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> with debugging enabled</span><a class="headerlink" href="#id14" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>user@computer<span class="w"> </span>cdn-in-a-box<span class="o">]</span>$<span class="w"> </span>mydc<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>edge<span class="w"> </span>t3c<span class="w"> </span>apply<span class="w"> </span>--run-mode<span class="o">=</span>badass<span class="w"> </span>--traffic-ops-url<span class="o">=</span>https://trafficops.infra.ciab.test<span class="w"> </span>--traffic-ops-user<span class="o">=</span>admin<span class="w"> </span>--traffic-ops-password<span class="o">=</span>twelve12<span class="w"> </span>--git<span class="o">=</span>yes<span class="w"> </span>--dispersion<span class="o">=</span><span class="m">0</span><span class="w"> </span>--log-location-error<span class="o">=</span>stdout<span class="w"> </span>--log-location-warning<span class="o">=</span>stdout<span class="w"> </span>--log-location-info<span class="o">=</span>stdout<span class="w"> </span>all
+API<span class="w"> </span>server<span class="w"> </span>listening<span class="w"> </span>at:<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:2347
+</pre></div>
+</div>
+</div>
+<p>The <em>API server listening</em> message is from <code class="docutils literal notranslate"><span class="pre">dlv</span></code>, indicating it is ready to accept a connection from your IDE. Note that, unlike the other components, execution of <code class="docutils literal notranslate"><span class="pre">t3c</span></code> does not begin until your IDE connects to <code class="docutils literal notranslate"><span class="pre">dlv</span></code>.</p>
+<p>For this example, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/dde7f69d49/cache-config/t3c-apply/torequest/torequest.go#L336">the assignment of “##OVERRIDDEN## “ + str to newstr in torequest.processRemapOverrides()</a>.</p>
+<p>Use the debugging configuration you created to connect to <code class="docutils literal notranslate"><span class="pre">dlv</span></code> and start debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code>.</p>
+</section>
+<section id="t3c-on-mid-01-cache">
+<h3>t3c on Mid 01 Cache<a class="headerlink" href="#t3c-on-mid-01-cache" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/cache/trafficcontrol-cache-config.rpm</span></code> because it contains release Go binaries that do not include useful debugging information. Rebuild the RPM with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-number">#101 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id15" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>cache/trafficcontrol-cache-config.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> to build the RPM quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_01</span></code> to <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> (used for this example). A list of valid values for <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_01</span></code>:</dt><dd><ul class="simple">
+<li><p>t3c-apply</p></li>
+<li><p>t3c-check</p></li>
+<li><p>t3c-check-refs</p></li>
+<li><p>t3c-check-reload</p></li>
+<li><p>t3c-diff</p></li>
+<li><p>t3c-generate</p></li>
+<li><p>t3c-request</p></li>
+<li><p>t3c-update</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">mid-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">trafficcontrol-cache-config.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-number">#102 </span><span class="caption-text">docker-compose command for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> running on the Mid 01 Cache</span><a class="headerlink" href="#id16" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>mid-01
+mydc<span class="w"> </span>up<span class="w"> </span>-d
+mydc<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>trafficmonitor
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2348. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-number">#103 </span><span class="caption-text">VS Code launch.json for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> on the Mid 01 Cache</span><a class="headerlink" href="#id17" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t3c on Mid 01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2348</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Wait for Traffic Monitor to start, which will indicate that the SSL keys have been generated. Because <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_01</span></code> is set to the name of one of the <code class="docutils literal notranslate"><span class="pre">t3c</span></code> binaries, <code class="docutils literal notranslate"><span class="pre">t3c</span></code> will <em>not</em> run automatically every minute. Start it it manually:</p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-number">#104 </span><span class="caption-text">Run <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> with debugging enabled</span><a class="headerlink" href="#id18" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>user@computer<span class="w"> </span>cdn-in-a-box<span class="o">]</span>$<span class="w"> </span>mydc<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mid-01<span class="w"> </span>t3c<span class="w"> </span>apply<span class="w"> </span>--run-mode<span class="o">=</span>badass<span class="w"> </span>--traffic-ops-url<span class="o">=</span>https://trafficops.infra.ciab.test<span class="w"> </span>--traffic-ops-user<span class="o">=</span>admin<span class="w"> </span>--traffic-ops-password<span class="o">=</span>twelve12<span class="w"> </span>--git<span class="o">=</span>yes<span class="w"> </span>--dispersion<span class="o">=</span><span class="m">0</span><span class="w"> </span>--log-location-error<span class="o">=</span>stdout<span class="w"> </span>--log-location-warning<span class="o">=</span>stdout<span class="w"> </span>--log-location-info<span class="o">=</span>stdout<span class="w"> </span>all
+API<span class="w"> </span>server<span class="w"> </span>listening<span class="w"> </span>at:<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:2348
+</pre></div>
+</div>
+</div>
+<p>The <em>API server listening</em> message is from <code class="docutils literal notranslate"><span class="pre">dlv</span></code>, indicating it is ready to accept a connection from your IDE. Note that, unlike the other components, execution of <code class="docutils literal notranslate"><span class="pre">t3c</span></code> does not begin until your IDE connects to <code class="docutils literal notranslate"><span class="pre">dlv</span></code>.</p>
+<p>For this example, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/dde7f69d49/cache-config/t3c-apply/torequest/torequest.go#L336">the assignment of “##OVERRIDDEN## “ + str to newstr in torequest.processRemapOverrides()</a>.</p>
+<p>Use the debugging configuration you created to connect to <code class="docutils literal notranslate"><span class="pre">dlv</span></code> and start debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code>.</p>
+</section>
+<section id="t3c-on-mid-02-cache">
+<h3>t3c on Mid 02 Cache<a class="headerlink" href="#t3c-on-mid-02-cache" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/cache/trafficcontrol-cache-config.rpm</span></code> because it contains release Go binaries that do not include useful debugging information. Rebuild the RPM with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-number">#105 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id19" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>cache/trafficcontrol-cache-config.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">cache/trafficcontrol-cache-config.rpm</span></code> to build the RPM quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_02</span></code> to <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> (used for this example). A list of valid values for <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_02</span></code>:</dt><dd><ul class="simple">
+<li><p>t3c-apply</p></li>
+<li><p>t3c-check</p></li>
+<li><p>t3c-check-refs</p></li>
+<li><p>t3c-check-reload</p></li>
+<li><p>t3c-diff</p></li>
+<li><p>t3c-generate</p></li>
+<li><p>t3c-request</p></li>
+<li><p>t3c-update</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">mid-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">trafficcontrol-cache-config.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-number">#106 </span><span class="caption-text">docker-compose command for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> running on the Mid 02 Cache</span><a class="headerlink" href="#id20" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>mid-02
+mydc<span class="w"> </span>up<span class="w"> </span>-d
+mydc<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>trafficmonitor
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2349. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-number">#107 </span><span class="caption-text">VS Code launch.json for debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code> on the Mid 02 Cache</span><a class="headerlink" href="#id21" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t3c on Mid 02&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2349</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Wait for Traffic Monitor to start, which will indicate that the SSL keys have been generated. Because <code class="docutils literal notranslate"><span class="pre">T3C_DEBUG_COMPONENT_MID_02</span></code> is set to the name of one of the <code class="docutils literal notranslate"><span class="pre">t3c</span></code> binaries, <code class="docutils literal notranslate"><span class="pre">t3c</span></code> will <em>not</em> run automatically every minute. Start it it manually:</p>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-number">#108 </span><span class="caption-text">Run <code class="docutils literal notranslate"><span class="pre">t3c-apply</span></code> with debugging enabled</span><a class="headerlink" href="#id22" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>user@computer<span class="w"> </span>cdn-in-a-box<span class="o">]</span>$<span class="w"> </span>mydc<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mid-02<span class="w"> </span>t3c<span class="w"> </span>apply<span class="w"> </span>--run-mode<span class="o">=</span>badass<span class="w"> </span>--traffic-ops-url<span class="o">=</span>https://trafficops.infra.ciab.test<span class="w"> </span>--traffic-ops-user<span class="o">=</span>admin<span class="w"> </span>--traffic-ops-password<span class="o">=</span>twelve12<span class="w"> </span>--git<span class="o">=</span>yes<span class="w"> </span>--dispersion<span class="o">=</span><span class="m">0</span><span class="w"> </span>--log-location-error<span class="o">=</span>stdout<span class="w"> </span>--log-location-warning<span class="o">=</span>stdout<span class="w"> </span>--log-location-info<span class="o">=</span>stdout<span class="w"> </span>all
+API<span class="w"> </span>server<span class="w"> </span>listening<span class="w"> </span>at:<span class="w"> </span><span class="o">[</span>::<span class="o">]</span>:2349
+</pre></div>
+</div>
+</div>
+<p>The <em>API server listening</em> message is from <code class="docutils literal notranslate"><span class="pre">dlv</span></code>, indicating it is ready to accept a connection from your IDE. Note that, unlike the other components, execution of <code class="docutils literal notranslate"><span class="pre">t3c</span></code> does not begin until your IDE connects to <code class="docutils literal notranslate"><span class="pre">dlv</span></code>.</p>
+<p>For this example, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/dde7f69d49/cache-config/t3c-apply/torequest/torequest.go#L336">the assignment of “##OVERRIDDEN## “ + str to newstr in torequest.processRemapOverrides()</a>.</p>
+<p>Use the debugging configuration you created to connect to <code class="docutils literal notranslate"><span class="pre">dlv</span></code> and start debugging <code class="docutils literal notranslate"><span class="pre">t3c</span></code>.</p>
+</section>
+</section>
+<section id="traffic-monitor">
+<h2>Traffic Monitor<a class="headerlink" href="#traffic-monitor" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove the existing RPMs because they contain release Go binaries do not include useful debugging information. Rebuild the RPMs with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-number">#109 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id23" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>traffic_monitor/traffic_monitor.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">traffic_monitor/traffic_monitor.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">traffic_monitor/traffic_monitor.rpm</span></code> to build the RPM quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">TM_DEBUG_ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">trafficmonitor-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">traffic_monitor.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-number">#110 </span><span class="caption-text">docker-compose command for debugging Traffic Monitor</span><a class="headerlink" href="#id24" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>trafficmonitor
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2344. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-number">#111 </span><span class="caption-text">VS Code launch.json for debugging Traffic Monitor</span><a class="headerlink" href="#id25" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Traffic Monitor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2344</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Use the debugging configuration you created to start debugging Traffic Monitor. It should connect without first breaking at any line.</p></li>
+</ul>
+<p>For an example of usage, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/RELEASE-5.1.1/traffic_monitor/health/event.go#L71">the o.m.RLock() call in ThreadsafeEvents.Get()</a>, then visit <a class="reference external" href="http://trafficmonitor.infra.ciab.test/publish/EventLog">http://trafficmonitor.infra.ciab.test/publish/EventLog</a> (see <a class="reference internal" href="traffic_monitor/traffic_monitor_api.html#tm-publish-eventlog"><span class="std std-ref">Traffic Monitor APIs: /publish/EventLog</span></a>).</p>
+</section>
+<section id="traffic-ops">
+<h2>Traffic Ops<a class="headerlink" href="#traffic-ops" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove the existing RPMs because they contain release Go binaries do not include useful debugging information. Rebuild the RPMs with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id26">
+<div class="code-block-caption"><span class="caption-number">#112 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id26" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>traffic_ops/traffic_ops.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">traffic_ops/traffic_ops.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">traffic_ops/traffic_ops.rpm</span></code> to build the RPM quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">TO_DEBUG_ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">trafficops-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">traffic_ops.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id27">
+<div class="code-block-caption"><span class="caption-number">#113 </span><span class="caption-text">docker-compose command for debugging Traffic Ops</span><a class="headerlink" href="#id27" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>trafficops
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2345. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id28">
+<div class="code-block-caption"><span class="caption-number">#114 </span><span class="caption-text">VS Code launch.json for debugging Traffic Ops</span><a class="headerlink" href="#id28" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Traffic Ops&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Use the debugging configuration you created to start debugging Traffic Ops. It should connect without first breaking at any line.</p></li>
+</ul>
+<p>For an example of usage, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/RELEASE-5.1.1/traffic_ops/traffic_ops_golang/profile/profiles.go#L148">the log.Debugln() call in TOProfile.Read()</a>, then visit <a class="reference external" href="https://trafficportal.infra.ciab.test/api/4.0/profiles">https://trafficportal.infra.ciab.test/api/4.0/profiles</a> (after logging into <a class="reference internal" href="../overview/traffic_portal.html#tp-overview"><span class="std std-ref">Traffic Portal</span></a>).</p>
+</section>
+<section id="traffic-router">
+<h2>Traffic Router<a class="headerlink" href="#traffic-router" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">variables.env</span></code>, set <code class="docutils literal notranslate"><span class="pre">TR_DEBUG_ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Install a debugging-capabe Java IDE or text editor of your choice. If unsure, install IntelliJ IDEA Community Edition.</p></li>
+<li><p>At the base of the repository (not in the <code class="docutils literal notranslate"><span class="pre">cdn-in-a-box</span></code> directory), open the <code class="docutils literal notranslate"><span class="pre">traffic_router</span></code> directory in your IDE.</p></li>
+<li><p>Add a new “Remote” (Java) debug configuration. Use port 5005.</p></li>
+<li><p>Start CDN-in-a-Box, including the “expose ports” “debugging” compose files:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-number">#115 </span><span class="caption-text">docker-compose command for debugging Traffic Router</span><a class="headerlink" href="#id29" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>trafficrouter
+mydc<span class="w"> </span>up<span class="w"> </span>-d
+mydc<span class="w"> </span>logs<span class="w"> </span>--follow<span class="w"> </span>trafficrouter
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Watch the <code class="docutils literal notranslate"><span class="pre">trafficrouter</span></code> container’s log. After DNS and certificate operations, the enroller, and Traffic Monitor, Traffic Router will start. Look for <code class="docutils literal notranslate"><span class="pre">Listening</span> <span class="pre">for</span> <span class="pre">transport</span> <span class="pre">dt_socket</span> <span class="pre">at</span> <span class="pre">address:</span> <span class="pre">5005</span></code> in the example log below:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id30">
+<div class="code-block-caption"><span class="caption-number">#116 </span><span class="caption-text">Log of the Docker container for Traffic Router</span><a class="headerlink" href="#id30" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">        </span>Warning:
+<span class="w">        </span>The<span class="w"> </span>JKS<span class="w"> </span>keystore<span class="w"> </span>uses<span class="w"> </span>a<span class="w"> </span>proprietary<span class="w"> </span>format.<span class="w"> </span>It<span class="w"> </span>is<span class="w"> </span>recommended<span class="w"> </span>to<span class="w"> </span>migrate<span class="w"> </span>to<span class="w"> </span>PKCS12<span class="w"> </span>which<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>industry<span class="w"> </span>standard<span class="w"> </span>format<span class="w"> </span>using<span class="w"> </span><span class="s2">&quot;keytool -importkeystore -srckeystore /opt/traffic_router/conf/keyStore.jks -destkeystore /opt/traffic_router/conf/keyStore.jks -deststoretype pkcs12&quot;</span>.
+<span class="w">        </span>Certificate<span class="w"> </span>stored<span class="w"> </span><span class="k">in</span><span class="w"> </span>file<span class="w"> </span>&lt;trafficrouter.infra.ciab.test.crt&gt;
+
+<span class="w">        </span>Warning:
+<span class="w">        </span>The<span class="w"> </span>JKS<span class="w"> </span>keystore<span class="w"> </span>uses<span class="w"> </span>a<span class="w"> </span>proprietary<span class="w"> </span>format.<span class="w"> </span>It<span class="w"> </span>is<span class="w"> </span>recommended<span class="w"> </span>to<span class="w"> </span>migrate<span class="w"> </span>to<span class="w"> </span>PKCS12<span class="w"> </span>which<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>industry<span class="w"> </span>standard<span class="w"> </span>format<span class="w"> </span>using<span class="w"> </span><span class="s2">&quot;keytool -importkeystore -srckeystore /opt/traffic_router/conf/keyStore.jks -destkeystore /opt/traffic_router/conf/keyStore.jks -deststoretype pkcs12&quot;</span>.
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>enroller<span class="w"> </span>initial<span class="w"> </span>data<span class="w"> </span>load<span class="w"> </span>to<span class="w"> </span>complete....
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Traffic<span class="w"> </span>Monitor<span class="w"> </span>to<span class="w"> </span>start...
+<span class="w">        </span>tail:<span class="w"> </span>cannot<span class="w"> </span>open<span class="w"> </span><span class="s1">&#39;/opt/tomcat/logs/catalina.log&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>reading:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+<span class="w">        </span>tail:<span class="w"> </span>cannot<span class="w"> </span>open<span class="w"> </span><span class="s1">&#39;/opt/tomcat/logs/catalina.2020-02-21.log&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>reading:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span><span class="nv">directory</span>
+<span class="w">        </span><span class="o">==</span>&gt;<span class="w"> </span>/opt/traffic_router/var/log/traffic_router.log<span class="w"> </span>&lt;<span class="o">==</span>
+
+<span class="w">        </span><span class="o">==</span>&gt;<span class="w"> </span>/opt/traffic_router/var/log/access.log<span class="w"> </span>&lt;<span class="o">==</span>
+<span class="w">        </span>Tomcat<span class="w"> </span>started.
+<span class="w">        </span>tail:<span class="w"> </span><span class="s1">&#39;/opt/tomcat/logs/catalina.log&#39;</span><span class="w"> </span>has<span class="w"> </span>appeared<span class="p">;</span><span class="w">  </span>following<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>new<span class="w"> </span>file
+<span class="w">        </span>tail:<span class="w"> </span><span class="s1">&#39;/opt/tomcat/logs/catalina.2020-02-21.log&#39;</span><span class="w"> </span>has<span class="w"> </span>appeared<span class="p">;</span><span class="w">  </span>following<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>new<span class="w"> </span><span class="nv">file</span>
+
+<span class="w">        </span><span class="o">==</span>&gt;<span class="w"> </span>/opt/traffic_router/var/log/traffic_router.log<span class="w"> </span>&lt;<span class="o">==</span>
+<span class="w">        </span>INFO<span class="w">  </span><span class="m">2020</span>-02-21T05:16:07.557<span class="w"> </span><span class="o">[</span>Thread-3<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidPoller<span class="w"> </span>-<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>state<span class="w"> </span>from<span class="w"> </span>mbean<span class="w"> </span>path<span class="w"> </span>traffic-router:name<span class="o">=</span>languidState
+<span class="w">        </span>INFO<span class="w">  </span><span class="m">2020</span>-02-21T05:16:07.557<span class="w"> </span><span class="o">[</span>Thread-4<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidPoller<span class="w"> </span>-<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>state<span class="w"> </span>from<span class="w"> </span>mbean<span class="w"> </span>path<span class="w"> </span>traffic-router:name<span class="o">=</span>languidState
+<span class="w">        </span>INFO<span class="w">  </span><span class="m">2020</span>-02-21T05:16:07.558<span class="w"> </span><span class="o">[</span>Thread-5<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidPoller<span class="w"> </span>-<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>state<span class="w"> </span>from<span class="w"> </span>mbean<span class="w"> </span>path<span class="w"> </span>traffic-router:name<span class="o">=</span>languidState
+<span class="w">        </span>INFO<span class="w">  </span><span class="m">2020</span>-02-21T05:16:07.559<span class="w"> </span><span class="o">[</span>Thread-6<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidPoller<span class="w"> </span>-<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>state<span class="w"> </span>from<span class="w"> </span>mbean<span class="w"> </span>path<span class="w"> </span>traffic-router:name<span class="o">=</span><span class="nv">languidState</span>
+
+<span class="w">        </span><span class="o">==</span>&gt;<span class="w"> </span>/opt/tomcat/logs/catalina.log<span class="w"> </span>&lt;<span class="o">==</span>
+<span class="w">        </span>Listening<span class="w"> </span><span class="k">for</span><span class="w"> </span>transport<span class="w"> </span>dt_socket<span class="w"> </span>at<span class="w"> </span>address:<span class="w"> </span><span class="m">5005</span>
+
+Watch<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>line<span class="w"> </span>that<span class="w"> </span>mentions<span class="w"> </span>port<span class="w"> </span><span class="m">5005</span><span class="w"> </span>-----------^^^^
+
+<span class="w">        </span><span class="o">==</span>&gt;<span class="w"> </span>/opt/tomcat/logs/catalina.2020-02-21.log<span class="w"> </span>&lt;<span class="o">==</span>
+<span class="w">        </span><span class="m">21</span>-Feb-2020<span class="w"> </span><span class="m">05</span>:16:07.359<span class="w"> </span>WARNING<span class="w"> </span><span class="o">[</span>main<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidNioProtocol.&lt;clinit&gt;<span class="w"> </span>Adding<span class="w"> </span>BouncyCastle<span class="w"> </span>provider
+<span class="w">        </span><span class="m">21</span>-Feb-2020<span class="w"> </span><span class="m">05</span>:16:07.452<span class="w"> </span>WARNING<span class="w"> </span><span class="o">[</span>main<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidNioProtocol.&lt;init&gt;<span class="w"> </span>Serving<span class="w"> </span>wildcard<span class="w"> </span>certs<span class="w"> </span><span class="k">for</span><span class="w"> </span>multiple<span class="w"> </span>domains
+<span class="w">        </span><span class="m">21</span>-Feb-2020<span class="w"> </span><span class="m">05</span>:16:07.459<span class="w"> </span>WARNING<span class="w"> </span><span class="o">[</span>main<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidNioProtocol.&lt;init&gt;<span class="w"> </span>Serving<span class="w"> </span>wildcard<span class="w"> </span>certs<span class="w"> </span><span class="k">for</span><span class="w"> </span>multiple<span class="w"> </span>domains
+<span class="w">        </span><span class="m">21</span>-Feb-2020<span class="w"> </span><span class="m">05</span>:16:07.459<span class="w"> </span>WARNING<span class="w"> </span><span class="o">[</span>main<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidNioProtocol.&lt;init&gt;<span class="w"> </span>Serving<span class="w"> </span>wildcard<span class="w"> </span>certs<span class="w"> </span><span class="k">for</span><span class="w"> </span>multiple<span class="w"> </span>domains
+<span class="w">        </span><span class="m">21</span>-Feb-2020<span class="w"> </span><span class="m">05</span>:16:07.461<span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>main<span class="o">]</span><span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.LanguidNioProtocol.setSslImplementationName<span class="w"> </span>setSslImplementation:<span class="w"> </span>org.apache.traffic_control.traffic_router.protocol.RouterSslImplementation
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>When you see that Tomcat is listening for debugger connections on port 5005, start debugging using the debug configuration that you created.</p></li>
+</ul>
+</section>
+<section id="traffic-stats">
+<h2>Traffic Stats<a class="headerlink" href="#traffic-stats" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code> directory. Remove the existing RPMs because they contain release Go binaries do not include useful debugging information. Rebuild the RPMs with no optimization, for debugging:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id31">
+<div class="code-block-caption"><span class="caption-number">#117 </span><span class="caption-text">Remove release RPMs, then build debug RPMs</span><a class="headerlink" href="#id31" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>very-clean
+make<span class="w"> </span>debug<span class="w"> </span>traffic_stats/traffic_stats.rpm
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">native</span> <span class="pre">traffic_stats/traffic_stats.rpm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span> <span class="pre">traffic_stats/traffic_stats.rpm</span></code> to build the RPMs quickly.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Still in <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box</span></code>, open <code class="docutils literal notranslate"><span class="pre">variables.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">TS_DEBUG_ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Stop CDN-in-a-Box if it is running and remove any existing volumes. Build the <code class="docutils literal notranslate"><span class="pre">trafficstats-debug</span></code> image to make sure it uses our fresh <code class="docutils literal notranslate"><span class="pre">traffic_stats.rpm</span></code>. Then, start CDN-in-a-Box:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id32">
+<div class="code-block-caption"><span class="caption-number">#118 </span><span class="caption-text">docker-compose command for debugging Traffic Stats</span><a class="headerlink" href="#id32" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s1">&#39;docker-compose -f docker-compose.yml -f docker-compose.expose-ports.yml -f optional/docker-compose.debugging.yml&#39;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build<span class="w"> </span>trafficstats
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install <a class="reference external" href="https://github.com/go-delve/delve/blob/master/Documentation/EditorIntegration.md">an IDE that supports delve</a> and create a debugging configuration over port 2346. If you are using VS Code, the configuration should look like this:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id33">
+<div class="code-block-caption"><span class="caption-number">#119 </span><span class="caption-text">VS Code launch.json for debugging Traffic Stats</span><a class="headerlink" href="#id33" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Traffic Stats&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2346</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/go/src/github.com/apache/trafficcontrol&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Use the debugging configuration you created to start debugging Traffic Stats. It should connect without first breaking at any line.</p></li>
+</ul>
+<p>For an example of usage, set a breakpoint at <a class="reference external" href="https://github.com/apache/trafficcontrol/blob/RELEASE-5.1.1/traffic_stats/traffic_stats.go#L706">the http.Get() call in main.getURL()</a>, then wait 10 seconds for the breakpoint to be hit.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>If you are debugging a Golang project and you don’t see the values of all variables, or stepping to the next line puts you several lines ahead, rebuild the Docker image with an RPM built using <code class="code highlight bash docutils literal highlight-bash">make<span class="w"> </span>debug</code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="building.html" class="btn btn-neutral float-left" title="Building Traffic Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="documentation_guidelines.html" class="btn btn-neutral float-right" title="Documentation Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Godocs &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traffic Monitor" href="traffic_monitor.html" />
+    <link rel="prev" title="Documentation Guidelines" href="documentation_guidelines.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Godocs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linking-to-godocs">Linking to Godocs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keeping-pkg-go-dev-from-hiding-the-apache-traffic-control-godocs">Keeping pkg.go.dev from hiding the Apache Traffic Control Godocs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-development-environment">The Development Environment</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer’s Guide</a></li>
+      <li class="breadcrumb-item active">Godocs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/godocs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="godocs">
+<h1>Godocs<a class="headerlink" href="#godocs" title="Permalink to this heading"></a></h1>
+<section id="linking-to-godocs">
+<h2>Linking to Godocs<a class="headerlink" href="#linking-to-godocs" title="Permalink to this heading"></a></h2>
+<p>As mentioned in <a class="reference internal" href="documentation_guidelines.html#docs-guide"><span class="std std-ref">Documentation Guidelines</span></a>, you can use the <code class="docutils literal notranslate"><span class="pre">:godoc:</span></code> role, the <code class="docutils literal notranslate"><span class="pre">:atc-godoc:</span></code> role, and the <code class="docutils literal notranslate"><span class="pre">:to-godoc:</span></code> role to link to Godocs from the ATC documentation.</p>
+</section>
+<section id="keeping-pkg-go-dev-from-hiding-the-apache-traffic-control-godocs">
+<h2>Keeping pkg.go.dev from hiding the Apache Traffic Control Godocs<a class="headerlink" href="#keeping-pkg-go-dev-from-hiding-the-apache-traffic-control-godocs" title="Permalink to this heading"></a></h2>
+<p>If less than 75% of ATC’s <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/LICENSE"><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code></a> file contains OSS licenses according to <a class="reference external" href="https://pkg.go.dev/">pkg.go.dev</a> license detection system pkg.go.dev will hide all of ATC’s Godocs for that particular ATC version, saying “Documentation not displayed due to license restrictions.”. Example: <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol&#64;v5.1.0+incompatible/lib/go-tc">https://pkg.go.dev/github.com/apache/trafficcontrol&#64;v5.1.0+incompatible/lib/go-tc</a></p>
+<p>When listing a dependency in the LICENSE file as part of <a class="reference external" href="https://infra.apache.org/licensing-howto.html#permissive-deps">bundling a new dependency</a>, make sure that the license “pointer” adheres to this format:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">#128 </span><span class="caption-text">The <code class="docutils literal notranslate"><span class="pre">atc-dependency.lre</span></code> license exception from <a class="reference external" href="https://pkg.go.dev/golang.org/x/pkgsite"><code class="docutils literal notranslate"><span class="pre">golang.org/x/pkgsite</span></code></a></span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-cpsa notranslate"><div class="highlight"><pre><span></span><span class="nv">This</span><span class="w"> </span><span class="nv">product</span><span class="w"> </span><span class="nv">bundles</span><span class="w"> </span><span class="nv">__4__,</span><span class="w"> </span><span class="nv">which</span>
+<span class="p">((</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="p">))</span>
+<span class="nv">available</span><span class="w"> </span><span class="nv">under</span>
+<span class="p">((</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="nv">an</span><span class="w"> </span><span class="p">))</span>
+<span class="p">((</span><span class="w"> </span><span class="nv">Apache-2</span><span class="o">.</span><span class="mi">0</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="nv">BSD-2-Clause</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="nv">BSD-3-Clause</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="nv">MIT</span><span class="w"> </span><span class="p">))</span>
+<span class="nv">license</span><span class="o">.</span>
+<span class="nv">__15__</span>
+<span class="p">((</span><span class="w"> </span><span class="nv">/*</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">css</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">js</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">scss</span><span class="w"> </span><span class="p">))</span>
+<span class="p">((</span><span class="w"> </span><span class="o">.</span><span class="nv">/licenses/__4__</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">/vendor/__16__/LICENSE</span>
+<span class="p">((</span><span class="w"> </span><span class="o">.</span><span class="nv">libyaml</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">md</span><span class="w"> </span><span class="nv">||</span><span class="w"> </span><span class="o">.</span><span class="nv">txt</span><span class="w"> </span><span class="p">))</span><span class="nv">??</span>
+<span class="p">))</span>
+<span class="nv">Refer</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">above</span><span class="w"> </span><span class="nv">license</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">full</span><span class="w"> </span><span class="k">text</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<p>Example:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#129 </span><span class="caption-text">An example of a bundled dependency license pointer</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">product</span> <span class="n">bundles</span> <span class="n">go</span><span class="o">-</span><span class="n">acme</span><span class="o">/</span><span class="n">lego</span><span class="p">,</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">available</span> <span class="n">under</span> <span class="n">an</span> <span class="n">MIT</span> <span class="n">license</span><span class="o">.</span>
+<span class="nd">@vendor</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">acme</span><span class="o">/</span><span class="n">lego</span><span class="o">/*</span>
+<span class="o">./</span><span class="n">vendor</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">acme</span><span class="o">/</span><span class="n">lego</span><span class="o">/</span><span class="n">LICENSE</span>
+<span class="n">Refer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">above</span> <span class="n">license</span> <span class="k">for</span> <span class="n">the</span> <span class="n">full</span> <span class="n">text</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<p>The ATC repository includes a GitHub Actions workflorkflow (<a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/.github/workflows/license-file-coverage.yml"><code class="docutils literal notranslate"><span class="pre">.github/workflows/license-file-coverage.yml</span></code></a>) to verify that changes to the LICENSE file will not result in pkg.go.dev hiding the Apache Traffic Control Godocs.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation_guidelines.html" class="btn btn-neutral float-left" title="Documentation Guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traffic_monitor.html" class="btn btn-neutral float-right" title="Traffic Monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

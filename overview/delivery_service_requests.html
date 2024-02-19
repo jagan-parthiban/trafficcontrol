@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Service Requests &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Delivery Services" href="delivery_services.html" />
+    <link rel="prev" title="Cache Groups" href="cache_groups.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Traffic Control Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cache_groups.html">Cache Groups</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Delivery Service Requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assignee">Assignee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#author">Author</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-type">Change Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#created-at">Created At</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id">ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#last-edited-by">Last Edited By</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#original">Original</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requested">Requested</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html">Delivery Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Content Invalidation Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles_and_parameters.html">Profiles and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Traffic Control Overview</a></li>
+      <li class="breadcrumb-item active">Delivery Service Requests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/overview/delivery_service_requests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="delivery-service-requests">
+<span id="id1"></span><h1>Delivery Service Requests<a class="headerlink" href="#delivery-service-requests" title="Permalink to this heading"></a></h1>
+<p>A <abbr title="Delivery Service Request">DSR</abbr> is a request to create a new <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, delete an existing <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, or modify an existing <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>. The model for a <abbr title="Delivery Service Request">DSR</abbr> is, therefore, somewhat nebulous as it depends on the model of a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>. This concept is not to be confused with <a class="reference internal" href="../api/v3/deliveryservices_request.html#to-api-v3-deliveryservices-request"><span class="std std-ref">deliveryservices/request</span></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../admin/quick_howto/ds_requests.html#ds-requests"><span class="std std-ref">Delivery Service Requests</span></a> for information about how to use <abbr title="Delivery Service Request">DSR</abbr>s in</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The API reference for Delivery Service-related endpoints such as <a class="reference internal" href="../api/v5/deliveryservice_requests.html#to-api-deliveryservice-requests"><span class="std std-ref">deliveryservice_requests</span></a> contains definitions of the Delivery Service object(s) returned and/or accepted by those endpoints.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/lib/go-tc#DeliveryServiceRequestV30"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/lib/go-tc.DeliveryServiceRequestV30</span></code></a> Go structure documentation.</p>
+</div>
+<p>The model for a <abbr title="Delivery Service Request">DSR</abbr> in the most recent version of the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> is given in <a class="reference internal" href="#dsr-interface"><span class="std std-ref">Delivery Service Request as a Typescript Interface</span></a> as a Typescript interface.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<span id="dsr-interface"></span><div class="code-block-caption"><span class="caption-number">#7 </span><span class="caption-text">Delivery Service Request as a Typescript Interface</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">DeliveryServiceRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">assignee</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">changeType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;create&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;delete&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;update&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">createdAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span><span class="w"> </span><span class="c1">// RFC3339 string - response-only field</span>
+<span class="w">    </span><span class="nx">id?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="c1">// response-only field</span>
+<span class="w">    </span><span class="nx">lastEditedBy</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// response-only field</span>
+<span class="w">    </span><span class="nx">lastUpdated</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span><span class="w"> </span><span class="c1">// RFC3339 string - response-only field</span>
+<span class="w">    </span><span class="nx">original?</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">requested?</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;draft&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;submitted&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;rejected&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;complete&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Specifically, every DSR will be one of the following more &quot;concrete&quot; types.</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">CreateDSR</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">DeliveryServiceRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">changeType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;create&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">original</span><span class="o">:</span><span class="w"> </span><span class="kt">undefined</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">requested</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">DeleteDSR</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">DeliveryServiceRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">changeType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;delete&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">original</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">requested</span><span class="o">:</span><span class="w"> </span><span class="kt">undefined</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">CreateDSR</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">DeliveryServiceRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">changeType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;update&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">original</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">requested</span><span class="o">:</span><span class="w"> </span><span class="kt">DeliveryService</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<section id="assignee">
+<span id="dsr-assignee"></span><h2>Assignee<a class="headerlink" href="#assignee" title="Permalink to this heading"></a></h2>
+<p>Assignee is the username of the user to whom the <abbr title="Delivery Service Request">DSR</abbr> is assigned. It may be null-typed if there is no assignee for a given <abbr title="Delivery Service Request">DSR</abbr>.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Aliases/Synonyms</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>assigneeId</p></td>
+<td><p>older API versions, internally in Traffic Control code</p></td>
+<td><p>unsigned integer</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="author">
+<h2>Author<a class="headerlink" href="#author" title="Permalink to this heading"></a></h2>
+<p>Author is the username of the user who created the <abbr title="Delivery Service Request">DSR</abbr>.</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Aliases/Synonyms</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>authorId</p></td>
+<td><p>older API versions, internally in Traffic Control code</p></td>
+<td><p>unsigned integer</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="change-type">
+<h2>Change Type<a class="headerlink" href="#change-type" title="Permalink to this heading"></a></h2>
+<p>This string indicates the action that will be taken in the event that the <abbr title="Delivery Service Request">DSR</abbr> is fulfilled. It can be one of the following values:</p>
+<dl class="simple">
+<dt>create</dt><dd><p>A new <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> will be created</p>
+</dd>
+<dt>delete</dt><dd><p>An existing <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> will be deleted</p>
+</dd>
+<dt>update</dt><dd><p>An existing <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> will be modified</p>
+</dd>
+</dl>
+</section>
+<section id="created-at">
+<h2>Created At<a class="headerlink" href="#created-at" title="Permalink to this heading"></a></h2>
+<p>This is the date and time at which the <abbr title="Delivery Service Request">DSR</abbr> was created. In the context of the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>, it is formatted as an <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3339.html"><strong>RFC 3339</strong></a> date string except where otherwise noted.</p>
+</section>
+<section id="id">
+<h2>ID<a class="headerlink" href="#id" title="Permalink to this heading"></a></h2>
+<p>An integral, unique identifier for the <abbr title="Delivery Service Request">DSR</abbr>.</p>
+</section>
+<section id="last-edited-by">
+<h2>Last Edited By<a class="headerlink" href="#last-edited-by" title="Permalink to this heading"></a></h2>
+<p>This is the username of the user by whom the <abbr title="Delivery Service Request">DSR</abbr> was last edited.
+Author is the username of the user who created the <abbr title="Delivery Service Request">DSR</abbr>.</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 13 </span><span class="caption-text">Aliases/Synonyms</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lastEditedById</p></td>
+<td><p>older API versions, internally in Traffic Control code</p></td>
+<td><p>unsigned integer</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="original">
+<h2>Original<a class="headerlink" href="#original" title="Permalink to this heading"></a></h2>
+<p>If this property of a <abbr title="Delivery Service Request">DSR</abbr> exists, then it represents the original <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> before the <abbr title="Delivery Service Request">DSR</abbr> was/would have been/is fulfilled. This property only exists on <abbr title="Delivery Service Request">DSR</abbr>s that have a <a class="reference internal" href="#change-type">Change Type</a> of “update” or “delete”. This is a full representation of a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, and so in the context of <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> has the same structure as a request to or response from the <a class="reference internal" href="../api/v5/deliveryservices.html#to-api-deliveryservices"><span class="std std-ref">deliveryservices</span></a> endpoint, as appropriate for its <a class="reference internal" href="#change-type">Change Type</a>.</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 14 </span><span class="caption-text">Aliases/Synonyms</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>deliveryservice</p></td>
+<td><p>older API versions combined the concepts of Original and <a class="reference internal" href="#requested">Requested</a> into this single field</p></td>
+<td><p>unchanged (<a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> representation)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="requested">
+<h2>Requested<a class="headerlink" href="#requested" title="Permalink to this heading"></a></h2>
+<p>If this property of a <abbr title="Delivery Service Request">DSR</abbr> exists, then it is represents the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> the creator wishes to exist - possibly in place of an existing <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> that shares its identifying properties. This property only exists on <abbr title="Delivery Service Request">DSR</abbr>s that have a <a class="reference internal" href="#change-type">Change Type</a> of “update” or “create”. This is a full representation of a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, and so in the context of <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> has the same structure as a request to or response from the <a class="reference internal" href="../api/v5/deliveryservices.html#to-api-deliveryservices"><span class="std std-ref">deliveryservices</span></a> endpoint, as appropriate for its <a class="reference internal" href="#change-type">Change Type</a>.</p>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-number">Table 15 </span><span class="caption-text">Aliases/Synonyms</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>deliveryservice</p></td>
+<td><p>older API versions combined the concepts of <a class="reference internal" href="#original">Original</a> and Requested into this single field</p></td>
+<td><p>unchanged (<a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> representation)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="status">
+<span id="dsr-status"></span><h2>Status<a class="headerlink" href="#status" title="Permalink to this heading"></a></h2>
+<p>Status is a string that indicates the point in the <abbr title="Delivery Service Request">DSR</abbr> workflow lifecycle at which a given <abbr title="Delivery Service Request">DSR</abbr> is. Generally a <abbr title="Delivery Service Request">DSR</abbr> may be either “open” - meaning that it is available to be modified, reviewed, and possibly either completed or rejected - or “closed” - meaning that it has been completed or rejected. More specifically, “open” <abbr title="Delivery Service Request">DSR</abbr>s have one of the following Statuses:</p>
+<dl class="simple">
+<dt>draft</dt><dd><p>The <abbr title="Delivery Service Request">DSR</abbr> is not yet ready for completion or review that might result in rejection, as it is still being actively worked on.</p>
+</dd>
+<dt>submitted</dt><dd><p>The <abbr title="Delivery Service Request">DSR</abbr> has been submitted for review, but has not yet been reviewed.</p>
+</dd>
+</dl>
+<p>… while a “closed” <abbr title="Delivery Service Request">DSR</abbr> has one of these Statuses:</p>
+<dl class="simple">
+<dt>complete</dt><dd><p>The <abbr title="Delivery Service Request">DSR</abbr> was approved and its declared action was taken.</p>
+</dd>
+<dt>pending</dt><dd><p>The <abbr title="Delivery Service Request">DSR</abbr> was approved and the changes are applied, but the new configuration is not yet disseminated to other <abbr title="Apache Traffic Control">ATC</abbr> components - usually meaning that it cannot be considered truly complete until a <a class="reference internal" href="../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> is taken or a <a class="reference internal" href="../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> performed.</p>
+</dd>
+<dt>rejected</dt><dd><p>The <abbr title="Delivery Service Request">DSR</abbr> was rejected and closed; it cannot be completed.</p>
+</dd>
+</dl>
+<p>A “closed” <abbr title="Delivery Service Request">DSR</abbr> cannot be edited - except to change a “pending” Status to “complete” or “rejected”.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cache_groups.html" class="btn btn-neutral float-left" title="Cache Groups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="delivery_services.html" class="btn btn-neutral float-right" title="Delivery Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

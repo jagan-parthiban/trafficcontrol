@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cache Groups &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Delivery Service Requests" href="delivery_service_requests.html" />
+    <link rel="prev" title="Traffic Control Overview" href="index.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Traffic Control Overview</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cache Groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regions-divisions-and-locations">Regions, Divisions, and Locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asns">ASNs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coordinate">Coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fallbacks">Fallbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cache-group-id">ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#latitude">Latitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#localization-methods">Localization Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#longitude">Longitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#name">Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parent">Parent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#secondary-parent">Secondary Parent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#servers">Servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#short-name">Short Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type">Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_service_requests.html">Delivery Service Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delivery_services.html">Delivery Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Content Invalidation Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles_and_parameters.html">Profiles and Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_vault.html">Traffic Vault</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Traffic Control Overview</a></li>
+      <li class="breadcrumb-item active">Cache Groups</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/overview/cache_groups.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cache-groups">
+<span id="id1"></span><h1>Cache Groups<a class="headerlink" href="#cache-groups" title="Permalink to this heading"></a></h1>
+<p>A <em class="dfn">Cache Group</em> is - ostensibly - exactly what it sounds like it is: a group of <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>. More specifically, every server in a Traffic Control CDN must be in a Cache Group (even if they are not actually <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>). Typically a Cache Group is representative of the available <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> within a specific geographical location. Despite that <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> have their own <a class="reference internal" href="../glossary.html#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a>, when <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> are chosen to serve content to a client based on geographic location the geographic location actually used for comparisons is that for the Cache Group that contains it, not the geographic location of the <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> itself.</p>
+<p>The most typical <a class="reference internal" href="#cache-group-type"><span class="std std-ref">Types</span></a> of Cache Groups are <a class="reference internal" href="#edge-loc">EDGE_LOC</a> which contain <a class="reference internal" href="../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> and <a class="reference internal" href="#mid-loc">MID_LOC</a> which contain <a class="reference internal" href="../glossary.html#term-Mid-tier-cache-servers"><span class="xref std std-term">Mid-tier cache servers</span></a>. The latter are each designated as a <a class="reference internal" href="#parent">Parent</a> of one or more of the former to fill out the two-tiered caching hierarchy of an <abbr title="Apache Traffic Control">ATC</abbr> CDN.</p>
+<p>Consider the example CDN in <a class="reference internal" href="#fig-cg-hierarchy"><span class="std std-numref">Fig. 1</span></a>. Here some country/province/region has been divided into quarters: Northeast, Southeast, Northwest, and Southwest. The arrows in the diagram indicate the flow of requests. If a client in the Northwest, for example, were to make a request to the <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, it would first be directed to some <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> in the “Northwest” Edge-tier <em class="dfn">Cache Group</em>. Should the requested content not be in cache, the Edge-tier server will select a parent from the “West” <em class="dfn">Cache Group</em> and pass the request up, caching the result for future use. All Mid-tier <em class="dfn">Cache Groups</em> (usually) answer to a single <a class="reference internal" href="../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> that provides canonical content. If requested content is not in the Mid-tier cache, then the request will be passed up to the <a class="reference internal" href="../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> and the result cached.</p>
+<figure class="align-center" id="id3">
+<span id="fig-cg-hierarchy"></span><a class="reference internal image-reference" href="../_images/cg_hierarchy.svg"><img alt="An illustration of Cache Group hierarchy" src="../_images/cg_hierarchy.svg" width="60%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">An example CDN that shows the hierarchy between four Edge-tier <em class="dfn">Cache Groups</em>, two Mid-tier <em class="dfn">Cache Groups</em>, and one Origin</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="regions-divisions-and-locations">
+<h2>Regions, Divisions, and Locations<a class="headerlink" href="#regions-divisions-and-locations" title="Permalink to this heading"></a></h2>
+<p>In addition to being in a Cache Group, all servers have to have a <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a>, which defines their geographic latitude and longitude. Each <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> is part of a <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a>, and each <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> is part of a <a class="reference internal" href="../glossary.html#term-Division"><span class="xref std std-term">Division</span></a>. For example, <code class="docutils literal notranslate"><span class="pre">Denver</span></code> could be the name of a <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> in the <code class="docutils literal notranslate"><span class="pre">Mile</span> <span class="pre">High</span></code> <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> and that <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a> could be part of the <code class="docutils literal notranslate"><span class="pre">West</span></code> <a class="reference internal" href="../glossary.html#term-Division"><span class="xref std std-term">Division</span></a>. The hierarchy between these terms is illustrated graphically in <a class="reference internal" href="#topography-hierarchy"><span class="std std-ref">Topography Hierarchy</span></a>.</p>
+<figure class="align-center" id="id4" style="width: 25%">
+<span id="topography-hierarchy"></span><img alt="A graphic illustrating the hierarchy exhibited by topological groupings" src="../_images/topography.svg" /><figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Topography Hierarchy</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>To create these structures in Traffic Portal, first make at least one <a class="reference internal" href="../glossary.html#term-Division"><span class="xref std std-term">Division</span></a> under <span class="menuselection">Topology ‣ Divisions</span>. Next enter the desired <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a>(s) in <span class="menuselection">Topology ‣ Regions</span>, referencing the earlier-entered <a class="reference internal" href="../glossary.html#term-Division"><span class="xref std std-term">Division</span></a>(s). Finally, enter the desired <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a>(s) in <span class="menuselection">Topology ‣ Phys Locations</span>, referencing the earlier-entered <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a>(s).</p>
+<p>A Cache Group is a logical grouping of cache servers, that don’t have to be in the same <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a> (in fact, usually a Cache Group is spread across minimally two <a class="reference internal" href="../glossary.html#term-Physical-Locations"><span class="xref std std-term">Physical Locations</span></a> for redundancy purposes), but share geographical coordinates for content routing purposes. There is no strict requirement that <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in a Cache Group share a <a class="reference internal" href="../glossary.html#term-Physical-Location"><span class="xref std std-term">Physical Location</span></a>, <a class="reference internal" href="../glossary.html#term-Region"><span class="xref std std-term">Region</span></a>, or <a class="reference internal" href="../glossary.html#term-Division"><span class="xref std std-term">Division</span></a>. This may be confusing at first as there are a few places in code, interfaces, or even documentation where Cache Groups are referred to as “Cache Locations” or even erroneously as “Physical Locations”.</p>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h2>
+<p>Cache Groups are modeled several times over, in the Traffic Ops database, in Traffic Portal forms and tables, and several times for various <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> versions in the new Go Traffic Ops codebase. Go-specific data structures can be found at <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/lib/go-tc#CacheGroupNullable"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/lib/go-tc.CacheGroupNullable</span></code></a>. Rather than application-specific definitions, what follows is an attempt at consolidating all of the different properties and names of properties of Cache Group objects throughout the <abbr title="Apache Traffic Control">ATC</abbr> suite. The names of these fields are typically chosen as the most human-readable and/or most commonly-used names for the fields, and when reading please note that in many cases these names will appear camelCased or snake_cased to be machine-readable. Any aliases of these fields that are not merely case transformations of the indicated, canonical names will be noted in a table of aliases.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The API reference for Cache Group-related endpoints such as <a class="reference internal" href="../api/v5/cachegroups.html#to-api-cachegroups"><span class="std std-ref">cachegroups</span></a> contains definitions of the Cache Group object(s) returned and/or accepted by those endpoints.</p>
+</div>
+<section id="asns">
+<span id="cache-group-asns"></span><h3>ASNs<a class="headerlink" href="#asns" title="Permalink to this heading"></a></h3>
+<p>A Cache group can have zero or more <abbr title="Autonomous System Numbers">ASNs</abbr> assigned to it, which is used to classify traffic that passes through a CDN. These are typically not represented on a Cache Group object itself, but rather as a separate object indicating the relationship, e.g. in the requests and responses of the <a class="reference internal" href="../api/v5/asns.html#to-api-asns"><span class="std std-ref">asns</span></a> endpoint.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Autonomous_system_%28Internet%29">The Autonomous System Wikipedia page</a> for an explanation of what an <abbr title="Autonomous System Number">ASN</abbr> actually is.</p>
+</div>
+</section>
+<section id="coordinate">
+<span id="cache-group-coordinate"></span><h3>Coordinate<a class="headerlink" href="#coordinate" title="Permalink to this heading"></a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Normally, one need not interact with this. In most contexts, this property of a Cache Group is not even exposed, but instead the Cache Group’s <a class="reference internal" href="#latitude">Latitude</a> and <a class="reference internal" href="#longitude">Longitude</a> are exposed and should be directly manipulated.</p>
+</div>
+<p>The <em class="dfn">Coordinate</em> of a Cache Group defines the geographic coordinates of a Cache Group that is used for routing clients based on geographic location. It is also used to determine the “closest” Cache Group to another for the purposes of <a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a>.</p>
+<p>Typically, this is expressed as an integral, unique identifier for the “Coordinate” object bound to the Cache Group that defines its geographic location, but occasionally it may appear as the name of that “Coordinate” object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a new Cache Group is created, it is not necessary to first create a “Coordinate” object where it may reside. Instead, “Coordinates” are created automatically to reflect the <a class="reference internal" href="#latitude">Latitude</a> and <a class="reference internal" href="#longitude">Longitude</a> given to the newly created Cache Group. The name of the generated “Coordinate” will conform to the pattern <code class="samp docutils literal notranslate"><span class="pre">from_cachegroup_</span><em><span class="pre">Name</span></em></code> where <code class="docutils literal notranslate"><span class="pre">Name</span></code> is the Cache Group’s <a class="reference internal" href="#name">Name</a>. Because of this, creating new Cache Groups will fail if a “Coordinate” with a name matching that pattern already exists.</p>
+</div>
+</section>
+<section id="fallbacks">
+<span id="cache-group-fallbacks"></span><h3>Fallbacks<a class="headerlink" href="#fallbacks" title="Permalink to this heading"></a></h3>
+<p><em class="dfn">Fallbacks</em> are a group of zero or more Cache Groups to be considered for routing when a Cache Group becomes unavailable due to high load or excessive maintenance. These are normally represented by an array of each Cache Group’s <a class="reference internal" href="#id">ID</a>, but may occasionally appear as the <a class="reference internal" href="#name">Name</a> or <a class="reference internal" href="#short-name">Short Name</a> of each Cache Group.</p>
+<p>This set is consulted before <a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a> is taken into consideration.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Failover Cache Groups</p></td>
+<td><p>Traffic Portal forms - but <strong>not</strong> tables</p></td>
+<td><p>List or array of <a class="reference internal" href="#cache-group-name"><span class="std std-ref">Names</span></a> as strings</p></td>
+</tr>
+<tr class="row-odd"><td><p>backupLocations</p></td>
+<td><p>In CDN <a class="reference internal" href="../glossary.html#term-Snapshots"><span class="xref std std-term">Snapshots</span></a></p></td>
+<td><p>A sub-object called “list” which is a list or array of Cache Group <a class="reference internal" href="#cache-group-name"><span class="std std-ref">Names</span></a> as strings</p></td>
+</tr>
+<tr class="row-even"><td><p>BackupCacheGroups</p></td>
+<td><p>Traffic Router source code</p></td>
+<td><p>A List of strings that are the <a class="reference internal" href="#cache-group-name"><span class="std std-ref">Names</span></a> of Cache Groups</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fallback-to-closest">
+<span id="cache-group-fallback-to-closest"></span><h3>Fallback to Closest<a class="headerlink" href="#fallback-to-closest" title="Permalink to this heading"></a></h3>
+<p>This is a boolean field which, when <code class="docutils literal notranslate"><span class="pre">true</span></code> (<code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> etc.) causes routing to “fall back” on the nearest Cache Group - geographically - when this Cache Group becomes unavailable due to high load and/or excessive maintenance.</p>
+<p>When this <em>is</em> a “true” value, the closest Cache Group will be chosen if and only if any set of <a class="reference internal" href="#fallbacks">Fallbacks</a> configured on the Cache Group has already been exhausted and no available Cache Groups were found..</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fallback to Geo Failover</p></td>
+<td><p>Traffic Portal forms</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cache-group-id">
+<span id="id"></span><h3>ID<a class="headerlink" href="#cache-group-id" title="Permalink to this heading"></a></h3>
+<p>All Cache Groups have an integral, unique identifier that is mainly used to reference it in the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p>
+<p>Despite that a Cache Group’s <a class="reference internal" href="#name">Name</a> must be unique, this is the identifier most commonly used to represent a unique Cache Group in most contexts throughout <abbr title="Apache Traffic Control">ATC</abbr>. One notable exception is in CDN <a class="reference internal" href="../glossary.html#term-Snapshots"><span class="xref std std-term">Snapshots</span></a> and in routing configuration used by Traffic Router.</p>
+</section>
+<section id="latitude">
+<span id="cache-group-latitude"></span><h3>Latitude<a class="headerlink" href="#latitude" title="Permalink to this heading"></a></h3>
+<p>The Cache Group’s geomagnetic latitude for use in routing and for the purposes of <a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a>.</p>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Geo Magnetic Latitude</p></td>
+<td><p>Traffic Portal forms</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="localization-methods">
+<span id="cache-group-localization-methods"></span><h3>Localization Methods<a class="headerlink" href="#localization-methods" title="Permalink to this heading"></a></h3>
+<p>The <em class="dfn">Localization Methods</em> of a Cache Group define the methods by which Traffic Router is allowed to route clients to <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> within this Cache Group. This is a collection of the allowed methods, and the values in the collection are restricted to the following.</p>
+<ul>
+<li><p>“Coverage Zone File” (alias <code class="docutils literal notranslate"><span class="pre">CZ</span></code> in source code, database entries, and <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests/responses) allows Traffic Router to direct clients to this Cache Group if they were assigned a geographic location by looking up their IP address in the <a class="reference internal" href="../glossary.html#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a>.</p></li>
+<li><p>“Deep Coverage Zone File” (alias <code class="docutils literal notranslate"><span class="pre">DEEP_CZ</span></code> in source code, database entries, and <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests/responses) was intended to allow Traffic Router to direct clients to this Cache Group if they were assigned a geographic location by looking up their IP addresses in the <a class="reference internal" href="../glossary.html#term-Deep-Coverage-Zone-File"><span class="xref std std-term">Deep Coverage Zone File</span></a>. However, it <strong>has no effect at all</strong>. This option therefore will not appear in Traffic Portal forms.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In order to make use of “deep caching” for a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, all that is required is that <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> has <a class="reference internal" href="delivery_services.html#ds-deep-caching"><span class="std std-ref">Deep Caching</span></a> enabled. If that is done and a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> appears in the <a class="reference internal" href="../glossary.html#term-Deep-Coverage-Zone-File"><span class="xref std std-term">Deep Coverage Zone File</span></a> then clients can and will be routed using that method. There is no way to disable this behavior on a Cache Group (or otherwise) basis, and the precensce or absence of <code class="docutils literal notranslate"><span class="pre">DEEP_CZ</span></code> in a Cache Group’s Localization Methods has no meaning.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>“Geo-IP Database” (alias <code class="docutils literal notranslate"><span class="pre">GEO</span></code> in source code, database entries, and <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests/responses) allows Traffic Router direct clients to this  Cache Group if the client’s IP was looked up in a provided IP address-to-geographic location mapping database to provide their geographic location.</p></li>
+</ul>
+<p>If none of these localization methods are in the set of allowed methods on a Cache Group, it is assumed that <em>clients should be allowed to be routed to that Cache Group regardless of the method used to determine their geographic location</em>.</p>
+<p>This property only has meaning for Cache Groups containing <a class="reference internal" href="../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a>. Which is to say (one would hope) that it only has meaning for <a class="reference internal" href="#edge-loc">EDGE_LOC</a> Cache Groups.</p>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Enabled Localization Methods</p></td>
+<td><p>Traffic Portal forms, Traffic Router source code</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">Array&lt;string&gt;</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="longitude">
+<span id="cache-group-longitude"></span><h3>Longitude<a class="headerlink" href="#longitude" title="Permalink to this heading"></a></h3>
+<p>The Cache Group’s geomagnetic longitude for use in routing and for the purposes of <a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a>.</p>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Geo Magnetic Longitude</p></td>
+<td><p>Traffic Portal forms</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="name">
+<span id="cache-group-name"></span><h3>Name<a class="headerlink" href="#name" title="Permalink to this heading"></a></h3>
+<p>A unique, human-friendly name for the Cache Group, with no special character restrictions or length limit.</p>
+<p>Though this property must be unique for all Cache Groups, <a class="reference internal" href="#id">ID</a> is more commonly used as a unique identifier for a Cache Group in most contexts.</p>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>locationID</p></td>
+<td><p>CDN <a class="reference internal" href="../glossary.html#term-Snapshots"><span class="xref std std-term">Snapshots</span></a></p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parent">
+<span id="cache-group-parent"></span><h3>Parent<a class="headerlink" href="#parent" title="Permalink to this heading"></a></h3>
+<p>A Cache Group can have a <em class="dfn">parent</em> Cache Group which has different meanings based on the Cache Group’s <a class="reference internal" href="#type">Type</a>.</p>
+<ul>
+<li><p>An <a class="reference internal" href="#edge-loc">EDGE_LOC</a> Cache Group’s parent must be a <a class="reference internal" href="#mid-loc">MID_LOC</a> Cache Group. When configuration files are generated for <a class="reference internal" href="../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a>, their <a class="reference internal" href="../glossary.html#term-parents"><span class="xref std std-term">parents</span></a> (different from a Cache Group parent) will be selected from the <a class="reference internal" href="../glossary.html#term-Mid-tier-cache-servers"><span class="xref std std-term">Mid-tier cache servers</span></a> contained within the Cache Group that is the parent of their containing Cache Group.</p></li>
+<li><p>A <a class="reference internal" href="#mid-loc">MID_LOC</a> Cache Group’s parent must be an <a class="reference internal" href="#org-loc">ORG_LOC</a> Cache Group. However, if any given <a class="reference internal" href="#mid-loc">MID_LOC</a> <em>either</em> <strong>doesn’t</strong> <em>have a parent, or</em> <strong>does</strong> <em>and it’s an</em> <a class="reference internal" href="#org-loc">ORG_LOC</a>, <em>then</em> <strong>all</strong> <a class="reference internal" href="#org-loc">ORG_LOC</a> <em>Cache Groups</em> - <strong>even across CDNs</strong> - <em>will be considered the parents of that</em> <a class="reference internal" href="#mid-loc">MID_LOC</a> <em>Cache Group</em>. This parent relationship only has any meaning in the context of “multi-site-origins”, as they are unnecessary in other scenarios.</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../admin/quick_howto/multi_site.html#multi-site-origin-qht"><span class="std std-ref">Configure Multi-Site Origin</span></a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>For all other Cache Group <a class="reference internal" href="#cache-group-type"><span class="std std-ref">Types</span></a>, parent relationships have no meaningful semantics.</p></li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>There is no safeguard in the data model or <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> that ensures these relationships hold. If they are violated, the resulting CDN behavior is undefined - and almost certainly undesirable.</p>
+</div>
+<p><em class="dfn">Parents</em> are typically represented by their <a class="reference internal" href="#id">ID</a>, but may occasionally appear as their <a class="reference internal" href="#name">Name</a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.trafficserver.apache.org/en/7.1.x/admin-guide/files/parent.config.en.html">The Apache Traffic Server documentation for the “parent.config” configuration file</a>. <abbr title="Apache Traffic Control">ATC</abbr> parentage relationships boil down to the <code class="docutils literal notranslate"><span class="pre">parent</span></code> field of that configuration file, which sets the <a class="reference internal" href="../glossary.html#term-parents"><span class="xref std std-term">parents</span></a> of <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>.</p>
+</div>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Parent Cache Group</p></td>
+<td><p>Traffic Portal forms and tables</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ParentCacheGroupID</p></td>
+<td><p>Traffic Ops database, Traffic Ops Go code, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses</p></td>
+<td><p>Positive integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code> etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p>ParentCacheGroupName</p></td>
+<td><p>Traffic Ops database, Traffic Ops Go code, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters">
+<span id="cache-group-parameters"></span><h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<p>For unknown reasons, it’s possible to assign <a class="reference internal" href="../glossary.html#term-Parameters"><span class="xref std std-term">Parameters</span></a> to Cache Groups. This has no attached semantics respected by <abbr title="Apache Traffic Server">ATC</abbr>, and exists today only for compatibility purposes.</p>
+<p>These are nearly always represented as a collection of <a class="reference internal" href="profiles_and_parameters.html#parameter-id"><span class="std std-ref">Parameter IDs</span></a> but occasionally they can be expressed as full <a class="reference internal" href="../glossary.html#term-Parameter"><span class="xref std std-term">Parameter</span></a> objects.</p>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cachegroupParameters</p></td>
+<td><p>Certain <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> responses, sometimes in internal Go code</p></td>
+<td><p>Usually a tuple of associative information like a Cache Group ID and a Parameter ID</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="secondary-parent">
+<span id="cache-group-secondary-parent"></span><h3>Secondary Parent<a class="headerlink" href="#secondary-parent" title="Permalink to this heading"></a></h3>
+<p>A <em class="dfn">secondary parent</em> of a Cache Group is used for fall-back purposes on a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>-to-<a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> basis after routing has already occurred (in contrast with <a class="reference internal" href="#fallbacks">Fallbacks</a> and <a class="reference internal" href="#fallback-to-closest">Fallback to Closest</a> which operate at the routing step on a Cache Group-to-Cache Group basis).</p>
+<p>For an explanation of what it means for one Cache Group to be the <a class="reference internal" href="#parent">Parent</a> of another, refer to the <a class="reference internal" href="#parent">Parent</a> section.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.trafficserver.apache.org/en/7.1.x/admin-guide/files/parent.config.en.html">The Apache Traffic Server documentation for the “parent.config” configuration file</a>. <abbr title="Apache Traffic Control">ATC</abbr> secondary parentage relationships boil down to the <code class="docutils literal notranslate"><span class="pre">secondary_parent</span></code> field of that configuration file, which sets the “secondary parents” of <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>.</p>
+</div>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Secondary Parent Cache Group</p></td>
+<td><p>Traffic Portal forms and tables</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SecondaryParentCacheGroupID</p></td>
+<td><p>Traffic Ops database, Traffic Ops Go code, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses</p></td>
+<td><p>Positive integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code> etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p>SecondaryParentCacheGroupName</p></td>
+<td><p>Traffic Ops database, Traffic Ops Go code, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses</p></td>
+<td><p>Unchanged (<code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="servers">
+<span id="cache-group-servers"></span><h3>Servers<a class="headerlink" href="#servers" title="Permalink to this heading"></a></h3>
+<p>The primary purpose of a Cache Group is to contain servers. In most scenarios it is implied or assumed that the servers are <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a>, but this is not required and in fact it is not by any means uncommon for the contained servers to be of some other arbitrary <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a>.</p>
+<p>A Cache Group can have zero or more assigned servers, and each server can belong to at most one Cache Group.</p>
+</section>
+<section id="short-name">
+<span id="cache-group-short-name"></span><h3>Short Name<a class="headerlink" href="#short-name" title="Permalink to this heading"></a></h3>
+<p>This is typically an abbreviation of the Cache Group’s <a class="reference internal" href="#name">Name</a>. The main difference is that it isn’t required to be unique.</p>
+</section>
+<section id="type">
+<span id="cache-group-type"></span><h3>Type<a class="headerlink" href="#type" title="Permalink to this heading"></a></h3>
+<p>A Cache Group’s <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> determines what kind of servers it contains. Note that there’s no real restriction on the kinds of servers that a Cache Group can contain, and this <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> serves as more of a guide in certain contexts. The <a class="reference internal" href="../glossary.html#term-Types"><span class="xref std std-term">Types</span></a> available by default are described in this section.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Because <a class="reference internal" href="../glossary.html#term-Types"><span class="xref std std-term">Types</span></a> are mutable, the actual <a class="reference internal" href="../glossary.html#term-Types"><span class="xref std std-term">Types</span></a> that can describe Cache Groups cannot be completely or precisely defined. However, there are no good reasons of which this author can think to modify or delete the default <a class="reference internal" href="../glossary.html#term-Types"><span class="xref std std-term">Types</span></a> herein described, and honestly the good reasons to even merely add to their ranks are likely few.</p>
+</div>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Aliases</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Use(s)</p></th>
+<th class="head"><p>Type(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type ID</p></td>
+<td><p>Traffic Ops client and server Go code, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses</p></td>
+<td><p>positive integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code>, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type Name</p></td>
+<td><p><a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> requests and responses, Traffic Ops database</p></td>
+<td><p>unchanged (<code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code> etc.)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="edge-loc">
+<h4>EDGE_LOC<a class="headerlink" href="#edge-loc" title="Permalink to this heading"></a></h4>
+<p>This <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of Cache Group contains <a class="reference internal" href="../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a>.</p>
+</section>
+<section id="mid-loc">
+<h4>MID_LOC<a class="headerlink" href="#mid-loc" title="Permalink to this heading"></a></h4>
+<p>This <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of Cache Group contains <a class="reference internal" href="../glossary.html#term-Mid-tier-cache-servers"><span class="xref std std-term">Mid-tier cache servers</span></a></p>
+</section>
+<section id="org-loc">
+<h4>ORG_LOC<a class="headerlink" href="#org-loc" title="Permalink to this heading"></a></h4>
+<p>This <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of Cache Group contains <a class="reference internal" href="../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a>. The primary purpose of these is to group <a class="reference internal" href="../glossary.html#term-Origins"><span class="xref std std-term">Origins</span></a> for the purposes of “multi-site-origins”, and it’s suggested that if that doesn’t meet your use-case that these be mostly avoided. In general, it’s not strictly necessary to create <a class="reference internal" href="../glossary.html#term-Origin"><span class="xref std std-term">Origin</span></a> <em>servers</em> in ATC at all, unless you have to support “multi-site-origins”.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../admin/quick_howto/multi_site.html#multi-site-origin-qht"><span class="std std-ref">Configure Multi-Site Origin</span></a></p>
+</div>
+</section>
+<section id="tc-loc">
+<h4>TC_LOC<a class="headerlink" href="#tc-loc" title="Permalink to this heading"></a></h4>
+<p>A catch-all <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of Cache Group that’s meant to house infrastructure servers that gain no special semantics based on the Cache Group containing them, e.g. Traffic Portal instances.</p>
+</section>
+<section id="tr-loc">
+<h4>TR_LOC<a class="headerlink" href="#tr-loc" title="Permalink to this heading"></a></h4>
+<p>This <a class="reference internal" href="../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of Cache Group is meant specifically to contain Traffic Router instances.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Traffic Control Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="delivery_service_requests.html" class="btn btn-neutral float-right" title="Delivery Service Requests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

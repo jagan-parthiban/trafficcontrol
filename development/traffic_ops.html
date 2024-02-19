@@ -1,0 +1,1221 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Ops &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traffic Portal" href="traffic_portal.html" />
+    <link rel="prev" title="Traffic Monitor APIs" href="traffic_monitor/traffic_monitor_api.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_guidelines.html">API Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Traffic Ops</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perl-script-requirements">Perl Script Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#go-program-requirements">Go Program Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-ops-project-tree-overview">Traffic Ops Project Tree Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app-db-admin">app/db/admin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options-and-arguments">Options and Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resolving-migration-failures">Resolving Migration Failures</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-developer-environment">Installing The Developer Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app-db-traffic-vault-migrate">app/db/traffic_vault_migrate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#riak">Riak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postgres">Postgres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-migration-backend">Adding a Migration Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-cases">Test Cases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#go-tests">Go Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-new-endpoints">Writing New Endpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#framework-options">Framework Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#go-plugins">Go Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-extensions">Check Extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-development-environment">The Development Environment</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer’s Guide</a></li>
+      <li class="breadcrumb-item active">Traffic Ops</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/traffic_ops.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-ops">
+<span id="dev-traffic-ops"></span><h1>Traffic Ops<a class="headerlink" href="#traffic-ops" title="Permalink to this heading"></a></h1>
+<p>At one point, Traffic Ops was a collection of Perl scripts, and while the current program is written in Go, many of its tools and utilities are still written in Perl.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Traffic Ops at its core is mainly a PostgreSQL database used to store configuration information for <abbr title="Apache Traffic Control">ATC</abbr>, and a set of RESTful API endpoints for interacting with and manipulating that information. It also serves as the single point of authentication for <abbr title="Apache Traffic Control">ATC</abbr> components (that is, when one hears “user” in an <abbr title="Apache Traffic Control">ATC</abbr> context it nearly always means a “user” as configured in Traffic Ops) and provides interfaces to other <abbr title="Apache Traffic Control">ATC</abbr> components by proxy. Additionally, there is some miscellaneous, at times obscure functionality to Traffic Ops, such as generating arbitrary Linux system images.</p>
+</section>
+<section id="software-requirements">
+<h2>Software Requirements<a class="headerlink" href="#software-requirements" title="Permalink to this heading"></a></h2>
+<p>Traffic Ops is only supported on CentOS 7+ systems (although many developers do use Mac OS with some success). Here are the requirements:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.postgresql.org/download/">PostgreSQL 13.2</a> - the machine where Traffic Ops is running must have the client tool set (e.g. <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/psql(1)">psql(1)</a></em>), but the actual database can be run anywhere so long as it is accessible.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to version 13.2, Traffic Ops used version 9.6. For upgrading an existing Mac OS Homebrew-based PostgreSQL instance, you can use <a class="reference external" href="https://brew.sh/">Homebrew</a> to easily upgrade from 9.6 to 13.2:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>services<span class="w"> </span>stop<span class="w"> </span>postgresql
+brew<span class="w"> </span>upgrade<span class="w"> </span>postgresql
+brew<span class="w"> </span>postgresql-upgrade-database
+brew<span class="w"> </span>cleanup<span class="w"> </span>postgresql@9.6
+brew<span class="w"> </span>services<span class="w"> </span>start<span class="w"> </span>postgresql
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p><em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/openssl(1SSL)">openssl(1SSL)</a></em> is recommended to generate server certificates, though not strictly required if certificates can be obtained by other means.</p></li>
+<li><p>Some kind of SMTP server is required for certain <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoints to work, but for purposes unrelated to them an SMTP server is not required. <a class="reference internal" href="../admin/quick_howto/ciab.html#ciab"><span class="std std-ref">CDN in a Box</span></a> comes with a relayless SMTP server for testing (you can view the emails that Traffic Ops sends, but they aren’t sent anywhere outside CDN-in-a-Box).</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Alternatively, development and testing can be done using <a class="reference internal" href="../admin/quick_howto/ciab.html#ciab"><span class="std std-ref">CDN in a Box</span></a> - albeit somewhat more slowly.</p>
+</div>
+<section id="perl-script-requirements">
+<h3>Perl Script Requirements<a class="headerlink" href="#perl-script-requirements" title="Permalink to this heading"></a></h3>
+<p>Not much code is still in Perl, but for the scripts the following are needed:</p>
+<ul>
+<li><p>Perl 5.10.1</p></li>
+<li><p>libpcap and libpcap development library - usually <code class="docutils literal notranslate"><span class="pre">libpcap-dev</span></code> or <code class="docutils literal notranslate"><span class="pre">libpcap-devel</span></code> in your system’s native package manager.</p></li>
+<li><p>libpq and libpq development library - usually <code class="docutils literal notranslate"><span class="pre">libpq-dev</span></code> or <code class="docutils literal notranslate"><span class="pre">libpq-devel</span></code> in your system’s native package manager.</p></li>
+<li><p>The <a class="reference external" href="https://metacpan.org/pod/JSON">JSON Perl pod from CPAN</a></p></li>
+<li><p>The <a class="reference external" href="https://metacpan.org/pod/JSON::PP">JSON::PP Perl pod from CPAN</a></p></li>
+<li><p>Developers should use <a class="reference external" href="http://perltidy.sourceforge.net/">Perltidy</a> to format their Perl code.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-number">#137 </span><span class="caption-text">Example Perltidy Configuration (usually in <code class="file docutils literal notranslate"><em><span class="pre">HOME</span></em><span class="pre">/.perltidyrc</span></code>)</span><a class="headerlink" href="#id18" title="Permalink to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-l=156
+-et=4
+-t
+-ci=4
+-st
+-se
+-vt=0
+-cti=0
+-pt=1
+-bt=1
+-sbt=1
+-bbt=1
+-nsfs
+-nolq
+-otr
+-aws
+-wls=&quot;= + - / * .&quot;
+-wrs=\&quot;= + - / * .\&quot;
+-wbb=&quot;% + - * / x != == &gt;= &lt;= =~ &lt; &gt; | &amp; **= += *= &amp;= &lt;&lt;= &amp;&amp;= -= /= |= + &gt;&gt;= ||= .= %= ^= x=&quot;
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="go-program-requirements">
+<h3>Go Program Requirements<a class="headerlink" href="#go-program-requirements" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://golang.org/doc/install">Go <strong>1.22</strong> or later</a></p></li>
+<li><p>If the system’s Go compiler doesn’t provide it implicitly, also note that all Go code in the <abbr title="Apache Traffic Control">ATC</abbr> repository should be formatted using <a class="reference external" href="https://golang.org/cmd/gofmt/">gofmt</a></p></li>
+</ul>
+<p>All Go code dependencies are managed through the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/go.mod"><code class="docutils literal notranslate"><span class="pre">go.mod</span></code></a>, <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/go.sum"><code class="docutils literal notranslate"><span class="pre">go.sum</span></code></a>, and <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/vendor/modules.txt"><code class="docutils literal notranslate"><span class="pre">vendor/modules.txt</span></code></a> files. With the exception of <code class="docutils literal notranslate"><span class="pre">golang.org/x</span></code> packages (see <a class="reference internal" href="#dev-traffic-ops-golang-x"><span class="std std-ref">below</span></a>), module dependencies in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/vendor/"><code class="docutils literal notranslate"><span class="pre">vendor/</span></code></a> are tracked in Git and should thus be available without any extra work - and any new dependencies should be properly “vendored” into that same, top-level directory. No other <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/vendor/"><code class="docutils literal notranslate"><span class="pre">vendor/</span></code></a> directories exist, as Go modules only supports a single vendor directory.</p>
+<p id="dev-traffic-ops-golang-x">Per the Go language standard’s authoritative source’s recommendation, all sub-packages of <code class="docutils literal notranslate"><span class="pre">golang.org/x</span></code> are treated as a part of the compiler, and so need not ever be “vendored” as though they were an external dependency. These dependencies are not listed explicitly here, so it is strongly advised that they be fetched using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/go-get(1)">go-get(1)</a></em> rather than downloaded by hand.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All new dependencies need to be subject to community review to ensure necessity (because it will be added in its entirety to the repository, after all) and license compliance via <a class="reference external" href="mailto:dev&#37;&#52;&#48;trafficcontrol&#46;apache&#46;org">the developer mailing list</a>.</p>
+</div>
+</section>
+</section>
+<section id="traffic-ops-project-tree-overview">
+<h2>Traffic Ops Project Tree Overview<a class="headerlink" href="#traffic-ops-project-tree-overview" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/"><code class="docutils literal notranslate"><span class="pre">traffic_ops/</span></code></a> - The root of the Traffic Ops project</p>
+<blockquote>
+<div><ul>
+<li><p>app/ - Holds most of the Perl code base, though many of the files contained herein are also used by the Go implementation</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This directory is home to many things that no longer work as intended or have been superseded by other things.</p>
+</div>
+<ul>
+<li><p>bin/ - Directory for scripts and tools, <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/cron(8)">cron(8)</a></em> jobs, etc.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>checks/ - Contains the <a class="reference internal" href="../admin/traffic_ops.html#to-check-ext"><span class="std std-ref">Check Extensions</span></a> scripts that are provided by default</p></li>
+<li><p>db/ - Contains scripts that manipulate the database beyond the scope of setup, migration, and seeding</p></li>
+<li><p>tests/ - Integration and unit test scripts for automation purposes - in general this has been superseded by <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/testing/api/"><code class="docutils literal notranslate"><span class="pre">traffic_ops/testing/api/</span></code></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>conf/ - Aggregated configuration for Traffic Ops. For convenience, different environments for the <a class="reference internal" href="#database-management"><span class="std std-ref">app/db/admin</span></a> tool are already set up</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>development/ - Configuration files for the “development” environment</p></li>
+<li><p>integration/ - Configuration files for the “integration” environment</p></li>
+<li><p>misc/ - Miscellaneous configuration files.</p></li>
+<li><p>production/ - Configuration files for the “production” environment</p></li>
+<li><p>test/ - Configuration files for the “test” environment</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>db/ - Database setup, seeding, and upgrade/downgrade helpers</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>migrations/ - Database migration files</p></li>
+<li><p>tools/ - Contains helper scripts for easing upgrade transitions when selective data manipulation must be done to achieve a desirable state</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>script/ - Mojolicious bootstrap/startup scripts.</p></li>
+<li><p>templates/ - Mojolicious Embedded Perl (<code class="file docutils literal notranslate"><em><span class="pre">template</span> <span class="pre">name</span></em><span class="pre">.ep</span></code>) files for the now-removed Traffic Ops UI</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>build/ - Contains files that are responsible for packaging Traffic Ops into an RPM file - and also for doing the same with <a class="reference internal" href="../glossary.html#term-ORT"><span class="xref std std-term">ORT</span></a></p></li>
+<li><p>etc/ - Configuration files for various systems associated with running production instances of Traffic Ops, which are installed under <code class="docutils literal notranslate"><span class="pre">/etc</span></code> by the Traffic Ops RPM</p>
+<blockquote>
+<div><ul>
+<li><p>cron.d/ - Holds specifications for <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/cron(8)">cron(8)</a></em> jobs that need to be run periodically on Traffic Ops servers</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At least one of these jobs expects itself to be run on a server that has the Perl implementation of Traffic Ops installed under <code class="docutils literal notranslate"><span class="pre">/opt/traffic_ops/</span></code>. Nothing terrible will happen if that’s not true, just that it/they won’t work. Installation using the RPM will set up all of these kinds of things up automatically.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>init.d/ - Contains the old, initscripts-based job control for Traffic Ops</p></li>
+<li><p>logrotate.d/ - Specifications for the Linux <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/logrotate(8)">logrotate(8)</a></em> utility for Traffic Ops log files</p></li>
+<li><p>profile.d/traffic_ops.sh - Sets up common environment variables for working with Traffic Ops</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>install/ - Contains all of the resources necessary for a full install of Traffic Ops</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bin/ - Binaries related to installing Traffic Ops, as well as installing its prerequisites, certificates, and database</p></li>
+<li><p>data/ - Contains things that need to be accessible by the running server for certain functionality - typically installed to <code class="docutils literal notranslate"><span class="pre">/var/www/data</span></code> by the RPM (hence the name).</p></li>
+<li><p>etc/ - This directory left empty; it’s used to contain post-installation extensions and resources</p></li>
+<li><p>lib/ - Contains libraries used by the various installation binaries</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ort/ - Contains <a class="reference internal" href="../glossary.html#term-ORT"><span class="xref std std-term">ORT</span></a> and <abbr title="Apache Traffic Server">ATS</abbr> configuration file-generation logic and tooling</p></li>
+<li><p>testing/ - Holds utilities for testing the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>api/ - Integration testing for the Traffic Ops Go client (<a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/v4-client"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/v4-client</span></code></a>) and Traffic Ops</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>traffic_ops_golang/ - The root of the Go implementation’s code-base</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The vast majority of subdirectories of <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/traffic_ops_golang/"><code class="docutils literal notranslate"><span class="pre">traffic_ops/traffic_ops_golang/</span></code></a> contain handlers for the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>, and are named according to the endpoint they handle. What follows is a list of subdirectories of interest that have a special role (i.e. don’t handle a <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoint).</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The GoDoc documentation for this package: <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol//"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol//</span></code></a></p>
+</div>
+<ul class="simple">
+<li><p>api/ - A library for use by <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> handlers that provides helpful utilities for common tasks like obtaining a database transaction handle or accessing Traffic Ops configuration</p></li>
+<li><p>auth/ - Contains definitions of privilege levels and access control code used in routing and provides a library for dealing with password and token-based authentication</p></li>
+<li><p>config/ - Defines configuration structures and methods for reading them in from files</p></li>
+<li><p>dbhelpers/ - Assorted utilities that provide functionality for common database tasks, e.g. “Get a user by email”</p></li>
+<li><p>plugin/ - The Traffic Ops plugin system, with examples</p></li>
+<li><p>trafficvault/ - This package provides the Traffic Vault interface and associated backend implementations for other handlers to interact with Traffic Vault.</p></li>
+<li><p>routing/ - Contains logic for mapping all of the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoints to their handlers, as well as proxying requests back to the Perl implementation and managing plugins, and also provides some wrappers around registered handlers that set common HTTP headers and connection options</p></li>
+<li><p>swaggerdocs/ A currently abandoned attempt at defining the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> using <a class="reference external" href="https://swagger.io/">Swagger</a> - it may be picked up again at some point in the (distant) future</p></li>
+<li><p>tenant/ - Contains utilities for dealing with <a class="reference internal" href="../glossary.html#term-Tenant"><span class="xref std std-term">Tenantable</span></a> resources, particularly for checking for permissions</p></li>
+<li><p>tocookie/ - Defines the method of generating the <code class="docutils literal notranslate"><span class="pre">mojolicious</span></code> cookie used by Traffic Ops for authentication</p></li>
+<li><p>vendor/ - contains “vendored” Go packages from third party sources</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>v3-client - The official Traffic Ops Go client package for working with the version 3 <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p></li>
+<li><p>v4-client - The official Traffic Ops Go client package for working with the version 4 <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p></li>
+<li><p>v5-client - The official Traffic Ops Go client package for working with the version 5 <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p></li>
+<li><p>vendor/ - contains “vendored” Go packages from third party sources</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="app-db-admin">
+<span id="database-management"></span><h2>app/db/admin<a class="headerlink" href="#app-db-admin" title="Permalink to this heading"></a></h2>
+<p>The <strong class="program">app/db/admin</strong> binary is for use in managing the Traffic Ops (and Traffic Vault PostgreSQL backend) database tables. This essentially serves as a front-end for <a class="reference external" href="https://github.com/golang-migrate/migrate">Migrate</a>, though  <code class="docutils literal notranslate"><span class="pre">dbconf.yml</span></code> comes from <a class="reference external" href="https://github.com/kevinburke/goose/blob/1.15/db-sample/dbconf.yml">Goose</a>, which Traffic Ops used to use before switching to Migrate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For proper resolution of configuration and SOL statement files, it’s recommended that this binary be run from the <code class="docutils literal notranslate"><span class="pre">app</span></code> directory</p>
+</div>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">db/admin</span> <span class="pre">[options]</span> <span class="pre">command</span></code></p>
+</section>
+<section id="options-and-arguments">
+<h3>Options and Arguments<a class="headerlink" href="#options-and-arguments" title="Permalink to this heading"></a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-admin-env">
+<span class="sig-name descname"><span class="pre">--env</span></span><span class="sig-prename descclassname"> <span class="pre">ENVIRONMENT</span></span><a class="headerlink" href="#cmdoption-admin-env" title="Permalink to this definition"></a></dt>
+<dd><p>An optional environment specification that causes the database configuration to be read out of the corresponding section of the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/app/db/dbconf.yml"><code class="docutils literal notranslate"><span class="pre">app/db/dbconf.yml</span></code></a> configuration file. One of:</p>
+<ul class="simple">
+<li><p>development</p></li>
+<li><p>integration</p></li>
+<li><p>production</p></li>
+<li><p>test</p></li>
+</ul>
+<p><strong class="program">admin</strong> sets <span class="target" id="index-0"></span><a class="reference internal" href="environment_variables.html#envvar-MOJO_MODE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MOJO_MODE</span></code></a> to the value of the environment as specified by this option. (Default: <code class="docutils literal notranslate"><span class="pre">development</span></code>)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-admin-trafficvault">
+<span class="sig-name descname"><span class="pre">--trafficvault</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-admin-trafficvault" title="Permalink to this definition"></a></dt>
+<dd><p>When used, commands will be run against the Traffic Vault PostgreSQL backend database as specified in the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/app/db/trafficvault/dbconf.yml"><code class="docutils literal notranslate"><span class="pre">app/db/trafficvault/dbconf.yml</span></code></a> configuration file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-admin-arg-command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-admin-arg-command" title="Permalink to this definition"></a></dt>
+<dd><p>The <a class="reference internal" href="#cmdoption-admin-arg-command"><code class="xref std std-option docutils literal notranslate"><span class="pre">command</span></code></a> specifies the operation to be performed on the database. It must be one of:</p>
+<dl class="simple">
+<dt>createdb</dt><dd><p>Creates the database for the current environment.</p>
+</dd>
+<dt>create_migration</dt><dd><p>Creates a pair of timestamped up/down migrations titled NAME.</p>
+</dd>
+<dt>create_user</dt><dd><p>Creates the user defined for the current environment</p>
+</dd>
+<dt>dbversion</dt><dd><p>Displays the database version that results from the current sequence of migrations</p>
+</dd>
+<dt>down</dt><dd><p>Rolls back a single migration from the current version</p>
+</dd>
+<dt>drop</dt><dd><p>Drops the database for the current environment</p>
+</dd>
+<dt>drop_user</dt><dd><p>Drops the user defined for the current environment</p>
+</dd>
+<dt>load_schema</dt><dd><p>Sets up the database for the current environment according to the SQL statements in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/create_tables.sql"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/create_tables.sql</span></code></a> or <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/trafficvault/create_tables.sql"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/trafficvault/create_tables.sql</span></code></a> if the <code class="docutils literal notranslate"><span class="pre">--trafficvault</span></code> option is used</p>
+</dd>
+<dt>migrate</dt><dd><p>Runs a migration on the database for the current environment</p>
+</dd>
+<dt>patch</dt><dd><p>Patches the database for the current environment using the SQL statements from the <code class="docutils literal notranslate"><span class="pre">app/db/patches.sql</span></code>. This command is not supported when using the <code class="docutils literal notranslate"><span class="pre">--trafficvault</span></code> option</p>
+</dd>
+<dt>redo</dt><dd><p>Rolls back the most recently applied migration, then run it again</p>
+</dd>
+<dt>reset</dt><dd><p>Creates the user defined for the current environment, drops the database for the current environment, creates a new one, loads the schema into it, and runs a single migration on it</p>
+</dd>
+<dt>seed</dt><dd><p>Executes the SQL statements from the <code class="docutils literal notranslate"><span class="pre">app/db/seeds.sql</span></code> file for loading static data. This command is not supported when using the <code class="docutils literal notranslate"><span class="pre">--trafficvault</span></code> option. The seed data is constructed under the assumption all migrations for the release have been run, so <code class="docutils literal notranslate"><span class="pre">migrate</span></code>/<code class="docutils literal notranslate"><span class="pre">upgrade</span></code> <em>must</em> be run first.</p>
+</dd>
+<dt>show_users</dt><dd><p>Displays a list of all users registered with the PostgreSQL server</p>
+</dd>
+<dt>status</dt><dd><p>Deprecated, <code class="docutils literal notranslate"><span class="pre">status</span></code> is now an alias for <code class="docutils literal notranslate"><span class="pre">dbversion</span></code> and will be removed in a future Traffic Control release.</p>
+</dd>
+<dt>upgrade</dt><dd><p>Performs a migration on the database for the current environment, then patches it using the SQL statements from the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/patches.sql"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/patches.sql</span></code></a> file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-number">#138 </span><span class="caption-text">Example Usage</span><a class="headerlink" href="#id19" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>db/admin<span class="w"> </span>--env<span class="o">=</span><span class="nb">test</span><span class="w"> </span>reset
+</pre></div>
+</div>
+</div>
+<p>The environments are defined in the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/dbconf.yml"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/dbconf.yml</span></code></a> file, and the name of the database generated will be the name of the environment for which it was created. If the <code class="docutils literal notranslate"><span class="pre">--trafficvault</span></code> option is used, the <code class="file docutils literal notranslate"><span class="pre">app/db/trafficvault/dbconf.yml</span></code> file defines this information.</p>
+</section>
+<section id="resolving-migration-failures">
+<h3>Resolving Migration Failures<a class="headerlink" href="#resolving-migration-failures" title="Permalink to this heading"></a></h3>
+<p>If you encounter an error running a migration, you will see a message like</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-number">#139 </span><span class="caption-text">db/admin error example</span><a class="headerlink" href="#id20" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@trafficops<span class="w"> </span>app<span class="o">]</span><span class="c1"># db/admin -env production migrate</span>
+Error<span class="w"> </span>running<span class="w"> </span>migrate<span class="w"> </span>up:<span class="w"> </span>migration<span class="w"> </span>failed:<span class="w"> </span>syntax<span class="w"> </span>error<span class="w"> </span>at<span class="w"> </span>or<span class="w"> </span>near<span class="w"> </span><span class="s2">&quot;This_is_a_syntax_error&quot;</span><span class="w"> </span><span class="o">(</span>column<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>line<span class="w"> </span><span class="m">18</span>:<span class="w"> </span>/*
+</pre></div>
+</div>
+</div>
+<p>That means that the migration timestamp in the <code class="docutils literal notranslate"><span class="pre">version</span></code> column of the <code class="docutils literal notranslate"><span class="pre">schema_migrations</span></code> table has been updated to the version of the migration that failed, but the <code class="docutils literal notranslate"><span class="pre">dirty</span></code> column is also set, and if you try to run another migration (either up or down), you will see</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-number">#140 </span><span class="caption-text">db/admin error migrating when the database version is dirty</span><a class="headerlink" href="#id21" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@trafficops<span class="w"> </span>app<span class="o">]</span><span class="c1"># db/admin -env production migrate</span>
+Error<span class="w"> </span>running<span class="w"> </span>migrate<span class="w"> </span>up:<span class="w"> </span>Dirty<span class="w"> </span>database<span class="w"> </span>version<span class="w"> </span><span class="m">2021070800000000</span>.<span class="w"> </span>Fix<span class="w"> </span>and<span class="w"> </span>force<span class="w"> </span>version.
+</pre></div>
+</div>
+</div>
+<p>You will need to manually fix the database. When you are sure that it is fixed, you can unset the <code class="docutils literal notranslate"><span class="pre">dirty</span></code> column manually using an SQL client.</p>
+</section>
+</section>
+<section id="installing-the-developer-environment">
+<h2>Installing The Developer Environment<a class="headerlink" href="#installing-the-developer-environment" title="Permalink to this heading"></a></h2>
+<p>To install the Traffic Ops Developer environment:</p>
+<ol class="arabic">
+<li><p>Clone the <a class="reference external" href="https://github.com/apache/trafficcontrol">Traffic Control repository</a> from GitHub. In most cases it is best to clone this directly into <code class="file docutils literal notranslate"><em><span class="pre">GOPATH</span></em><span class="pre">/src/github.com/apache/trafficcontrol</span></code>, as otherwise the Go implementation will not function properly.</p></li>
+<li><p>Install any required Go dependencies - the suggested method is using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/go-get(1)">go-get(1)</a></em>.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-number">#141 </span><span class="caption-text">Install Go Development Dependencies</span><a class="headerlink" href="#id22" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># assuming current working directory is the repository root</span>
+go<span class="w"> </span>mod<span class="w"> </span>vendor<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Set up a role (user) in PostgreSQL</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://wiki.postgresql.org/wiki/First_steps">PostgreSQL instructions on setting up a database</a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">reset</span></code> and <code class="docutils literal notranslate"><span class="pre">upgrade</span></code> <a class="reference internal" href="#cmdoption-admin-arg-command"><code class="xref std std-option docutils literal notranslate"><span class="pre">command</span></code></a>s of <strong class="program">admin</strong> (see <a class="reference internal" href="#database-management"><span class="std std-ref">app/db/admin</span></a> for usage) to set up the <code class="docutils literal notranslate"><span class="pre">traffic_ops</span></code> database(s) and optionally with the <code class="docutils literal notranslate"><span class="pre">--trafficvault</span></code> option to set up the <code class="docutils literal notranslate"><span class="pre">traffic_vault</span></code> database(s).</p></li>
+<li><p>Run the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/install/bin/postinstall"><code class="docutils literal notranslate"><span class="pre">traffic_ops/install/bin/postinstall</span></code></a> script, it will prompt for information like the default user login credentials.</p></li>
+<li><p>To run Traffic Ops, follow the instructions in <a class="reference internal" href="../admin/traffic_ops.html#to-running"><span class="std std-ref">Running</span></a>.</p></li>
+</ol>
+</section>
+<section id="app-db-traffic-vault-migrate">
+<h2>app/db/traffic_vault_migrate<a class="headerlink" href="#app-db-traffic-vault-migrate" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">traffic_vault_migrate</span></code> tool - located at <code class="file docutils literal notranslate"><span class="pre">traffic_ops/app/db/traffic_vault_migrate/traffic_vault_migrate.go</span></code> in the <a class="reference external" href="https://github.com/apache/trafficcontrol">Apache Traffic Control repository</a> -
+is used to transfer TV keys between database servers. It interfaces directly with each backend so Traffic Ops/Vault being available is not a requirement.
+The tool assumes that the schema for each backend is already setup as according to the <a class="reference internal" href="../admin/traffic_vault.html#traffic-vault-admin"><span class="std std-ref">admin setup</span></a>.</p>
+<section id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">traffic_vault_migrate</span> <span class="pre">[-cdhmr]</span> <span class="pre">[-e</span> <span class="pre">value]</span> <span class="pre">[-f</span> <span class="pre">value]</span> <span class="pre">[-g</span> <span class="pre">value]</span> <span class="pre">[-i</span> <span class="pre">value]</span> <span class="pre">[-l</span> <span class="pre">value]</span> <span class="pre">[-o</span> <span class="pre">value]</span> <span class="pre">[-t</span> <span class="pre">value]</span></code></p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-c">
+<span id="cmdoption-traffic_vault_migrate-compare"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--compare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-c" title="Permalink to this definition"></a></dt>
+<dd><p>Compare ‘to’ and ‘from’ backend keys. Will fetch keys from the dbs of both ‘to’ and ‘from’, sorts them by cdn/ds/version and does a deep comparison.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-r"><code class="xref std std-option docutils literal notranslate"><span class="pre">-r</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-r"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dry</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-d">
+<span id="cmdoption-traffic_vault_migrate-dump"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dump</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-d" title="Permalink to this definition"></a></dt>
+<dd><p>Write keys (from ‘from’ server) to disk in the folder ‘dump’ with the unix permissions 0640.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This can write potentially sensitive information to disk, use with care.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-l"><code class="xref std std-option docutils literal notranslate"><span class="pre">-l</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-i"><code class="xref std std-option docutils literal notranslate"><span class="pre">--fill</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-e">
+<span id="cmdoption-traffic_vault_migrate-logLevel"></span><span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"> <span class="pre">LEVEL</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--logLevel</span></span><span class="sig-prename descclassname"><span class="pre">=LEVEL</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-e" title="Permalink to this definition"></a></dt>
+<dd><p>Print everything at above specified log level (error|warning|info|debug|event) [info]</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-l"><code class="xref std std-option docutils literal notranslate"><span class="pre">-l</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-l"><code class="xref std std-option docutils literal notranslate"><span class="pre">--logCfg</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-f">
+<span id="cmdoption-traffic_vault_migrate-fromCfgPath"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"> <span class="pre">CFG</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--fromCfgPath</span></span><span class="sig-prename descclassname"><span class="pre">=CFG</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-f" title="Permalink to this definition"></a></dt>
+<dd><p>From server config file [“riak.json”]</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-g">
+<span id="cmdoption-traffic_vault_migrate-toCfgPath"></span><span class="sig-name descname"><span class="pre">-g</span></span><span class="sig-prename descclassname"> <span class="pre">CFG</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--toCfgPath</span></span><span class="sig-prename descclassname"><span class="pre">=CFG</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-g" title="Permalink to this definition"></a></dt>
+<dd><p>To server config file [“pg.json”]</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-h">
+<span id="cmdoption-traffic_vault_migrate-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-h" title="Permalink to this definition"></a></dt>
+<dd><p>Displays usage information</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-i">
+<span id="cmdoption-traffic_vault_migrate-fill"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"> <span class="pre">DIR</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--fill</span></span><span class="sig-prename descclassname"> <span class="pre">DIR</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-i" title="Permalink to this definition"></a></dt>
+<dd><p>Insert data into <cite>to</cite> server with data in this directory</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-d"><code class="xref std std-option docutils literal notranslate"><span class="pre">-d</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-d"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-l">
+<span id="cmdoption-traffic_vault_migrate-logCfg"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"> <span class="pre">CFG</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--logCfg</span></span><span class="sig-prename descclassname"> <span class="pre">CFG</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-l" title="Permalink to this definition"></a></dt>
+<dd><p>Log configuration file</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-e"><code class="xref std std-option docutils literal notranslate"><span class="pre">-e</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-e"><code class="xref std std-option docutils literal notranslate"><span class="pre">--logLevel</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-o">
+<span id="cmdoption-traffic_vault_migrate-toType"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">TYPE</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--toType</span></span><span class="sig-prename descclassname"><span class="pre">=TYPE</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-o" title="Permalink to this definition"></a></dt>
+<dd><p>From server types (Riak|PG) [PG]</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-m">
+<span id="cmdoption-traffic_vault_migrate-noConfirm"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--noConfirm</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-m" title="Permalink to this definition"></a></dt>
+<dd><p>Don’t require confirmation before inserting records</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-r">
+<span id="cmdoption-traffic_vault_migrate-dry"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dry</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-r" title="Permalink to this definition"></a></dt>
+<dd><p>Do not perform writes. Will do a basic output of the keys on the ‘from’ backend.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mutually exclusive with <a class="reference internal" href="#cmdoption-traffic_vault_migrate-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c</span></code></a>/<a class="reference internal" href="#cmdoption-traffic_vault_migrate-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">--compare</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-t">
+<span id="cmdoption-traffic_vault_migrate-fromType"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">TYPE</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--fromType</span></span><span class="sig-prename descclassname"><span class="pre">=TYPE</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-t" title="Permalink to this definition"></a></dt>
+<dd><p>From server types (Riak|PG) [Riak]</p>
+</dd></dl>
+
+</section>
+<section id="riak">
+<h3>Riak<a class="headerlink" href="#riak" title="Permalink to this heading"></a></h3>
+<section id="riak-json">
+<h4>riak.json<a class="headerlink" href="#riak-json" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">user<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The username used to log into the Riak server.</p>
+</dd>
+<dt class="field-even">password<span class="colon">:</span></dt>
+<dd class="field-even"><p>The password used to log into the Riak server.</p>
+</dd>
+<dt class="field-odd">host<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hostname for the Riak server.</p>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port for which the Riak server is listening for protobuf connections.</p>
+</dd>
+<dt class="field-odd">timeout<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of seconds to wait for each operation.</p>
+</dd>
+<dt class="field-even">insecure<span class="colon">:</span></dt>
+<dd class="field-even"><p>(Optional) Determines whether to verify insecure certificates.</p>
+</dd>
+<dt class="field-odd">tlsVersion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Optional) Max TLS version supported. Valid values are  “10”, “11”, “12”, “13”.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="postgres">
+<h3>Postgres<a class="headerlink" href="#postgres" title="Permalink to this heading"></a></h3>
+<p><strong class="program">traffic_vault_migrate</strong> will properly handle both encryption and decryption of postgres data as that is done on the client side.</p>
+<section id="pg-json">
+<h4>pg.json<a class="headerlink" href="#pg-json" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">user<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The username used to log into the PG server.</p>
+</dd>
+<dt class="field-even">password<span class="colon">:</span></dt>
+<dd class="field-even"><p>The password for the user to log into the PG server.</p>
+</dd>
+<dt class="field-odd">database<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The database to connect to.</p>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port on which the PG server is listening.</p>
+</dd>
+<dt class="field-odd">host<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hostname of the PG server.</p>
+</dd>
+<dt class="field-even">sslmode<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ssl settings for the client connection, <a class="reference external" href="https://www.postgresql.org/docs/13/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS">explanation here</a>. Options are ‘disable’, ‘allow’, ‘prefer’, ‘require’, ‘verify-ca’ and ‘verify-full’</p>
+</dd>
+<dt class="field-odd">aesKey<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The base64 encoding of a 16, 24, or 32 bit AES key.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this heading"></a></h3>
+<p>The log configuration file has the structure:</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">error_log<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Where to output error messages (stderr|stdout|null)</p>
+</dd>
+<dt class="field-even">warning_log<span class="colon">:</span></dt>
+<dd class="field-even"><p>Where to output warning messages (stderr|stdout|null)</p>
+</dd>
+<dt class="field-odd">info_log<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Where to output info messages (stderr|stdout|null)</p>
+</dd>
+<dt class="field-even">debug_log<span class="colon">:</span></dt>
+<dd class="field-even"><p>Where to output error messages (stderr|stdout|null)</p>
+</dd>
+<dt class="field-odd">event_log<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Where to output error messages (stderr|stdout|null)</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="adding-a-migration-backend">
+<h3>Adding a Migration Backend<a class="headerlink" href="#adding-a-migration-backend" title="Permalink to this heading"></a></h3>
+<p>To add a plugin, implement the traffic_vault_migrate.go:TVBackend interface and add the backend to the returned values in <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/app/db/traffic_vault_migrate#supportBackends"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/app/db/traffic_vault_migrate.supportBackends</span></code></a>.</p>
+</section>
+</section>
+<section id="test-cases">
+<h2>Test Cases<a class="headerlink" href="#test-cases" title="Permalink to this heading"></a></h2>
+<section id="go-tests">
+<span id="to-go-tests"></span><h3>Go Tests<a class="headerlink" href="#go-tests" title="Permalink to this heading"></a></h3>
+<p>Many (but not all) endpoint handlers and utility packages in the Go code-base define Go unit tests that can be run with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/go-test(1)">go-test(1)</a></em>. There are integration tests for the Traffic Ops Go client in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/testing/api/"><code class="docutils literal notranslate"><span class="pre">traffic_ops/testing/api/</span></code></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-number">#142 </span><span class="caption-text">Sample Run of Go Unit Tests</span><a class="headerlink" href="#id23" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>traffic_ops/traffic_ops_golang
+
+<span class="c1"># run just one test</span>
+go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>./about
+
+<span class="c1"># run all of the tests</span>
+go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>./...
+</pre></div>
+</div>
+</div>
+<p>There are a few prerequisites to running the Go client integration tests:</p>
+<ul>
+<li><p>A PostgreSQL server must be accessible and have a Traffic Ops database schema set up (though not necessarily populated with anything).</p></li>
+<li><p>A running Traffic Ops Go implementation instance must be accessible - it shouldn’t be necessary to also be running the Perl implementation.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For testing purposes, SSL certificates are not verified, so self-signed certificates will work fine.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is <em>highly</em> recommended that the Traffic Ops instance be run on the same machine as the integration tests, as otherwise network latency can cause the tests to exceed their threshold time limit of ten minutes.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>The integration tests are run using <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/go-test(1)">go-test(1)</a></em>, with two configuration options available.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should be noted that the integration tests will output thousands of lines of highly repetitive text not directly related to the tests its running at the time - even if the <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag is not passed to <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/go-test(1)">go-test(1)</a></em>. This problem is tracked by <a class="reference external" href="https://github.com/apache/trafficcontrol/issues/4017">Issue #4017</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Running the tests will wipe the connected database clean, so do not <strong>ever</strong> run it on an instance of Traffic Ops that holds meaningful data.</p>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-cfg">
+<span class="sig-name descname"><span class="pre">--cfg</span></span><span class="sig-prename descclassname"> <span class="pre">CONFIG</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-cfg" title="Permalink to this definition"></a></dt>
+<dd><p>Specify the path to the <a class="reference internal" href="#test-configuration-file">Test Configuration File</a>. If not specified, it will attempt to read a file named <code class="docutils literal notranslate"><span class="pre">traffic-ops-test.conf</span></code> in the working directory.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#configuring-the-integration-tests">Configuring the Integration Tests</a> for a detailed explanation of the format of this configuration file.</p>
+</div>
+</dd></dl>
+
+<span class="target" id="dev-traffic-ops-fixtures"></span><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-fixtures">
+<span class="sig-name descname"><span class="pre">--fixtures</span></span><span class="sig-prename descclassname"> <span class="pre">FIXTURES</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-fixtures" title="Permalink to this definition"></a></dt>
+<dd><p>Specify the path to a file containing static data for the tests to use. This should almost never be used, because many of the tests depend on the data having a certain content and structure. If not specified, it will attempt to read a file named <code class="docutils literal notranslate"><span class="pre">tc-fixtures.json</span></code> in the working directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-traffic_vault_migrate-includeSystemTests">
+<span class="sig-name descname"><span class="pre">--includeSystemTests</span></span><span class="sig-prename descclassname"> <span class="pre">{no|yes}</span></span><a class="headerlink" href="#cmdoption-traffic_vault_migrate-includeSystemTests" title="Permalink to this definition"></a></dt>
+<dd><p>Specify whether to run tests that depend on additional components like an SMTP server or a Traffic Vault server. Default: <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+</dd></dl>
+
+<section id="configuring-the-integration-tests">
+<h4>Configuring the Integration Tests<a class="headerlink" href="#configuring-the-integration-tests" title="Permalink to this heading"></a></h4>
+<p>Configuration is mainly done through the configuration file passed as <a class="reference internal" href="#cmdoption-traffic_vault_migrate-cfg"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cfg</span></code></a>, but is also available through the following environment variables.</p>
+<p>In addition to the variables described here, the integration tests support identifying the network location of the Traffic Ops instance via <span class="target" id="index-1"></span><a class="reference internal" href="environment_variables.html#envvar-TO_URL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_URL</span></code></a>.</p>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SESSION_TIMEOUT_IN_SECS">
+<span class="sig-name descname"><span class="pre">SESSION_TIMEOUT_IN_SECS</span></span><a class="headerlink" href="#envvar-SESSION_TIMEOUT_IN_SECS" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the timeout of requests made to the Traffic Ops instance, in seconds.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_DESCRIPTION">
+<span class="sig-name descname"><span class="pre">TODB_DESCRIPTION</span></span><a class="headerlink" href="#envvar-TODB_DESCRIPTION" title="Permalink to this definition"></a></dt>
+<dd><p>An utterly cosmetic variable which, if set, gives a description of the PostgreSQL database to which the tests will connect. This has no effect except possibly changing one line of debug output.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_HOSTNAME">
+<span class="sig-name descname"><span class="pre">TODB_HOSTNAME</span></span><a class="headerlink" href="#envvar-TODB_HOSTNAME" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the <abbr title="Fully Qualified Domain Name">FQDN</abbr> at which the PostgreSQL server to be used by the tests resides<a class="footnote-reference brackets" href="#integrationdb" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_NAME">
+<span class="sig-name descname"><span class="pre">TODB_NAME</span></span><a class="headerlink" href="#envvar-TODB_NAME" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of the database to which the tests will connect<a class="footnote-reference brackets" href="#integrationdb" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_PASSWORD">
+<span class="sig-name descname"><span class="pre">TODB_PASSWORD</span></span><a class="headerlink" href="#envvar-TODB_PASSWORD" title="Permalink to this definition"></a></dt>
+<dd><p>If set, defines the password to use when authenticating with the PostgreSQL server.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_PORT">
+<span class="sig-name descname"><span class="pre">TODB_PORT</span></span><a class="headerlink" href="#envvar-TODB_PORT" title="Permalink to this definition"></a></dt>
+<dd><p>If set, defines the port on which the PostgreSQL server listens<a class="footnote-reference brackets" href="#integrationdb" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_SSL">
+<span class="sig-name descname"><span class="pre">TODB_SSL</span></span><a class="headerlink" href="#envvar-TODB_SSL" title="Permalink to this definition"></a></dt>
+<dd><p>If set, must be one of the following values:</p>
+<dl class="simple">
+<dt>true</dt><dd><p>The PostgreSQL server to which the tests will connect uses SSL on the port on which it will be contacted.</p>
+</dd>
+<dt>false</dt><dd><p>The PostgreSQL server to which the tests will connect does not use SSL on the port on which it will be contacted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_TYPE">
+<span class="sig-name descname"><span class="pre">TODB_TYPE</span></span><a class="headerlink" href="#envvar-TODB_TYPE" title="Permalink to this definition"></a></dt>
+<dd><p>If set, tells the database driver used by the tests the kind of SQL database to which they are connecting<a class="footnote-reference brackets" href="#integrationdb" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This author has no idea what will happen if this is set to something other than <code class="docutils literal notranslate"><span class="pre">Pg</span></code>, but it’s possible the tests will fail to run. Certainly never do it.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TODB_USER">
+<span class="sig-name descname"><span class="pre">TODB_USER</span></span><a class="headerlink" href="#envvar-TODB_USER" title="Permalink to this definition"></a></dt>
+<dd><p>If set, defines the user as whom to authenticate with the PostgreSQL server.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_ADMIN">
+<span class="sig-name descname"><span class="pre">TO_USER_ADMIN</span></span><a class="headerlink" href="#envvar-TO_USER_ADMIN" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “admin” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_DISALLOWED">
+<span class="sig-name descname"><span class="pre">TO_USER_DISALLOWED</span></span><a class="headerlink" href="#envvar-TO_USER_DISALLOWED" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “disallowed” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_EXTENSION">
+<span class="sig-name descname"><span class="pre">TO_USER_EXTENSION</span></span><a class="headerlink" href="#envvar-TO_USER_EXTENSION" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “extension” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Due to legacy constraints, the only truly safe value for this is <code class="docutils literal notranslate"><span class="pre">extension</span></code> - anything else could cause the tests to fail.</p>
+</div>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_FEDERATION">
+<span class="sig-name descname"><span class="pre">TO_USER_FEDERATION</span></span><a class="headerlink" href="#envvar-TO_USER_FEDERATION" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “federation” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_OPERATIONS">
+<span class="sig-name descname"><span class="pre">TO_USER_OPERATIONS</span></span><a class="headerlink" href="#envvar-TO_USER_OPERATIONS" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “operations” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_PASSWORD">
+<span class="sig-name descname"><span class="pre">TO_USER_PASSWORD</span></span><a class="headerlink" href="#envvar-TO_USER_PASSWORD" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the password used by all users created by the tests. This does not need to be the password of any pre-existing user.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_PORTAL">
+<span class="sig-name descname"><span class="pre">TO_USER_PORTAL</span></span><a class="headerlink" href="#envvar-TO_USER_PORTAL" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “portal” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-TO_USER_READ_ONLY">
+<span class="sig-name descname"><span class="pre">TO_USER_READ_ONLY</span></span><a class="headerlink" href="#envvar-TO_USER_READ_ONLY" title="Permalink to this definition"></a></dt>
+<dd><p>If set, will define the name of a user with the “read-only” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> that will be created by the tests<a class="footnote-reference brackets" href="#existinguser" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</dd></dl>
+
+<section id="test-configuration-file">
+<h5>Test Configuration File<a class="headerlink" href="#test-configuration-file" title="Permalink to this heading"></a></h5>
+<p>The configuration file for the tests (defined by <a class="reference internal" href="#cmdoption-traffic_vault_migrate-cfg"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cfg</span></code></a>) is a JSON-encoded object with the following properties.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many of these configuration options are overridden by variables in the execution environment. Where this is a problem, there is an associated warning. In general, this issue is tracked by <a class="reference external" href="https://github.com/apache/trafficcontrol/issues/3975">Issue #3975</a>.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">default<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing sub-objects relating to default configuration settings for connecting to external resources during testing</p>
+<dl class="field-list">
+<dt class="field-odd">logLocations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing key/value pairs where the keys are log levels and each associated value is the file location to which logs of that level will be written. The allowed values respect the reserved special names used by the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/lib/go-log"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/lib/go-log</span></code></a> package. Omitted keys are treated as though their values were <code class="docutils literal notranslate"><span class="pre">null</span></code>, in which case that level is written to <cite>/dev/null</cite>. The allowed keys are:</p>
+<ul class="simple">
+<li><p>debug</p></li>
+<li><p>error</p></li>
+<li><p>event</p></li>
+<li><p>info</p></li>
+<li><p>warning</p></li>
+</ul>
+</dd>
+<dt class="field-even">session<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing key/value pairs that define the default settings used by Traffic Ops “session” connections</p>
+<dl class="field-list">
+<dt class="field-odd">timeoutInSecs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At the time of this writing this is the only meaningful configuration option that may be present under <code class="docutils literal notranslate"><span class="pre">session</span></code>. It specifies the timeouts used by client connections during testing as an integer number of seconds. The default if not specified (or overridden) is 0, meaning no limit.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This configuration is overridden by <span class="target" id="index-2"></span><a class="reference internal" href="#envvar-SESSION_TIMEOUT_IN_SECS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SESSION_TIMEOUT_IN_SECS</span></code></a>.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">trafficOps<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing information that defines the running Traffic Ops instance to use in testing.</p>
+<dl class="field-list">
+<dt class="field-odd">password<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This password will be used for all created users used by the test suite - it does not need to be the password of any pre-existing user. The default if not specified (or overridden) is an empty string, which may or may not cause problems.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-TO_USER_PASSWORD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_PASSWORD</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p>The network location of the running Traffic Ops server, including schema, hostname and optionally port number e.g. <code class="docutils literal notranslate"><span class="pre">https://localhost:6443</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-4"></span><a class="reference internal" href="environment_variables.html#envvar-TO_URL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_URL</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-odd">users<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing key-value pairs where the keys are the names of <a class="reference internal" href="../glossary.html#term-Roles"><span class="xref std std-term">Roles</span></a> and the values are the usernames of users that will be created with the associated <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a> for testing purposes. <em>There are very few good reasons why the values should not just be the same as the keys</em>. The default for any missing (and not overridden) key is the empty string which is <em>won’t</em> work so please don’t leave any undefined. The allowed keys are:</p>
+<ul>
+<li><p>admin</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-5"></span><a class="reference internal" href="#envvar-TO_USER_ADMIN"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_ADMIN</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>disallowed</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-6"></span><a class="reference internal" href="#envvar-TO_USER_DISALLOWED"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_DISALLOWED</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>extension</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-7"></span><a class="reference internal" href="#envvar-TO_USER_EXTENSION"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_EXTENSION</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>federation</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-8"></span><a class="reference internal" href="#envvar-TO_USER_FEDERATION"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_FEDERATION</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>operations</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-9"></span><a class="reference internal" href="#envvar-TO_USER_OPERATIONS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_OPERATIONS</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>portal</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-10"></span><a class="reference internal" href="#envvar-TO_USER_PORTAL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_PORTAL</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>readOnly</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value of this key is overridden by <span class="target" id="index-11"></span><a class="reference internal" href="#envvar-TO_USER_READ_ONLY"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TO_USER_READ_ONLY</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">trafficOpsDB<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing information that defines the database to use in testing<a class="footnote-reference brackets" href="#integrationdb" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">dbname<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the database to which the tests will connect<a class="footnote-reference brackets" href="#integrationdb" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-12"></span><a class="reference internal" href="#envvar-TODB_NAME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_NAME</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-even">description<span class="colon">:</span></dt>
+<dd class="field-even"><p>An utterly cosmetic option that need not exist at all which, if set, gives a description of the database to which the tests will connect. This has no effect except possibly changing one line of debug output.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-13"></span><a class="reference internal" href="#envvar-TODB_DESCRIPTION"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_DESCRIPTION</span></code></a></p>
+</div>
+</dd>
+<dt class="field-odd">hostname<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <abbr title="Fully Qualified Domain Name">FQDN</abbr> of the server on which the database is running<a class="footnote-reference brackets" href="#integrationdb" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-14"></span><a class="reference internal" href="#envvar-TODB_HOSTNAME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_HOSTNAME</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-even">password<span class="colon">:</span></dt>
+<dd class="field-even"><p>The password to use when authenticating with the database</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-15"></span><a class="reference internal" href="#envvar-TODB_PASSWORD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_PASSWORD</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-odd">port<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The port on which the database listens for connections<a class="footnote-reference brackets" href="#integrationdb" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> - as a <strong>string</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-16"></span><a class="reference internal" href="#envvar-TODB_PORT"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_PORT</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-even">type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The “type” of database being used<a class="footnote-reference brackets" href="#integrationdb" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This should <strong>never</strong> be set to anything besides <code class="docutils literal notranslate"><span class="pre">&quot;Pg&quot;</span></code>, anything else results in undefined behavior (although it’s equally possible that it simply won’t have any effect).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-17"></span><a class="reference internal" href="#envvar-TODB_TYPE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_TYPE</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-odd">ssl<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An optional boolean value that defines whether or not the database uses SSL encryption for its connections - default if not specified (or overridden) is <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-18"></span><a class="reference internal" href="#envvar-TODB_SSL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_SSL</span></code></a>.</p>
+</div>
+</dd>
+<dt class="field-even">user<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the user as whom to authenticate with the database</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is overridden by <span class="target" id="index-19"></span><a class="reference internal" href="#envvar-TODB_USER"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TODB_USER</span></code></a>.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+<section id="writing-new-endpoints">
+<h2>Writing New Endpoints<a class="headerlink" href="#writing-new-endpoints" title="Permalink to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most new endpoints are accompanied by database schema changes which necessitate a new migration under <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/app/db/migrations"><code class="docutils literal notranslate"><span class="pre">traffic_ops/app/db/migrations</span></code></a> and database best-practices are not discussed in this section.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>This section contains a quick overview of API endpoint development; for the full guidelines for API endpoints, consult <a class="reference internal" href="api_guidelines.html#api-guidelines"><span class="std std-ref">API Guidelines</span></a>.</p>
+</div>
+<p>The first thing to consider when writing a new endpoint is what the requests it will serve will look like. It’s recommended that new endpoints avoid using “path parameters” when possible, and instead try to utilize request bodies and/or query string parameters. For example, instead of <code class="docutils literal notranslate"><span class="pre">/foos/{{ID}}</span></code> consider simply <code class="docutils literal notranslate"><span class="pre">/foos</span></code> with a supported <code class="docutils literal notranslate"><span class="pre">id</span></code> query parameter. The request <em>methods</em> should be restricted to the following, and respect each method’s associated meaning.</p>
+<dl class="simple">
+<dt>DELETE</dt><dd><p>Removes a resource or one or more of its representations from the server. This should <strong>always</strong> be the method used when deleting objects.</p>
+</dd>
+<dt>GET</dt><dd><p>Retrieves a representation of some resource. This should <em>always</em> be used for read-only operations and note that the requesting client <strong>never</strong> expects the state of the server to change as a result of a request using the GET method.</p>
+</dd>
+<dt>POST</dt><dd><p>Requests that the server process some passed data. This is used most commonly to create new objects on the server, but can also be used more generally e.g. with a request for regenerating encryption keys. Although this isn’t strictly creating new API resources, it does change the state of the server and so this is more appropriate than GET.</p>
+</dd>
+<dt>PUT</dt><dd><p>Places a new representation of some resource on the server. This is typically used for updating existing objects. For creating <em>new</em> representations/objects, use POST instead. When using PUT note that clients expect it to be <em class="dfn">idempotent</em>, meaning that subsequent identical PUT requests should result in the same server state. What this means is that it’s standard to require that <em>all</em> of the information defining a resource be provided for each request even if the vast majority of it isn’t changing.</p>
+</dd>
+</dl>
+<p>The HEAD and OPTIONS request methods have default implementations for any properly defined <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> route, and so should almost never be defined explicitly. Other request methods (e.g. CONNECT) are currently unused and ought to stay that way for the time being.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Utilizing the PATCH method is unfeasible at the time of this writing but progress toward supporting it is being made, albeit slowly in the face of other priorities.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <abbr title="Mozilla Developer Network">MDN</abbr>’s <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">documentation on the various HTTP request methods</a>.</p>
+</div>
+<p>The final step of creating any <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoint is to write documentation for it. When doing so, be sure to follow <em>all</em> of the guidelines laid out in <a class="reference internal" href="documentation_guidelines.html#docs-guide"><span class="std std-ref">Documentation Guidelines</span></a>. <em>If documentation doesn’t exist for new functionality then it has accomplished</em> <strong>nothing</strong> <em>because no one using Traffic Control will know it exists</em>. Omitted documentation is how a project winds up with a dozen different API endpoints that all do essentially the same thing.</p>
+<section id="framework-options">
+<h3>Framework Options<a class="headerlink" href="#framework-options" title="Permalink to this heading"></a></h3>
+<p>The Traffic Ops code base offers two basic frameworks for defining a new endpoint. Either one may be used at the author’s discretion (or even neither if desired and appropriate - though that seems unlikely).</p>
+<section id="generic-cruder">
+<h4>Generic “CRUDer”<a class="headerlink" href="#generic-cruder" title="Permalink to this heading"></a></h4>
+<p>The “Generic ‘CRUDer’”, as it’s known, is a pattern of API endpoint development that principally involves defining a <code class="docutils literal notranslate"><span class="pre">type</span></code> that implements the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#CRUDer"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.CRUDer</span></code></a> interface. A description of what that entails is best left to the actual GoDoc documentation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#GenericCreate"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.GenericCreate</span></code></a>, <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#GenericDelete"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.GenericDelete</span></code></a>, <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#GenericRead"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.GenericRead</span></code></a>, and <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#GenericUpdate"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.GenericUpdate</span></code></a> helpers are often used to provide the default operations of creating, deleting, reading, and updating objects, respectively. When the API endpoint being written is only meant to perform these basic operations on an object or objects stored in the database, these should be totally sufficient.</p>
+</div>
+<p>This method offers a lot of functionality “out-of-the-box” as compared to the <a class="reference internal" href="#api-info">API Info</a> method, but because of that is also restrictive. For example, it is not possible to write an endpoint that returns data not encoded as JSON using this method. That’s an uncommon use-case, but not unheard-of.</p>
+<p>This method is best used for basic creation, reading, update, and deletion operations performed on simple objects with no structural differences across API versions.</p>
+</section>
+<section id="api-info">
+<h4>API Info<a class="headerlink" href="#api-info" title="Permalink to this heading"></a></h4>
+<p>Endpoint handlers can also be defined by simply implementing the <a class="reference external" href="https://pkg.go.dev/net/http#HandlerFunc"><code class="docutils literal notranslate"><span class="pre">net/http.HandlerFunc</span></code></a> interface. The <a class="reference external" href="https://pkg.go.dev/net/http#Request"><code class="docutils literal notranslate"><span class="pre">net/http.Request</span></code></a> reference passed into such handlers provides identifying information for the authenticated user (where applicable) in its context.</p>
+<p>To easily obtain the information needed to identify a user and their associated permissions, as well as server configuration information and a database transaction handle, authors should use the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#NewInfo"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.NewInfo</span></code></a> function which will return all of that information in a single structure as well as any errors encountered during the process and an appropriate HTTP response code in case of such errors.</p>
+<p>This method offers fine control over the endpoint’s logic, but tends to be much more verbose than the endpoints written using the <a class="reference internal" href="#generic-cruder">Generic “CRUDer”</a> method. For example, a handler for retrieving an object from the database and returning it to the requesting client encoded as JSON can be twenty or more lines of code, whereas a single call to <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api#GenericCreate"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/api.GenericCreate</span></code></a> provides equivalent functionality.</p>
+<p>This method is best used when requests are meant to have extensive side-effects, are performed on unusually structured objects, need fine control of the HTTP headers/options, or operate on objects that have different structures or meanings across API versions.</p>
+</section>
+</section>
+</section>
+<section id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading"></a></h2>
+<p>What’s typically meant by “extension” in the context of Traffic Ops is a <a class="reference internal" href="../admin/traffic_ops.html#to-check-ext"><span class="std std-ref">Check Extensions</span></a> which provides data for server “checks” which can be viewed in Traffic Portal under <span class="menuselection">Monitor ‣ Cache Checks</span>. This type of extension need not know nor even care which implementation it is being used with, as it interacts with Traffic Ops through the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p>
+<p>Traffic Ops supports overrides or new definitions for non-standard <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> routes. This type of “extension” is typically reffered to as a “plugin,” and they are described in <a class="reference internal" href="#go-plugins">Go Plugins</a>.</p>
+<section id="go-plugins">
+<span id="to-go-plugins"></span><h3>Go Plugins<a class="headerlink" href="#go-plugins" title="Permalink to this heading"></a></h3>
+<p>A plugin is defined by a Go source file in the <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/traffic_ops_golang/plugin"><code class="docutils literal notranslate"><span class="pre">traffic_ops/traffic_ops_golang/plugin</span></code></a> directory, which is expected to be named <code class="file docutils literal notranslate"><em><span class="pre">plugin</span> <span class="pre">name</span></em><span class="pre">.go</span></code>. A plugin is registered to Traffic Ops by a call to <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin#AddPlugin"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin.AddPlugin</span></code></a> in the source file’s special <code class="docutils literal notranslate"><span class="pre">init</span></code> function.</p>
+<p>A plugin is only enabled at runtime if its name is present in the <a class="reference internal" href="../admin/traffic_ops.html#cdn-conf"><span class="std std-ref">cdn.conf</span></a> file’s <code class="docutils literal notranslate"><span class="pre">traffic_ops_golang.plugins</span></code> array.</p>
+<p>Each plugin may also define any, all, or none of the lifecycle hooks provided: <code class="docutils literal notranslate"><span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">startup</span></code>, and <code class="docutils literal notranslate"><span class="pre">onRequest</span></code></p>
+<dl>
+<dt>load</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">load</span></code> function of a plugin, if defined, needs to implement the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin#LoadFunc"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin.LoadFunc</span></code></a> interface, and will be run when the server starts and after configuration has been loaded. It will be passed the plugins own configuration as it was defined in the <a class="reference internal" href="../admin/traffic_ops.html#cdn-conf"><span class="std std-ref">cdn.conf</span></a> file’s <code class="docutils literal notranslate"><span class="pre">traffic_ops_golang.plugin_config</span></code> map.</p>
+</dd>
+<dt>onRequest</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">onRequest</span></code> function of a plugin, if defined, needs to implement the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin#OnRequestFunc"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin.OnRequestFunc</span></code></a> interface, and will be called on <strong>every</strong> request made to the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>. Because of this, it’s imperative that the function exit as soon as possible. Note that once one plugin reports that it has served the request, no others will be tried. The order in which plugins are tried is defined by their order in the <code class="docutils literal notranslate"><span class="pre">traffic_ops_golang.plugins</span></code> array of the <a class="reference internal" href="../admin/traffic_ops.html#cdn-conf"><span class="std std-ref">cdn.conf</span></a> configuration file.</p>
+<blockquote>
+<div><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>It’s very common for this function to behave like a <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoint, so when writing a plugin it may be useful to review <a class="reference internal" href="#writing-new-endpoints">Writing New Endpoints</a>.</p>
+</div>
+</div></blockquote>
+</dd>
+<dt>startup</dt><dd><p>Like <code class="docutils literal notranslate"><span class="pre">load</span></code>, the <code class="docutils literal notranslate"><span class="pre">startup</span></code> function of a plugin, if defined, will be called when the server starts and after configuration has been loaded. <em>Unlike</em> <code class="docutils literal notranslate"><span class="pre">load</span></code>, however, this function should implement the <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin#StartupFunc"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/traffic_ops/traffic_ops_golang/plugin.StartupFunc</span></code></a> interface and will be passed in the entirety of the server’s configuration, including its own configuration and any shared plugin configuration data as defined in the <a class="reference internal" href="../admin/traffic_ops.html#cdn-conf"><span class="std std-ref">cdn.conf</span></a> file’s <code class="docutils literal notranslate"><span class="pre">traffic_ops_golang.plugin_shared_config</span></code> map.</p>
+</dd>
+</dl>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
+<p>An example “Hello World” plugin that serves the <code class="docutils literal notranslate"><span class="pre">/_hello</span></code> request path by just writing “Hello World” in the body of a 200 OK response back to the client is provided in <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/traffic_ops/traffic_ops_golang/plugin/hello_world.go"><code class="docutils literal notranslate"><span class="pre">traffic_ops/traffic_ops_golang/plugin/hello_world.go</span></code></a>:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">package</span><span class="w"> </span><span class="nx">plugin</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cm">/*</span>
+<span class="linenos"> 4</span><span class="cm">   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="linenos"> 5</span><span class="cm">   you may not use this file except in compliance with the License.</span>
+<span class="linenos"> 6</span><span class="cm">   You may obtain a copy of the License at</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cm">   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="cm">   Unless required by applicable law or agreed to in writing, software</span>
+<span class="linenos">11</span><span class="cm">   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="linenos">12</span><span class="cm">   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="linenos">13</span><span class="cm">   See the License for the specific language governing permissions and</span>
+<span class="linenos">14</span><span class="cm">   limitations under the License.</span>
+<span class="linenos">15</span><span class="cm">*/</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">18</span><span class="w">    </span><span class="s">&quot;strings&quot;</span>
+<span class="linenos">19</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">22</span><span class="w">    </span><span class="nx">AddPlugin</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="w"> </span><span class="nx">Funcs</span><span class="p">{</span><span class="nx">onRequest</span><span class="p">:</span><span class="w"> </span><span class="nx">hello</span><span class="p">},</span><span class="w"> </span><span class="s">&quot;example HTTP plugin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span><span class="p">)</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="kd">const</span><span class="w"> </span><span class="nx">HelloPath</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;/_hello&quot;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="kd">func</span><span class="w"> </span><span class="nx">hello</span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="nx">OnRequestData</span><span class="p">)</span><span class="w"> </span><span class="nx">IsRequestHandled</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">strings</span><span class="p">.</span><span class="nx">HasPrefix</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span><span class="w"> </span><span class="nx">HelloPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">RequestUnhandled</span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">31</span><span class="w">    </span><span class="nx">d</span><span class="p">.</span><span class="nx">W</span><span class="p">.</span><span class="nx">Header</span><span class="p">().</span><span class="nx">Set</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/plain&quot;</span><span class="p">)</span>
+<span class="linenos">32</span><span class="w">    </span><span class="nx">d</span><span class="p">.</span><span class="nx">W</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">))</span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">RequestHandled</span>
+<span class="linenos">34</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="check-extensions">
+<h3>Check Extensions<a class="headerlink" href="#check-extensions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="../admin/traffic_ops.html#to-check-ext"><span class="std std-ref">Check Extensions</span></a> allow you to add custom checks to the <span class="menuselection">Monitor ‣ Cache Checks</span> view.</p>
+<p>Extensions are managed using the <code class="docutils literal notranslate"><span class="pre">$TO_HOME/bin/extensions</span></code> command line script</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more information see <a class="reference internal" href="../admin/traffic_ops.html#admin-to-ext-script"><span class="std std-ref">Managing Traffic Ops Extensions</span></a>.</p>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="integrationdb" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>,<a role="doc-backlink" href="#id4">3</a>,<a role="doc-backlink" href="#id5">4</a>,<a role="doc-backlink" href="#id13">5</a>,<a role="doc-backlink" href="#id14">6</a>,<a role="doc-backlink" href="#id15">7</a>,<a role="doc-backlink" href="#id16">8</a>,<a role="doc-backlink" href="#id17">9</a>)</span>
+<p>The Traffic Ops instance <em>must</em> be using the same PostgreSQL database that the tests will use.</p>
+</aside>
+<aside class="footnote brackets" id="existinguser" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id7">2</a>,<a role="doc-backlink" href="#id8">3</a>,<a role="doc-backlink" href="#id9">4</a>,<a role="doc-backlink" href="#id10">5</a>,<a role="doc-backlink" href="#id11">6</a>,<a role="doc-backlink" href="#id12">7</a>)</span>
+<p>This does not need to match the name of any pre-existing user.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traffic_monitor/traffic_monitor_api.html" class="btn btn-neutral float-left" title="Traffic Monitor APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traffic_portal.html" class="btn btn-neutral float-right" title="Traffic Portal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

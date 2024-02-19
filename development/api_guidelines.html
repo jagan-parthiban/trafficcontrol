@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Guidelines &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment Variables" href="environment_variables.html" />
+    <link rel="prev" title="Developer’s Guide" href="index.html" />
+    <link href="../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#response-bodies">Response Bodies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#response">Response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alerts">Alerts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#http-request-methods">HTTP Request Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get">GET</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post">POST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put">PUT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#patch">PATCH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete">DELETE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#http-response-codes">HTTP Response Codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ok">200 OK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#created">201 Created</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accepted">202 Accepted</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bad-request">400 Bad Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unauthorized">401 Unauthorized</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forbidden">403 Forbidden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#not-found">404 Not Found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conflict">409 Conflict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internal-server-error">500 Internal Server Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#not-implemented">501 Not Implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bad-gateway">502 Bad Gateway</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gateway-timeout">504 Gateway Timeout</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-request-data">Passing Request Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#duplicate-endpoints">Duplicate Endpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#date-time-format">Date/Time Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#age-filtering">Age Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tenancy">Tenancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationships-as-objects">Relationships as Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-logging">Change Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="environment_variables.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building Traffic Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging inside CDN-in-a-Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="godocs.html">Godocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_monitor.html">Traffic Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_portal.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_router.html">Traffic Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traffic_stats.html">Traffic Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-development-environment">The Development Environment</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer’s Guide</a></li>
+      <li class="breadcrumb-item active">API Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/api_guidelines.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-guidelines">
+<span id="id1"></span><h1>API Guidelines<a class="headerlink" href="#api-guidelines" title="Permalink to this heading"></a></h1>
+<p>This section lays out guidelines to be considered by API endpoint authors. What follows are not <em>strictly</em> hard-and-fast rules, but there should be a very convincing argument accompanying endpoints that do not follow them.</p>
+<p>Legacy API versions don’t, in general, adhere to these principles. This section is not meant as a proposal for altering them to be compliant, but merely a set of guidelines for future work.</p>
+<section id="response-bodies">
+<h2>Response Bodies<a class="headerlink" href="#response-bodies" title="Permalink to this heading"></a></h2>
+<p>All valid API responses will be in the form of some serialized object. The main data that represents the result of the client’s request MUST appear in the <code class="docutils literal notranslate"><span class="pre">response</span></code> property of that object. If a warning, error message, success message, or informational message is to be issued by the server, then they MUST appear in the <code class="docutils literal notranslate"><span class="pre">alerts</span></code> property of the response. Some endpoints may return ancillary statistics such as the total number of objects when pagination occurs, which should be placed in the <code class="docutils literal notranslate"><span class="pre">summary</span></code> property of the response.</p>
+<section id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">response</span></code> property of a serialized response object MUST only contain object representations as requested by the client. In particular, it MUST NOT contain admonitions, success messages, informative messages, or statistic summaries beyond the scope requested by the client.</p>
+<p>Equally unacceptable API responses are shown in <a class="reference internal" href="#success-as-response"><span class="std std-ref">Success Message as Response Object</span></a> and <a class="reference internal" href="#extra-field"><span class="std std-ref">Illegal Top-Level Property</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<span id="success-as-response"></span><div class="code-block-caption"><span class="caption-number">#90 </span><span class="caption-text">Success Message as Response Object</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thing was successfully created.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<span id="extra-field"></span><div class="code-block-caption"><span class="caption-number">#91 </span><span class="caption-text">Illegal Top-Level Property</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;someOtherField&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;someOtherObject&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>When requests are serviced by Traffic Ops that pass data asking that the returned object list be filtered, the response property MUST be a filtered array of those objects (assuming the request may be successfully serviced). This is true even if filtering is being done according to a uniquely identifying property - e.g. a numeric ID. The <code class="docutils literal notranslate"><span class="pre">response</span></code> field of an object returned in response to a request to create, update, or delete one or more resources may be either a single object representation or an array thereof according to the number of objects created, updated, or deleted. However, if a handler is <em>capable</em> of creating, updating, or deleting more than one object at a time, the <code class="docutils literal notranslate"><span class="pre">response</span></code> field SHOULD consistently be represented as an array - even if its length would only be 1.</p>
+<p>The proper value of an empty collection is an empty collection. If a Foo can have zero or more Bars, then the representation of a Foo with no Bars MUST be an empty array/list/set, and in particular MUST NOT be either missing from the representation or represented as the “Null” value of the representation format. That is, if Foos have no other property than their Bars, then a Foo with no Bars may be represented in JSON encoding as <code class="docutils literal notranslate"><span class="pre">{&quot;bars&quot;:[]}</span></code>, but not as <code class="docutils literal notranslate"><span class="pre">{&quot;bars&quot;:null}</span></code> or <code class="docutils literal notranslate"><span class="pre">{}</span></code>. Similarly, an empty string field is properly represented as an empty string - e.g. <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:&quot;&quot;}</span></code> not <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:null}</span></code> or <code class="docutils literal notranslate"><span class="pre">{}</span></code> - and the “zero-value” of numbers is zero itself - e.g. <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:0}</span></code> not <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:null}</span></code> or <code class="docutils literal notranslate"><span class="pre">{}</span></code>. Note that “null” values <em>are allowed</em> when appropriate, but “null” values represent the <em>absence</em> of a value rather than the “zero-value” of a property. If a property is <em>missing</em> from an object representation it indicates the absence of that property, and because of that there must be a <em>very convincing</em> argument if and when that is the case.</p>
+<p>As a special case, endpoints that report statistics including minimums, maximums and arithmetic means of data sets MUST use the property names <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, and <code class="docutils literal notranslate"><span class="pre">mean</span></code>, respectively, to express those concepts. These SHOULD be properties of <code class="docutils literal notranslate"><span class="pre">response</span></code> directly whenever that makes sense.</p>
+</section>
+<section id="alerts">
+<h3>Alerts<a class="headerlink" href="#alerts" title="Permalink to this heading"></a></h3>
+<p>Alerts should be presented as an array containing objects which each conform to the object definition laid out by <a class="reference external" href="https://pkg.go.dev/github.com/apache/trafficcontrol/the ATC library's Alert structure &lt;lib/go-tc#Alert&gt;"><code class="docutils literal notranslate"><span class="pre">github.com/apache/trafficcontrol/the</span> <span class="pre">ATC</span> <span class="pre">library's</span> <span class="pre">Alert</span> <span class="pre">structure</span> <span class="pre">&lt;lib/go-tc#Alert&gt;</span></code></a>. The allowable <code class="docutils literal notranslate"><span class="pre">level</span></code>s of an Alert are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code> - This level MUST be used to indicate conditions that caused a request to fail. Because of this, this level MUST NOT appear in the <code class="docutils literal notranslate"><span class="pre">alerts</span></code> array of responses with any HTTP response code less than 400 (except when used for asynchronous tasks as discussed in <a class="reference internal" href="#accepted">202 Accepted</a>). Details of server workings and/or failing components MUST NOT be exposed in this message, which should otherwise be as descriptive as possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span></code> - This level SHOULD be used to convey supplementary information to a user that is not directly the result of their request. This SHOULD NOT carry information indicating whether or not the request succeeded and why/why not, as that is best left to the <code class="docutils literal notranslate"><span class="pre">error</span></code> and <code class="docutils literal notranslate"><span class="pre">success</span></code> levels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success</span></code> - This level MUST be used to convey success messages to the client. In general, it is expected that the message will be directly displayed to the user by the client, and therefore can be used to add human-friendly details about a request beyond the response payload. This level MUST NOT appear in the <code class="docutils literal notranslate"><span class="pre">alerts</span></code> array of responses with an HTTP response code that is not between 200 and 399 (inclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning</span></code> - This level is used to warn clients of potentially dangerous conditions when said conditions have not caused a request to fail. The best example of this is deprecation warnings, which should appear on all API routes that have been deprecated.</p></li>
+</ul>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">summary</span></code> object is used to provide summary statistics about object collections. In general the use of <code class="docutils literal notranslate"><span class="pre">summary</span></code> is left to be defined by API endpoints (subject to some restrictions). However, its use is not appropriate in cases where the user is specifically requesting summary statistics, but should rather be used to provide supporting information - pre-calculated - about a set of objects or data that the client <em>has</em> requested.</p>
+<p>Endpoints MUST use the following, reserved properties of <code class="docutils literal notranslate"><span class="pre">summary</span></code> for their described purposes (when use of <code class="docutils literal notranslate"><span class="pre">summary</span></code> is appropriate) rather than defining new <code class="docutils literal notranslate"><span class="pre">summary</span></code> or <code class="docutils literal notranslate"><span class="pre">response</span></code> properties to suit the same purpose:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code> - Count contains an unsigned integer that defines the total number of results that could possibly be returned given the non-pagination query parameters supplied by the client.</p></li>
+</ul>
+</section>
+</section>
+<section id="http-request-methods">
+<h2>HTTP Request Methods<a class="headerlink" href="#http-request-methods" title="Permalink to this heading"></a></h2>
+<p><span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc7231.html#section-4"><strong>RFC 7231#section-4</strong></a> defines the semantics of HTTP/1.1 request methods. Authors should conform to that set of standards whenever possible, but for convenience the methods recognized by Traffic Ops and their meanings in that context are herein defined.</p>
+<section id="get">
+<h3>GET<a class="headerlink" href="#get" title="Permalink to this heading"></a></h3>
+<p>HTTP GET requests are issued by clients who want some data in response. In the context of Traffic Ops, this generally means a serialized representation of some object. GET requests MUST NOT alter the state of the server. An example of an API endpoint created in API version 1 that violates this restriction is <code class="samp docutils literal notranslate"><span class="pre">cdns/name/</span><em><span class="pre">name</span></em><span class="pre">/dnsseckeys/delete</span></code>.</p>
+<p>This is the standard method to be used by all read-only operations, and as such handlers for this method should generally be accessible to users with the “read-only” <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a>.</p>
+<p>All endpoints dealing with the manipulation or fetching representations of “Traffic Control Objects” MUST support this method.</p>
+</section>
+<section id="post">
+<h3>POST<a class="headerlink" href="#post" title="Permalink to this heading"></a></h3>
+<p>POST requests ask the server to process some provided data. Most commonly, in Traffic Ops, this means creating an object based on the serialization of said object contained in the request body, but it can also be used virtually whenever no other method is appropriate. When an object <em>is</em> created, the response body MUST contain a representation of the newly created object. POST requests do not need to be <em>idempotent</em>, unlike PUT requests.</p>
+</section>
+<section id="put">
+<h3>PUT<a class="headerlink" href="#put" title="Permalink to this heading"></a></h3>
+<p>PUT is used to replace existing data with new data that is provided in the request body. <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2616.html#section-9.1.2"><strong>RFC 2616#section-9.1.2</strong></a> lists PUT as an “idempotent” request method, which means that subsequent identical requests should ensure the same state is maintained on the server. What this means is that a client that PUTs an object representation to Traffic Ops expects that if they then GET a representation of that object, do the same PUT again and GET another representation, the two retrieved representations should be identical. Effectively, the <code class="docutils literal notranslate"><span class="pre">lastUpdated</span></code> field that is common to objects in the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> violates this, but the other properties of objects - which can actually be defined - generally obey this restriction. In general, fulfilling this restriction means that handlers will need to require the entirety of an object be defined in the request body.</p>
+<p>When an object is replaced, the response body MUST contain a representation of the object after replacement. While <span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2616.html"><strong>RFC 2616</strong></a> states that servers MAY create objects for the passed representations if they do not already exist, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoint authors MUST instead use POST handlers for object creation.</p>
+<p>All endpoints that support the PUT request method MUST also support the <em class="mailheader">If-Unmodified-Since</em> HTTP header.</p>
+</section>
+<section id="patch">
+<h3>PATCH<a class="headerlink" href="#patch" title="Permalink to this heading"></a></h3>
+<p>At the time of this writing, no <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoints handle the PATCH request method. PATCH requests that the server’s stored data be mutated in some way using data provided in the request body. Unlike PUT, PATCH is not <em>idempotent</em>, which essentially means that it can be used to change only part of a stored object. When an object is modified, the response body MUST contain a representation of the object after modification, and that representation SHOULD fully describe the modified object, even the parts that were not modified.</p>
+<p>Handlers that implement PATCH in the <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> MUST use conditional requests to ensure that race conditions are not a problem, specifically they MUST support using <em class="mailheader">ETag</em> and <em class="mailheader">If-Match</em>, and SHOULD also support <em class="mailheader">If-Unmodified-Since</em>.</p>
+<p>Clients SHOULD use PATCH requests rather than PUT requests for modifying existing resources whenever it is supported.</p>
+</section>
+<section id="delete">
+<h3>DELETE<a class="headerlink" href="#delete" title="Permalink to this heading"></a></h3>
+<p>DELETE destroys an object stored on the server. Typically the request will contain identifying information for the object(s) to be destroyed either in the request URI or in the request’s body. <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoint authors MUST use this request method whenever an object identified by the request URI is being destroyed. When such deletion successfully occurs, the response body MUST contain a representation of the destroyed object.</p>
+</section>
+</section>
+<section id="http-response-codes">
+<h2>HTTP Response Codes<a class="headerlink" href="#http-response-codes" title="Permalink to this heading"></a></h2>
+<p>Proper use of HTTP response codes can significantly improve user interfaces built on top of the API. What follows is a (non-exhaustive) set of response codes and their appropriate use in the context of Traffic Ops. For more complete information, refer to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">the Mozilla Developer Network’s HTTP Response Code list</a>.</p>
+<section id="ok">
+<h3>200 OK<a class="headerlink" href="#ok" title="Permalink to this heading"></a></h3>
+<p>This indicates the request succeeded, with no additional semantics. This MUST be the exact response status code of successful GET requests. This is also the default “success” response code for any other request.</p>
+</section>
+<section id="created">
+<h3>201 Created<a class="headerlink" href="#created" title="Permalink to this heading"></a></h3>
+<p>This indicates that a resource was successfully created on the server. This MUST be the response status code of POST requests that create a new object or objects on the server, and in that case the response SHOULD also include a <em class="mailheader">Location</em> header that provides a URI where a representation of the newly created object may be requested.</p>
+</section>
+<section id="accepted">
+<h3>202 Accepted<a class="headerlink" href="#accepted" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">202</span> <span class="pre">Accepted</span></code> MUST be used when the server is performing some task asynchronously (e.g. refreshing DNSSEC keys) but the status of that task cannot be ascertained at the current time. Ideally in this case, when the task completes - either successfully or by failing - the Traffic Ops changelog will be updated to indicate that status, along with information to uniquely identify the task (e.g. username and date/time when the task started).</p>
+<p>Endpoints that create asynchronous jobs SHOULD provide a URI to which the client may send GET requests to obtain a representation of the job’s current state in the <em class="mailheader">Location</em> HTTP header. They MAY also provide an <code class="docutils literal notranslate"><span class="pre">info</span></code>-level Alert that provides the same or similar information in a more human-friendly manner.</p>
+<p>The responses to such GET requests are subject to the same restrictions as any other API endpoint, but have the added restriction that the <code class="docutils literal notranslate"><span class="pre">response</span></code> objects sent MUST have the <code class="docutils literal notranslate"><span class="pre">status</span></code> property, which is a string limited to one of the following values and having the associated semantics:</p>
+<dl class="simple">
+<dt>PENDING</dt><dd><p>This means the job has been started but is not yet completed.</p>
+</dd>
+<dt>SUCCEEDED</dt><dd><p>This means that the asynchronous job has completed and encountered no errors.</p>
+</dd>
+<dt>FAILED</dt><dd><p>The task encountered errors and was unable to continue, and thus has been terminated.</p>
+</dd>
+</dl>
+<p>Note that the response code of the response carrying this information MUST NOT depend on the value of <code class="docutils literal notranslate"><span class="pre">status</span></code>. In particular, a response that successfully reports the status of a FAILED asynchronous task is still successfully servicing a client’s GET request, and therefore MUST have the <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> response status code. However, a response encoding a FAILED <code class="docutils literal notranslate"><span class="pre">status</span></code> MUST be accompanied by one or more <code class="docutils literal notranslate"><span class="pre">error</span></code>-level Alerts that explain (to the greatest degree of detail allowable securely) why the job failed.</p>
+<p>These responses MUST also include the <code class="docutils literal notranslate"><span class="pre">startTime</span></code> and <code class="docutils literal notranslate"><span class="pre">endTime</span></code> properties which indicate, respectively, the time at which the asynchronous job started and the time at which it concluded. A job that has not started MUST have a Null-valued <code class="docutils literal notranslate"><span class="pre">startTime</span></code> and likewise a job that has yet to conclude MUST have a Null-value <code class="docutils literal notranslate"><span class="pre">endTime</span></code>.</p>
+</section>
+<section id="bad-request">
+<h3>400 Bad Request<a class="headerlink" href="#bad-request" title="Permalink to this heading"></a></h3>
+<p>In general this is used when there’s something syntactically wrong with the client’s request. For example, Traffic Ops MUST respond with this code when the request body was improperly encoded. In most cases, this is also the proper response code when the client submits data that is not semantically correct. For example, dates/times represented as timestamp strings in an unsupported format should trigger this response code.</p>
+<p>This is also the default “client failure” response code for any other request.</p>
+<p>The response body MUST include an entry in the <code class="docutils literal notranslate"><span class="pre">alerts</span></code> array that describes to the client what was wrong with the request.</p>
+</section>
+<section id="unauthorized">
+<h3>401 Unauthorized<a class="headerlink" href="#unauthorized" title="Permalink to this heading"></a></h3>
+<p>This MUST be the response code when a client without valid authorization information in the HTTP headers requests a resource which cannot be accessed without first authorizing. Which should be everything except <code class="docutils literal notranslate"><span class="pre">/ping</span></code> and endpoints that provide authorization.</p>
+</section>
+<section id="forbidden">
+<h3>403 Forbidden<a class="headerlink" href="#forbidden" title="Permalink to this heading"></a></h3>
+<p>This MUST be used whenever the client is logged-in, but still does not have access to the resource they are requesting. It MUST also be used when they have some access to the resource, but not with the specific request method they used. This can pertain to restricted access on the basis of <a class="reference internal" href="../glossary.html#term-Role"><span class="xref std std-term">Role</span></a>, User Permissions, as well as <a class="reference internal" href="../glossary.html#term-Tenancy"><span class="xref std std-term">Tenancy</span></a>.</p>
+<p>The response body MUST NOT disclose any information regarding why the user was denied access.</p>
+</section>
+<section id="not-found">
+<h3>404 Not Found<a class="headerlink" href="#not-found" title="Permalink to this heading"></a></h3>
+<p>This MUST be the returned status code when the client requests a path that does not exist on the server. Note that a <em>path</em> does not include a <em>query string</em>; in the URL <code class="docutils literal notranslate"><span class="pre">http://example.test/some/path?query#frag</span></code> the <em>path</em> consists of only <code class="docutils literal notranslate"><span class="pre">/some/path</span></code>.</p>
+</section>
+<section id="conflict">
+<h3>409 Conflict<a class="headerlink" href="#conflict" title="Permalink to this heading"></a></h3>
+<p>This SHOULD be used when the request cannot be completed because the current state of the server is fundamentally incompatible with the request. For example, creating a new user with an email that is already in use should result in this response.</p>
+<p>Additionally, this MAY be used instead of <a class="reference internal" href="#not-found">404 Not Found</a> when the client is requesting a link between an object identified by the request URI and some other object (e.g. when assigning a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> to a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>) when the other object does not exist. If the request URI identifies an object that does not exist, the response MUST use <a class="reference internal" href="#not-found">404 Not Found</a> instead.</p>
+<p>This is also the proper response status code when the conditions of a request cannot be met, e.g. when a client submits a PATCH request for a resource with an <em class="mailheader">If-Match</em> header that does not match the stored object’s <em class="mailheader">ETag</em>.</p>
+<p>The response body MUST indicate what the conflict is that prevented the request from being fulfilled via one or more <code class="docutils literal notranslate"><span class="pre">error</span></code>-level alerts.</p>
+</section>
+<section id="internal-server-error">
+<h3>500 Internal Server Error<a class="headerlink" href="#internal-server-error" title="Permalink to this heading"></a></h3>
+<p>When the Traffic Ops server encounters some error - through no fault of the client or their request - that renders it incapable of servicing the client’s request, it MUST return this status code if no other code is more appropriate. The response body in this case SHOULD indicate that an error occurred, but MUST NOT divulge details about what data was being processed, what (if any) other components are not functioning properly, or what process failed. Generally it is advisable that the resultant <code class="docutils literal notranslate"><span class="pre">alerts</span></code> array entry just say “Internal Server Error” and nothing else.</p>
+</section>
+<section id="not-implemented">
+<h3>501 Not Implemented<a class="headerlink" href="#not-implemented" title="Permalink to this heading"></a></h3>
+<p>This is the response code used when the client requests an API version not implemented by the server. It SHOULD NOT be used in any other case.</p>
+</section>
+<section id="bad-gateway">
+<h3>502 Bad Gateway<a class="headerlink" href="#bad-gateway" title="Permalink to this heading"></a></h3>
+<p>This code indicates that some other service on which the endpoint’s processes depend has given back improper data or an error response. It MAY be used (with caution) by plugin developers, but SHOULD NOT be used by authors of proper API endpoints, as that divulges information about failing connected systems and potentially gives an attacker information about Traffic Control’s weak points. API endpoint authors should instead use <a class="reference internal" href="#internal-server-error">500 Internal Server Error</a>.</p>
+</section>
+<section id="gateway-timeout">
+<h3>504 Gateway Timeout<a class="headerlink" href="#gateway-timeout" title="Permalink to this heading"></a></h3>
+<p>This code indicates that a connection timeout occurred when attempting to contact some other service on which the endpoint’s processes depend. It MAY be used (with caution) by plugin developers, but SHOULD NOT be used by authors of proper API endpoints, as that divulges information about failing connected systems and potentially gives an attacker information about Traffic Control’s weak points. API endpoint authors should instead use <a class="reference internal" href="#internal-server-error">500 Internal Server Error</a>.</p>
+</section>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
+<p>All endpoints MUST be properly documented. For guidelines for writing API documentation, refer to <a class="reference internal" href="documentation_guidelines.html#api-doc-guidelines"><span class="std std-ref">Documenting API Routes</span></a>.</p>
+</section>
+<section id="passing-request-data">
+<h2>Passing Request Data<a class="headerlink" href="#passing-request-data" title="Permalink to this heading"></a></h2>
+<p>Request data may be passed in the request body or as a <em class="mimetype">application/x-www-form-urlencoded</em>-encoded query string in the request URI, or as a part of the request path. Request data MUST NOT be passed through a portion of the request path unless it uniquely identifies a resource with which the client may interact. For example, <code class="samp docutils literal notranslate"><span class="pre">/foos/</span><em><span class="pre">ID</span></em></code> is an acceptable path for dealing with the particular “Foo” object that has some identifier <code class="docutils literal notranslate"><span class="pre">ID</span></code>, but <code class="samp docutils literal notranslate"><span class="pre">logs/</span><em><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">Days</span></em><span class="pre">/days</span></code> is unacceptable because reasonable default behavior can be provided if no number of days is given in the query string parameters, and that doesn’t help uniquely identify a resource. Request path parameters should use double “curly-braces” (<kbd class="kbd docutils literal notranslate">{</kbd> and <kbd class="kbd docutils literal notranslate">}</kbd>) to call out variable components of the request path in documentation and references. Request path parameters MUST NOT be used for data that is optional to the request (somewhat obviously). Note that all endpoints dealing with the manipulation of “Traffic Control Objects”  MUST support the GET HTTP request method.</p>
+<p>When accepting data in the request body of requests, the endpoint MUST properly document the object representations (properties and their types) it accepts and MUST reject semantically invalid data with a <a class="reference internal" href="#bad-request">400 Bad Request</a> response code. For example, if an endpoint specifies it accepts a representation of a Foo object, assuming Foo objects possess only the Bar property which is an arbitrary string, then the endpoint MUST accept <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:</span> <span class="pre">&quot;testquest&quot;}</span></code> as semantically valid (The data may be rejected for other reasons, e.g. if a Foo with such a Bar property already exists and Bars must be unique among all Foos) and MUST reject <code class="docutils literal notranslate"><span class="pre">{&quot;bar&quot;:</span> <span class="pre">&quot;testquest&quot;,</span> <span class="pre">&quot;someOtherProperty&quot;:</span> <span class="pre">10}</span></code> as semantically invalid. This is in contrast to the API’s behavior at the time of this writing, which silently ignores unrecognized properties of request body objects.</p>
+<p>The decision to pass data in the request body or query string is mainly up to the author, but some helpful tips:</p>
+<ul>
+<li><p>GET and DELETE requests do not typically provide request bodies.</p></li>
+<li><p>Query parameters should nearly always be optional. If data is required by an endpoint, consider requiring it in the request body. If the data identifies a resource, it ought to be a path parameter.</p></li>
+<li><p>Request body data often represents objects that are being created or updated. If an object is being created or updated, it ought to be defined in the request body, and if any additional data is (possibly optionally) required then it ought to be passed in the query string to separate it from the object definition.</p></li>
+<li><p>The following query parameters are reserved for special use by Traffic Ops endpoint handlers, and may not be used for any purpose other than their prescribed functions.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">limit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newerThan</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">olderThan</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orderby</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">page</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sortOrder</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="duplicate-endpoints">
+<h2>Duplicate Endpoints<a class="headerlink" href="#duplicate-endpoints" title="Permalink to this heading"></a></h2>
+<p>No two endpoints should serve the same purpose. While it’s fine to overlap a bit, an endpoint like <code class="docutils literal notranslate"><span class="pre">/foo_bars</span></code> should not exist solely to edit the Bars property of Foo objects (which can ostensibly be edited just fine on the object itself), for example. Ideally, there should be exactly one way to accomplish something through the API.</p>
+<p>A caveat, though, is object relationships. For example, a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> has zero or more <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> assigned to it, and in turn <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> may be assigned to zero or more <a class="reference internal" href="../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> (a “has-and-belongs-to-many” relationship). Thus it is permissible to be able to edit the <a class="reference internal" href="../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> property of a <a class="reference internal" href="../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> using the <code class="docutils literal notranslate"><span class="pre">/cache_servers</span></code> API endpoint as well as to be able to edit the <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> property of a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> using the <code class="docutils literal notranslate"><span class="pre">/delivery_services</span></code> API endpoint - though they arguably provide equivalent functionality in that way (although at the time of this writing the former endpoint doesn’t exist and the latter doesn’t offer that functionality - this is just an example).</p>
+</section>
+<section id="date-time-format">
+<h2>Date/Time Format<a class="headerlink" href="#date-time-format" title="Permalink to this heading"></a></h2>
+<p>Dates MUST be represented in either <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3339.html"><strong>RFC 3339</strong></a> (with or without nanosecond precision) or as integers indicating the number of nanoseconds past the Unix epoch at which the date/time occurs. In either case, Dates included in responses from Traffic Ops MUST be in UTC. Wherever date/times are accepted as input, <a class="reference internal" href="../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a> endpoints MUST accept either format and SHOULD NOT accept anything else.</p>
+<p>Traffic Ops endpoints MUST return dates and times in <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3339.html"><strong>RFC 3339</strong></a> format with nanosecond precision. Endpoints MAY provide ways for the client to specify alternate representations, but these SHOULD be restricted to only Unix epoch timestamps in nanoseconds.</p>
+</section>
+<section id="age-filtering">
+<h2>Age Filtering<a class="headerlink" href="#age-filtering" title="Permalink to this heading"></a></h2>
+<p>Whenever object age is a property of that object (which is quite often in the form of <code class="docutils literal notranslate"><span class="pre">lastUpdated</span></code>), Traffic Ops endpoint handlers that respond to requests for object representations (i.e. GET requests) SHOULD support filtering by age. If age filtering is implemented, it MUST be made available using the query parameters in the table below.</p>
+<span id="age-filtering-qparams"></span><table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 75 </span><span class="caption-text">Age Filtering Query Parameters</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">newerThan</span></code></p></td>
+<td><p>A timestamp to be used as the lower limit on an object’s age. Objects older than this MUST NOT appear in the response body. That is, the response will be the set of all
+objects in the collection with a modification date that is greater than <em>or equal to</em> this value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">olderThan</span></code></p></td>
+<td><p>A timestamp to be used as the upper limit an object’s age. Objects newer than this MUST NOT appear in the response body. That is, the response will be the set of all
+objects in the collection with a modification date that is less than <em>or equal to</em> this value.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The format of these timestamps - in accordance with the <a class="reference internal" href="#date-time-format">Date/Time Format</a> section - MUST be accepted as Unix epoch timestamps in nanoseconds, <strong>and</strong> in the form of <span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3339.html"><strong>RFC 3339</strong></a> date/time strings.</p>
+<p>Endpoints MAY return errors when a client request gives these parameters improper or invalid values, but MUST at least provide a warning. When ambiguity or errors in age filtering controls render age filtering impossible, the handler MUST NOT perform age filtering.</p>
+</section>
+<section id="tenancy">
+<h2>Tenancy<a class="headerlink" href="#tenancy" title="Permalink to this heading"></a></h2>
+<p>When a client requests access to a set of stored objects that are “tenantable” inevitably some of them will be inaccessible to the user on the basis of their <a class="reference internal" href="../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a>. Traffic Ops endpoint handlers that respond to requests for such object representations (i.e. GET requests) MUST filter their results implicitly according to the requesting Tenant’s access. Any request that would modify, create, or destroy an object to which the requesting <a class="reference internal" href="../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a> does not have access MUST NOT be fulfilled by the server (obviously) and in that case the response status code MUST be <a class="reference internal" href="#forbidden">403 Forbidden</a>. Furthermore, if a request for a representation of a <a class="reference internal" href="../glossary.html#term-Tenant"><span class="xref std std-term">Tenant</span></a>-inaccessible object is made <em>explicitly for said object</em> (e.g. <code class="samp docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/foos/</span><em><span class="pre">ID</span></em></code> rather than <code class="samp docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/foos?id=</span><em><span class="pre">ID</span></em></code>) the response status code MUST be <a class="reference internal" href="#forbidden">403 Forbidden</a>.</p>
+</section>
+<section id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading"></a></h2>
+<p>The names of properties of objects as they appear in said objects’ serializations ought to conform to “camelCase” naming. Initialisms, abbreviations, and acronyms that appear in property names should be capitalized unless they are at the very beginning of the name. For example, <code class="docutils literal notranslate"><span class="pre">myIPAddress</span></code> and <code class="docutils literal notranslate"><span class="pre">someProperty</span></code> are both well-formed property names, while <code class="docutils literal notranslate"><span class="pre">IPAddress</span></code>, <code class="docutils literal notranslate"><span class="pre">someproperty</span></code> and <code class="docutils literal notranslate"><span class="pre">SomeProperty</span></code> are not.</p>
+<p>Query string parameters MUST also follow “camelCase” naming.</p>
+<p>API endpoints themselves should have a name that conveys their purpose. For example, <code class="docutils literal notranslate"><span class="pre">/cdns</span></code> is an endpoint that deals with manipulating, creating, destroying, or retrieving representations of CDNs. Request paths MUST use “snake_case” to separate words whenever necessary, and MUST never include the action being performed by the handler; instead that is decided by the request <em>method</em>. For example, <code class="docutils literal notranslate"><span class="pre">/myObject/delete</span></code> is a poor request path name for both of those reasons. Furthermore, when an endpoint deals with an object type of which there are typically multiple, the request path should be plural, e.g. <code class="docutils literal notranslate"><span class="pre">/cdns</span></code> is better than <code class="docutils literal notranslate"><span class="pre">/cdn</span></code>.</p>
+<p>API endpoints MAY support trailing slashes (<kbd class="kbd docutils literal notranslate">/</kbd>) in the request path, but MUST NOT include suffixes that indicate a particular encoding (“file extensions”); that’s what the <em class="mailheader">Content-Type</em> header is for. For example, in API version 1.x, <code class="docutils literal notranslate"><span class="pre">/foos</span></code> and <code class="docutils literal notranslate"><span class="pre">/foos.json</span></code> are both equally valid ways to access the <code class="docutils literal notranslate"><span class="pre">/foos</span></code> endpoint handlers - this is no longer allowed!</p>
+</section>
+<section id="relationships-as-objects">
+<h2>Relationships as Objects<a class="headerlink" href="#relationships-as-objects" title="Permalink to this heading"></a></h2>
+<p>Relationships SHOULD NOT be represented through the API as objects in their own right. For example, instead of an endpoint like <code class="docutils literal notranslate"><span class="pre">/delivery_service_servers</span></code> used to manipulate assignments of <a class="reference internal" href="../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> to <a class="reference internal" href="../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>, a <a class="reference internal" href="../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> itself should have Servers as a property. Thus assignments are manipulated by manipulating that property. So the only endpoints necessary for fully defining and dealing with such relationships are <code class="docutils literal notranslate"><span class="pre">/delivery_services</span></code> and <code class="docutils literal notranslate"><span class="pre">/servers</span></code>.</p>
+</section>
+<section id="change-logging">
+<h2>Change Logging<a class="headerlink" href="#change-logging" title="Permalink to this heading"></a></h2>
+<p>All manipulations of objects (i.e. any operation that is not merely “reading” data) MUST add a Change Log entry indicating what was changed.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="environment_variables.html" class="btn btn-neutral float-right" title="Environment Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

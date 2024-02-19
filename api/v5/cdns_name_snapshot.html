@@ -1,0 +1,1163 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cdns/{{name}}/snapshot &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="cdns/{{name}}/snapshot/new" href="cdns_name_snapshot_new.html" />
+    <link rel="prev" title="cdns/name/{{name}}/sslkeys" href="cdns_name_name_sslkeys.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../admin/index.html">Administrator’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Traffic Ops API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#how-to-read-this-documentation">How to Read this Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#using-api-endpoints">Using API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#api-errors">API Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#trafficops-native-client-libraries">TrafficOps Native Client Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#api-v3-routes">API V3 Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#api-v4-routes">API V4 Routes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#api-v5-routes">API V5 Routes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="about.html"><code class="docutils literal notranslate"><span class="pre">about</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="acme_accounts.html"><code class="docutils literal notranslate"><span class="pre">acme_accounts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="acme_accounts_provider_email.html"><code class="docutils literal notranslate"><span class="pre">acme_accounts/{{provider}}/{{email}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="acme_accounts_providers.html"><code class="docutils literal notranslate"><span class="pre">acme_accounts/providers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="acme_autorenew.html"><code class="docutils literal notranslate"><span class="pre">acme_autorenew</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="asns.html"><code class="docutils literal notranslate"><span class="pre">asns</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="asns_id.html"><code class="docutils literal notranslate"><span class="pre">asns/{{id}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="async_status.html"><code class="docutils literal notranslate"><span class="pre">async_status/{{id}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cache_stats.html"><code class="docutils literal notranslate"><span class="pre">cache_stats</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroups.html"><code class="docutils literal notranslate"><span class="pre">cachegroups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroups_id.html"><code class="docutils literal notranslate"><span class="pre">cachegroups/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroups_id_deliveryservices.html"><code class="docutils literal notranslate"><span class="pre">cachegroups/{{ID}}/deliveryservices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroups_id_queue_update.html"><code class="docutils literal notranslate"><span class="pre">cachegroups/{{ID}}/queue_update</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="caches_stats.html"><code class="docutils literal notranslate"><span class="pre">caches/stats</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdn_locks.html"><code class="docutils literal notranslate"><span class="pre">cdn_locks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdn_notifications.html"><code class="docutils literal notranslate"><span class="pre">cdn_notifications</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns.html"><code class="docutils literal notranslate"><span class="pre">cdns</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_capacity.html"><code class="docutils literal notranslate"><span class="pre">cdns/capacity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_dnsseckeys_generate.html"><code class="docutils literal notranslate"><span class="pre">cdns/dnsseckeys/generate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_dnsseckeys_refresh.html"><code class="docutils literal notranslate"><span class="pre">cdns/dnsseckeys/refresh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_domains.html"><code class="docutils literal notranslate"><span class="pre">cdns/domains</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_health.html"><code class="docutils literal notranslate"><span class="pre">cdns/health</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_id.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_id_queue_update.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{ID}}/queue_update</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_configs_monitoring.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/configs/monitoring</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_dnsseckeys_ksk_generate.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/dnsseckeys/ksk/generate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_federations.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/federations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_federations_id.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/federations/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_health.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/health</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_name.html"><code class="docutils literal notranslate"><span class="pre">cdns/name/{{name}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_name_dnsseckeys.html"><code class="docutils literal notranslate"><span class="pre">cdns/name/{{name}}/dnsseckeys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_name_sslkeys.html"><code class="docutils literal notranslate"><span class="pre">cdns/name/{{name}}/sslkeys</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/snapshot</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get"><code class="docutils literal notranslate"><span class="pre">GET</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_name_snapshot_new.html"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/snapshot/new</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cdns_routing.html"><code class="docutils literal notranslate"><span class="pre">cdns/routing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistenthash.html"><code class="docutils literal notranslate"><span class="pre">consistenthash</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordinates.html"><code class="docutils literal notranslate"><span class="pre">coordinates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_stats.html"><code class="docutils literal notranslate"><span class="pre">current_stats</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbdump.html"><code class="docutils literal notranslate"><span class="pre">dbdump</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservice_request_comments.html"><code class="docutils literal notranslate"><span class="pre">deliveryservice_request_comments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservice_requests.html"><code class="docutils literal notranslate"><span class="pre">deliveryservice_requests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservice_requests_id_assign.html"><code class="docutils literal notranslate"><span class="pre">deliveryservice_requests/{{ID}}/assign</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservice_requests_id_status.html"><code class="docutils literal notranslate"><span class="pre">deliveryservice_requests/{{ID}}/status</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservice_stats.html"><code class="docutils literal notranslate"><span class="pre">deliveryservice_stats</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_capacity.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/capacity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_health.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/health</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_regexes.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/regexes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_regexes_rid.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/regexes/{{rID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_routing.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/routing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_safe.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/safe</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_servers.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/servers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_servers_eligible.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/servers/eligible</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_id_urlkeys.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{ID}}/urlkeys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_regexes.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices_regexes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_sslkeys_add.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/sslkeys/add</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_sslkeys_generate.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/sslkeys/generate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_sslkeys_generate_acme.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/sslkeys/generate/acme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_sslkeys_generate_letsencrypt.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/sslkeys/generate/letsencrypt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_servers.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{xml_id}}/servers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_urisignkeys.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/{{xml_id}}/urisignkeys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_xmlid_sslkeys.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/xmlId/{{XMLID}}/sslkeys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_xmlid_sslkeys_renew.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/xmlId/{{XMLID}}/sslkeys/renew</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_xmlid_urlkeys.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/xmlId/{{xmlid}}/urlkeys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_xmlid_urlkeys_copyfromxmlid_copyfromxmlid.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/xmlId/{{xml_id}}/urlkeys/copyFromXmlId/{{copyFrom_xml_id}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryservices_xmlid_xmlid_urlkeys_generate.html"><code class="docutils literal notranslate"><span class="pre">deliveryservices/xmlId/{{xml_id}}/urlkeys/generate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryserviceserver.html"><code class="docutils literal notranslate"><span class="pre">deliveryserviceserver</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="deliveryserviceserver_dsid_serverid.html"><code class="docutils literal notranslate"><span class="pre">deliveryserviceserver/{{DSID}}/{{serverID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="divisions.html"><code class="docutils literal notranslate"><span class="pre">divisions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="divisions_id.html"><code class="docutils literal notranslate"><span class="pre">divisions/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federation_resolvers.html"><code class="docutils literal notranslate"><span class="pre">federation_resolvers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations.html"><code class="docutils literal notranslate"><span class="pre">federations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_all.html"><code class="docutils literal notranslate"><span class="pre">federations/all</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_id_deliveryservices.html"><code class="docutils literal notranslate"><span class="pre">federations/{{ID}}/deliveryservices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_id_deliveryservices_id.html"><code class="docutils literal notranslate"><span class="pre">federations/{{ID}}/deliveryservices/{{dsID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_id_federation_resolvers.html"><code class="docutils literal notranslate"><span class="pre">federations/{{ID}}/federation_resolvers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_id_users.html"><code class="docutils literal notranslate"><span class="pre">federations/{{ID}}/users</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations_id_users_id.html"><code class="docutils literal notranslate"><span class="pre">federations/{{ID}}/users/{{userID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="isos.html"><code class="docutils literal notranslate"><span class="pre">isos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="jobs.html"><code class="docutils literal notranslate"><span class="pre">jobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="letsencrypt_autorenew.html"><code class="docutils literal notranslate"><span class="pre">letsencrypt/autorenew</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="letsencrypt_dnsrecords.html"><code class="docutils literal notranslate"><span class="pre">letsencrypt/dnsrecords</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="logs.html"><code class="docutils literal notranslate"><span class="pre">logs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="logs_newcount.html"><code class="docutils literal notranslate"><span class="pre">logs/newcount</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiple_servers_capabilities.html"><code class="docutils literal notranslate"><span class="pre">multiple_servers_capabilities</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_ci_configuration.html"><code class="docutils literal notranslate"><span class="pre">OC/CI/configuration</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_ci_configuration_host.html"><code class="docutils literal notranslate"><span class="pre">OC/CI/configuration/{{host}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_ci_configuration_request_id_approved.html"><code class="docutils literal notranslate"><span class="pre">OC/CI/configuration/request/{{id}}/{{approved}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_ci_configuration_requests.html"><code class="docutils literal notranslate"><span class="pre">OC/CI/configuration/requests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_fci_advertisement.html"><code class="docutils literal notranslate"><span class="pre">OC/FCI/advertisement</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="origins.html"><code class="docutils literal notranslate"><span class="pre">origins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="osversions.html"><code class="docutils literal notranslate"><span class="pre">osversions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameterprofile.html"><code class="docutils literal notranslate"><span class="pre">parameterprofile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters_id.html"><code class="docutils literal notranslate"><span class="pre">parameters/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="phys_locations.html"><code class="docutils literal notranslate"><span class="pre">phys_locations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="phys_locations_id.html"><code class="docutils literal notranslate"><span class="pre">phys_locations/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ping.html"><code class="docutils literal notranslate"><span class="pre">ping</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html"><code class="docutils literal notranslate"><span class="pre">plugins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profileparameter.html"><code class="docutils literal notranslate"><span class="pre">profileparameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profileparameters.html"><code class="docutils literal notranslate"><span class="pre">profileparameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profileparameters_profileID_parameterID.html"><code class="docutils literal notranslate"><span class="pre">profileparameters/{{profileID}}/{{parameterID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles.html"><code class="docutils literal notranslate"><span class="pre">profiles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_id.html"><code class="docutils literal notranslate"><span class="pre">profiles/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_id_export.html"><code class="docutils literal notranslate"><span class="pre">profiles/{{ID}}/export</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_id_parameters.html"><code class="docutils literal notranslate"><span class="pre">profiles/{{ID}}/parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_import.html"><code class="docutils literal notranslate"><span class="pre">profiles/import</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_name_name_copy_copy.html"><code class="docutils literal notranslate"><span class="pre">profiles/name/{{name}}/copy/{{copy}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="profiles_name_name_parameters.html"><code class="docutils literal notranslate"><span class="pre">profiles/name/{{name}}/parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="regions.html"><code class="docutils literal notranslate"><span class="pre">regions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="regions_id.html"><code class="docutils literal notranslate"><span class="pre">regions/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="roles.html"><code class="docutils literal notranslate"><span class="pre">roles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="server_capabilities.html"><code class="docutils literal notranslate"><span class="pre">server_capabilities</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="server_server_capabilities.html"><code class="docutils literal notranslate"><span class="pre">server_server_capabilities</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servercheck.html"><code class="docutils literal notranslate"><span class="pre">servercheck</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servercheck_extensions.html"><code class="docutils literal notranslate"><span class="pre">servercheck/extensions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servercheck_extensions_id.html"><code class="docutils literal notranslate"><span class="pre">servercheck/extensions/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers.html"><code class="docutils literal notranslate"><span class="pre">servers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_hostname_update.html"><code class="docutils literal notranslate"><span class="pre">servers/{{HostName-Or-ID}}/update</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_hostname_update_status.html"><code class="docutils literal notranslate"><span class="pre">servers/{{hostname}}/update_status</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_id.html"><code class="docutils literal notranslate"><span class="pre">servers/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_id_deliveryservices.html"><code class="docutils literal notranslate"><span class="pre">servers/{{ID}}/deliveryservices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_id_queue_update.html"><code class="docutils literal notranslate"><span class="pre">servers/{{ID}}/queue_update</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servers_id_status.html"><code class="docutils literal notranslate"><span class="pre">servers/{{ID}}/status</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_categories.html"><code class="docutils literal notranslate"><span class="pre">service_categories</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_categories_name.html"><code class="docutils literal notranslate"><span class="pre">service_categories/{{name}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapshot.html"><code class="docutils literal notranslate"><span class="pre">snapshot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sslkey_expirations.html"><code class="docutils literal notranslate"><span class="pre">sslkey_expirations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="staticdnsentries.html"><code class="docutils literal notranslate"><span class="pre">staticdnsentries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stats_summary.html"><code class="docutils literal notranslate"><span class="pre">stats_summary</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statuses.html"><code class="docutils literal notranslate"><span class="pre">statuses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="statuses_id.html"><code class="docutils literal notranslate"><span class="pre">statuses/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="steering.html"><code class="docutils literal notranslate"><span class="pre">steering</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="steering_id_targets.html"><code class="docutils literal notranslate"><span class="pre">steering/{{ID}}/targets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="steering_id_targets_targetID.html"><code class="docutils literal notranslate"><span class="pre">steering/{{ID}}/targets/{{targetID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_info.html"><code class="docutils literal notranslate"><span class="pre">system/info</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenants.html"><code class="docutils literal notranslate"><span class="pre">tenants</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenants_id.html"><code class="docutils literal notranslate"><span class="pre">tenants/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="topologies.html"><code class="docutils literal notranslate"><span class="pre">topologies</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="topologies_name_queue_update.html"><code class="docutils literal notranslate"><span class="pre">topologies/{{name}}/queue_update</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html"><code class="docutils literal notranslate"><span class="pre">types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types_id.html"><code class="docutils literal notranslate"><span class="pre">types/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_current.html"><code class="docutils literal notranslate"><span class="pre">user/current</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_login.html"><code class="docutils literal notranslate"><span class="pre">user/login</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_login_oauth.html"><code class="docutils literal notranslate"><span class="pre">user/login/oauth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_login_token.html"><code class="docutils literal notranslate"><span class="pre">user/login/token</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_logout.html"><code class="docutils literal notranslate"><span class="pre">user/logout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_reset_password.html"><code class="docutils literal notranslate"><span class="pre">user/reset_password</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="users.html"><code class="docutils literal notranslate"><span class="pre">users</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="users_id.html"><code class="docutils literal notranslate"><span class="pre">users/{{ID}}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="users_register.html"><code class="docutils literal notranslate"><span class="pre">users/register</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vault_ping.html"><code class="docutils literal notranslate"><span class="pre">vault/ping</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Traffic Ops API</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/snapshot</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/v5/cdns_name_snapshot.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cdns-name-snapshot">
+<span id="to-api-cdns-name-snapshot"></span><h1><code class="docutils literal notranslate"><span class="pre">cdns/{{name}}/snapshot</span></code><a class="headerlink" href="#cdns-name-snapshot" title="Permalink to this heading"></a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This page is a stub! Much of it may be missing or just downright wrong - it needs a lot of love from people with the domain knowledge required to update it.</p>
+</div>
+<section id="get">
+<h2><code class="docutils literal notranslate"><span class="pre">GET</span></code><a class="headerlink" href="#get" title="Permalink to this heading"></a></h2>
+<p>Retrieves the <em>current</em> <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> for a CDN, which represents the current <em>operating state</em> of the CDN, <strong>not</strong> the current <em>configuration</em> of the CDN. The contents of this <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> are currently used by Traffic Monitor and Traffic Router.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Auth. Required<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Yes</p>
+</dd>
+<dt class="field-even">Roles Required<span class="colon">:</span></dt>
+<dd class="field-even"><p>“admin” or “operations”</p>
+</dd>
+<dt class="field-odd">Permissions Required<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CDN-SNAPSHOT:READ</p>
+</dd>
+<dt class="field-even">Response Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Object</p>
+</dd>
+</dl>
+<section id="request-structure">
+<h3>Request Structure<a class="headerlink" href="#request-structure" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 477 </span><span class="caption-text">Request Path Parameters</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>The name of the CDN for which a <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> shall be returned</p></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">#1180 </span><span class="caption-text">Request Example</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/5.0/cdns/CDN-in-a-Box/snapshot</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="o">:</span> <span class="l">python-requests/2.23.0</span>
+<span class="na">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">*/*</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">keep-alive</span>
+<span class="na">Cookie</span><span class="o">:</span> <span class="l">mojolicious=...</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="response-structure">
+<h3>Response Structure<a class="headerlink" href="#response-structure" title="Permalink to this heading"></a></h3>
+<dl class="field-list">
+<dt class="field-odd">config<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing basic configurations on the actual CDN object</p>
+<dl class="field-list">
+<dt class="field-odd">api.cache-control.max-age<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer which specifies the value of <code class="docutils literal notranslate"><span class="pre">max-age</span></code> in the <em class="mailheader">Cache-Control</em> header of some HTTP responses, likely the <a class="reference internal" href="../../development/traffic_router/traffic_router_api.html#tr-api"><span class="std std-ref">Traffic Router API</span></a> responses</p>
+</dd>
+<dt class="field-even">certificates.polling.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in milliseconds, on which other Traffic Control components should check for updated SSL certificates</p>
+</dd>
+<dt class="field-odd">consistent.dns.routing<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing a boolean which indicates whether DNS routing will use a consistent hashing method or “round-robin”</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>The “round-robin” method will be used to define DNS routing</p>
+</dd>
+<dt>“true”</dt><dd><p>A consistent hashing method will be used to define DNS routing</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">coveragezone.polling.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in milliseconds, on which Traffic Routers should check for a new Coverage Zone file</p>
+</dd>
+<dt class="field-odd">coveragezone.polling.url<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL where a <a class="reference internal" href="../../glossary.html#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a> may be requested by Traffic Routers</p>
+</dd>
+<dt class="field-even">dnssec.dynamic.response.expiration<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a number and unit suffix that specifies the length of time for which dynamic responses to DNSSEC lookup queries should remain valid</p>
+</dd>
+<dt class="field-odd">dnssec.dynamic.concurrencylevel<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An integer that defines the size of the concurrency level (threads) of the Guava cache used by ZoneManager to store zone material</p>
+</dd>
+<dt class="field-even">dnssec.dynamic.initialcapacity<span class="colon">:</span></dt>
+<dd class="field-even"><p>An integer that defines the initial size of the Guava cache, default is 10000. Too low of a value can lead to expensive resizing</p>
+</dd>
+<dt class="field-odd">dnssec.init.timeout<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An integer that defines the number of minutes to allow for zone generation, this bounds the zone priming activity</p>
+</dd>
+<dt class="field-even">dnssec.enabled<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string that tells whether or not the CDN uses DNSSEC; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>DNSSEC is not used within this CDN</p>
+</dd>
+<dt>“true”</dt><dd><p>DNSSEC is used within this CDN</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">domain_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string that is the <abbr title="Top-Level Domain">TLD</abbr> served by the CDN</p>
+</dd>
+<dt class="field-even">federationmapping.polling.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in milliseconds, on which other Traffic Control components should check for new federation mappings</p>
+</dd>
+<dt class="field-odd">federationmapping.polling.url<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL where Traffic Control components can request federation mappings</p>
+</dd>
+<dt class="field-even">geolocation.polling.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in milliseconds, on which other Traffic Control components should check for new IP-to-geographic-location mapping databases</p>
+</dd>
+<dt class="field-odd">geolocation.polling.url<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL where Traffic Control components can request IP-to-geographic-location mapping database files</p>
+</dd>
+<dt class="field-even">keystore.maintenance.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in seconds, on which Traffic Routers should refresh their zone caches</p>
+</dd>
+<dt class="field-odd">neustar.polling.interval<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer which specifies the interval, in seconds, on which other Traffic Control components should check for new “Neustar” databases</p>
+</dd>
+<dt class="field-even">neustar.polling.url<span class="colon">:</span></dt>
+<dd class="field-even"><p>The URL where Traffic Control components can request “Neustar” databases</p>
+</dd>
+<dt class="field-odd">soa<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object defining the <abbr title="Start of Authority">SOA</abbr> for the CDN’s <abbr title="Top-Level Domain">TLD</abbr> (defined in <code class="docutils literal notranslate"><span class="pre">domain_name</span></code>)</p>
+<dl class="field-list">
+<dt class="field-odd">admin<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the administrator for this zone - i.e. the RNAME</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This rarely represents a proper email address, unfortunately.</p>
+</div>
+</dd>
+<dt class="field-even">expire<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer that sets the number of seconds after which secondary name servers should stop answering requests for this zone if the master does not respond</p>
+</dd>
+<dt class="field-odd">minimum<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer that sets the <abbr title="Time To Live">TTL</abbr> - in seconds - of the record for the purpose of negative caching</p>
+</dd>
+<dt class="field-even">refresh<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer that sets the number of seconds after which secondary name servers should query the master for the <abbr title="Start of Authority">SOA</abbr> record, to detect zone changes</p>
+</dd>
+<dt class="field-odd">retry<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer that sets the number of seconds after which secondary name servers should retry to request the serial number from the master if the master does not respond</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1035.html"><strong>RFC 1035</strong></a> dictates that this should always be less than <code class="docutils literal notranslate"><span class="pre">refresh</span></code>.</p>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/SOA_record">The Wikipedia page on Start of Authority records</a>.</p>
+</div>
+</dd>
+<dt class="field-even">steeringmapping.polling.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer which specifies the interval, in milliseconds, on which Traffic Control components should check for new steering mappings</p>
+</dd>
+<dt class="field-odd">ttls<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object that contains keys which are types of DNS records that have values which are strings containing integers that specify the time for which a response to the specific type of record request should remain valid</p>
+</dd>
+<dt class="field-even">zonemanager.cache.maintenance.interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>A configuration option for the ZoneManager Java class of Traffic Router</p>
+</dd>
+<dt class="field-odd">zonemanager.threadpool.scale<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A configuration option for the ZoneManager Java class of Traffic Router</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">contentRouters<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing keys which are the (short) hostnames of the Traffic Routers that serve requests for <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> in this CDN</p>
+<dl class="field-list">
+<dt class="field-odd">api.port<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing the port number on which the <a class="reference internal" href="../../development/traffic_router/traffic_router_api.html#tr-api"><span class="std std-ref">Traffic Router API</span></a> is served by this Traffic Router via HTTP</p>
+</dd>
+<dt class="field-even">secure.api.port<span class="colon">:</span></dt>
+<dd class="field-even"><p>An optionally present string containing the port number on which the <a class="reference internal" href="../../development/traffic_router/traffic_router_api.html#tr-api"><span class="std std-ref">Traffic Router API</span></a> is served by this Traffic Router via HTTPS</p>
+</dd>
+<dt class="field-odd">fqdn<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This Traffic Router’s <abbr title="Fully Qualified Domain Name">FQDN</abbr></p>
+</dd>
+<dt class="field-even">httpsPort<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port number on which this Traffic Router listens for incoming HTTPS requests</p>
+</dd>
+<dt class="field-odd">ip<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This Traffic Router’s IPv4 address</p>
+</dd>
+<dt class="field-even">ip6<span class="colon">:</span></dt>
+<dd class="field-even"><p>This Traffic Router’s IPv6 address</p>
+</dd>
+<dt class="field-odd">location<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string which is the <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> to which this Traffic Router belongs</p>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port number on which this Traffic Router listens for incoming HTTP requests</p>
+</dd>
+<dt class="field-odd">profile<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by this Traffic Router</p>
+</dd>
+<dt class="field-even">status<span class="colon">:</span></dt>
+<dd class="field-even"><p>The health status of this Traffic Router</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">contentServers<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing keys which are the (short) hostnames of the <a class="reference internal" href="../../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> in the CDN; the values corresponding to those keys are routing information for said servers</p>
+<dl class="field-list">
+<dt class="field-odd">cacheGroup<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string that is the <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> to which the server belongs</p>
+</dd>
+<dt class="field-even">capabilities<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array of this <a class="reference internal" href="../../glossary.html#term-Cache-Server"><span class="xref std std-term">Cache Server</span></a>’s <a class="reference internal" href="../../glossary.html#term-Server-Capabilities"><span class="xref std std-term">Server Capabilities</span></a>. If the Cache Server has no Server Capabilities, this field is omitted.</p>
+</dd>
+<dt class="field-odd">deliveryServices<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing keys which are the names of <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> to which this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> is assigned; the values corresponding to those keys are arrays of <abbr title="Fully Qualified Domain Names">FQDNs</abbr> that resolve to this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only <a class="reference internal" href="../../glossary.html#term-Edge-tier-cache-servers"><span class="xref std std-term">Edge-tier cache servers</span></a> can be assigned to a <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>, and therefore this field will only be present when <code class="docutils literal notranslate"><span class="pre">type</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;EDGE&quot;</span></code>.</p>
+</div>
+</dd>
+<dt class="field-even">fqdn<span class="colon">:</span></dt>
+<dd class="field-even"><p>The server’s <abbr title="Fully Qualified Domain Name">FQDN</abbr></p>
+</dd>
+<dt class="field-odd">hashCount<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of servers to be placed into a single “hash ring” in Traffic Router</p>
+</dd>
+<dt class="field-even">hashId<span class="colon">:</span></dt>
+<dd class="field-even"><p>A unique string to be used as the key for hashing servers - as of version 3.0.0 of Traffic Control, this is always the same as the server’s (short) hostname and only still exists for legacy compatibility reasons</p>
+</dd>
+<dt class="field-odd">httpsPort<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The port on which the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> listens for incoming HTTPS requests</p>
+</dd>
+<dt class="field-even">interfaceName<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the main network interface device used by this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-odd">ip6<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The server’s IPv6 address</p>
+</dd>
+<dt class="field-even">ip<span class="colon">:</span></dt>
+<dd class="field-even"><p>The server’s IPv4 address</p>
+</dd>
+<dt class="field-odd">locationId<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This field is exactly the same as <code class="docutils literal notranslate"><span class="pre">cacheGroup</span></code> and only exists for legacy compatibility reasons</p>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port on which this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> listens for incoming HTTP requests</p>
+</dd>
+<dt class="field-odd">profile<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by the <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a></p>
+</dd>
+<dt class="field-even">routingDisabled<span class="colon">:</span></dt>
+<dd class="field-even"><p>An integer representing the boolean concept of whether or not Traffic Routers should route client traffic to this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>; one of:</p>
+<dl class="simple">
+<dt>0</dt><dd><p>Do not route traffic to this server</p>
+</dd>
+<dt>1</dt><dd><p>Route traffic to this server normally</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>’s status</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-even">type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of this <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a>; which ought to be one of (but in practice need not be in certain special circumstances):</p>
+<dl class="simple">
+<dt>EDGE</dt><dd><p>This is an <a class="reference internal" href="../../glossary.html#term-Edge-tier-cache-server"><span class="xref std std-term">Edge-tier cache server</span></a></p>
+</dd>
+<dt>MID</dt><dd><p>This is a <a class="reference internal" href="../../glossary.html#term-Mid-tier-cache-server"><span class="xref std std-term">Mid-tier cache server</span></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">deliveryServices<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing keys which are the <a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_ids</span></a> of all of the <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> within the CDN</p>
+<dl class="field-list">
+<dt class="field-odd">anonymousBlockingEnabled<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing a boolean that tells whether or not <a class="reference internal" href="../../overview/delivery_services.html#ds-anonymous-blocking"><span class="std std-ref">Anonymous Blocking</span></a> is set on this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>; one of:</p>
+<dl class="simple">
+<dt>“true”</dt><dd><p>Anonymized IP addresses are blocked by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt>“false”</dt><dd><p>Anonymized IP addresses are not blocked by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../admin/quick_howto/anonymous_blocking.html#anonymous-blocking-qht"><span class="std std-ref">Configure Anonymous Blocking</span></a></p>
+</div>
+</dd>
+<dt class="field-even">consistentHashQueryParameters<span class="colon">:</span></dt>
+<dd class="field-even"><p>A set of query parameters that Traffic Router should consider when determining a consistent hash for a given client request.</p>
+</dd>
+<dt class="field-odd">consistentHashRegex<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An optional regular expression that will ensure clients are consistently routed to a <a class="reference internal" href="../../glossary.html#term-cache-server"><span class="xref std std-term">cache server</span></a> based on matches to it.</p>
+</dd>
+<dt class="field-even">coverageZoneOnly<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that tells whether or not this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> routes traffic based only on its <a class="reference internal" href="../../glossary.html#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/delivery_services.html#ds-geo-limit"><span class="std std-ref">Geo Limit</span></a></p>
+</div>
+</dd>
+<dt class="field-odd">deepCachingType<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string that defines the <a class="reference internal" href="../../overview/delivery_services.html#ds-deep-caching"><span class="std std-ref">Deep Caching</span></a> setting of this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt class="field-even">dispersion<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object describing the “dispersion” - or number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> within a single <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> across which the same content is spread - within the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+<dl class="field-list">
+<dt class="field-odd">limit<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in which the response to a single request URL will be stored</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this is greater than the number of <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> in the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> chosen to service the request, then content will be spread across all of them. That is, it causes no problems.</p>
+</div>
+</dd>
+<dt class="field-even">shuffled<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that tells whether the <a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> chosen for content dispersion are chosen randomly or based on a consistent hash of the request URL; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p><a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> will be chosen consistently</p>
+</dd>
+<dt>“true”</dt><dd><p><a class="reference internal" href="../../glossary.html#term-cache-servers"><span class="xref std std-term">cache servers</span></a> will be chosen at random</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">domains<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of domains served by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt class="field-even">ecsEnabled<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean from <a class="reference internal" href="../../overview/delivery_services.html#ds-ecs"><span class="std std-ref">EDNS0 Client Subnet Enabled</span></a> that tells whether EDNS0 client subnet is enabled on this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>EDNS0 client subnet is not enabled on this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>EDNS0 client subnet is enabled on this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">geolocationProvider<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of a provider for IP-to-geographic-location mapping services - currently the only valid value is <code class="docutils literal notranslate"><span class="pre">&quot;maxmindGeolocationService&quot;</span></code></p>
+</dd>
+<dt class="field-even">ip6RoutingEnabled<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that defines the <a class="reference internal" href="../../overview/delivery_services.html#ds-ipv6-routing"><span class="std std-ref">IPv6 Routing Enabled</span></a> setting for this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>IPv6 traffic will not be routed by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>IPv6 traffic will be routed by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">matchList<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of methods used by Traffic Router to determine whether or not a request can be serviced by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+<dl class="field-list">
+<dt class="field-odd">pattern<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A regular expression - the use of this pattern is dependent on the <code class="docutils literal notranslate"><span class="pre">type</span></code> field (backslashes are escaped)</p>
+</dd>
+<dt class="field-even">setNumber<span class="colon">:</span></dt>
+<dd class="field-even"><p>An integral, unique identifier for the set of types to which the <code class="docutils literal notranslate"><span class="pre">type</span></code> field belongs</p>
+</dd>
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Type"><span class="xref std std-term">Type</span></a> of match performed using <code class="docutils literal notranslate"><span class="pre">pattern</span></code> to determine whether or not to use this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+<dl class="simple">
+<dt>HOST_REGEXP</dt><dd><p>Use the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> if <code class="docutils literal notranslate"><span class="pre">pattern</span></code> matches the <em class="mailheader">Host</em> HTTP header of an HTTP request, or the name requested for resolution in a DNS request</p>
+</dd>
+<dt>HEADER_REGEXP</dt><dd><p>Use the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> if <code class="docutils literal notranslate"><span class="pre">pattern</span></code> matches an HTTP header (both the name and value) in an HTTP request<a class="footnote-reference brackets" href="#httponly" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt>PATH_REGEXP</dt><dd><p>Use the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> if <code class="docutils literal notranslate"><span class="pre">pattern</span></code> matches the request path of this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s URL<a class="footnote-reference brackets" href="#httponly" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt>STEERING_REGEXP</dt><dd><p>Use the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> if <code class="docutils literal notranslate"><span class="pre">pattern</span></code> matches the <a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_id</span></a> of one of this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s “Steering” target <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">missLocation<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object representing the default geographic coordinates to use for a client when lookup of their IP has failed in both the <a class="reference internal" href="../../glossary.html#term-Coverage-Zone-File"><span class="xref std std-term">Coverage Zone File</span></a> (and/or possibly the <a class="reference internal" href="../../glossary.html#term-Deep-Coverage-Zone-File"><span class="xref std std-term">Deep Coverage Zone File</span></a>) and the IP-to-geographic-location database</p>
+<dl class="field-list simple">
+<dt class="field-odd">lat<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Geographic latitude as a floating point number</p>
+</dd>
+<dt class="field-even">long<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geographic longitude as a floating point number</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">protocol<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object that describes how the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> ought to handle HTTP requests both with and without TLS encryption</p>
+<dl class="field-list">
+<dt class="field-odd">acceptHttps<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing a boolean that tells whether HTTPS requests should be normally serviced by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>Refuse to service HTTPS requests</p>
+</dd>
+<dt>“true”</dt><dd><p>Service HTTPS requests normally</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">redirectToHttps<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that tells whether HTTP requests ought to be re-directed to use HTTPS; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>Do not redirect unencrypted traffic; service it normally</p>
+</dd>
+<dt>“true”</dt><dd><p>Respond to HTTP requests with instructions to use HTTPS instead</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/delivery_services.html#ds-protocol"><span class="std std-ref">Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-even">regionalGeoBlocking<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that defines the <a class="reference internal" href="../../overview/delivery_services.html#ds-regionalgeo"><span class="std std-ref">Regional Geoblocking</span></a> setting of this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>Regional Geographic Blocking is not used by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>Regional Geographic Blocking is used by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../admin/quick_howto/regionalgeo.html#regionalgeo-qht"><span class="std std-ref">Configure Regional Geo-blocking (RGB)</span></a></p>
+</div>
+</dd>
+<dt class="field-odd">requiredCapabilities<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of this Delivery Service’s <a class="reference internal" href="../../glossary.html#term-Delivery-Service-required-capabilities"><span class="xref std std-term">required capabilities</span></a>. If there are no required capabilities, this field is omitted.</p>
+</dd>
+<dt class="field-even">routingName<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string that is this <a class="reference internal" href="../../overview/delivery_services.html#ds-routing-name"><span class="std std-ref">Delivery Service’s Routing Name</span></a></p>
+</dd>
+<dt class="field-odd">soa<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object defining the <abbr title="Start of Authority">SOA</abbr> record for the <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>’s <abbr title="Top-Level Domains">TLDs</abbr> (defined in <code class="docutils literal notranslate"><span class="pre">domains</span></code>)</p>
+<dl class="field-list">
+<dt class="field-odd">admin<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the administrator for this zone - i.e. the RNAME</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This rarely represents a proper email address, unfortunately.</p>
+</div>
+</dd>
+<dt class="field-even">expire<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer that sets the number of seconds after which secondary name servers should stop answering requests for this zone if the master does not respond</p>
+</dd>
+<dt class="field-odd">minimum<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer that sets the <abbr title="Time To Live">TTL</abbr> - in seconds - of the record for the purpose of negative caching</p>
+</dd>
+<dt class="field-even">refresh<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing an integer that sets the number of seconds after which secondary name servers should query the master for the <abbr title="Start of Authority">SOA</abbr> record, to detect zone changes</p>
+</dd>
+<dt class="field-odd">retry<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing an integer that sets the number of seconds after which secondary name servers should retry to request the serial number from the master if the master does not respond</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1035.html"><strong>RFC 1035</strong></a> dictates that this should always be less than <code class="docutils literal notranslate"><span class="pre">refresh</span></code>.</p>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/SOA_record">The Wikipedia page on Start of Authority records</a>.</p>
+</div>
+</dd>
+<dt class="field-even">sslEnabled<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string containing a boolean that tells whether this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> uses SSL; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>SSL is not used by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>SSL is used by this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/delivery_services.html#ds-protocol"><span class="std std-ref">Protocol</span></a></p>
+</div>
+</dd>
+<dt class="field-odd">topology<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the <a class="reference internal" href="../../glossary.html#term-Topology"><span class="xref std std-term">Topology</span></a> that this <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> is assigned to. If the Delivery Service is not assigned to a topology, this field is omitted.</p>
+</dd>
+<dt class="field-even">ttls<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object that contains keys which are types of DNS records that have values which are strings containing integers that specify the time for which a response to the specific type of record request should remain valid</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This overrides <code class="docutils literal notranslate"><span class="pre">config.ttls</span></code>.</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">edgeLocations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing keys which are the names of Edge-Tier <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> within the CDN</p>
+<dl class="field-list">
+<dt class="field-odd">backupLocations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object that describes this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-fallbacks"><span class="std std-ref">Cache Group’s Fallbacks</span></a></p>
+<dl class="field-list">
+<dt class="field-odd">fallbackToClosest<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing a boolean which defines the <a class="reference internal" href="../../overview/cache_groups.html#cache-group-fallback-to-closest"><span class="std std-ref">Fallback to Closest</span></a> behavior of this <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>Do not fall back on the closest available <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>Fall back on the closest available <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">list<span class="colon">:</span></dt>
+<dd class="field-even"><p>If this <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> has any <a class="reference internal" href="../../overview/cache_groups.html#cache-group-fallbacks"><span class="std std-ref">Fallbacks</span></a>, this key will appear and will be an array of those <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Cache Groups’ Names</span></a></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">latitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>A floating point number that defines this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-latitude"><span class="std std-ref">Cache Group’s Latitude</span></a></p>
+</dd>
+<dt class="field-odd">localizationMethods<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of strings that represents this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-localization-methods"><span class="std std-ref">Cache Group’s Localization Methods</span></a></p>
+</dd>
+<dt class="field-even">longitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>A floating point number that defines this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-longitude"><span class="std std-ref">Cache Group’s Longitude</span></a></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">monitors<span class="colon">:</span></dt>
+<dd class="field-even"><p>An object containing keys which are the (short) hostnames of Traffic Monitors within this CDN</p>
+<dl class="field-list">
+<dt class="field-odd">fqdn<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <abbr title="Fully Qualified Domain Name">FQDN</abbr> of this Traffic Monitor</p>
+</dd>
+<dt class="field-even">httpsPort<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port number on which this Traffic Monitor listens for incoming HTTPS requests</p>
+</dd>
+<dt class="field-odd">ip6<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This Traffic Monitor’s IPv6 address</p>
+</dd>
+<dt class="field-even">ip<span class="colon">:</span></dt>
+<dd class="field-even"><p>This Traffic Monitor’s IPv4 address</p>
+</dd>
+<dt class="field-odd">location<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string which is the <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a> to which this Traffic Monitor belongs</p>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>The port number on which this Traffic Monitor listens for incoming HTTP requests</p>
+</dd>
+<dt class="field-odd">profile<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string which is the <a class="reference internal" href="../../overview/profiles_and_parameters.html#profile-name"><span class="std std-ref">Name</span></a> of the <a class="reference internal" href="../../glossary.html#term-Profile"><span class="xref std std-term">Profile</span></a> used by this Traffic Monitor</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For legacy reasons, this must always start with “RASCAL-“.</p>
+</div>
+</dd>
+<dt class="field-even">status<span class="colon">:</span></dt>
+<dd class="field-even"><p>The health status of this Traffic Monitor</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../overview/traffic_monitor.html#health-proto"><span class="std std-ref">Health Protocol</span></a></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">stats<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing metadata information regarding the CDN</p>
+<dl class="field-list simple">
+<dt class="field-odd">CDN_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of this CDN</p>
+</dd>
+<dt class="field-even">date<span class="colon">:</span></dt>
+<dd class="field-even"><p>The UNIX epoch timestamp date in the Traffic Ops server’s own timezone</p>
+</dd>
+<dt class="field-odd">tm_host<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <abbr title="Fully Qualified Domain Name">FQDN</abbr> of the Traffic Ops server</p>
+</dd>
+<dt class="field-even">tm_user<span class="colon">:</span></dt>
+<dd class="field-even"><p>The username of the currently logged-in user</p>
+</dd>
+<dt class="field-odd">tm_version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The full version number of the Traffic Ops server, including release number, git commit hash, and supported Enterprise Linux version</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">topologies<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array of <a class="reference internal" href="../../glossary.html#term-Topologies"><span class="xref std std-term">Topologies</span></a> where each key is the name of that Topology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">nodes<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of the names of the <a class="reference internal" href="../../glossary.html#term-Edge-Tier"><span class="xref std std-term">Edge-Tier</span></a> <a class="reference internal" href="../../glossary.html#term-Cache-Groups"><span class="xref std std-term">Cache Groups</span></a> in this <a class="reference internal" href="../../glossary.html#term-Topology"><span class="xref std std-term">Topology</span></a>. <a class="reference internal" href="../../glossary.html#term-Mid-Tier"><span class="xref std std-term">Mid-Tier</span></a> Cache Groups in the topology are not included.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">trafficRouterLocations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object containing keys which are the <a class="reference internal" href="../../overview/cache_groups.html#cache-group-name"><span class="std std-ref">names of Cache Groups</span></a> within the CDN which contain Traffic Routers</p>
+<dl class="field-list">
+<dt class="field-odd">backupLocations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An object that describes this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-fallbacks"><span class="std std-ref">Cache Group’s Fallbacks</span></a></p>
+<dl class="field-list">
+<dt class="field-odd">fallbackToClosest<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string containing a boolean which defines this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-fallback-to-closest"><span class="std std-ref">Cache Group’s Fallback to Closest</span></a> setting; one of:</p>
+<dl class="simple">
+<dt>“false”</dt><dd><p>Do not fall back on the closest available <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+<dt>“true”</dt><dd><p>Fall back on the closest available <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">latitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>A floating point number that defines this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-latitude"><span class="std std-ref">Cache Group’s Latitude</span></a></p>
+</dd>
+<dt class="field-odd">localizationMethods<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of strings that represents this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-localization-methods"><span class="std std-ref">Cache Group’s Localization Methods</span></a></p>
+</dd>
+<dt class="field-even">longitude<span class="colon">:</span></dt>
+<dd class="field-even"><p>A floating point number that defines this <a class="reference internal" href="../../overview/cache_groups.html#cache-group-longitude"><span class="std std-ref">Cache Group’s Longitude</span></a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">#1181 </span><span class="caption-text">Response Example</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Access-Control-Allow-Credentials</span><span class="o">:</span> <span class="l">true</span>
+<span class="na">Access-Control-Allow-Headers</span><span class="o">:</span> <span class="l">Origin, X-Requested-With, Content-Type, Accept, Set-Cookie, Cookie</span>
+<span class="na">Access-Control-Allow-Methods</span><span class="o">:</span> <span class="l">POST,GET,OPTIONS,PUT,DELETE</span>
+<span class="na">Access-Control-Allow-Origin</span><span class="o">:</span> <span class="l">*</span>
+<span class="na">Content-Encoding</span><span class="o">:</span> <span class="l">gzip</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Set-Cookie</span><span class="o">:</span> <span class="l">mojolicious=...; Path=/; Expires=Wed, 27 May 2020 18:33:17 GMT; Max-Age=3600; HttpOnly</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept-Encoding</span>
+<span class="na">Whole-Content-Sha512</span><span class="o">:</span> <span class="l">B5qdN9URIfu11gQxPZ8YaaMvy2HMrzsnrpt6vF037yv6OQiKCRyrUMX6wYs7QW4YVaeUrvmS2ya5l2YC0kvNAg==</span>
+<span class="na">X-Server-Name</span><span class="o">:</span> <span class="l">traffic_ops_golang/</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Wed, 27 May 2020 17:33:17 GMT</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">1360</span>
+
+
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;api.cache-control.max-age&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;certificates.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;consistent.dns.routing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;coveragezone.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3600000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;coveragezone.polling.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://static.infra.ciab.test:443/coverage-zone.json&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;dnssec.dynamic.response.expiration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300s&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;dnssec.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;domain_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mycdn.ciab.test&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;federationmapping.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;federationmapping.polling.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://${toHostname}/api/5.0/federations/all&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;geolocation.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;86400000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;geolocation.polling.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://static.infra.ciab.test:443/GeoLite2-City.mmdb.gz&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;keystore.maintenance.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;neustar.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;86400000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;neustar.polling.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://static.infra.ciab.test:443/neustar.tar.gz&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;soa&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;admin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;twelve_monkeys&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;expire&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;604800&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;28800&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;retry&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7200&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;steeringmapping.polling.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60000&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ttls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;A&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3600&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;AAAA&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3600&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;DNSKEY&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;DS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;NS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3600&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SOA&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;86400&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;zonemanager.cache.maintenance.interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;zonemanager.threadpool.scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.50&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;contentRouters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;trafficrouter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;api.port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3333&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;fqdn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trafficrouter.infra.ciab.test&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;httpsPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.26.0.15&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CCR_CIAB&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;secure.api.port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3443&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ONLINE&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;contentServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;edge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;cacheGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;RAM_DISK_STORAGE&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;fqdn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;edge.infra.ciab.test&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hashCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hashId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;edge&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;httpsPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;interfaceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.26.0.3&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;locationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ATS_EDGE_TIER_CACHE&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;routingDisabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REPORTED&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EDGE&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;mid&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;cacheGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Mid&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;RAM_DISK_STORAGE&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;fqdn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mid.infra.ciab.test&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hashCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hashId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mid&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;httpsPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;interfaceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.26.0.4&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;locationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Mid&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ATS_MID_TIER_CACHE&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;routingDisabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REPORTED&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MID&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;deliveryServices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;demo1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;anonymousBlockingEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;consistentHashQueryParams&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;pdq&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;zyx&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;coverageZoneOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;deepCachingType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NEVER&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;dispersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;shuffled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;domains&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;demo1.mycdn.ciab.test&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;ecsEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;geolocationProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;maxmindGeolocationService&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip6RoutingEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;matchsets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;matchlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;match-type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HOST&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;regex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.*\\.demo1\\..*&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">],</span>
+<span class="w">                        </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP&quot;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;missLocation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;long&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-88</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;acceptHttps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;redirectToHttps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;regionalGeoBlocking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;requiredCapabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;RAM_DISK_STORAGE&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;routingName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;video&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;soa&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;admin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;traffic_ops&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;expire&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;604800&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;minimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;28800&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;retry&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7200&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;sslEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;topology&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-topology&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ttls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;A&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;AAAA&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;NS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3600&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;SOA&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;86400&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;edgeLocations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;backupLocations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;fallbackToClosest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">38.897663</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;localizationMethods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;GEO&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;CZ&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;DEEP_CZ&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-77.036574</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;monitors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;trafficmonitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;fqdn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trafficmonitor.infra.ciab.test&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;httpsPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.26.0.14&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ip6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;profile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RASCAL-Traffic_Monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ONLINE&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;CDN_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDN-in-a-Box&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1590600715</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;tm_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trafficops.infra.ciab.test:443&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;tm_user&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;tm_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;topologies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;my-topology&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;CDN_in_a_Box_Edge&quot;</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;trafficRouterLocations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;CDN_in_a_Box_Edge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;backupLocations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;fallbackToClosest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">38.897663</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;localizationMethods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;GEO&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;CZ&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;DEEP_CZ&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-77.036574</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="httponly" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>These only apply to HTTP-<a class="reference internal" href="../../overview/delivery_services.html#ds-types"><span class="std std-ref">routed</span></a> <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a></p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cdns_name_name_sslkeys.html" class="btn btn-neutral float-left" title="cdns/name/{{name}}/sslkeys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cdns_name_snapshot_new.html" class="btn btn-neutral float-right" title="cdns/{{name}}/snapshot/new" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

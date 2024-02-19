@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>testing &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Traffic Vault Administration" href="../traffic_vault.html" />
+    <link rel="prev" title="t3c-update" href="t3c-update.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">t3c</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="t3c.html">t3c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-apply.html">t3c-apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check.html">t3c-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-refs.html">t3c-check-refs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-check-reload.html">t3c-check-reload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-diff.html">t3c-diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-generate.html">t3c-generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-preprocess.html">t3c-preprocess</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-request.html">t3c-request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-tail.html">t3c-tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t3c-update.html">t3c-update</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#traffic-ops-ort-tests">Traffic Ops ORT Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automated-github-actions-workflow">Automated Github Actions workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-tests-manually">Running the tests manually.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-layout">Directory layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">t3c</a></li>
+      <li class="breadcrumb-item active">testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/t3c/testing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing">
+<span id="t3c-testing"></span><h1>testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h1>
+<section id="traffic-ops-ort-tests">
+<h2>Traffic Ops ORT Tests<a class="headerlink" href="#traffic-ops-ort-tests" title="Permalink to this heading"></a></h2>
+<p>The ORT tests are used to validate the ORT tools used with a release of
+Traffic Ops. The tests ensure that the ORT tools are able to communicate
+with Traffic Ops, install required packages and generate the correct ATS
+configuration files on a Trafficserver cache.</p>
+</section>
+<section id="automated-github-actions-workflow">
+<h2>Automated Github Actions workflow<a class="headerlink" href="#automated-github-actions-workflow" title="Permalink to this heading"></a></h2>
+<p>A Github actions workflow, <strong>traffic-ops-ort-tests.yml</strong>, has been
+written to fully automate running the tests upon github code pushes and
+PR submissions on code changes that might affect ORT. In addition, the
+tests may be triggered manually through the Github actions UI.</p>
+</section>
+<section id="running-the-tests-manually">
+<h2>Running the tests manually.<a class="headerlink" href="#running-the-tests-manually" title="Permalink to this heading"></a></h2>
+<p>The first thing you need do is to provide the Traffic Ops and Traffic
+Ops ORT RPM files for the build you wish to test using this framework.
+This test environment provides the necessary Docker containers used to
+support and execute the tests when given the necessary RPM’s. If you
+choose to not use the provided Docker containers you will need to
+provide the following resources:</p>
+<ul class="simple">
+<li><p>A running Traffic Ops with the installed release to be tested</p></li>
+<li><p>A running Postgres SQL database which is loaded with the proper test
+data for the Traffic Ops release.</p></li>
+<li><p>An Apache Traffic Server host that has the installed release of ORT
+to be tested against the release of Traffic Ops.</p></li>
+<li><p>A yum server configured to provide the test rpm’s herein.</p></li>
+<li><p>A Traffic vault server.</p></li>
+</ul>
+</section>
+<section id="directory-layout">
+<h2>Directory layout<a class="headerlink" href="#directory-layout" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>trafficcontrol/cache-config/testing/docker: has all the necessary
+files for running the test Docker containers.</p></li>
+<li><p>trafficcontrol/cache-config/testing/ort-tests: this directory.
+contains all the go files used to run the ORT tests.</p></li>
+</ul>
+</section>
+<section id="setup">
+<h2>Setup.<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Build the Traffic Ops and Cache Config RPM’s on the branch that you
+wish to test. See the top level ‘build’ directory for building
+instructions.</p></li>
+<li><p>Copy the Traffic Ops RPM from the ‘dist’ directory to
+docker/traffic_ops/, no renaming is required.</p></li>
+<li><p>Copy the Traffic Ops ORT rpm from the ‘dist’ directory to
+docker/ort_test/, no renaming is required.</p></li>
+<li><p>You may copy an Apache Trafficserver RPM to the
+docker/yumserver/test-rpms directory or you can run:</p>
+<p><strong>docker-compose -f docker-compose-ats-build.yml run
+trafficserver_build</strong></p>
+<p>to build an rpm which is copied to docker/yumserver/test-rpms.</p>
+</li>
+<li><p>The container Docker files have the usernames and passwords used in
+the various containers ie, postgresql db, traffic_ops, and
+cache-config. The usernames and passwords passed to the ‘t3c’
+executable in in the ort-tests/conf/docker-edge-cache.conf file. Make
+sure that the usernames/passwords in the Docker files match those in
+the t3c configuration file. An example ort-tests/conf/edge-cache.conf
+file is provided should you choose to use your own Traffic Ops and
+Postgresql environment.</p></li>
+<li><p>Build the Docker images and run the ort test:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd trafficcontrol/cache-config/testing/docker
+docker-compose build
+docker-compose run ort_test
+</pre></div>
+</div>
+<p>After some time, test results should be available at
+‘ort-tests/test.log’</p>
+</li>
+</ol>
+<p>If you wish to run the tests manually use ‘docker ps’ to obtain the
+container id for the ort_test host and then:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>docker exec -it $ort_test /bin/bash -l
+cd /ort-tests
+go test -cfg=conf/docker-edge-cache.conf
+</pre></div>
+</div>
+<p>If you wish to run the tests manually using your own environment, create
+a config file with the necessary login information in the ‘conf’
+directory and then rerun the tests using your config file. WARNING: the
+traffic ops database will be dropped and initialized using the data in
+tc-fixtures.json and then the tests are run.</p>
+<p><strong>DO NOT USE a production Traffic Ops database with these test
+scripts.</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="t3c-update.html" class="btn btn-neutral float-left" title="t3c-update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../traffic_vault.html" class="btn btn-neutral float-right" title="Traffic Vault Administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

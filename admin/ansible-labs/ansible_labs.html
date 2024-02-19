@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ansible-based Lab Creation &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Traffic Portal" href="../traffic_portal/index.html" />
+    <link rel="prev" title="CDN in a Box" href="../quick_howto/ciab.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../environment_creation.html">Environment Creation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../environment_creation.html#cdn-in-a-box-ciab">CDN-in-a-Box (CIAB)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../environment_creation.html#ansible-based-lab-deployment">Ansible-based Lab Deployment</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../environment_creation.html#audience-for-ansible-based-lab-deployment">Audience for Ansible-based Lab Deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="../environment_creation.html">Environment Creation</a></li>
+      <li class="breadcrumb-item active">Ansible-based Lab Creation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/ansible-labs/ansible_labs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ansible-based-lab-creation">
+<span id="ansiblelab"></span><h1>Ansible-based Lab Creation<a class="headerlink" href="#ansible-based-lab-creation" title="Permalink to this heading"></a></h1>
+<p>The scope of the Ansible work presented is a set of generic roles an implementor could use to expose the common installation and configuration tasks of each component.
+Additionally,  it provides some suggestions and sample scaffolding on how to divide the full end-to-end lab construction.</p>
+<aside class="topic">
+<p class="topic-title">Why Ansible?</p>
+<p>There are many excellent tools to facilitate application installation and configuration.
+Ansible is a leading open-source tool in this marketspace backed by major corporate sponsorship and adoption.
+Most importantly it facilitates the abstractions desired without creating technological conflicts with existing infrastructure management solutions.</p>
+</aside>
+<aside class="topic">
+<p class="topic-title">What about Security?</p>
+<p>Each organization should review the instructions being performed in each Ansible playbook to determine if they satisfy their security requirements.
+Additionally, each implementor should select and implement their secret store of choice such as the built-in <code class="docutils literal notranslate"><span class="pre">ansible-vault</span></code> or a more advanced secret-as-a-service solution for any sensitive variables.</p>
+</aside>
+<section id="lab-implementation-concepts">
+<h2>Lab Implementation Concepts<a class="headerlink" href="#lab-implementation-concepts" title="Permalink to this heading"></a></h2>
+<figure class="align-center">
+<img alt="../../_images/ATC.lab.layers.svg" src="../../_images/ATC.lab.layers.svg" /></figure>
+<p>The basic idea is to separate responsibilities to allow each implementation to use the tools/technologies that are already in use within their organizations.</p>
+<section id="provisioning-layer">
+<h3>Provisioning Layer<a class="headerlink" href="#provisioning-layer" title="Permalink to this heading"></a></h3>
+<p>The provisioning layer deals with the lowest levels of compute/network/storage/load balancer resources.
+Its objective is to bring systems from nothingness to a functional operating system (at least minimally).
+Additionally, it is responsible for setting up proper DNS for each system, CDN components, and DNS NS record delegations.</p>
+<p>Since DNS is a part of this layer, this unfortunately necessitates a small number of CDN concepts being present in the provisioning configuration.
+It is expected that upon completion of this layer, a compatible Ansible inventory file is generated and placed in the lab’s Ansible inventory directory.</p>
+<section id="the-provisioning-layer-output">
+<h4>The Provisioning Layer Output<a class="headerlink" href="#the-provisioning-layer-output" title="Permalink to this heading"></a></h4>
+<p>Ansible supports inventory files in several formats such as JSON, YAML, INI, or TOML.
+An example output is located at <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab/inventory/provisioning.inventory"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab/inventory/provisioning.inventory</span></code></a>.</p>
+<p>When creating systems, each will probably be designated for some particular component in the CDN.
+Ansible groups and hostvars specifying the component name must be provided and will be mapped to server types later on in the dataset loader.</p>
+<p>Like the systems being allocated to a particular component name, they must also be assigned to a particular DNS NS Delegation name where relevant or the <code class="docutils literal notranslate"><span class="pre">ALL</span></code> cdn as needed by the component.
+The NS Delegation name is what you would find in DNS for Traffic Router to be authoritative for.  In this example it’s <code class="docutils literal notranslate"><span class="pre">MKGA</span></code> rather than the CDN Name which is <code class="docutils literal notranslate"><span class="pre">Kabletown2.0</span></code>.</p>
+<p>It is not recommended that an <a class="reference internal" href="../../glossary.html#term-origin-server"><span class="xref std std-term">origin server</span></a> be used by more than one <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> or it could lead to inconsistent behavior and conflated log data at the <a class="reference internal" href="../../glossary.html#term-Mid-tier"><span class="xref std std-term">Mid-tier</span></a>.
+As a workaround to this it is better for a lab to create DNS CNAME for each <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> pointing at a particular <a class="reference internal" href="../../glossary.html#term-origin-server"><span class="xref std std-term">origin server</span></a> and return that set of names as a CSV hostvar ds_names on each <a class="reference internal" href="../../glossary.html#term-origin-server"><span class="xref std std-term">origin server</span></a>.
+These names will later be translated to additional inventory hosts used only for the creation of server objects in Traffic Ops and assignment to <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>.</p>
+</section>
+</section>
+<section id="steady-state-os-layer">
+<h3>Steady-state OS Layer<a class="headerlink" href="#steady-state-os-layer" title="Permalink to this heading"></a></h3>
+<p>The steady-state layer deals with the adaptation of a generic OS image to something that meets the organization’s requirements.
+For a CDN lab, it is also important to consider the deployment of necessary SSL data to known locations.</p>
+</section>
+<section id="application-layer">
+<h3>Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading"></a></h3>
+<p>This is the primary area for contribution within Apache Traffic Control.  Ansible has built-in variable precedence and role inclusion.
+Conceptually these playbooks are split into implementation specific driver playbooks versus a generic core.</p>
+<section id="implementation-specific-driver-playbook">
+<h4>Implementation Specific Driver Playbook<a class="headerlink" href="#implementation-specific-driver-playbook" title="Permalink to this heading"></a></h4>
+<p>Generally, this should handle some basic lab variable plumbing as well as any implementation specific tasks not generally useful to other ATC implementations.
+For example, an implementation might use an internal application as their application alerting engine which wouldn’t make sense to others.
+Sticking with the example of an application alerting engine, even if it were an open implementation such as Nagios it still probably wouldn’t be appropriate
+as not all implementations make use of that tool and maintaining it after contribution would incur ongoing costs.</p>
+</section>
+<section id="generic-core-playbook">
+<h4>Generic Core Playbook<a class="headerlink" href="#generic-core-playbook" title="Permalink to this heading"></a></h4>
+<p>This is the important piece for collaboration as it’s based on the question, “Is this task/feature/function something all ATC implementations would benefit from?”.
+Typically, the yes answers involve exposing or simplifying application functionality on the part of the lab environment maintainer or developer.
+Generally, the default values of a generic core role match or improve upon those present inside the RPM of the software.</p>
+</section>
+</section>
+</section>
+<section id="lab-implementation-layout">
+<h2>Lab Implementation Layout<a class="headerlink" href="#lab-implementation-layout" title="Permalink to this heading"></a></h2>
+<section id="ansible-variable-hierarchy">
+<h3>Ansible variable hierarchy<a class="headerlink" href="#ansible-variable-hierarchy" title="Permalink to this heading"></a></h3>
+<p>This is a topic better covered by <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable">Ansible documentation</a>, but the short version to keep in mind if you follow the sample lab design and markdown readme is:</p>
+<p>(Highest precedence) CLI → Lab Vault → Lab Vars → Playbook Vars → Task Vars → Role Defaults (Lowest precedence)</p>
+<p>Each of the generic core roles uses a prefix on its variables to avoid collision, and to make life easier it’s recommended that you map them on the associated import role task variables.
+This makes keeping track of what variables were intentionally overwritten from the role defaults clearer.</p>
+</section>
+<section id="sample-driver-playbooks">
+<h3>Sample Driver Playbooks<a class="headerlink" href="#sample-driver-playbooks" title="Permalink to this heading"></a></h3>
+<p>There are a few sample playbooks located at <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/</span></code></a>.  As an implementor develops their implementation specific driver playbooks they should go here.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/steady-state.yml"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/steady-state.yml</span></code></a> is an example of a playbook that can deal with generating SSL certificates and distributing them across a lab as well as dynamically generating a secondary inventory file with additional data.</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.driver.playbook.yml"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.driver.playbook.yml</span></code></a> shows a general skeleton to leverage when building out your implementation’s driver playbooks around the generic core roles.</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/influxdb_relay.yml"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/influxdb_relay.yml</span></code></a> shows a more advanced example of a driver playbook that involves querying Traffic Ops for supplementary information in a secondary play.</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/test.urls.yml"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/test.urls.yml</span></code></a> is just a simple playbook to query a known asset list on all delivery service urls to ensure a basic 200 http response for every asset and url.</p></li>
+</ul>
+</section>
+<section id="the-lab-directory">
+<h3>The Lab directory<a class="headerlink" href="#the-lab-directory" title="Permalink to this heading"></a></h3>
+<p>A simple scaffold for a lab directory is included at <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab</span></code></a>.  This directory should encapsulate all pieces that make one environment unique from another.  Ideally making new environments is as simple as copy-paste this directory and tweak the variables desired inside.</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab/ansible"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab/ansible</span></code></a> subdirectory should be used to hold variables specific to a particular lab in either <code class="docutils literal notranslate"><span class="pre">vars.yml</span></code> or an encrypted Ansible <code class="docutils literal notranslate"><span class="pre">vault</span></code></p></li>
+<li><p>The <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab/inventory"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab/inventory</span></code></a> directory is where it’s recommended for your provisioning layer to drop a valid Ansible inventory file describing what was allocated.  When using Ansible, it’s important to point the inventory source to this directory so that it will merge all available inventory files together for you.</p></li>
+<li><p>The <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab/out/ssl"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab/out/ssl</span></code></a> directory is generated with the first run of the lab and holds your local copy of the lab SSL data.  The out directory is also handy for holding temporary data from the provisioning or steady-state layers to help triage failures.</p></li>
+<li><p>The docker and docker-compose related files are present as an optional wrapper for Linux hosts (doesn’t work on OSX) around all the lab plumbing dependencies for Ansible.  This is particularly handy for automated systems who perform regular redeployments such as in a CI/CD tool.</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/sample.lab/manual.run.sh"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/sample.lab/manual.run.sh</span></code></a> is a scaffold for the entrypoint for performing a lab rebuild from your local system.</p></li>
+</ul>
+<section id="gilt">
+<h4>Gilt<a class="headerlink" href="#gilt" title="Permalink to this heading"></a></h4>
+<p>Traditionally when distributing application playbooks for Ansible, many people use the built-in Ansible Galaxy repository.
+There is a design limitation to the Ansible Galaxy though in that one git repository may only contain one role.
+In the case of Apache Traffic Control, there are many components each with their own roles.
+At the end of the day, the generic core roles must exist in a valid Ansible role directory location.
+There are many solutions to this problem, but one of the better and easier once that’s been run across is using the 3<sup>rd</sup>-party tool <a class="reference external" href="https://github.com/metacloud/gilt">Gilt</a>.
+As another alternative you can simply extract the roles from an Apache Traffic Control (ATC) source tarball from a build.</p>
+</section>
+</section>
+<section id="the-roles-directory">
+<h3>The Roles directory<a class="headerlink" href="#the-roles-directory" title="Permalink to this heading"></a></h3>
+<p>The generic core roles for each component live at <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/roles"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/roles</span></code></a>.
+Each role contains a README.md with more information, but this is not a replacement for existing documentation on the components themselves.
+It’s very useful to still review the Administrator’s Guide in the documentation as you develop your implementation around the component’s generic core.</p>
+<p>If you’re attempting to optimize the wallclock time needed to deploy all the components in parallel, they should be installed like the following:</p>
+<figure class="align-center">
+<img alt="../../_images/ATC.Installation.dependencies.svg" src="../../_images/ATC.Installation.dependencies.svg" /></figure>
+</section>
+</section>
+<section id="ansible-bonuses">
+<h2>Ansible Bonuses<a class="headerlink" href="#ansible-bonuses" title="Permalink to this heading"></a></h2>
+<p>These roles don’t require a lab environment to be useful to operations (ops) teams.</p>
+<section id="the-to-api-role">
+<h3>The to_api role<a class="headerlink" href="#the-to-api-role" title="Permalink to this heading"></a></h3>
+<p>When reviewing the generic core roles, you’ll notice that <a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/roles/to_api"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/roles/to_api</span></code></a> is a little different and doesn’t map to an ATC component.
+This role was developed for Ops teams to integrate around daily workflows if desired.</p>
+</section>
+<section id="using-traffic-ops-as-an-ansible-dynamic-inventory-source">
+<h3>Using Traffic Ops as an Ansible Dynamic Inventory source<a class="headerlink" href="#using-traffic-ops-as-an-ansible-dynamic-inventory-source" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://github.com/apache/trafficcontrol/tree/master/infrastructure/ansible/dynamic.inventory"><code class="docutils literal notranslate"><span class="pre">infrastructure/ansible/dynamic.inventory</span></code></a> contains a python script that is compatible with Ansible as a dynamic inventory.
+It leverages the python native client in ATC to expose lots of Traffic Ops server related data to the operator to make powerful and precise Ansible host patterns without the need of maintaining static files.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../quick_howto/ciab.html" class="btn btn-neutral float-left" title="CDN in a Box" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../traffic_portal/index.html" class="btn btn-neutral float-right" title="Traffic Portal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

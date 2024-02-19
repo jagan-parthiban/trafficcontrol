@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDN in a Box &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ansible-based Lab Creation" href="../ansible-labs/ansible_labs.html" />
+    <link rel="prev" title="Environment Creation" href="../environment_creation.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_portal/index.html">Traffic Portal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Quick How To Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anonymous_blocking.html">Configure Anonymous Blocking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cachegroup_fallback.html">Configure Cache Group Fallbacks</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CDN in a Box</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#x-509-ssl-tls-certificates">X.509 SSL/TLS Certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-containers">Optional Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="client_cert_auth.html">Client Certificates for Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="content_invalidation.html">Forcing Content Invalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dnssec.html">Configure DNSSEC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ds_requests.html">Delivery Service Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="federations.html">Configure Federations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kickstart.html">Creating the CentOS Kickstart File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_site.html">Configure Multi-Site Origin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oauth_login.html">Configure OAuth Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile_compare_mgmt.html">Compare Profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regionalgeo.html">Configure Regional Geo-blocking (RGB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server_capabililty.html">Manage Server Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="static_dns.html">Configuring Static DNS Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="steering.html">Configure Delivery Service Steering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+          <li class="breadcrumb-item"><a href="../environment_creation.html">Environment Creation</a></li>
+      <li class="breadcrumb-item active">CDN in a Box</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/quick_howto/ciab.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cdn-in-a-box">
+<span id="ciab"></span><h1>CDN in a Box<a class="headerlink" href="#cdn-in-a-box" title="Permalink to this heading"></a></h1>
+<p>“CDN in a Box” is a name given to the time-honored tradition of new Traffic Control developers/potential users attempting to set up their own, miniature CDN to just see how it all fits together. Historically, this has been a nightmare of digging through leftover <code class="docutils literal notranslate"><span class="pre">virsh</span></code> scripts and manually configuring pretty hefty networking changes (don’t even get me started on DNS) and just generally having a bad time. For a few years now, different people had made it to various stages of merging the project into Docker for ease of networking, but certain constraints hampered progress - until now. The project has finally reached a working state, and now getting a mock/test CDN running can be a very simple task (albeit rather time-consuming).</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
+<p>Because it runs in Docker, the only true prerequisites are:</p>
+<ul class="simple">
+<li><p>Docker version &gt;= 17.05.0-ce</p></li>
+<li><p>Docker Compose<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> version &gt;= 1.9.0</p></li>
+</ul>
+<section id="building">
+<h3>Building<a class="headerlink" href="#building" title="Permalink to this heading"></a></h3>
+<p>The CDN in a Box directory is found within the Traffic Control repository at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/</span></code>. CDN in a Box relies on the presence of pre-built <code class="file docutils literal notranslate"><em><span class="pre">component</span></em><span class="pre">.rpm</span></code> files for the following Traffic Control components:</p>
+<ul class="simple">
+<li><p>Traffic Monitor - at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_monitor/traffic_monitor.rpm</span></code></p></li>
+<li><p>Traffic Ops - at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/traffic_ops.rpm</span></code></p></li>
+<li><p>Traffic Portal - at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_portal/traffic_portal.rpm</span></code></p></li>
+<li><p>Traffic Router - at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_router/traffic_router.rpm</span></code> - also requires an Apache Tomcat RPM at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_router/tomcat.rpm</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These can also be specified via the <code class="docutils literal notranslate"><span class="pre">RPM</span></code> variable to a direct Docker build of the component - with the exception of Traffic Router, which instead accepts <code class="docutils literal notranslate"><span class="pre">TRAFFIC_ROUTER_RPM</span></code> to specify a Traffic Router RPM and <code class="docutils literal notranslate"><span class="pre">TOMCAT_RPM</span></code> to specify an Apache Tomcat RPM.</p>
+</div>
+<p>These can all be supplied manually via the steps in <a class="reference internal" href="../../development/building.html#dev-building"><span class="std std-ref">Building Traffic Control</span></a> (for Traffic Control component RPMs) or via some external source. Alternatively, the <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/Makefile</span></code> file contains recipes to build all of these - simply run <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/make(1)">make(1)</a></em> from the <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/</span></code> directory. Once all RPM dependencies have been satisfied, run <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">build</span> <span class="pre">--parallel</span></code> from the <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/</span></code> directory to construct the images needed to run CDN in a Box.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have gone through the steps to <a class="reference internal" href="../../development/building.html#dev-building-natively"><span class="std std-ref">Build the RPMs Natively</span></a>, you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">native</span></code> instead of <code class="docutils literal notranslate"><span class="pre">make</span></code> to build the RPMs quickly. Another option is running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j4</span></code> to build 4 components at once, if your computer can handle it.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When updating CDN-in-a-Box, there is no need to remove old images before building new ones. Docker detects which files are updated and only reuses cached layers that have not changed.</p>
+</div>
+<p>By default, CDN in a Box will be based on Rocky Linux 8. To base CDN in a Box on CentOS 7, set the <code class="docutils literal notranslate"><span class="pre">BASE_IMAGE</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">centos</span></code> and set the <code class="docutils literal notranslate"><span class="pre">RHEL_VERSION</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">7</span></code> (for CDN in a Box, <code class="docutils literal notranslate"><span class="pre">BASE_IMAGE</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">rockylinux</span></code> and <code class="docutils literal notranslate"><span class="pre">RHEL_VERSION</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">8</span></code>):</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-number">#39 </span><span class="caption-text">Building CDN in a Box to run CentOS 7 instead of Rocky Linux 8</span><a class="headerlink" href="#id15" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>centos<span class="w"> </span><span class="nv">RHEL_VERSION</span><span class="o">=</span><span class="m">7</span>
+make<span class="w"> </span><span class="c1"># Builds RPMs for CentOS 7</span>
+docker-compose<span class="w"> </span>build<span class="w"> </span>--parallel<span class="w"> </span><span class="c1"># Builds CentOS 7 CDN in a Box images</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
+<p>In a typical scenario, if the steps in <a class="reference internal" href="#building">Building</a> have been followed, all that’s required to start the CDN in a Box is to run <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code> - optionally with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> flag to run without binding to the terminal - from the <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/</span></code> directory. This will start up the entire stack and should take care of any needed initial configuration. The services within the environment are by default not exposed locally to the host. If this is the desired behavior when bringing up CDN in a Box the command <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">-f</span> <span class="pre">docker-compose.yml</span> <span class="pre">-f</span> <span class="pre">docker-compose.expose-ports.yml</span> <span class="pre">up</span></code> should be run. The ports are configured within the <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/docker-compose.expose-ports.yml</span></code> file, but the default ports are shown in <a class="reference internal" href="#ciab-service-info"><span class="std std-ref">Service Info</span></a>. Some services have credentials associated, which are totally configurable in <a class="reference internal" href="#variables-env">variables.env</a>.</p>
+<span id="ciab-service-info"></span><table class="docutils align-default" id="id16">
+<caption><span class="caption-number">Table 55 </span><span class="caption-text">Service Info</span><a class="headerlink" href="#id16" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Ports exposed and their usage</p></th>
+<th class="head"><p>Username</p></th>
+<th class="head"><p>Password</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DNS</p></td>
+<td><p>DNS name resolution on 9353</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Edge Tier Cache</p></td>
+<td><p>Apache Trafficserver 9.1 HTTP caching reverse proxy on port 9000</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>Mid Tier Cache</p></td>
+<td><p>Apache Trafficserver 9.1 HTTP caching forward proxy on port 9100</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Second Mid-Tier Cache (parent
+of the first Mid-Tier Cache)</p></td>
+<td><p>Apache Trafficserver 9.1 HTTP caching forward proxy on port 9100</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>Mock Origin Server</p></td>
+<td><p>Example web page served on port 9200</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>SMTP Server</p></td>
+<td><p>Passwordless, cleartext SMTP server on port 25 (no relay)
+Web interface exposed on port 4443 (port 443 in the container)</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>Traffic Monitor</p></td>
+<td><p>Web interface and API on port 80</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Traffic Ops</p></td>
+<td><p>API endpoints on port 6443</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TO_ADMIN_USER</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TO_ADMIN_PASSWORD</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Traffic Ops PostgresQL Database</p></td>
+<td><p>PostgresQL connections accepted on port 5432 (database name:
+<code class="docutils literal notranslate"><span class="pre">DB_NAME</span></code> in <a class="reference internal" href="#variables-env">variables.env</a>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DB_USER</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DB_USER_PASS</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Traffic Portal</p></td>
+<td><p>Web interface on 443 (Javascript required)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TO_ADMIN_USER</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TO_ADMIN_PASSWORD</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Traffic Router</p></td>
+<td><p>Web interfaces on ports 3080 (HTTP) and 3443 (HTTPS), with a
+DNS service on 53 and an API on 3333 (HTTP) and 2222 (HTTPS)</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Traffic Vault</p></td>
+<td><p>Riak key-value store on port 8010</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TV_ADMIN_USER</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TV_ADMIN_PASSWORD</span></code> in <a class="reference internal" href="#variables-env">variables.env</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Traffic Stats</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Traffic Stats Influxdb</p></td>
+<td><p>Influxdbd connections accepted on port 8086 (database name:
+<code class="docutils literal notranslate"><span class="pre">cache_stats</span></code>, <code class="docutils literal notranslate"><span class="pre">daily_stats</span></code> and
+<code class="docutils literal notranslate"><span class="pre">deliveryservice_stats</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INFLUXDB_ADMIN_USER</span></code> in
+<a class="reference internal" href="#variables-env">variables.env</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INFLUXDB_ADMIN_PASSWORD</span></code> in
+<a class="reference internal" href="#variables-env">variables.env</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../development/traffic_router/traffic_router_api.html#tr-api"><span class="std std-ref">Traffic Router API</span></a> and <a class="reference internal" href="../../development/traffic_monitor/traffic_monitor_api.html#tm-api"><span class="std std-ref">Traffic Monitor APIs</span></a></p>
+</div>
+<p>While the components may be interacted with by the host using these ports, the true operation of the CDN can only truly be seen from within the Docker network. To see the CDN in action, connect to a container within the CDN in a Box project and use cURL to request the URL <code class="docutils literal notranslate"><span class="pre">http://video.demo1.mycdn.ciab.test</span></code> which will be resolved by the DNS container to the IP of the Traffic Router, which will provide a <code class="docutils literal notranslate"><span class="pre">302</span> <span class="pre">FOUND</span></code> response pointing to the Edge-Tier cache. A typical choice for this is the “enroller” service, which has a very nuanced purpose not discussed here but already has the <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/curl(1)">curl(1)</a></em> command line tool installed. For a more user-friendly interface into the CDN network, see <a class="reference internal" href="#vnc-server">VNC Server</a>.</p>
+<p>To test the demo1 Delivery Service:</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-number">#40 </span><span class="caption-text">Example Command to See the CDN in Action</span><a class="headerlink" href="#id17" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>enroller<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;http://video.demo1.mycdn.ciab.test&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>To test the <code class="docutils literal notranslate"><span class="pre">foo.kabletown.net.</span></code> Federation:</p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-number">#41 </span><span class="caption-text">Query the Federation CNAME using the Delivery Service hostname</span><a class="headerlink" href="#id18" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>trafficrouter<span class="w"> </span>dig<span class="w"> </span>+short<span class="w"> </span>@trafficrouter.infra.ciab.test<span class="w"> </span>-t<span class="w"> </span>CNAME<span class="w"> </span>video.demo2.mycdn.ciab.test
+
+<span class="c1"># Expected response:</span>
+foo.kabletown.net.
+</pre></div>
+</div>
+</div>
+<section id="readiness-check">
+<h4>Readiness Check<a class="headerlink" href="#readiness-check" title="Permalink to this heading"></a></h4>
+<p>In order to check the “readiness” of your CDN, you can optionally start the Readiness Container, which will continually <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/curl(1)">curl(1)</a></em> the <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a> in your CDN until they all return successful responses before exiting successfully.</p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-number">#42 </span><span class="caption-text">Example Command to Run the Readiness Container</span><a class="headerlink" href="#id19" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.readiness.yml<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</section>
+<section id="integration-tests">
+<h4>Integration Tests<a class="headerlink" href="#integration-tests" title="Permalink to this heading"></a></h4>
+<p>There also exist TP and TO integration tests containers. Both of these containers assume that CDN in a Box is already running on the local system.</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-number">#43 </span><span class="caption-text">Running TP Integration Tests</span><a class="headerlink" href="#id20" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.traffic-portal-test.yml<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-number">#44 </span><span class="caption-text">Running TO Integration Tests</span><a class="headerlink" href="#id21" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.traffic-ops-test.yml<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If all CDN in a Box containers are started at once (example: <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">-f</span> <span class="pre">docker-compose.yml</span> <span class="pre">-f</span> <span class="pre">docker-compose.traffic-ops-test.yml</span> <span class="pre">up</span> <span class="pre">-d</span> <span class="pre">edge</span> <span class="pre">enroller</span> <span class="pre">dns</span> <span class="pre">db</span> <span class="pre">smtp</span> <span class="pre">trafficops</span> <span class="pre">trafficvault</span> <span class="pre">integration</span></code>), the <a class="reference internal" href="#ciab-enroller"><span class="std std-ref">Enroller</span></a> initial data load is skipped to prevent data conflicts with the <a class="reference internal" href="../../development/traffic_ops.html#dev-traffic-ops-fixtures"><span class="std std-ref">Traffic Ops API tests fixtures</span></a>.</p>
+</div>
+</section>
+<section id="variables-env">
+<h4>variables.env<a class="headerlink" href="#variables-env" title="Permalink to this heading"></a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">TV_AES_KEY_LOCATION</span><span class="o">=</span>/opt/traffic_ops/app/conf/aes.key
+<span class="c1"># Unset TV_BACKEND to use riak as the traffic_vault backend and run the traffic_vault image from the optional directory</span>
+<span class="nv">TV_BACKEND</span><span class="o">=</span>postgres
+<span class="nv">TLD_DOMAIN</span><span class="o">=</span>ciab.test
+<span class="nv">INFRA_SUBDOMAIN</span><span class="o">=</span>infra
+<span class="nv">CDN_NAME</span><span class="o">=</span>CDN-in-a-Box
+<span class="nv">CDN_SUBDOMAIN</span><span class="o">=</span>mycdn
+<span class="nv">DS_HOSTS</span><span class="o">=</span><span class="s1">&#39;demo1 demo2 demo3&#39;</span>
+<span class="nv">FEDERATION_CNAME</span><span class="o">=</span>foo.kabletown.net.
+<span class="nv">X509_CA_NAME</span><span class="o">=</span>CIAB-CA
+<span class="nv">X509_CA_COUNTRY</span><span class="o">=</span>US
+<span class="nv">X509_CA_STATE</span><span class="o">=</span>Colorado
+<span class="nv">X509_CA_CITY</span><span class="o">=</span>Denver
+<span class="nv">X509_CA_COMPANY</span><span class="o">=</span>Kabletown
+<span class="nv">X509_CA_ORG</span><span class="o">=</span>CDN-in-a-Box
+<span class="nv">X509_CA_ORGUNIT</span><span class="o">=</span>CDN-in-a-Box
+<span class="nv">X509_CA_EMAIL</span><span class="o">=</span>no-reply@infra.ciab.test
+<span class="nv">X509_CA_DIGEST</span><span class="o">=</span>sha256
+<span class="nv">X509_CA_DURATION_DAYS</span><span class="o">=</span><span class="m">365</span>
+<span class="nv">X509_CA_KEYTYPE</span><span class="o">=</span>rsa
+<span class="nv">X509_CA_KEYSIZE</span><span class="o">=</span><span class="m">4096</span>
+<span class="nv">X509_CA_UMASK</span><span class="o">=</span><span class="m">0000</span>
+<span class="nv">X509_CA_DIR</span><span class="o">=</span>/shared/ssl
+<span class="nv">X509_CA_PERSIST_DIR</span><span class="o">=</span>/ca
+<span class="nv">X509_CA_PERSIST_ENV_FILE</span><span class="o">=</span>/ca/environment
+<span class="nv">X509_CA_ENV_FILE</span><span class="o">=</span>/shared/ssl/environment
+<span class="nv">DB_NAME</span><span class="o">=</span>traffic_ops
+<span class="nv">TV_DB_NAME</span><span class="o">=</span>traffic_vault
+<span class="nv">DB_PORT</span><span class="o">=</span><span class="m">5432</span>
+<span class="nv">DB_SERVER</span><span class="o">=</span>db
+<span class="nv">TV_DB_SERVER</span><span class="o">=</span>db
+<span class="nv">DB_USER_PASS</span><span class="o">=</span>twelve
+<span class="nv">DB_USER</span><span class="o">=</span>traffic_ops
+<span class="nv">TV_DB_USER</span><span class="o">=</span>traffic_vault
+<span class="nv">TV_DB_USER_PASS</span><span class="o">=</span>twelve
+<span class="nv">TV_DB_PORT</span><span class="o">=</span><span class="m">5432</span>
+<span class="nv">DNS_SERVER</span><span class="o">=</span>dns
+<span class="nv">DBIC_TRACE</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">ENROLLER_HOST</span><span class="o">=</span>enroller
+<span class="nv">PGPASSWORD</span><span class="o">=</span>twelve
+<span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>twelve
+<span class="nv">EDGE_HOST</span><span class="o">=</span>edge
+<span class="nv">INFLUXDB_HOST</span><span class="o">=</span>influxdb
+<span class="nv">INFLUXDB_PORT</span><span class="o">=</span><span class="m">8086</span>
+<span class="nv">INFLUXDB_ADMIN_USER</span><span class="o">=</span>influxadmin
+<span class="nv">INFLUXDB_ADMIN_PASSWORD</span><span class="o">=</span>influxadminpassword
+<span class="nv">GRAFANA_ADMIN_USER</span><span class="o">=</span>grafanaadmin
+<span class="nv">GRAFANA_ADMIN_PASSWORD</span><span class="o">=</span>grafanaadminpassword
+<span class="nv">GRAFANA_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">MID_01_HOST</span><span class="o">=</span>mid-01
+<span class="nv">MID_02_HOST</span><span class="o">=</span>mid-02
+<span class="nv">ORIGIN_HOST</span><span class="o">=</span>origin
+<span class="nv">SMTP_HOST</span><span class="o">=</span>smtp
+<span class="nv">SMTP_PORT</span><span class="o">=</span><span class="m">25</span>
+<span class="nv">TM_HOST</span><span class="o">=</span>trafficmonitor
+<span class="nv">TM_PORT</span><span class="o">=</span><span class="m">80</span>
+<span class="nv">TM_EMAIL</span><span class="o">=</span>tmonitor@cdn.example.com
+<span class="nv">TM_PASSWORD</span><span class="o">=</span>jhdslvhdfsuklvfhsuvlhs
+<span class="nv">TM_USER</span><span class="o">=</span>tmon
+<span class="nv">TM_LOG_ACCESS</span><span class="o">=</span>stdout
+<span class="nv">TM_LOG_EVENT</span><span class="o">=</span>stdout
+<span class="nv">TM_LOG_ERROR</span><span class="o">=</span>stdout
+<span class="nv">TM_LOG_WARNING</span><span class="o">=</span>stdout
+<span class="nv">TM_LOG_INFO</span><span class="o">=</span>stdout
+<span class="nv">TM_LOG_DEBUG</span><span class="o">=</span>stdout
+<span class="nv">TCH_HOST</span><span class="o">=</span>tchealthclient
+<span class="nv">TO_ADMIN_PASSWORD</span><span class="o">=</span>twelve12
+<span class="nv">TO_ADMIN_USER</span><span class="o">=</span>admin
+<span class="nv">TO_ADMIN_FULL_NAME</span><span class="o">=</span><span class="s1">&#39;Fabi Dias&#39;</span>
+<span class="c1"># Set ENROLLER_DEBUG_ENABLE to true`to debug the enroller with Delve</span>
+<span class="nv">ENROLLER_DEBUG_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># To debug a t3c component with Delve in the `edge` container, set T3C_DEBUG_COMPONENT_EDGE to t3c-apply, t3c-check, t3c-check-refs, t3c-check-reload, t3c-diff, t3c-generate, t3c-request, or t3c-update</span>
+<span class="nv">T3C_DEBUG_COMPONENT_EDGE</span><span class="o">=</span>none
+<span class="c1"># To debug a t3c component with Delve in the `mid-01` container, set T3C_DEBUG_COMPONENT_MID_01 to t3c-apply, t3c-check, t3c-check-refs, t3c-check-reload, t3c-diff, t3c-generate, t3c-request, or t3c-update</span>
+<span class="nv">T3C_DEBUG_COMPONENT_MID_01</span><span class="o">=</span>none
+<span class="c1"># To debug a t3c component with Delve in the `mid-02` container, set T3C_DEBUG_COMPONENT_MID_02 to t3c-apply, t3c-diff, t3c-generate, t3c-request, t3c-update, or t3c-verify</span>
+<span class="nv">T3C_DEBUG_COMPONENT_MID_02</span><span class="o">=</span>none
+<span class="c1"># Set TM_DEBUG_ENABLE to true`to debug Traffic Monitor with Delve</span>
+<span class="nv">TM_DEBUG_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># Set TO_DEBUG_ENABLE to true`to debug Traffic Ops with Delve</span>
+<span class="nv">TO_DEBUG_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># Set TR_DEBUG_ENABLE to true`to debug Traffic Router with with JPDA</span>
+<span class="nv">TR_DEBUG_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># Set TS_DEBUG_ENABLE to true`to debug Traffic Stats with Delve</span>
+<span class="nv">TS_DEBUG_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">TO_EMAIL</span><span class="o">=</span>cdnadmin@example.com
+<span class="nv">TO_HOST</span><span class="o">=</span>trafficops
+<span class="nv">TO_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">TO_LOG_ERROR</span><span class="o">=</span>/var/log/traffic_ops/error.log
+<span class="nv">TO_LOG_WARNING</span><span class="o">=</span>/var/log/traffic_ops/warning.log
+<span class="nv">TO_LOG_INFO</span><span class="o">=</span>/var/log/traffic_ops/info.log
+<span class="c1">#TO_LOG_DEBUG=/var/log/traffic_ops/debug.log</span>
+<span class="nv">TO_LOG_DEBUG</span><span class="o">=</span>/dev/null
+<span class="nv">TO_LOG_EVENT</span><span class="o">=</span>/var/log/traffic_ops/event.log
+<span class="nv">TP_HOST</span><span class="o">=</span>trafficportal
+<span class="nv">TP2_HOST</span><span class="o">=</span>trafficportalv2
+<span class="nv">TP_EMAIL</span><span class="o">=</span>tp@cdn.example.com
+<span class="nv">TR_HOST</span><span class="o">=</span>trafficrouter
+<span class="nv">TR_DNS_PORT</span><span class="o">=</span><span class="m">53</span>
+<span class="nv">TR_HTTP_PORT</span><span class="o">=</span><span class="m">80</span>
+<span class="nv">TR_HTTPS_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">TR_API_PORT</span><span class="o">=</span><span class="m">3333</span>
+<span class="nv">TP_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">TP2_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">TS_EMAIL</span><span class="o">=</span>tstats@cdn.example.com
+<span class="nv">TS_HOST</span><span class="o">=</span>trafficstats
+<span class="nv">TS_PASSWORD</span><span class="o">=</span>trafficstatspassword
+<span class="nv">TS_USER</span><span class="o">=</span>tstats
+<span class="nv">TV_HOST</span><span class="o">=</span>trafficvault
+<span class="nv">TV_USER</span><span class="o">=</span>tvault
+<span class="nv">TV_PASSWORD</span><span class="o">=</span>mwL5GP6Ghu_uJpkfjfiBmii3l9vfgLl0
+<span class="nv">TV_EMAIL</span><span class="o">=</span>tvault@cdn.example.com
+<span class="nv">TV_ADMIN_USER</span><span class="o">=</span>admin
+<span class="nv">TV_ADMIN_PASSWORD</span><span class="o">=</span>riakAdmin
+<span class="nv">TV_RIAK_USER</span><span class="o">=</span>riakuser
+<span class="nv">TV_RIAK_PASSWORD</span><span class="o">=</span>riakPassword
+<span class="nv">TV_INT_PORT</span><span class="o">=</span><span class="m">8087</span>
+<span class="nv">TV_HTTP_PORT</span><span class="o">=</span><span class="m">8098</span>
+<span class="nv">TV_HTTPS_PORT</span><span class="o">=</span><span class="m">8088</span>
+<span class="nv">ENROLLER_DIR</span><span class="o">=</span>/shared/enroller
+<span class="nv">AUTO_SNAPQUEUE_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">AUTO_SNAPQUEUE_SERVERS</span><span class="o">=</span>trafficops,trafficmonitor,trafficrouter,edge,mid-01,mid-02
+<span class="nv">AUTO_SNAPQUEUE_POLL_INTERVAL</span><span class="o">=</span><span class="m">2</span>
+<span class="nv">AUTO_SNAPQUEUE_ACTION_WAIT</span><span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While these port settings can be changed without hampering the function of the CDN in a Box system, note that changing a port without also changing the matching port-mapping in <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/docker-compose.yml</span></code> for the affected service <em>will</em> make it unreachable from the host.</p>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>It is perfectly possible to build and run all containers without Docker Compose, but it’s not recommended and not covered in this guide.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+<section id="x-509-ssl-tls-certificates">
+<h2>X.509 SSL/TLS Certificates<a class="headerlink" href="#x-509-ssl-tls-certificates" title="Permalink to this heading"></a></h2>
+<p>All components in Apache Traffic Control utilize SSL/TLS secure communications by default. For SSL/TLS connections to properly validate within the “CDN in a Box” container network a shared self-signed X.509 Root <abbr title="Certificate Authority">CA</abbr> is generated at the first initial startup. An X.509 Intermediate <abbr title="Certificate Authority">CA</abbr> is also generated and signed by the Root <abbr title="Certificate Authority">CA</abbr>. Additional “wildcard” certificates are generated/signed by the Intermediate <abbr title="Certificate Authority">CA</abbr> for each container service and demo1, demo2, and demo3 <a class="reference internal" href="../../glossary.html#term-Delivery-Services"><span class="xref std std-term">Delivery Services</span></a>. All certificates and keys are stored in the <code class="docutils literal notranslate"><span class="pre">ca</span></code> host volume which is located at <code class="file docutils literal notranslate"><span class="pre">infrastruture/cdn-in-a-box/traffic_ops/ca</span></code><a class="footnote-reference brackets" href="#id5" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<span id="ciab-x509-certificate-list"></span><table class="docutils align-default" id="id22">
+<caption><span class="caption-number">Table 56 </span><span class="caption-text">Self-Signed X.509 Certificate List</span><a class="headerlink" href="#id22" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Filename</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>X.509 CN/SAN</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CIAB-CA-root.crt</p></td>
+<td><p>Shared Root <abbr title="Certificate Authority">CA</abbr> Certificate</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>CIAB-CA-intr.crt</p></td>
+<td><p>Shared Intermediate <abbr title="Certificate Authority">CA</abbr> Certificate</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>CIAB-CA-fullchain.crt</p></td>
+<td><p>Shared <abbr title="Certificate Authority">CA</abbr> Certificate Chain Bundle<a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a></p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>infra.ciab.test.crt</p></td>
+<td><p>Infrastruture Certificate</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.infra.ciab.test</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>demo1.mycdn.ciab.test.crt</p></td>
+<td><p>Demo1 <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> Certificate</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.demo1.mycdn.ciab.test</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>demo2.mycdn.ciab.test.crt</p></td>
+<td><p>Demo2 <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> Certificate</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.demo2.mycdn.ciab.test</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>demo3.mycdn.ciab.test.crt</p></td>
+<td><p>Demo3 <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> Certificate</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.demo3.mycdn.ciab.test</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
+<p>The <code class="docutils literal notranslate"><span class="pre">ca</span></code> volume is not purged with normal <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span></code> commands. This feature is by design to allow the existing shared SSL certificate to be trusted at the system level across restarts. To re-generate all SSL certificates and keys, remove the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/ca</span></code> directory before startup.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">5</a><span class="fn-bracket">]</span></span>
+<p>The full chain bundle is a file that contains both the Root and Intermediate <abbr title="Certificate Authority">CA</abbr> certificates.</p>
+</aside>
+</aside>
+<section id="trusting-the-certificate-authority">
+<h3>Trusting the Certificate Authority<a class="headerlink" href="#trusting-the-certificate-authority" title="Permalink to this heading"></a></h3>
+<p>For developer and testing use-cases, it may be necessary to have full x509 <abbr title="Certificate Authority">CA</abbr> validation by HTTPS clients<a class="footnote-reference brackets" href="#id9" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#id10" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>. For x509 validation to work properly, the self-signed x509 <abbr title="Certificate Authority">CA</abbr> certificate must be trusted either at the system level or by the client application itself.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>HTTP Client applications such as Chromium, Firefox, <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/curl(1)">curl(1)</a></em>, and <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/wget(1)">wget(1)</a></em> can also be individually configured to trust the <abbr title="Certificate Authority">CA</abbr> certificate. Review each program’s respective documentation for instructions.</p>
+</div>
+<section id="importing-the-ca-certificate-on-osx">
+<h4>Importing the <abbr title="Certificate Authority">CA</abbr> Certificate on OSX<a class="headerlink" href="#importing-the-ca-certificate-on-osx" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Copy the CIAB root and intermediate <abbr title="Certificate Authority">CA</abbr> certificates from <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/ca/</span></code> to the Mac.</p></li>
+<li><p>Double-click the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate to open it in Keychain Access.</p></li>
+<li><p>The CIAB root <abbr title="Certificate Authority">CA</abbr> certificate appears in login.</p></li>
+<li><p>Copy the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate to System.</p></li>
+<li><p>Open the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate, expand <span class="guilabel">Trust</span>, select <span class="guilabel">Use System Defaults</span>, and save your changes.</p></li>
+<li><p>Reopen the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate, expand <span class="guilabel">Trust</span>, select <span class="guilabel">Always Trust</span>, and save your changes.</p></li>
+<li><p>Delete the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate from login.</p></li>
+<li><p>Repeat the previous steps with the Intermediate <abbr title="Certificate Authority">CA</abbr> certificate to import it as well</p></li>
+<li><p>Restart all HTTPS clients (browsers, etc).</p></li>
+</ol>
+</section>
+</section>
+<section id="importing-the-ca-certificate-on-windows">
+<h3>Importing the <abbr title="Certificate Authority">CA</abbr> certificate on Windows<a class="headerlink" href="#importing-the-ca-certificate-on-windows" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Copy the CIAB root <abbr title="Certificate Authority">CA</abbr> and intermediate <abbr title="Certificate Authority">CA</abbr> certificates from <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/ca/</span></code> to Windows filesystem.</p></li>
+<li><p>As Administrator, start the Microsoft Management Console.</p></li>
+<li><p>Add the Certificates snap-in for the computer account and manage certificates for the local computer.</p></li>
+<li><p>Import the CIAB root <abbr title="Certificate Authority">CA</abbr> certificate into <span class="menuselection">Trusted Root Certification Authorities ‣ Certificates</span>.</p></li>
+<li><p>Import the CIAB intermediate <abbr title="Certificate Authority">CA</abbr> certificate into <span class="menuselection">Trusted Root Certification Authorities ‣ Certificates</span>.</p></li>
+<li><p>Restart all HTTPS clients (browsers, etc).</p></li>
+</ol>
+</section>
+<section id="importing-the-ca-certificate-on-rocky-linux-8-linux">
+<h3>Importing the <abbr title="Certificate Authority">CA</abbr> certificate on Rocky Linux 8 (Linux)<a class="headerlink" href="#importing-the-ca-certificate-on-rocky-linux-8-linux" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Copy the CIAB full chain <abbr title="Certificate Authority">CA</abbr> certificate bundle from <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/ca/CIAB-CA-fullchain.crt</span></code> to path <code class="file docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors/</span></code>.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">update-ca-trust-extract</span></code> as the root user or with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sudo(8)">sudo(8)</a></em>.</p></li>
+<li><p>Restart all HTTPS clients (browsers, etc).</p></li>
+</ol>
+</section>
+<section id="importing-the-ca-certificate-on-ubuntu-linux">
+<h3>Importing the <abbr title="Certificate Authority">CA</abbr> certificate on Ubuntu (Linux)<a class="headerlink" href="#importing-the-ca-certificate-on-ubuntu-linux" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Copy the CIAB full chain <abbr title="Certificate Authority">CA</abbr> certificate bundle from <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/traffic_ops/ca/CIAB-CA-fullchain.crt</span></code> to path <code class="file docutils literal notranslate"><span class="pre">/usr/local/share/ca-certificates/</span></code>.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">update-ca-certificates</span></code> as the root user or with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sudo(8)">sudo(8)</a></em>.</p></li>
+<li><p>Restart all HTTPS clients (browsers, etc).</p></li>
+</ol>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id9" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">6</a><span class="fn-bracket">]</span></span>
+<p>All containers within CDN-in-a-Box start up with the self-signed <abbr title="Certificate Authority">CA</abbr> already trusted.</p>
+</aside>
+<aside class="footnote brackets" id="id10" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">7</a><span class="fn-bracket">]</span></span>
+<p>The ‘demo1’ <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a> X509 certificate is automatically imported into Traffic Vault on startup.</p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this heading"></a></h2>
+<p>This section will be amended as functionality is added to the CDN in a Box project.</p>
+<section id="the-enroller">
+<span id="ciab-enroller"></span><h3>The Enroller<a class="headerlink" href="#the-enroller" title="Permalink to this heading"></a></h3>
+<p>The “enroller” began as an efficient way for Traffic Ops to be populated with data as CDN in a Box starts up. It connects to Traffic Ops as the “admin” user and processes files places in the docker volume shared between the containers. The enroller watches each directory within the <code class="docutils literal notranslate"><span class="pre">/shared/enroller</span></code> directory for new <code class="file docutils literal notranslate"><em><span class="pre">filename</span></em><span class="pre">.json</span></code> files to be created there. These files must follow the format outlined in the API guide for the <code class="docutils literal notranslate"><span class="pre">POST</span></code> method for each data type,  (e.g. for a <code class="docutils literal notranslate"><span class="pre">region</span></code>, follow the guidelines for <a class="reference internal" href="../../api/v5/regions.html#to-api-regions-post"><span class="std std-ref">POST /regions</span></a>). Of note, the <code class="docutils literal notranslate"><span class="pre">enroller</span></code> does not require fields that reference database ids for other objects within the database.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dir">
+<span class="sig-name descname"><span class="pre">--dir</span></span><span class="sig-prename descclassname"> <span class="pre">directory</span></span><a class="headerlink" href="#cmdoption-dir" title="Permalink to this definition"></a></dt>
+<dd><p>Base directory to watch for data. Mutually exclusive with <a class="reference internal" href="#cmdoption-http"><code class="xref std std-option docutils literal notranslate"><span class="pre">--http</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-http">
+<span class="sig-name descname"><span class="pre">--http</span></span><span class="sig-prename descclassname"> <span class="pre">port</span></span><a class="headerlink" href="#cmdoption-http" title="Permalink to this definition"></a></dt>
+<dd><p>Act as an HTTP server for <code class="docutils literal notranslate"><span class="pre">POST</span></code> requests on this port. Mutually exclusive with <a class="reference internal" href="#cmdoption-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dir</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-started">
+<span class="sig-name descname"><span class="pre">--started</span></span><span class="sig-prename descclassname"> <span class="pre">filename</span></span><a class="headerlink" href="#cmdoption-started" title="Permalink to this definition"></a></dt>
+<dd><p>The name of a file which will be created in the <a class="reference internal" href="#cmdoption-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dir</span></code></a> directory when given, indicating service was started (default: “enroller-started”).</p>
+</dd></dl>
+
+<p>The enroller runs within CDN in a Box using <a class="reference internal" href="#cmdoption-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dir</span></code></a> which provides the above behavior. It can also be run using <a class="reference internal" href="#cmdoption-http"><code class="xref std std-option docutils literal notranslate"><span class="pre">--http</span></code></a> to instead have it listen on the indicated port. In this case, it accepts only <code class="docutils literal notranslate"><span class="pre">POST</span></code> requests with the JSON provided in the request payload, e.g. <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-X</span> <span class="pre">POST</span> <span class="pre">https://enroller/api/4.0/regions</span> <span class="pre">-d</span> <span class="pre">&#64;newregion.json</span></code>. CDN in a Box does not currently use this method, but may be modified in the future to avoid using the shared volume approach.</p>
+</section>
+<section id="auto-snapshot-queue-updates">
+<h3>Auto Snapshot/Queue-Updates<a class="headerlink" href="#auto-snapshot-queue-updates" title="Permalink to this heading"></a></h3>
+<p>An automatic <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> of the current Traffic Ops CDN configuration/topology will be performed once the “enroller” has finished loading all of the data and a minimum number of servers have been enrolled. To enable this feature, set the boolean <code class="docutils literal notranslate"><span class="pre">AUTO_SNAPQUEUE_ENABLED</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> <a class="footnote-reference brackets" href="#id13" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a>. The <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> and <a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> actions will not be performed until all servers in <code class="docutils literal notranslate"><span class="pre">AUTO_SNAPQUEUE_SERVERS</span></code> (comma-delimited string) have been enrolled. The current enrolled servers will be polled every <code class="docutils literal notranslate"><span class="pre">AUTO_SNAPQUEUE_POLL_INTERVAL</span></code> seconds, and each action (<a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a> and <a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a>) will be delayed <code class="docutils literal notranslate"><span class="pre">AUTO_SNAPQUEUE_ACTION_WAIT</span></code> seconds <a class="footnote-reference brackets" href="#id14" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id13" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">8</a><span class="fn-bracket">]</span></span>
+<p>Automatic <a class="reference internal" href="../../glossary.html#term-Snapshot"><span class="xref std std-term">Snapshot</span></a>/<a class="reference internal" href="../../glossary.html#term-Queue-Updates"><span class="xref std std-term">Queue Updates</span></a> is enabled by default in <a class="reference internal" href="#variables-env">variables.env</a>.</p>
+</aside>
+<aside class="footnote brackets" id="id14" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">9</a><span class="fn-bracket">]</span></span>
+<p>Server poll interval and delay action wait are defaulted to a value of 2 seconds.</p>
+</aside>
+</aside>
+</section>
+<section id="mock-origin-service">
+<h3>Mock Origin Service<a class="headerlink" href="#mock-origin-service" title="Permalink to this heading"></a></h3>
+<p>The default “origin” service container provides a basic static file HTTP server as the central repository for content. Additional files can be added to the origin root content directory located at <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/origin/content</span></code>. To request content directly from the origin directly and bypass the CDN:</p>
+<ul class="simple">
+<li><p>Origin Service URL: <a class="reference external" href="http://origin.infra.ciab.test/index.html">http://origin.infra.ciab.test/index.html</a></p></li>
+<li><p>Docker Host: <a class="reference external" href="http://localhost:9200/index.html">http://localhost:9200/index.html</a></p></li>
+</ul>
+</section>
+</section>
+<section id="optional-containers">
+<span id="ciab-optional-containers"></span><h2>Optional Containers<a class="headerlink" href="#optional-containers" title="Permalink to this heading"></a></h2>
+<p>All optional containers that are not part of the core CDN-in-a-Box stack are located in the <code class="docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/optional</span></code> directory.</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/optional/docker-compose.</span><em><span class="pre">NAME</span></em><span class="pre">.yml</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/optional/</span><em><span class="pre">NAME</span></em><span class="pre">/Dockerfile</span></code></p></li>
+</ul>
+<p>Multiple optional containers may be combined by using a shell alias:</p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-number">#45 </span><span class="caption-text">Starting Optional Containers with an Alias</span><a class="headerlink" href="#id23" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the infrastructure/cdn-in-a-box directory</span>
+<span class="c1"># (Assuming the names of the optional services are stored in the `NAME1` and `NAME2` environment variables)</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.</span><span class="nv">$NAME1</span><span class="s2">.yml -f  </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.</span><span class="nv">$NAME2</span><span class="s2">.yml&quot;</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+<section id="vnc-server">
+<h3>VNC Server<a class="headerlink" href="#vnc-server" title="Permalink to this heading"></a></h3>
+<p>The TightVNC optional container provides a basic lightweight window manager (fluxbox), Firefox browser, xterm, and a few other utilities within the CDN-In-A-Box “tcnet” bridge network. This can be very helpful for quick demonstrations of CDN-in-a-Box that require the use of real container network <abbr title="Fully Qualified Domain Name">FQDN</abbr>s and full X.509 validation.</p>
+<ol class="arabic">
+<li><p>Download and install a VNC client. TightVNC client is preferred as it supports window resizing, host-to-vnc copy/pasting, and optimized frame buffer compression.</p></li>
+<li><p>Set your VNC console password by adding the <code class="docutils literal notranslate"><span class="pre">VNC_PASSWD</span></code> environment variable to <code class="file docutils literal notranslate"><span class="pre">infrastructure/cdn-in-a-box/varibles.env</span></code>. The password needs to be at least six characters long. The default password is randomized for security.</p></li>
+<li><p>Start up CDN-in-a-Box stack. It is recommended that this be done using a custom bash alias</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-number">#46 </span><span class="caption-text">CIAB Startup Using Bash Alias</span><a class="headerlink" href="#id24" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From infrastructure/cdn-in-a-box</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose &quot;</span><span class="sb">`</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="sb">`</span><span class="s2">&quot;-f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml &quot;</span><span class="sb">`</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="sb">`</span><span class="s2">&quot;-f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.expose-ports.yml &quot;</span><span class="sb">`</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="sb">`</span><span class="s2">&quot;-f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.vnc.yml &quot;</span><span class="sb">`</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="sb">`</span><span class="s2">&quot;-f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.vnc.expose-ports.yml &quot;</span><span class="sb">`</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span><span class="nb">kill</span>
+mydc<span class="w"> </span>rm<span class="w"> </span>-fv
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Connect with a VNC client to localhost port 5909.</p></li>
+<li><p>When Traffic Portal becomes available, the Firefox within the VNC instance will subsequently be started.</p></li>
+<li><p>An xterm with bash shell is also automatically spawned and minimized for convenience.</p></li>
+</ol>
+</section>
+<section id="socks-proxy">
+<h3>Socks Proxy<a class="headerlink" href="#socks-proxy" title="Permalink to this heading"></a></h3>
+<p>Dante’s socks proxy is an optional container that can be used to provide browsers and other clients the ability to resolve DNS queries and network connectivity directly on the tcnet bridged interface. This is very helpful when running the CDN-In-A-Box stack on OSX/Windows docker host that lacks network bridge/IP-forward support. Below is the basic procedure to enable the Socks Proxy support for CDN-in-a-Box:</p>
+<ol class="arabic">
+<li><p>Start the CDN-in-a-Box stack at least once so that the x.509 self-signed <abbr title="Certificate Authority">CA</abbr> is created.</p></li>
+<li><p>On the host, import and Trust the <abbr title="Certificate Authority">CA</abbr> for your target Operating System. See <a class="reference internal" href="#trusting-the-certificate-authority">Trusting the Certificate Authority</a></p></li>
+<li><p>On the host, using either Firefox or Chromium, download the <a class="reference external" href="https://getfoxyproxy.org/">FoxyProxy browser plugin</a> which enables dynamic proxy support via URL regular expression</p></li>
+<li><p>Once FoxyProxy is installed, click the Fox icon on the upper right hand of the browser window, select <span class="guilabel">Options</span></p></li>
+<li><p>Once in Options Dialog, Click <span class="guilabel">Add New Proxy</span> and navigate to the General tab:</p></li>
+<li><p>Fill in the General tab according to the table</p>
+<blockquote>
+<div><table class="docutils align-default" id="id25">
+<caption><span class="caption-number">Table 57 </span><span class="caption-text">General Tab Values</span><a class="headerlink" href="#id25" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Proxy Name</p></td>
+<td><p>CIAB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Color</p></td>
+<td><p>Green</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p>Fill in the Proxy Details tab according to the table</p>
+<blockquote>
+<div><table class="docutils align-default" id="id26">
+<caption><span class="caption-number">Table 58 </span><span class="caption-text">Proxy Details Tab Values</span><a class="headerlink" href="#id26" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Manual Proxy Configuration</p></td>
+<td><p>CIAB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Host or IP Address</p></td>
+<td><p>localhost</p></td>
+</tr>
+<tr class="row-even"><td><p>Port</p></td>
+<td><p>9080</p></td>
+</tr>
+<tr class="row-odd"><td><p>Socks Proxy</p></td>
+<td><p>checked</p></td>
+</tr>
+<tr class="row-even"><td><p>Socks V5</p></td>
+<td><p>selected</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p>Go to URL Patterns tab, click Add New Pattern, and fill out form according to</p>
+<blockquote>
+<div><table class="docutils align-default" id="id27">
+<caption><span class="caption-number">Table 59 </span><span class="caption-text">URL Patters Tab Values</span><a class="headerlink" href="#id27" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pattern Name</p></td>
+<td><p>CIAB Pattern</p></td>
+</tr>
+<tr class="row-odd"><td><p>URL Pattern</p></td>
+<td><p><code class="regexp docutils literal notranslate"><span class="pre">*.test/*</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Whitelist</p></td>
+<td><p>selected</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wildcards</p></td>
+<td><p>selected</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p>Enable dynamic ‘pre-defined and patterns’ mode by clicking the fox icon in the upper right of the browser. This mode only forwards URLs that match the wildcard <code class="regexp docutils literal notranslate"><span class="pre">*.test/*</span></code> to the Socks V5 proxy.</p></li>
+<li><p>On the docker host start up CDN-in-a-Box stack. It is recommended that this be done using a custom bash alias</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id28">
+<div class="code-block-caption"><span class="caption-number">#47 </span><span class="caption-text">CIAB Startup Using Bash Alias</span><a class="headerlink" href="#id28" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From infrastructure/cdn-in-a-box</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.socksproxy.yml&quot;</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span><span class="nb">kill</span>
+mydc<span class="w"> </span>rm<span class="w"> </span>-fv
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Once the CDN-in-a-box stack has started, use the aforementioned browser to access Traffic Portal via the socks proxy on the docker host.</p></li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://docs.docker.com/compose/reference/">The official Docker Compose documentation CLI reference</a> for complete instructions on how to pass service definition files to the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> executable.</p>
+</div>
+</section>
+<section id="static-subnet">
+<h3>Static Subnet<a class="headerlink" href="#static-subnet" title="Permalink to this heading"></a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> will randomly create a subnet and it has a chance to conflict with your network environment, using static subnet is a good choice.</p>
+<div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-number">#48 </span><span class="caption-text">CIAB Startup with Static Subnet</span><a class="headerlink" href="#id29" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the infrastructure/cdn-in-a-box directory</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.static-subnet.yml&quot;</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</section>
+<section id="vpn-server">
+<h3>VPN Server<a class="headerlink" href="#vpn-server" title="Permalink to this heading"></a></h3>
+<p>This container provides an OpenVPN service. It’s primary use is to allow users and developers to easily access CIAB network.</p>
+<section id="how-to-use-it">
+<h4>How to use it<a class="headerlink" href="#how-to-use-it" title="Permalink to this heading"></a></h4>
+<ol class="arabic">
+<li><p>It is recommended that this be done using a custom bash alias.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id30">
+<div class="code-block-caption"><span class="caption-number">#49 </span><span class="caption-text">CIAB Startup with VPN</span><a class="headerlink" href="#id30" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From infrastructure/cdn-in-a-box</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.expose-ports.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.vpn.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.vpn.expose-ports.yml&quot;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>All certificates, keys, and client configuration are stored at <code class="docutils literal notranslate"><span class="pre">infrastruture/cdn-in-a-box/optional/vpn/vpnca</span></code>. You just simply change <code class="docutils literal notranslate"><span class="pre">REALHOSTIP</span></code> and <code class="docutils literal notranslate"><span class="pre">REALPORT</span></code> of <code class="docutils literal notranslate"><span class="pre">client.ovpn</span></code> to fit your environment, and then you can use it to connect to this OpenVPN server.</p></li>
+</ol>
+</section>
+<section id="the-proposed-vpn-client">
+<h4>The proposed VPN client<a class="headerlink" href="#the-proposed-vpn-client" title="Permalink to this heading"></a></h4>
+<p>On Linux, we suggest <code class="docutils literal notranslate"><span class="pre">openvpn</span></code>. On most Linux distributions, this will also be the name of the package that provides it.</p>
+<div class="literal-block-wrapper docutils container" id="id31">
+<div class="code-block-caption"><span class="caption-number">#50 </span><span class="caption-text">Install openvpn on ubuntu/debian</span><a class="headerlink" href="#id31" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openvpn
+</pre></div>
+</div>
+</div>
+<p>On OSX, it only works with brew installed openvpn client, not the <em>OpenVPN GUI client</em>.</p>
+<div class="literal-block-wrapper docutils container" id="id32">
+<div class="code-block-caption"><span class="caption-number">#51 </span><span class="caption-text">Install openvpn on OSX</span><a class="headerlink" href="#id32" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>openvpn
+</pre></div>
+</div>
+</div>
+<p>If you want a GUI version of VPN client, we recommend <a class="reference external" href="https://tunnelblick.net/">Tunnelblick</a>.</p>
+</section>
+<section id="private-subnet-for-routing">
+<h4>Private Subnet for Routing<a class="headerlink" href="#private-subnet-for-routing" title="Permalink to this heading"></a></h4>
+<p>Since <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> randomly creates a subnet, this container prepares 2 default private subnets for routing:</p>
+<ul class="simple">
+<li><p>172.16.127.0/255.255.240.0</p></li>
+<li><p>10.16.127.0/255.255.240.0</p></li>
+</ul>
+<p>The subnet that will be used is determined automatically based on the subnet prefix. If the subnet prefix which <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> selected is <code class="docutils literal notranslate"><span class="pre">192.</span></code> or <code class="docutils literal notranslate"><span class="pre">10.</span></code>, this container will select 172.16.127.0/255.255.240.0 for its routing subnet. Otherwise, it selects 10.16.127.0/255.255.240.0.</p>
+<p>Of course, you can decide which routing subnet subnet by supplying the environment variables <code class="docutils literal notranslate"><span class="pre">PRIVATE_NETWORK</span></code> and <code class="docutils literal notranslate"><span class="pre">PRIVATE_NETMASK</span></code>.</p>
+</section>
+<section id="pushed-settings">
+<h4>Pushed Settings<a class="headerlink" href="#pushed-settings" title="Permalink to this heading"></a></h4>
+<p>Pushed settings are shown as follows:</p>
+<ul class="simple">
+<li><p>DNS</p></li>
+<li><p>A routing rule for the <code class="docutils literal notranslate"><span class="pre">CIAB</span></code> subnet</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It will not change your default gateway. That means apart from CDN in a Box traffic and DNS requests, all other traffic will use the standard interface bound to the default gateway.</p>
+</div>
+</section>
+</section>
+<section id="grafana">
+<h3>Grafana<a class="headerlink" href="#grafana" title="Permalink to this heading"></a></h3>
+<p>This container provides a Grafana service. It’s an open platform for analytics and monitoring. This container has prepared necessary <em>datasources</em> and <em>scripted dashboards</em>. Please refer to <a class="reference internal" href="../traffic_stats.html#grafana-config"><span class="std std-ref">Configuring Grafana</span></a> for detailed Settings.</p>
+<section id="how-to-start-it">
+<h4>How to start it<a class="headerlink" href="#how-to-start-it" title="Permalink to this heading"></a></h4>
+<p>It is recommended that this be done using a custom bash alias.</p>
+<div class="literal-block-wrapper docutils container" id="id33">
+<div class="code-block-caption"><span class="caption-number">#52 </span><span class="caption-text">CIAB Startup with Grafana</span><a class="headerlink" href="#id33" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># From infrastructure/cdn-in-a-box</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">mydc</span><span class="o">=</span><span class="s2">&quot;docker-compose -f </span><span class="nv">$PWD</span><span class="s2">/docker-compose.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.grafana.yml -f </span><span class="nv">$PWD</span><span class="s2">/optional/docker-compose.grafana.expose-ports.yml&quot;</span>
+mydc<span class="w"> </span>down<span class="w"> </span>-v
+mydc<span class="w"> </span>build
+mydc<span class="w"> </span>up
+</pre></div>
+</div>
+</div>
+<p>Apart from start Grafana, the above commands also expose port 3000 for it.</p>
+</section>
+<section id="check-the-charts">
+<h4>Check the charts<a class="headerlink" href="#check-the-charts" title="Permalink to this heading"></a></h4>
+<p>There are some “scripted dashboards” that can show easily comprehended charts. The data displayed on different charts is controlled using query string parameters.</p>
+<ul class="simple">
+<li><p><code class="samp docutils literal notranslate"><span class="pre">https://</span><em><span class="pre">Grafana</span> <span class="pre">Host</span></em><span class="pre">/dashboard/script/traffic_ops_cachegroup.js?which=</span><em><span class="pre">Cache</span> <span class="pre">Group</span> <span class="pre">name</span></em></code>. The query string parameter <code class="docutils literal notranslate"><span class="pre">which</span></code> in this particular URL should be the <a class="reference internal" href="../../glossary.html#term-Cache-Group"><span class="xref std std-term">Cache Group</span></a>. With default <abbr title="CDN-in-a-Box">CiaB</abbr> data, it can be filled in with <strong>CDN_in_a_Box_Edge</strong> or <strong>CDN_in_a_Box_Edge</strong>.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">https://</span><em><span class="pre">Grafana</span> <span class="pre">Host</span></em><span class="pre">/dashboard/script/traffic_ops_deliveryservice.js?which=</span><em><span class="pre">XML</span> <span class="pre">ID</span></em></code>. The query string parameter <code class="docutils literal notranslate"><span class="pre">which</span></code> in this particular URL should be the <a class="reference internal" href="../../overview/delivery_services.html#ds-xmlid"><span class="std std-ref">xml_id</span></a> of the desired <a class="reference internal" href="../../glossary.html#term-Delivery-Service"><span class="xref std std-term">Delivery Service</span></a>.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">https://</span><em><span class="pre">Grafana</span> <span class="pre">Host</span></em><span class="pre">/dashboard/script/traffic_ops_server.js?which=</span><em><span class="pre">hostname</span></em></code>. The query string parameter <code class="docutils literal notranslate"><span class="pre">which</span></code> in this particular URL should be the <strong>hostname</strong> (not <strong>FQDN</strong>). With default <abbr title="CDN-in-a-Box">CiaB</abbr> data, it can be filled in with <strong>edge</strong> or <strong>mid</strong>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h2>
+<p>See <a class="reference internal" href="../../development/debugging.html#dev-debugging-ciab"><span class="std std-ref">Debugging inside CDN-in-a-Box</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../environment_creation.html" class="btn btn-neutral float-left" title="Environment Creation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ansible-labs/ansible_labs.html" class="btn btn-neutral float-right" title="Ansible-based Lab Creation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

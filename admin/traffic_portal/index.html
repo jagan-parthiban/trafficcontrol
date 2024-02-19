@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Portal &mdash; Traffic Control 8.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Traffic Portal - Using" href="usingtrafficportal.html" />
+    <link rel="prev" title="Ansible-based Lab Creation" href="../ansible-labs/ansible_labs.html" />
+    <link href="../../_static/theme_overrides.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Traffic Control
+              <img src="../../_static/ATC-SVG-FULL-WHITE.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                8.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basics/index.html">CDN Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Traffic Control Overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Administrator’s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../traffic_ops.html">Traffic Ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment_creation.html">Environment Creation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Traffic Portal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing">Installing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring">Configuring</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#etc-traffic-portal-conf-config-js"><code class="docutils literal notranslate"><span class="pre">/etc/traffic_portal/conf/config.js</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opt-traffic-portal-public-traffic-portal-properties-json"><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opt-traffic-portal-public-resources-assets-css-custom-css"><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/resources/assets/css/custom.css</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-oauth-through-traffic-portal">Configuring OAuth Through Traffic Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-traffic-portal">Starting Traffic Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stopping-traffic-portal">Stopping Traffic Portal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-traffic-portal">Using Traffic Portal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usingtrafficportal.html">Traffic Portal - Using</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_monitor.html">Traffic Monitor Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_router.html">Traffic Router Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_stats.html">Traffic Stats Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_server.html">Traffic Server Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t3c/index.html">t3c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../traffic_vault.html">Traffic Vault Administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick_howto/index.html">Quick How To Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cdni.html">CDNi Administration</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer’s Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Traffic Ops API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Traffic Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Administrator’s Guide</a></li>
+      <li class="breadcrumb-item active">Traffic Portal</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/admin/traffic_portal/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traffic-portal">
+<h1>Traffic Portal<a class="headerlink" href="#traffic-portal" title="Permalink to this heading"></a></h1>
+<p>Traffic Portal is only supported on CentOS Linux distributions version 7.x and 8.x. It runs on <a class="reference external" href="https://nodejs.org/">NodeJS</a> and requires version 16 or higher.</p>
+<section id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Build the Traffic Portal RPM using the instructions in <a class="reference internal" href="../../development/building.html#dev-building"><span class="std std-ref">Building Traffic Control</span></a>.</p></li>
+<li><p>Copy the Traffic Portal RPM to your server</p></li>
+<li><p>Install NodeJS. This can be done by building it from source, installing with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/yum(8)">yum(8)</a></em> if it happens to be in your available repositories (at version 16+), or using the NodeSource setup script.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">#53 </span><span class="caption-text">Installing NodeJS using the NodeSource Setup Script</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--silent<span class="w"> </span>--location<span class="w"> </span>https://rpm.nodesource.com/setup_16.x<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span>-
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install the Traffic Portal RPM with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/yum(8)">yum(8)</a></em> or <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/rpm(8)">rpm(8)</a></em> e.g. by running <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">path/to/traffic_portal.rpm</span></code> as the root user or with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sudo(8)">sudo(8)</a></em>.</p></li>
+</ol>
+</section>
+<section id="configuring">
+<h2>Configuring<a class="headerlink" href="#configuring" title="Permalink to this heading"></a></h2>
+<p>Traffic Portal is primarily configured through three different files that affect different parts of its behavior. Those files are detailed in this section.</p>
+<section id="etc-traffic-portal-conf-config-js">
+<h3><code class="docutils literal notranslate"><span class="pre">/etc/traffic_portal/conf/config.js</span></code><a class="headerlink" href="#etc-traffic-portal-conf-config-js" title="Permalink to this heading"></a></h3>
+<p>This file controls the behavior of the Traffic Portal server. It is a JavaScript source file which <strong>MUST</strong> set <code class="docutils literal notranslate"><span class="pre">module.exports</span></code> to the value of a configuration object. Configuration objects have the following allowed properties.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If Traffic Portal is being upgraded, reconcile <code class="docutils literal notranslate"><span class="pre">config.js</span></code> with <code class="docutils literal notranslate"><span class="pre">config.js.rpmnew</span></code> and then delete <code class="docutils literal notranslate"><span class="pre">config.js.rpmnew</span></code>.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">api<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The properties of this object control Traffic Portal’s interactions with the <a class="reference internal" href="../../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">base_url<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <strong>full</strong> URL that points to the root of the <a class="reference internal" href="../../api/index.html#to-api"><span class="std std-ref">Traffic Ops API</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">https://trafficops.infra.ciab.test:443/api/</span></code> <strong>not</strong> <code class="docutils literal notranslate"><span class="pre">https://trafficops.infra.ciab.test:443</span></code> or <code class="docutils literal notranslate"><span class="pre">https://trafficops.infra.ciab.test:443/api</span></code> (trailing <code class="docutils literal notranslate"><span class="pre">/</span></code> required).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">files<span class="colon">:</span></dt>
+<dd class="field-even"><p>The properties of this object describe system paths important to Traffic Portal (other than SSL-related files, which are kept in the <code class="docutils literal notranslate"><span class="pre">ssl</span></code> object).</p>
+<dl class="field-list simple">
+<dt class="field-odd">static<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The directory where the built Traffic Portal front-end files are kept. In most cases, changing this from the default is unnecessary/discouraged.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">log<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The properties of this object describe the logging behavior of Traffic Portal. If this property is missing, or is <code class="docutils literal notranslate"><span class="pre">null</span></code> (or other “falsey” values), then logging is done simply on STDOUT.</p>
+<dl class="field-list simple">
+<dt class="field-odd">stream<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Defines a file location for Traffic Portal’s access logs. If this property is missing, or is <code class="docutils literal notranslate"><span class="pre">null</span></code> (or other “falsey” values), then logs will go to STDOUT instead.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">port<span class="colon">:</span></dt>
+<dd class="field-even"><p>A port number that sets the port on which Traffic Portal will listen for insecure (HTTP) connections. If <code class="docutils literal notranslate"><span class="pre">useSSL</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>, requests made to this port will be redirected to use HTTPS on the <code class="docutils literal notranslate"><span class="pre">sslPort</span></code> instead of just serving content insecurely.</p>
+</dd>
+<dt class="field-odd">reject_unauthorized<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A boolean that defines whether or not Traffic Portal will reject SSL certificates that fail to validate as trusted.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Setting this to <code class="docutils literal notranslate"><span class="pre">false</span></code> exposes Traffic Portal to security vulnerabilities such as man-in-the-middle attacks, and should <em>never</em> be done in a production setting.</p>
+</div>
+</dd>
+<dt class="field-even">ssl<span class="colon">:</span></dt>
+<dd class="field-even"><p>This object has properties that set the locations of SSL keys and certificates. Has no effect if <code class="docutils literal notranslate"><span class="pre">useSSL</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">key<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The file location of the SSL certificate private key.</p>
+</dd>
+<dt class="field-even">cert<span class="colon">:</span></dt>
+<dd class="field-even"><p>The file location of the x509 SSL certificate that Traffic Portal will use.</p>
+</dd>
+<dt class="field-odd">ca<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The file locations of the full certificate chain for the certificate authority that signed the SSL key (in order).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">sslPort<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A port number that sets the port on which Traffic Portal will listen for secure (HTTPS) connections. Has no effect if <code class="docutils literal notranslate"><span class="pre">useSSL</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</dd>
+<dt class="field-even">useSSL<span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean that defines whether or not the Traffic Portal instance will offer secure (HTTPS) connections.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Setting this to <code class="docutils literal notranslate"><span class="pre">false</span></code> can expose sensitive data such as authentication credentials. Do not <em>ever</em> do that in a production setting.</p>
+</div>
+</dd>
+<dt class="field-odd">timeout<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This property defines the maximum time for which Traffic Portal will process requests before sending a timeout response. It can be either a number of milliseconds, or a duration string accepted by <a class="reference external" href="https://www.npmjs.com/package/ms#readme">the ms library</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Slow requests will continue to use CPU and memory, even though a response has already been sent to the client.</p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="opt-traffic-portal-public-traffic-portal-properties-json">
+<h3><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code><a class="headerlink" href="#opt-traffic-portal-public-traffic-portal-properties-json" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>update <code class="file docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/traffic_portal_properties.json</span></code> (if Traffic Portal is being upgraded, reconcile <code class="file docutils literal notranslate"><span class="pre">traffic_portal_properties.json</span></code> with <code class="file docutils literal notranslate"><span class="pre">traffic_portal_properties.json.rpmnew</span></code> and then delete <code class="file docutils literal notranslate"><span class="pre">traffic_portal_properties.json.rpmnew</span></code>)</p></li>
+</ul>
+</section>
+<section id="opt-traffic-portal-public-resources-assets-css-custom-css">
+<h3><code class="docutils literal notranslate"><span class="pre">/opt/traffic_portal/public/resources/assets/css/custom.css</span></code><a class="headerlink" href="#opt-traffic-portal-public-resources-assets-css-custom-css" title="Permalink to this heading"></a></h3>
+<p>This <abbr title="Cascading Style Sheets">CSS</abbr> file is provided for users to insert CSS to override the default styling of Traffic Portal.</p>
+</section>
+</section>
+<section id="configuring-oauth-through-traffic-portal">
+<h2>Configuring OAuth Through Traffic Portal<a class="headerlink" href="#configuring-oauth-through-traffic-portal" title="Permalink to this heading"></a></h2>
+<p>See <a class="reference internal" href="../quick_howto/oauth_login.html#oauth-login"><span class="std std-ref">Configure OAuth Login</span></a>.</p>
+</section>
+<section id="starting-traffic-portal">
+<h2>Starting Traffic Portal<a class="headerlink" href="#starting-traffic-portal" title="Permalink to this heading"></a></h2>
+<p>The Traffic Portal RPM comes with a <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em> unit file, so under normal circumstances Traffic Portal may be started with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemctl(1)">systemctl(1)</a></em>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">#54 </span><span class="caption-text">Starting Traffic Portal</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>start<span class="w"> </span>traffic_portal
+</pre></div>
+</div>
+</div>
+</section>
+<section id="stopping-traffic-portal">
+<h2>Stopping Traffic Portal<a class="headerlink" href="#stopping-traffic-portal" title="Permalink to this heading"></a></h2>
+<p>The Traffic Portal RPM comes with a <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd(1)">systemd(1)</a></em> unit file, so under normal circumstances Traffic Portal may be stopped with <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemctl(1)">systemctl(1)</a></em>.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">#55 </span><span class="caption-text">Stopping Traffic Portal</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>stop<span class="w"> </span>traffic_portal
+</pre></div>
+</div>
+</div>
+</section>
+<section id="using-traffic-portal">
+<h2>Using Traffic Portal<a class="headerlink" href="#using-traffic-portal" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usingtrafficportal.html">Traffic Portal - Using</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#change-logs">Change Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#sidebar-bottom-buttons">Sidebar Bottom Buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#dashboard">Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#cdns">CDNs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#monitor">Monitor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#cache-checks">Cache Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#cache-stats">Cache Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#services">Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#delivery-services">Delivery Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#delivery-service-requests">Delivery Service Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#configure">Configure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#servers">Servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#origins">Origins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#profiles">Profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#types">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#statuses">Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#topology">Topology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#cache-groups">Cache Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#coordinates">Coordinates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#phys-locations">Phys Locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#divisions">Divisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#regions">Regions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#asns">ASNs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#tools">Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#invalidate-content">Invalidate Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#generate-iso">Generate ISO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#user-admin">User Admin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#user">User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#tenants">Tenants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#roles">Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usingtrafficportal.html#other">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#docs">Docs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usingtrafficportal.html#custom-menu-items">Custom Menu Items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ansible-labs/ansible_labs.html" class="btn btn-neutral float-left" title="Ansible-based Lab Creation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usingtrafficportal.html" class="btn btn-neutral float-right" title="Traffic Portal - Using" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Apache Traffic Control.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+.. highlight:: text
+
+.. program:: t3c-preprocess
+
+.. _t3c-t3c-preprocess:
+
+**************
+t3c-preprocess
+**************
+
+NAME
+====
+
+t3c-preprocess - Traffic Control Cache Configuration preprocessor
+
+SYNOPSIS
+========
+
+t3c-preprocess
+
+[--help]
+
+[--version]
+
+DESCRIPTION
+===========
+
+The ‘t3c-preprocess’ app preprocesses generated config files, replacing
+directives with relevant data.
+
+The stdin must be the JSON ‘{“data”: <data>, “files”: <files>}’ where
+<data> is the output of ‘t3c-request –get-data=config’ and <files> is
+the output of ‘t3c-generate’.
+
+DIRECTIVES
+==========
+
+The following directives will be replaced. These directives may be
+placed anywhere in any file, by either t3c-generate(1) or Traffic Ops
+Parameters.
+
+::
+
+   __SERVER_TCP_PORT__ is replaced with the Server's Port from Traffic Ops; unless the server's
+                       port is 80, 0, or null, in which case any occurrences preceded by a colon
+                       are removed.
+
+   __CACHE_IPV4__      is replaced with the Server's IP address from Traffic Ops.
+
+   __HOSTNAME__        is replaced with the Server's (short) HostName from Traffic Ops.
+
+   __FULL_HOSTNAME__   is replaced with the Server's HostName, a dot, and the Server's DomainName
+                       from Traffic Ops (i.e. the Server's Fully Qualified Domain Name).
+
+   __CACHEGROUP__      is replaced with the Server's Cachegroup name from Traffic Ops.
+
+   __RETURN__          is replaced with a newline character, and any whitespace before or after
+                       it is removed.
+
+OPTIONS
+=======
+
+-h, --help
+
+::
+
+   Print usage information and exit
+
+-V, --version
+
+::
+
+   Print version information and exit.
+
+AUTHORS
+=======
+
+The t3c application is maintained by Apache Traffic Control project. For
+help, bug reports, contributing, or anything else, see:
+
+https://trafficcontrol.apache.org/
+
+https://github.com/apache/trafficcontrol
